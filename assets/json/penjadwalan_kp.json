@@ -1,0 +1,16 @@
+{
+    "id": 1,
+    "mahasiswa_nim": "11850112219",
+    "pembimbing_nip": "0",
+    "penguji_nip": "111",
+    "prodi_id": 3,
+    "jenis_seminar": "KP",
+    "judul_kp": "Pembuatan Aplikasi Testing dengan Metode Testing",
+    "tanggal": "2023-04-01",
+    "waktu": "09:00:00",
+    "lokasi": "Bebas",
+    "status_seminar": "1",
+    "dibuat_oleh": "zainalasri",
+    "created_at": "2023-03-31T10:51:25.000000Z",
+    "updated_at": "2023-04-02T08:30:06.000000Z"
+}

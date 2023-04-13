@@ -1,0 +1,23 @@
+{
+    "id": 1,
+    "mahasiswa_nim": "11850112219",
+    "pembimbingsatu_nip": "0",
+    "pembimbingdua_nip": "111",
+    "pengujisatu_nip": "444",
+    "pengujidua_nip": "222",
+    "pengujitiga_nip": "555",
+    "prodi_id": 3,
+    "jenis_seminar": "Proposal",
+    "judul_proposal": "Pembuatan aplikasi mobile",
+    "revisi_proposal": null,
+    "catatan1": null,
+    "catatan2": null,
+    "catatan3": null,
+    "tanggal": "2023-04-02",
+    "waktu": "09:33:00",
+    "lokasi": "Bebas",
+    "status_seminar": "1",
+    "dibuat_oleh": "zainalasri",
+    "created_at": "2023-04-03T02:33:27.000000Z",
+    "updated_at": "2023-04-03T03:07:37.000000Z"
+}
