@@ -70,6 +70,8 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                           ),
                           decoration: InputDecoration(
                             hintText: 'Password Lama',
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12.w, vertical: 10.h),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -113,6 +115,8 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                           ),
                           decoration: InputDecoration(
                             hintText: 'Password Baru',
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12.w, vertical: 10.h),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -156,6 +160,8 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                           ),
                           decoration: InputDecoration(
                             hintText: 'Konfirmasi Password',
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12.w, vertical: 10.h),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),

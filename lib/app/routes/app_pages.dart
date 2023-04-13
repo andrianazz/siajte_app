@@ -4,6 +4,8 @@ import '../modules/change_password/bindings/change_password_binding.dart';
 import '../modules/change_password/views/change_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/jadwal_seminar/bindings/jadwal_seminar_binding.dart';
+import '../modules/jadwal_seminar/views/jadwal_seminar_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/success/bindings/success_binding.dart';
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.SUCCESS,
       page: () => const SuccessView(),
       binding: SuccessBinding(),
+    ),
+    GetPage(
+      name: _Paths.JADWAL_SEMINAR,
+      page: () => const JadwalSeminarView(),
+      binding: JadwalSeminarBinding(),
     ),
   ];
 }

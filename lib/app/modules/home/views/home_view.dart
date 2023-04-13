@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
+import 'package:siajte_app/app/widgets/appbar_widget.dart';
 import 'package:siajte_app/app/widgets/card_menu_widget.dart';
 
 import '../../../theme/style.dart';
@@ -14,85 +16,9 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: controller.scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Row(
-          children: [
-            Image.asset(
-              'assets/images/logo.png',
-              width: 24.w,
-              height: 24.h,
-            ),
-            SizedBox(width: 16.w),
-            FutureBuilder(
-              future: controller.getUser(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(
-                    'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
-                    style: poppins.copyWith(
-                        color: Colors.black,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text(
-                    'Error',
-                    style: poppins.copyWith(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  );
-                }
-                return Text(
-                  'Loading...',
-                  style: poppins.copyWith(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-        actions: <Widget>[
-          PopupMenuButton<int>(
-            icon: const Icon(Icons.more_vert, color: Colors.black),
-            onSelected: (item) => controller.handleClick(item),
-            itemBuilder: (context) => [
-              PopupMenuItem<int>(
-                value: 0,
-                child: Row(
-                  children: [
-                    Text(
-                      'Ubah Password',
-                      style: poppins.copyWith(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              PopupMenuItem<int>(
-                value: 1,
-                child: Row(
-                  children: [
-                    Text(
-                      'Logout',
-                      style: poppins.copyWith(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(56.h),
+        child: const AppbarWidget(),
       ),
       body: ListView(
         children: [
@@ -115,7 +41,9 @@ class HomeView extends GetView<HomeController> {
                 CardMenuWidget(
                   judul: "Jadwal Seminar",
                   imageUrl: "assets/images/jadwalseminar_bg.png",
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Routes.JADWAL_SEMINAR);
+                  },
                 ),
                 SizedBox(
                   height: 24.h,

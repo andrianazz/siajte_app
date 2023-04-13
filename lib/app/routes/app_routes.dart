@@ -7,6 +7,7 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
   static const SUCCESS = _Paths.SUCCESS;
+  static const JADWAL_SEMINAR = _Paths.JADWAL_SEMINAR;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const CHANGE_PASSWORD = '/change-password';
   static const SUCCESS = '/success';
+  static const JADWAL_SEMINAR = '/jadwal-seminar';
 }
