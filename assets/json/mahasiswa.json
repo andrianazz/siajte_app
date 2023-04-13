@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "role_id": null,
+    "prodi_id": 3,
+    "konsentrasi_id": 4,
+    "nim": "1807125148",
+    "nama": "Rahul Ilsa Tajri Mukhti",
+    "angkatan": "2018",
+    "email": "rahul.ilsa5148@student.unri.ac.id",
+    "created_at": "2023-03-31T07:12:53.000000Z",
+    "updated_at": "2023-03-31T07:12:53.000000Z"
+}
