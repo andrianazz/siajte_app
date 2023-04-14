@@ -26,7 +26,7 @@ class LoginController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isLoading.value = true;
     var response = await dio.post(
-      "$baseUrlEmulator/login",
+      "$baseUrlAPI/login",
       data: {
         "username": userC.text,
         "password": passC.text,

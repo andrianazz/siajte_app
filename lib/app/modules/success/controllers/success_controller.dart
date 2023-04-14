@@ -11,7 +11,7 @@ class SuccessController extends GetxController {
   Future<void> logout() async {
     Dio dio = Dio();
     var response = await dio.post(
-      "$baseUrlEmulator/logout",
+      "$baseUrlAPI/logout",
     );
 
     if (response.statusCode == 200) {

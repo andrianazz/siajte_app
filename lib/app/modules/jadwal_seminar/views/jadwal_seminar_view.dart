@@ -54,28 +54,66 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
                   ),
                 ),
                 SizedBox(height: 24.h),
-                const CardJadwalWidget(
-                  nama: "Andrian Wahyu",
-                  tanggal: "12/12/2021",
-                  jam: "12:00",
-                  jenis: "KP",
-                  nim: "11850112219",
-                ),
-                SizedBox(height: 20.h),
-                const CardJadwalWidget(
-                  nama: "Wirasatria Putra",
-                  tanggal: "23/08/2002",
-                  jenis: "Proposal",
-                  nim: "118656622123",
-                  jam: "12:00",
-                ),
-                SizedBox(height: 20.h),
-                const CardJadwalWidget(
-                  nama: "Ridho Abdillah Alta",
-                  tanggal: "12/12/2021",
-                  jam: "08:00",
-                  jenis: "Skripsi",
-                  nim: "11850112219",
+                // Tampilan Web
+                FutureBuilder(
+                  future: controller.getJadwalSeminar(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      if (snapshot.data!.listPenjadwalanKP!.isEmpty &&
+                          snapshot.data!.listPenjadwalanSempro!.isEmpty &&
+                          snapshot.data!.listPenjadwalanSkripsi!.isEmpty) {
+                        return Center(
+                          child: Text(
+                            'Tidak ada jadwal seminar',
+                            style: poppins.copyWith(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        );
+                      }
+
+                      snapshot.data!.listPenjadwalanKP!
+                          .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
+                      snapshot.data!.listPenjadwalanSempro!
+                          .sort((a, b) => a.tanggal!.compareTo(b.tanggal!));
+                      snapshot.data!.listPenjadwalanSkripsi!
+                          .sort((a, b) => a.tanggal!.compareTo(b.tanggal!));
+
+                      return Column(
+                        children: [
+                          Column(
+                            children: snapshot.data!.listPenjadwalanKP!
+                                .map((jadwalKP) => CardJadwalWidget(
+                                      onTap: () {},
+                                      penjadwalanKp: jadwalKP,
+                                    ))
+                                .toList(),
+                          ),
+                          Column(
+                            children: snapshot.data!.listPenjadwalanSempro!
+                                .map((jadwalSempro) => CardJadwalWidget(
+                                      onTap: () {},
+                                      penjadwalanSempro: jadwalSempro,
+                                    ))
+                                .toList(),
+                          ),
+                          Column(
+                            children: snapshot.data!.listPenjadwalanSkripsi!
+                                .map((jadwalSkripsi) => CardJadwalWidget(
+                                      onTap: () {},
+                                      penjadwalanSkripsi: jadwalSkripsi,
+                                    ))
+                                .toList(),
+                          ),
+                        ],
+                      );
+                    } else if (snapshot.hasError) {
+                      return const Text("error");
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
                 ),
               ],
             ),

@@ -46,7 +46,7 @@ class ChangePasswordController extends GetxController {
 
     if (role == 'mahasiswa') {
       var loginMahasiswa = await dio.post(
-        "$baseUrlEmulator/login",
+        "$baseUrlAPI/login",
         data: {
           "username": homeC.mapUser['data']['nim'],
           "password": passOldC.text,
@@ -63,7 +63,7 @@ class ChangePasswordController extends GetxController {
       }
     } else if (role == 'dosen') {
       var loginDosen = await dio.post(
-        "$baseUrlEmulator/login",
+        "$baseUrlAPI/login",
         data: {
           "username": homeC.mapUser['data']['nip'],
           "password": passOldC.text,
@@ -76,7 +76,7 @@ class ChangePasswordController extends GetxController {
       }
     } else if (role == 'web') {
       var loginWeb = await dio.post(
-        "$baseUrlEmulator/login",
+        "$baseUrlAPI/login",
         data: {
           "username": homeC.mapUser['data']['username'],
           "password": passOldC.text,
@@ -99,7 +99,7 @@ class ChangePasswordController extends GetxController {
     }
 
     var response = await dio.post(
-      "$baseUrlEmulator/profile$role/editpass",
+      "$baseUrlAPI/profile$role/editpass",
       data: {
         "passNew": passNewC.text,
       },
