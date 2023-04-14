@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/jadwal_seminar/views/detail_jadwal_seminar_view.dart';
 import 'package:siajte_app/app/theme/style.dart';
 import 'package:siajte_app/app/widgets/card_jadwal_widget.dart';
 
@@ -85,7 +86,11 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
                           Column(
                             children: snapshot.data!.listPenjadwalanKP!
                                 .map((jadwalKP) => CardJadwalWidget(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Get.to(
+                                          () => const DetailJadwalSeminarView(),
+                                        );
+                                      },
                                       penjadwalanKp: jadwalKP,
                                     ))
                                 .toList(),

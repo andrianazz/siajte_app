@@ -26,13 +26,13 @@ class CardJadwalWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     JadwalSeminarController jadwalSeminarC = Get.find();
+
     return InkWell(
       onTap: () {
         onTap();
       },
       child: Container(
         width: double.infinity,
-        height: 115.h,
         margin: EdgeInsets.only(bottom: 20.h),
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         decoration: BoxDecoration(
@@ -91,6 +91,7 @@ class CardJadwalWidget extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: 12.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,

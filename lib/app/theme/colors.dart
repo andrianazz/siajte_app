@@ -14,3 +14,5 @@ Color textJelas = const Color(0xff121212);
 Color textKP = const Color(0xff3629B7);
 Color textProposal = primaryColor;
 Color textSkripsi = const Color(0xffFFAF2A);
+
+Color dividerColor = const Color(0xffCBCBCB);
