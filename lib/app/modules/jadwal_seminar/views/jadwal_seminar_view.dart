@@ -76,9 +76,9 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
                       snapshot.data!.listPenjadwalanKP!
                           .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
                       snapshot.data!.listPenjadwalanSempro!
-                          .sort((a, b) => a.tanggal!.compareTo(b.tanggal!));
+                          .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
                       snapshot.data!.listPenjadwalanSkripsi!
-                          .sort((a, b) => a.tanggal!.compareTo(b.tanggal!));
+                          .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
 
                       return Column(
                         children: [
