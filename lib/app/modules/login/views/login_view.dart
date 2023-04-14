@@ -46,6 +46,10 @@ class LoginView extends GetView<LoginController> {
                             return null;
                           },
                           decoration: InputDecoration(
+                            contentPadding: EdgeInsetsDirectional.symmetric(
+                              horizontal: 14.w,
+                              vertical: 14.h,
+                            ),
                             labelText: 'NIP / NIM',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -65,6 +69,10 @@ class LoginView extends GetView<LoginController> {
                             },
                             decoration: InputDecoration(
                               labelText: 'Password',
+                              contentPadding: EdgeInsetsDirectional.symmetric(
+                                horizontal: 14.w,
+                                vertical: 14.h,
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
