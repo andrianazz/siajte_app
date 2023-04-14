@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:siajte_app/app/theme/variable.dart';
 
 import '../models/dosen_model.dart';
 
@@ -9,7 +10,7 @@ class DosenProvider extends GetConnect {
       if (map is Map<String, dynamic>) return Dosen.fromJson(map);
       if (map is List) return map.map((item) => Dosen.fromJson(item)).toList();
     };
-    httpClient.baseUrl = 'YOUR-API-URL';
+    httpClient.baseUrl = '$baseUrlAPI/';
   }
 
   Future<Dosen?> getDosen(int id) async {

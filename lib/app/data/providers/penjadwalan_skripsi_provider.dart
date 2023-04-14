@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:siajte_app/app/theme/variable.dart';
 
 import '../models/penjadwalan_skripsi_model.dart';
 
@@ -7,20 +8,21 @@ class PenjadwalanSkripsiProvider extends GetConnect {
   void onInit() {
     httpClient.defaultDecoder = (map) {
       if (map is Map<String, dynamic>) return PenjadwalanSkripsi.fromJson(map);
-      if (map is List)
+      if (map is List) {
         return map.map((item) => PenjadwalanSkripsi.fromJson(item)).toList();
+      }
     };
-    httpClient.baseUrl = 'YOUR-API-URL';
+    httpClient.baseUrl = '$baseUrlAPI/';
   }
 
   Future<PenjadwalanSkripsi?> getPenjadwalanSkripsi(int id) async {
-    final response = await get('penjadwalanskripsi/$id');
+    final response = await get('penjadwalan-skripsi/$id');
     return response.body;
   }
 
   Future<Response<PenjadwalanSkripsi>> postPenjadwalanSkripsi(
           PenjadwalanSkripsi penjadwalanskripsi) async =>
-      await post('penjadwalanskripsi', penjadwalanskripsi);
+      await post('penjadwalan-skripsi', penjadwalanskripsi);
   Future<Response> deletePenjadwalanSkripsi(int id) async =>
-      await delete('penjadwalanskripsi/$id');
+      await delete('penjadwalan-skripsi/$id');
 }

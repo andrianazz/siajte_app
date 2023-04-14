@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:siajte_app/app/theme/variable.dart';
 
 import '../models/prodi_model.dart';
 
@@ -9,7 +10,7 @@ class ProdiProvider extends GetConnect {
       if (map is Map<String, dynamic>) return Prodi.fromJson(map);
       if (map is List) return map.map((item) => Prodi.fromJson(item)).toList();
     };
-    httpClient.baseUrl = 'YOUR-API-URL';
+    httpClient.baseUrl = '$baseUrlAPI/';
   }
 
   Future<Prodi?> getProdi(int id) async {

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:siajte_app/app/theme/variable.dart';
 
 import '../models/role_model.dart';
 
@@ -9,7 +10,7 @@ class RoleProvider extends GetConnect {
       if (map is Map<String, dynamic>) return Role.fromJson(map);
       if (map is List) return map.map((item) => Role.fromJson(item)).toList();
     };
-    httpClient.baseUrl = 'YOUR-API-URL';
+    httpClient.baseUrl = '$baseUrlAPI/';
   }
 
   Future<Role?> getRole(int id) async {

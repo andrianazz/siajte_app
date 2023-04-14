@@ -12,7 +12,7 @@ class MahasiswaProvider extends GetConnect {
         return map.map((item) => Mahasiswa.fromJson(item)).toList();
       }
     };
-    httpClient.baseUrl = '$baseUrlEmulator/';
+    httpClient.baseUrl = '$baseUrlAPI/';
   }
 
   Future<Mahasiswa?> getMahasiswa(int id) async {

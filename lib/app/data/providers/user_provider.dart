@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:siajte_app/app/theme/variable.dart';
 
 import '../models/user_model.dart';
 
@@ -9,7 +10,7 @@ class UserProvider extends GetConnect {
       if (map is Map<String, dynamic>) return User.fromJson(map);
       if (map is List) return map.map((item) => User.fromJson(item)).toList();
     };
-    httpClient.baseUrl = 'YOUR-API-URL';
+    httpClient.baseUrl = '$baseUrlAPI/';
   }
 
   Future<User?> getUser(int id) async {
