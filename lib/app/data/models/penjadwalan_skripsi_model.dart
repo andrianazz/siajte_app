@@ -1,4 +1,6 @@
-class PenjadwalanSkripsi {
+import 'abstact_penjadwalan.dart';
+
+class PenjadwalanSkripsi extends Penjadwalan {
   int? id;
   String? mahasiswaNim;
   String? pembimbingsatuNip;
@@ -18,6 +20,15 @@ class PenjadwalanSkripsi {
   String? dibuatOleh;
   String? createdAt;
   String? updatedAt;
+
+  // String? pembimbingsatuNip;
+  // String? pembimbingduaNip;
+  // String? pengujisatuNip;
+  // String? pengujiduaNip;
+  // String? pengujitigaNip;
+  // String? judulSkripsi;
+  // dynamic revisiSkripsi;
+  // dynamic catatan;
 
   PenjadwalanSkripsi(
       {this.id,

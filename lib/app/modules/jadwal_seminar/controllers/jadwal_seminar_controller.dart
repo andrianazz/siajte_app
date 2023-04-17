@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
 import 'package:siajte_app/app/data/models/dosen_model.dart';
 import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
@@ -83,18 +84,38 @@ class JadwalSeminarController extends GetxController {
     return listJadwalSeminar;
   }
 
-  Future<PenjadwalanModel> getJadwalSeminar() async {
+  // Future<PenjadwalanModel> getJadwalSeminar() async {
+  //   List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
+  //   List<PenjadwalanSempro> listJadwalSeminarSempro = await getJadwalSempro();
+  //   List<PenjadwalanSkripsi> listJadwalSeminarSkripsi =
+  //       await getJadwalSkripsi();
+
+  //   penjadwalanModel = PenjadwalanModel(
+  //       listPenjadwalanKP: listJadwalSeminarKP,
+  //       listPenjadwalanSempro: listJadwalSeminarSempro,
+  //       listPenjadwalanSkripsi: listJadwalSeminarSkripsi);
+
+  //   return penjadwalanModel;
+  // }
+
+  Future<List<Penjadwalan>> getJadwalSeminar() async {
     List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
     List<PenjadwalanSempro> listJadwalSeminarSempro = await getJadwalSempro();
     List<PenjadwalanSkripsi> listJadwalSeminarSkripsi =
         await getJadwalSkripsi();
 
-    penjadwalanModel = PenjadwalanModel(
-        listPenjadwalanKP: listJadwalSeminarKP,
-        listPenjadwalanSempro: listJadwalSeminarSempro,
-        listPenjadwalanSkripsi: listJadwalSeminarSkripsi);
+    List<Penjadwalan> penjadwalan = [];
+    for (var item in listJadwalSeminarKP) {
+      penjadwalan.add(item);
+    }
+    for (var item in listJadwalSeminarSempro) {
+      penjadwalan.add(item);
+    }
+    for (var item in listJadwalSeminarSkripsi) {
+      penjadwalan.add(item);
+    }
 
-    return penjadwalanModel;
+    return penjadwalan;
   }
 
   //get mahasiswa nama with nim

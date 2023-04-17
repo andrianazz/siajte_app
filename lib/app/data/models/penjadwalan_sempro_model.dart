@@ -1,4 +1,6 @@
-class PenjadwalanSempro {
+import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
+
+class PenjadwalanSempro extends Penjadwalan {
   int? id;
   String? mahasiswaNim;
   String? pembimbingsatuNip;
@@ -20,6 +22,17 @@ class PenjadwalanSempro {
   String? dibuatOleh;
   String? createdAt;
   String? updatedAt;
+
+  // String? pembimbingsatuNip;
+  // String? pembimbingduaNip;
+  // String? pengujisatuNip;
+  // String? pengujiduaNip;
+  // String? pengujitigaNip;
+  // String? judulProposal;
+  // dynamic revisiProposal;
+  // dynamic catatan1;
+  // dynamic catatan2;
+  // dynamic catatan3;
 
   PenjadwalanSempro(
       {this.id,

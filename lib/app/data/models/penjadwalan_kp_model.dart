@@ -1,4 +1,6 @@
-class PenjadwalanKp {
+import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
+
+class PenjadwalanKp extends Penjadwalan {
   int? id;
   String? mahasiswaNim;
   String? pembimbingNip;
@@ -13,6 +15,10 @@ class PenjadwalanKp {
   String? dibuatOleh;
   String? createdAt;
   String? updatedAt;
+
+  // String? pembimbingNip;
+  // String? pengujiNip;
+  // String? judulKp;
 
   PenjadwalanKp(
       {this.id,

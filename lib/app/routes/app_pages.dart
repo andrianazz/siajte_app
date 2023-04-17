@@ -5,6 +5,8 @@ import '../modules/change_password/views/change_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/jadwal_seminar/bindings/jadwal_seminar_binding.dart';
+import '../modules/jadwal_seminar/detail_jadwal_seminar/bindings/detail_jadwal_seminar_binding.dart';
+import '../modules/jadwal_seminar/detail_jadwal_seminar/views/detail_jadwal_seminar_view.dart';
 import '../modules/jadwal_seminar/views/jadwal_seminar_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
@@ -43,6 +45,13 @@ class AppPages {
       name: _Paths.JADWAL_SEMINAR,
       page: () => const JadwalSeminarView(),
       binding: JadwalSeminarBinding(),
+      children: [
+        GetPage(
+          name: _Paths.DETAIL_JADWAL_SEMINAR,
+          page: () => DetailJadwalSeminarView(),
+          binding: DetailJadwalSeminarBinding(),
+        ),
+      ],
     ),
   ];
 }

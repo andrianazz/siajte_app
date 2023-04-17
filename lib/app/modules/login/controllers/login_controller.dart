@@ -25,40 +25,66 @@ class LoginController extends GetxController {
   Future<Map<String, dynamic>> loginAPI() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isLoading.value = true;
-    var response = await dio.post(
-      "$baseUrlAPI/login",
-      data: {
-        "username": userC.text,
-        "password": passC.text,
-      },
-    );
+    try {
+      var response = await dio.post(
+        "$baseUrlAPI/login",
+        data: {
+          "username": userC.text,
+          "password": passC.text,
+        },
+        options: Options(
+          receiveDataWhenStatusError: true,
+          sendTimeout: const Duration(seconds: 5), // 60 seconds
+          receiveTimeout: const Duration(seconds: 2),
+        ),
+      );
 
-    if (response.statusCode == 200) {
-      var data = response.data;
+      if (response.statusCode == 200) {
+        var data = response.data;
 
-      if (data != null) {
-        String user = jsonEncode({'data': data['data'], 'role': data['role']});
+        if (data != null) {
+          String user =
+              jsonEncode({'data': data['data'], 'role': data['role']});
 
-        prefs.setString('user', user);
-        Get.snackbar(
-            "Login Berhasil", "${data['status']} ${data['data']['nama']}");
+          prefs.setString('user', user);
+          Get.snackbar(
+              "Login Berhasil", "${data['status']} ${data['data']['nama']}");
+          isLoading.value = false;
+          Get.offAllNamed(Routes.HOME);
+
+          return data;
+        } else {
+          isLoading.value = false;
+          Get.snackbar("Login Gagal", "Username / Password salah");
+          return {"status": false, "message": "Terjadi kesalahan"};
+        }
+      } else if (response.statusCode == 401) {
         isLoading.value = false;
-        Get.offAllNamed(Routes.HOME);
-
-        return data;
+        Get.snackbar("Login Gagal", "Status 401");
+        return {"status": false, "message": "Terjadi kesalahan"};
       } else {
         isLoading.value = false;
-        Get.snackbar("Login Gagal", "Username / Password salah");
+        Get.snackbar("Login Gagal", "Status 500");
         return {"status": false, "message": "Terjadi kesalahan"};
       }
-    } else if (response.statusCode == 401) {
-      isLoading.value = false;
-      Get.snackbar("Login Gagal", "Status 401");
-      return {"status": false, "message": "Terjadi kesalahan"};
-    } else {
-      isLoading.value = false;
-      Get.snackbar("Login Gagal", "Status 500");
-      return {"status": false, "message": "Terjadi kesalahan"};
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectionTimeout) {
+        isLoading.value = false;
+        Get.snackbar("Login Gagal", "Terjadi kesalahan koneksi");
+        return {"status": false, "message": "Terjadi kesalahan"};
+      }
+      if (e.type == DioErrorType.receiveTimeout) {
+        isLoading.value = false;
+        Get.snackbar("Login Gagal", "Terjadi kesalahan koneksi");
+        return {"status": false, "message": "Terjadi kesalahan"};
+      }
+      if (e.type == DioErrorType.sendTimeout) {
+        isLoading.value = false;
+        Get.snackbar("Login Gagal", "Terjadi kesalahan koneksi");
+        return {"status": false, "message": "Terjadi kesalahan"};
+      }
     }
+
+    return {"status": false, "message": "Terjadi kesalahan"};
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:siajte_app/app/modules/jadwal_seminar/views/detail_jadwal_seminar_view.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/style.dart';
 import 'package:siajte_app/app/widgets/card_jadwal_widget.dart';
 
@@ -56,62 +56,89 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
                 ),
                 SizedBox(height: 24.h),
                 // Tampilan Web
+                // FutureBuilder(
+                //   future: controller.getJadwalSeminar(),
+                //   builder: (context, snapshot) {
+                //     if (snapshot.hasData) {
+                //       if (snapshot.data!.listPenjadwalanKP!.isEmpty &&
+                //           snapshot.data!.listPenjadwalanSempro!.isEmpty &&
+                //           snapshot.data!.listPenjadwalanSkripsi!.isEmpty) {
+                //         return Center(
+                //           child: Text(
+                //             'Tidak ada jadwal seminar',
+                //             style: poppins.copyWith(
+                //               fontSize: 14.sp,
+                //               fontWeight: FontWeight.w400,
+                //             ),
+                //           ),
+                //         );
+                //       }
+
+                //       snapshot.data!.listPenjadwalanKP!
+                //           .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
+                //       snapshot.data!.listPenjadwalanSempro!
+                //           .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
+                //       snapshot.data!.listPenjadwalanSkripsi!
+                //           .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
+
+                //       return Column(
+                //         children: [
+                //           Column(
+                //             children: snapshot.data!.listPenjadwalanKP!
+                //                 .map((jadwalKP) => CardJadwalWidget(
+                //                       onTap: () {
+                //                         Get.toNamed(
+                //                           Routes.DETAIL_JADWAL_SEMINAR,
+                //                         );
+                //                       },
+                //                       penjadwalanKp: jadwalKP,
+                //                     ))
+                //                 .toList(),
+                //           ),
+                //           Column(
+                //             children: snapshot.data!.listPenjadwalanSempro!
+                //                 .map((jadwalSempro) => CardJadwalWidget(
+                //                       onTap: () {},
+                //                       penjadwalanSempro: jadwalSempro,
+                //                     ))
+                //                 .toList(),
+                //           ),
+                //           Column(
+                //             children: snapshot.data!.listPenjadwalanSkripsi!
+                //                 .map((jadwalSkripsi) => CardJadwalWidget(
+                //                       onTap: () {},
+                //                       penjadwalanSkripsi: jadwalSkripsi,
+                //                     ))
+                //                 .toList(),
+                //           ),
+                //         ],
+                //       );
+                //     } else if (snapshot.hasError) {
+                //       return const Text("error");
+                //     } else {
+                //       return const Center(child: CircularProgressIndicator());
+                //     }
+                //   },
+                // ),
                 FutureBuilder(
                   future: controller.getJadwalSeminar(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      if (snapshot.data!.listPenjadwalanKP!.isEmpty &&
-                          snapshot.data!.listPenjadwalanSempro!.isEmpty &&
-                          snapshot.data!.listPenjadwalanSkripsi!.isEmpty) {
-                        return Center(
-                          child: Text(
-                            'Tidak ada jadwal seminar',
-                            style: poppins.copyWith(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        );
-                      }
-
-                      snapshot.data!.listPenjadwalanKP!
-                          .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
-                      snapshot.data!.listPenjadwalanSempro!
-                          .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
-                      snapshot.data!.listPenjadwalanSkripsi!
+                      snapshot.data!
                           .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
 
                       return Column(
-                        children: [
-                          Column(
-                            children: snapshot.data!.listPenjadwalanKP!
-                                .map((jadwalKP) => CardJadwalWidget(
-                                      onTap: () {
-                                        Get.to(
-                                          () => const DetailJadwalSeminarView(),
-                                        );
-                                      },
-                                      penjadwalanKp: jadwalKP,
-                                    ))
-                                .toList(),
-                          ),
-                          Column(
-                            children: snapshot.data!.listPenjadwalanSempro!
-                                .map((jadwalSempro) => CardJadwalWidget(
-                                      onTap: () {},
-                                      penjadwalanSempro: jadwalSempro,
-                                    ))
-                                .toList(),
-                          ),
-                          Column(
-                            children: snapshot.data!.listPenjadwalanSkripsi!
-                                .map((jadwalSkripsi) => CardJadwalWidget(
-                                      onTap: () {},
-                                      penjadwalanSkripsi: jadwalSkripsi,
-                                    ))
-                                .toList(),
-                          ),
-                        ],
+                        children: snapshot.data!
+                            .map((e) => CardJadwalWidget(
+                                  onTap: () {
+                                    Get.toNamed(
+                                      Routes.DETAIL_JADWAL_SEMINAR,
+                                      arguments: e,
+                                    );
+                                  },
+                                  penjadwalan: e,
+                                ))
+                            .toList(),
                       );
                     } else if (snapshot.hasError) {
                       return const Text("error");
