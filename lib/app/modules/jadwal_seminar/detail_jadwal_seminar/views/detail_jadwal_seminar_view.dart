@@ -21,12 +21,10 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 24.w,
-            ),
+            margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 24.h),
                 GestureDetector(
                   onTap: () => Get.back(),
                   child: Row(
@@ -164,7 +162,54 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                     },
                   ),
                 ),
-                SizedBox(height: 50.h),
+                SizedBox(height: 40.h),
+
+                //Input Nilai untuk Dosen
+                SizedBox(
+                  width: 120.w,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Input Atau Edit Nilai",
+                        style: poppins.copyWith(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: secondaryJadwalSeminar,
+                        ),
+                      ),
+                      SizedBox(height: 12.h),
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 16.h),
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              Icons.edit_document,
+                              color: Colors.white,
+                              size: 28.w,
+                            ),
+                            Text(
+                              "Input Atau edit Nilai",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           )

@@ -10,6 +10,8 @@ import '../modules/jadwal_seminar/detail_jadwal_seminar/views/detail_jadwal_semi
 import '../modules/jadwal_seminar/views/jadwal_seminar_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/penilaian_seminar/bindings/penilaian_seminar_binding.dart';
+import '../modules/penilaian_seminar/views/penilaian_seminar_view.dart';
 import '../modules/success/bindings/success_binding.dart';
 import '../modules/success/views/success_view.dart';
 
@@ -52,6 +54,11 @@ class AppPages {
           binding: DetailJadwalSeminarBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.PENILAIAN_SEMINAR,
+      page: () => const PenilaianSeminarView(),
+      binding: PenilaianSeminarBinding(),
     ),
   ];
 }

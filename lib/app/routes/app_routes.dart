@@ -10,6 +10,7 @@ abstract class Routes {
   static const JADWAL_SEMINAR = _Paths.JADWAL_SEMINAR;
   static const DETAIL_JADWAL_SEMINAR =
       _Paths.JADWAL_SEMINAR + _Paths.DETAIL_JADWAL_SEMINAR;
+  static const PENILAIAN_SEMINAR = _Paths.PENILAIAN_SEMINAR;
 }
 
 abstract class _Paths {
@@ -20,4 +21,5 @@ abstract class _Paths {
   static const SUCCESS = '/success';
   static const JADWAL_SEMINAR = '/jadwal-seminar';
   static const DETAIL_JADWAL_SEMINAR = '/detail-jadwal-seminar';
+  static const PENILAIAN_SEMINAR = '/penilaian-seminar';
 }
