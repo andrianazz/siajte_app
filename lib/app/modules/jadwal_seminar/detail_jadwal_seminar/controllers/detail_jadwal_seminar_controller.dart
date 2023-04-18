@@ -79,13 +79,13 @@ class DetailJadwalSeminarController extends GetxController {
       penguji2.value = await getDosenWithNip(penjadwalanSempro.pengujiduaNip!);
       penguji3.value = await getDosenWithNip(penjadwalanSempro.pengujitigaNip!);
       judul.value = penjadwalanSempro.judulProposal!;
-
-      print(penguji1.value);
     } else {
       PenjadwalanSkripsi penjadwalanSkripsi = Get.arguments;
 
       String penguji1Nama =
           await getDosenWithNip(penjadwalanSkripsi.pengujisatuNip!.toString());
+
+      judul.value = penjadwalanSkripsi.judulSkripsi!;
 
       nama.value = await getMahasiswaWithNim(penjadwalanSkripsi.mahasiswaNim!);
       nim.value = penjadwalanSkripsi.mahasiswaNim!;
@@ -103,9 +103,6 @@ class DetailJadwalSeminarController extends GetxController {
       penguji2.value = await getDosenWithNip(penjadwalanSkripsi.pengujiduaNip!);
       penguji3.value =
           await getDosenWithNip(penjadwalanSkripsi.pengujitigaNip!);
-      judul.value = penjadwalanSkripsi.judulSkripsi!;
-
-      update();
     }
   }
 }

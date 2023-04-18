@@ -67,6 +67,12 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                   child: FutureBuilder(
                     future: controller.getDetailPenjadwalan(),
                     builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
