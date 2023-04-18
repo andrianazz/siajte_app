@@ -7,6 +7,7 @@ import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/style.dart';
 import 'package:siajte_app/app/widgets/card_jadwal_widget.dart';
 
+import '../../../theme/colors.dart';
 import '../../../widgets/appbar_widget.dart';
 import '../controllers/jadwal_seminar_controller.dart';
 
@@ -67,6 +68,21 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
                         source: controller.listJenisSeminar,
                         value: (i, v) => v,
                         label: (i, v) => v,
+                      ),
+                      choiceStyle: C2ChipStyle.filled(
+                        selectedStyle: C2ChipStyle(
+                          foregroundColor: Colors.white,
+                          backgroundColor: primaryColor,
+                        ),
+                        color: Colors.grey[200],
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12.w,
+                        ),
+                        height: 44.h,
+                        foregroundStyle: poppins.copyWith(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),

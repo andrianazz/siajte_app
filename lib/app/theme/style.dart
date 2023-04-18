@@ -4,3 +4,4 @@ import 'package:google_fonts/google_fonts.dart';
 TextStyle poppins = GoogleFonts.poppins();
 TextStyle roboto = GoogleFonts.roboto();
 TextStyle lato = GoogleFonts.lato();
+TextStyle inter = GoogleFonts.inter();

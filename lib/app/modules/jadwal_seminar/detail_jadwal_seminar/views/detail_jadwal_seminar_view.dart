@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 
 import '../../../../theme/colors.dart';
 import '../../../../theme/style.dart';
@@ -179,32 +180,37 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                         ),
                       ),
                       SizedBox(height: 12.h),
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 16.h),
-                        decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.edit_document,
-                              color: Colors.white,
-                              size: 28.w,
-                            ),
-                            Text(
-                              "Input Atau edit Nilai",
-                              style: poppins.copyWith(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500,
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(Routes.PENILAIAN_SEMINAR);
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.w, vertical: 16.h),
+                          decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.edit_document,
                                 color: Colors.white,
+                                size: 28.w,
                               ),
-                            )
-                          ],
+                              Text(
+                                "Input Atau edit Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       )
                     ],
