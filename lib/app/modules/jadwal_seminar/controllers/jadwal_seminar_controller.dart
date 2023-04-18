@@ -4,24 +4,24 @@ import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
 import 'package:siajte_app/app/data/models/dosen_model.dart';
 import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
-import 'package:siajte_app/app/data/models/penjadwalan_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_sempro_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/data/models/prodi_model.dart';
 import 'package:siajte_app/app/theme/variable.dart';
 
 class JadwalSeminarController extends GetxController {
+  RxList<String> selectedChoice = <String>[].obs;
+  List<String> listJenisSeminar = ['Skripsi', 'Proposal', 'KP'];
+
+  RxBool isProposal = true.obs;
+  RxBool isKP = true.obs;
+  RxBool isSkripsi = true.obs;
+
   Dio dio = Dio();
 
-  PenjadwalanModel penjadwalanModel = PenjadwalanModel();
-  Mahasiswa mahasiswa = Mahasiswa();
-  Dosen dosen = Dosen();
-  Prodi prodi = Prodi();
-
-  @override
-  void onInit() async {
-    // TODO: implement onInit
-    super.onInit();
+  void selectedJenisSeminar(String val) {
+    selectedChoice.add(val);
+    update();
   }
 
   Future<List<Mahasiswa>> getMahasiswa() async {
@@ -83,20 +83,6 @@ class JadwalSeminarController extends GetxController {
     }
     return listJadwalSeminar;
   }
-
-  // Future<PenjadwalanModel> getJadwalSeminar() async {
-  //   List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
-  //   List<PenjadwalanSempro> listJadwalSeminarSempro = await getJadwalSempro();
-  //   List<PenjadwalanSkripsi> listJadwalSeminarSkripsi =
-  //       await getJadwalSkripsi();
-
-  //   penjadwalanModel = PenjadwalanModel(
-  //       listPenjadwalanKP: listJadwalSeminarKP,
-  //       listPenjadwalanSempro: listJadwalSeminarSempro,
-  //       listPenjadwalanSkripsi: listJadwalSeminarSkripsi);
-
-  //   return penjadwalanModel;
-  // }
 
   Future<List<Penjadwalan>> getJadwalSeminar() async {
     List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
