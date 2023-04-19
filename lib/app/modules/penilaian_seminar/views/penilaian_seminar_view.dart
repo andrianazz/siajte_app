@@ -14,6 +14,7 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'Penilaian Seminar',
@@ -75,43 +76,384 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
               ],
             ),
           ),
-          SizedBox(
-            height: 50.h,
-            width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                SizedBox(
-                  width: 24.w,
+
+          // kERJA PRAKTEK
+          Obx(() => controller.viewListPenilaianKP()),
+        ],
+      ),
+    );
+  }
+}
+
+class CatatanKPView extends StatelessWidget {
+  const CatatanKPView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    PenilaianSeminarController controller = Get.find();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Center(
+          child: Container(
+            width: 315.w,
+            height: 3,
+            color: Colors.grey.shade200,
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 24.w,
+            vertical: 24.h,
+          ),
+          child: Text(
+            'Catatan',
+            style: poppins.copyWith(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w700,
+              color: fieldChangePassword,
+            ),
+          ),
+        ),
+        Form(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24.w,
                 ),
-                DotStepper(
+                child: Text(
+                  'Catatan 1',
+                  style: poppins.copyWith(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: fieldChangePassword,
+                  ),
+                ),
+              ),
+              SizedBox(height: 8.h),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 22.w,
+                      vertical: 17.h,
+                    ),
+                    labelStyle: poppins.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: fieldChangePassword,
+                    ),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        style: BorderStyle.solid,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 15.h),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                ),
+                child: Text(
+                  'Catatan 2',
+                  style: poppins.copyWith(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: fieldChangePassword,
+                  ),
+                ),
+              ),
+              SizedBox(height: 8.h),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 22.w,
+                      vertical: 17.h,
+                    ),
+                    labelStyle: poppins.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: fieldChangePassword,
+                    ),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        style: BorderStyle.solid,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 15.h),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                ),
+                child: Text(
+                  'Catatan 3',
+                  style: poppins.copyWith(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: fieldChangePassword,
+                  ),
+                ),
+              ),
+              SizedBox(height: 8.h),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 22.w,
+                      vertical: 17.h,
+                    ),
+                    labelStyle: poppins.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: fieldChangePassword,
+                    ),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        style: BorderStyle.solid,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 100.h),
+        Container(
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: 24.w),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              disabledBackgroundColor: primaryColor,
+              padding: EdgeInsets.symmetric(vertical: 12.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            onPressed: () {
+              controller.selectedChips.value++;
+            },
+            child: Text(
+              'Selanjutnya',
+              style:
+                  roboto.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class PenilaianPembimbingView extends StatelessWidget {
+  const PenilaianPembimbingView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    PenilaianSeminarController controller = Get.find();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Center(
+          child: Container(
+            width: 315.w,
+            height: 3,
+            color: Colors.grey.shade200,
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 24.w,
+            vertical: 24.h,
+          ),
+          child: Text(
+            'Penilaian Pembimbing Lapangan',
+            style: poppins.copyWith(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w700,
+              color: fieldChangePassword,
+            ),
+          ),
+        ),
+        Form(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 22.w,
+                      vertical: 17.h,
+                    ),
+                    hintText: 'Input angka *90*',
+                    labelStyle: poppins.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: fieldChangePassword,
+                    ),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        style: BorderStyle.solid,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 350.h),
+        Container(
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: 24.w),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              disabledBackgroundColor: primaryColor,
+              padding: EdgeInsets.symmetric(vertical: 12.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            onPressed: () {
+              controller.selectedChips.value++;
+            },
+            child: Text(
+              'Selanjutnya',
+              style:
+                  roboto.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class FormNilaiKPView extends StatelessWidget {
+  const FormNilaiKPView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    PenilaianSeminarController controller = Get.find();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 50.h,
+          width: double.infinity,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              SizedBox(
+                width: 24.w,
+              ),
+              Obx(
+                () => DotStepper(
                   activeStep: controller.indexFormNilaiKP.value,
                   dotCount: controller.listFormNilaiKP.length,
                   direction: Axis.horizontal,
                   shape: Shape.pipe,
                   indicator: Indicator.shift,
                   spacing: 20,
-                  onDotTapped: (tappedDotIndex) =>
-                      controller.indexFormNilaiKP.value = tappedDotIndex,
+                  onDotTapped: (tappedDotIndex) {
+                    controller.indexFormNilaiKP.value = tappedDotIndex;
+                    controller.pageController.jumpToPage(tappedDotIndex);
+                  },
                   dotRadius: 50.w,
                   lineConnectorDecoration: LineConnectorDecoration(
                     color: Colors.grey.shade900,
                     strokeWidth: 40.w,
                   ),
-                  indicatorDecoration: IndicatorDecoration(
-                    color: primaryColor,
-                    strokeColor: primaryColor,
+                  indicatorDecoration: const IndicatorDecoration(
+                    color: Colors.black,
+                    strokeColor: Colors.black,
                   ),
                 ),
-                SizedBox(
-                  width: 24.w,
-                ),
-              ],
+              ),
+              SizedBox(
+                width: 24.w,
+              ),
+            ],
+          ),
+        ),
+        Obx(
+          () => SizedBox(
+            width: double.infinity,
+            height: 550.h,
+            child: PageView(
+              controller: controller.pageController,
+              onPageChanged: (index) {
+                controller.indexFormNilaiKP.value = index;
+                controller.pageController.jumpToPage(index);
+              },
+              children: controller.scoreMap
+                  .map((key, value) {
+                    var no = controller.scoreMap.keys.toList().indexOf(key) + 1;
+
+                    return MapEntry(
+                      key,
+                      CardPenilaian(
+                        no: "$no",
+                        title: key,
+                        score: value,
+                      ),
+                    );
+                  })
+                  .values
+                  .toList(),
+              // controller.listFormNilaiKP.map((element) {
+              //   var no = controller.listFormNilaiKP.indexOf(element) + 1;
+
+              //   return CardPenilaian(no: "$no", title: element);
+              // }).toList(),
             ),
           ),
-          Obx(() => controller.viewFormKP()),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -119,11 +461,13 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
 class CardPenilaian extends StatelessWidget {
   final String no;
   final String title;
+  final double score;
 
   const CardPenilaian({
     super.key,
     required this.no,
     required this.title,
+    required this.score,
   });
 
   @override
@@ -144,11 +488,11 @@ class CardPenilaian extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          const RadioPenilaian(title: "Sangat Baik"),
-          const RadioPenilaian(title: "Baik"),
-          const RadioPenilaian(title: "Biasa"),
-          const RadioPenilaian(title: "Kurang Baik"),
-          const RadioPenilaian(title: "Sangat Kurang Baik"),
+          const RadioPenilaian(title: "Sangat Baik", score: 2),
+          const RadioPenilaian(title: "Baik", score: 4),
+          const RadioPenilaian(title: "Biasa", score: 6),
+          const RadioPenilaian(title: "Kurang Baik", score: 8),
+          const RadioPenilaian(title: "Sangat Kurang Baik", score: 10),
           SizedBox(height: 10.h),
           SizedBox(
             width: double.infinity,
@@ -162,9 +506,12 @@ class CardPenilaian extends StatelessWidget {
                 ),
               ),
               onPressed: () {
+                print(controller.indexFormNilaiKP.value);
                 if (controller.indexFormNilaiKP.value <
                     controller.listFormNilaiKP.length - 1) {
                   controller.indexFormNilaiKP.value++;
+                  controller.pageController
+                      .jumpToPage(controller.indexFormNilaiKP.value);
                 } else if (controller.indexFormNilaiKP.value ==
                     controller.listFormNilaiKP.length - 1) {
                   controller.selectedChips.value++;
@@ -176,7 +523,7 @@ class CardPenilaian extends StatelessWidget {
                     fontSize: 16.sp, fontWeight: FontWeight.w600),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -185,9 +532,11 @@ class CardPenilaian extends StatelessWidget {
 
 class RadioPenilaian extends StatelessWidget {
   final String title;
+  final double score;
   const RadioPenilaian({
     super.key,
     required this.title,
+    required this.score,
   });
 
   @override
@@ -215,12 +564,19 @@ class RadioPenilaian extends StatelessWidget {
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w700,
                 )),
-            Radio(
-              value: 1,
-              groupValue: controller.score.value,
-              onChanged: (value) {
-                controller.score.value = value as int;
-              },
+            Obx(
+              () => Radio(
+                value: score,
+                groupValue: controller.scoreMap.values
+                    .toList()[controller.indexFormNilaiKP.value],
+                onChanged: (value) {
+                  controller.scoreMap.update(
+                    controller.scoreMap.keys
+                        .toList()[controller.indexFormNilaiKP.value],
+                    (value) => score,
+                  );
+                },
+              ),
             )
           ],
         ),
