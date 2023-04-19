@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
-import 'package:siajte_app/app/modules/jadwal_seminar/controllers/jadwal_seminar_controller.dart';
+import 'package:siajte_app/app/modules/riwayat_seminar/controllers/riwayat_seminar_controller.dart';
 
 import '../theme/colors.dart';
 import '../theme/style.dart';
 
-class CardJadwalWidget extends StatelessWidget {
+class CardRiwayatWidget extends StatelessWidget {
   final Penjadwalan? penjadwalan;
   final Function onTap;
 
-  const CardJadwalWidget({
+  const CardRiwayatWidget({
     super.key,
     this.penjadwalan,
     required this.onTap,
@@ -19,7 +19,7 @@ class CardJadwalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    JadwalSeminarController jadwalSeminarC = Get.find();
+    RiwayatSeminarController riwayatSeminarC = Get.find();
 
     return Container(
       margin: EdgeInsets.only(bottom: 20.h),
@@ -49,7 +49,7 @@ class CardJadwalWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FutureBuilder<String>(
-                      future: jadwalSeminarC.getMahasiswaWithNim(
+                      future: riwayatSeminarC.getMahasiswaWithNim(
                         // penjadwalanKp != null
                         //     ? penjadwalanKp!.mahasiswaNim!
                         //     : penjadwalanSempro != null

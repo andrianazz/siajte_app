@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/change_password/bindings/change_password_binding.dart';
 import '../modules/change_password/views/change_password_view.dart';
+import '../modules/detail_riwayat_seminar/bindings/detail_riwayat_seminar_binding.dart';
+import '../modules/detail_riwayat_seminar/views/detail_riwayat_seminar_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/jadwal_seminar/bindings/jadwal_seminar_binding.dart';
@@ -12,6 +14,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/penilaian_seminar/bindings/penilaian_seminar_binding.dart';
 import '../modules/penilaian_seminar/views/penilaian_seminar_view.dart';
+import '../modules/riwayat_seminar/bindings/riwayat_seminar_binding.dart';
+import '../modules/riwayat_seminar/views/riwayat_seminar_view.dart';
 import '../modules/success/bindings/success_binding.dart';
 import '../modules/success/views/success_view.dart';
 
@@ -59,6 +63,16 @@ class AppPages {
       name: _Paths.PENILAIAN_SEMINAR,
       page: () => const PenilaianSeminarView(),
       binding: PenilaianSeminarBinding(),
+    ),
+    GetPage(
+      name: _Paths.RIWAYAT_SEMINAR,
+      page: () => const RiwayatSeminarView(),
+      binding: RiwayatSeminarBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_RIWAYAT_SEMINAR,
+      page: () => const DetailRiwayatSeminarView(),
+      binding: DetailRiwayatSeminarBinding(),
     ),
   ];
 }

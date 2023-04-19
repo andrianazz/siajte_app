@@ -51,7 +51,9 @@ class HomeView extends GetView<HomeController> {
                 CardMenuWidget(
                   judul: "Riwayat Seminar",
                   imageUrl: "assets/images/riwayatseminar_bg.png",
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Routes.RIWAYAT_SEMINAR);
+                  },
                 )
               ],
             ),

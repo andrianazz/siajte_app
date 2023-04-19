@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:siajte_app/app/routes/app_pages.dart';
 
-import '../../../../theme/colors.dart';
-import '../../../../theme/style.dart';
-import '../../../../widgets/appbar_widget.dart';
-import '../../../../widgets/card_subdetail_widget.dart';
-import '../controllers/detail_jadwal_seminar_controller.dart';
+import '../../../theme/colors.dart';
+import '../../../theme/style.dart';
+import '../../../widgets/appbar_widget.dart';
+import '../../../widgets/card_subdetail_widget.dart';
+import '../controllers/detail_riwayat_seminar_controller.dart';
 
-class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
-  const DetailJadwalSeminarView({Key? key}) : super(key: key);
-
+class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
+  const DetailRiwayatSeminarView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,9 +170,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                   child: Row(
                     children: [
                       CardSubDetailWidget(
-                        onTap: () {
-                          Get.toNamed(Routes.PENILAIAN_SEMINAR);
-                        },
+                        onTap: () {},
                         title: "Input / Edit Nilai",
                         color: primaryColor,
                       ),
