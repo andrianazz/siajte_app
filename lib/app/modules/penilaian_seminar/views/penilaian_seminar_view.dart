@@ -47,6 +47,9 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
                       () => ChipsChoice<int>.single(
                         value: controller.selectedChips.value,
                         onChanged: (val) {
+                          if (val == 0) {
+                            controller.indexFormNilaiKP.value = 0;
+                          }
                           controller.selectedChips.value = val;
                         },
                         choiceItems: C2Choice.listFrom<int, String>(
@@ -401,7 +404,11 @@ class FormNilaiKPView extends StatelessWidget {
                   spacing: 20,
                   onDotTapped: (tappedDotIndex) {
                     controller.indexFormNilaiKP.value = tappedDotIndex;
-                    controller.pageController.jumpToPage(tappedDotIndex);
+                    controller.pageController.animateToPage(
+                      tappedDotIndex,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.bounceInOut,
+                    );
                   },
                   dotRadius: 50.w,
                   lineConnectorDecoration: LineConnectorDecoration(
@@ -445,11 +452,6 @@ class FormNilaiKPView extends StatelessWidget {
                   })
                   .values
                   .toList(),
-              // controller.listFormNilaiKP.map((element) {
-              //   var no = controller.listFormNilaiKP.indexOf(element) + 1;
-
-              //   return CardPenilaian(no: "$no", title: element);
-              // }).toList(),
             ),
           ),
         ),
@@ -506,12 +508,13 @@ class CardPenilaian extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                print(controller.indexFormNilaiKP.value);
                 if (controller.indexFormNilaiKP.value <
                     controller.listFormNilaiKP.length - 1) {
                   controller.indexFormNilaiKP.value++;
-                  controller.pageController
-                      .jumpToPage(controller.indexFormNilaiKP.value);
+                  controller.pageController.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.bounceInOut,
+                  );
                 } else if (controller.indexFormNilaiKP.value ==
                     controller.listFormNilaiKP.length - 1) {
                   controller.selectedChips.value++;
@@ -542,43 +545,58 @@ class RadioPenilaian extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PenilaianSeminarController controller = Get.find();
-    return Container(
-      height: 60,
-      margin: EdgeInsets.only(bottom: 12.h),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Colors.grey.shade300,
-          width: 3,
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title,
-                style: inter.copyWith(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w700,
-                )),
-            Obx(
-              () => Radio(
-                value: score,
-                groupValue: controller.scoreMap.values
-                    .toList()[controller.indexFormNilaiKP.value],
-                onChanged: (value) {
-                  controller.scoreMap.update(
-                    controller.scoreMap.keys
+    return Obx(
+      () => GestureDetector(
+        onTap: () {
+          controller.scoreMap.update(
+              controller.scoreMap.keys
+                  .toList()[controller.indexFormNilaiKP.value],
+              (value) => score);
+        },
+        child: Container(
+          height: 60,
+          margin: EdgeInsets.only(bottom: 12.h),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: controller.scoreMap.values
+                          .toList()[controller.indexFormNilaiKP.value] ==
+                      score
+                  ? primaryColor
+                  : Colors.grey.shade300,
+              width: 3,
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title,
+                    style: inter.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w700,
+                    )),
+                Obx(
+                  () => Radio(
+                    value: score,
+                    groupValue: controller.scoreMap.values
                         .toList()[controller.indexFormNilaiKP.value],
-                    (value) => score,
-                  );
-                },
-              ),
-            )
-          ],
+                    activeColor: primaryColor,
+                    onChanged: (value) {
+                      controller.scoreMap.update(
+                        controller.scoreMap.keys
+                            .toList()[controller.indexFormNilaiKP.value],
+                        (value) => score,
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
