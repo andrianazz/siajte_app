@@ -17,23 +17,64 @@ class AppbarWidget extends StatelessWidget {
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
       title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(
-            'assets/images/logo.png',
-            width: 24.w,
-            height: 24.h,
+          Row(
+            children: [
+              Image.asset(
+                'assets/images/logo.png',
+                width: 24.w,
+                height: 24.h,
+              ),
+              SizedBox(width: 16.w),
+              FutureBuilder(
+                future: controller.getUser(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(
+                      'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
+                      style: poppins.copyWith(
+                          color: Colors.black,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text(
+                      'Error',
+                      style: poppins.copyWith(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    );
+                  }
+                  return Text(
+                    'Loading...',
+                    style: poppins.copyWith(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-          SizedBox(width: 16.w),
           FutureBuilder(
             future: controller.getUser(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(
-                  'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
-                  style: poppins.copyWith(
-                      color: Colors.black,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w600),
+                return SizedBox(
+                  width: 100.w,
+                  child: Text(
+                    '${(controller.mapUser['data']['nama']).toString().capitalize}',
+                    style: poppins.copyWith(
+                        color: Colors.black,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600),
+                    textAlign: TextAlign.end,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 );
               } else if (snapshot.hasError) {
                 return Text(
@@ -54,7 +95,7 @@ class AppbarWidget extends StatelessWidget {
                 ),
               );
             },
-          ),
+          )
         ],
       ),
       actions: <Widget>[

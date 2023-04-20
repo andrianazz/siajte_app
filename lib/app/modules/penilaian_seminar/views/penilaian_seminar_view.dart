@@ -14,7 +14,6 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'Penilaian Seminar',
@@ -106,153 +105,140 @@ class CatatanKPView extends StatelessWidget {
             color: Colors.grey.shade200,
           ),
         ),
-        Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: 24.w,
-            vertical: 24.h,
-          ),
-          child: Text(
-            'Catatan',
-            style: poppins.copyWith(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w700,
-              color: fieldChangePassword,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
+              child: Text(
+                'Catatan 1',
+                style: poppins.copyWith(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: fieldChangePassword,
+                ),
+              ),
             ),
-          ),
+            SizedBox(height: 8.h),
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: TextFormField(
+                maxLines: 3,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 22.w,
+                    vertical: 17.h,
+                  ),
+                  labelStyle: poppins.copyWith(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      style: BorderStyle.solid,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 15.h),
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: Text(
+                'Catatan 2',
+                style: poppins.copyWith(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: fieldChangePassword,
+                ),
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: TextFormField(
+                maxLines: 3,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 22.w,
+                    vertical: 17.h,
+                  ),
+                  labelStyle: poppins.copyWith(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: fieldChangePassword,
+                  ),
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      style: BorderStyle.solid,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 15.h),
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: Text(
+                'Catatan 3',
+                style: poppins.copyWith(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: fieldChangePassword,
+                ),
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: TextFormField(
+                maxLines: 3,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 22.w,
+                    vertical: 17.h,
+                  ),
+                  labelStyle: poppins.copyWith(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: fieldChangePassword,
+                  ),
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      style: BorderStyle.solid,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-        Form(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24.w,
-                ),
-                child: Text(
-                  'Catatan 1',
-                  style: poppins.copyWith(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                    color: fieldChangePassword,
-                  ),
-                ),
-              ),
-              SizedBox(height: 8.h),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24.w,
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 22.w,
-                      vertical: 17.h,
-                    ),
-                    labelStyle: poppins.copyWith(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: fieldChangePassword,
-                    ),
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        style: BorderStyle.solid,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 15.h),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24.w,
-                ),
-                child: Text(
-                  'Catatan 2',
-                  style: poppins.copyWith(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                    color: fieldChangePassword,
-                  ),
-                ),
-              ),
-              SizedBox(height: 8.h),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24.w,
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 22.w,
-                      vertical: 17.h,
-                    ),
-                    labelStyle: poppins.copyWith(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: fieldChangePassword,
-                    ),
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        style: BorderStyle.solid,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 15.h),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24.w,
-                ),
-                child: Text(
-                  'Catatan 3',
-                  style: poppins.copyWith(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                    color: fieldChangePassword,
-                  ),
-                ),
-              ),
-              SizedBox(height: 8.h),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24.w,
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 22.w,
-                      vertical: 17.h,
-                    ),
-                    labelStyle: poppins.copyWith(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: fieldChangePassword,
-                    ),
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        style: BorderStyle.solid,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 100.h),
+        SizedBox(height: 50.h),
         Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(horizontal: 24.w),
@@ -331,6 +317,7 @@ class PenilaianPembimbingView extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                       color: fieldChangePassword,
                     ),
+                    fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.r),
