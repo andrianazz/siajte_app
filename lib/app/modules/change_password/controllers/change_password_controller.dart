@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -109,7 +107,7 @@ class ChangePasswordController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        String user = jsonEncode({'data': data['data'], 'role': data['role']});
+        // String user = jsonEncode({'data': data['data'], 'role': data['role']});
 
         Get.snackbar("Ubah Password Berhasil",
             "${data['status']} ${data['data']['nama']}");

@@ -1,19 +1,30 @@
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
 
 class PenjadwalanKp extends Penjadwalan {
+  @override
   int? id;
+  @override
   String? mahasiswaNim;
   String? pembimbingNip;
   String? pengujiNip;
+  @override
   int? prodiId;
+  @override
   String? jenisSeminar;
   String? judulKp;
+  @override
   String? tanggal;
+  @override
   String? waktu;
+  @override
   String? lokasi;
+  @override
   String? statusSeminar;
+  @override
   String? dibuatOleh;
+  @override
   String? createdAt;
+  @override
   String? updatedAt;
 
   // String? pembimbingNip;

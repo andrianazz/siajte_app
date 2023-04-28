@@ -1,24 +1,35 @@
 import 'abstact_penjadwalan.dart';
 
 class PenjadwalanSkripsi extends Penjadwalan {
+  @override
   int? id;
+  @override
   String? mahasiswaNim;
   String? pembimbingsatuNip;
   String? pembimbingduaNip;
   String? pengujisatuNip;
   String? pengujiduaNip;
   String? pengujitigaNip;
+  @override
   int? prodiId;
+  @override
   String? jenisSeminar;
   String? judulSkripsi;
   dynamic revisiSkripsi;
   dynamic catatan;
+  @override
   String? tanggal;
+  @override
   String? waktu;
+  @override
   String? lokasi;
+  @override
   String? statusSeminar;
+  @override
   String? dibuatOleh;
+  @override
   String? createdAt;
+  @override
   String? updatedAt;
 
   // String? pembimbingsatuNip;

@@ -1,26 +1,39 @@
+// ignore_for_file: overridden_fields
+
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
 
 class PenjadwalanSempro extends Penjadwalan {
+  @override
   int? id;
+  @override
   String? mahasiswaNim;
   String? pembimbingsatuNip;
   String? pembimbingduaNip;
   String? pengujisatuNip;
   String? pengujiduaNip;
   String? pengujitigaNip;
+  @override
   int? prodiId;
+  @override
   String? jenisSeminar;
   String? judulProposal;
   dynamic revisiProposal;
   dynamic catatan1;
   dynamic catatan2;
   dynamic catatan3;
+  @override
   String? tanggal;
+  @override
   String? waktu;
+  @override
   String? lokasi;
+  @override
   String? statusSeminar;
+  @override
   String? dibuatOleh;
+  @override
   String? createdAt;
+  @override
   String? updatedAt;
 
   // String? pembimbingsatuNip;

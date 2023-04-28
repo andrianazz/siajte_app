@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 Color primaryColor = const Color(0xff198754);
 Color secondaryColor = const Color(0xff33A9E1);
+Color redColor = const Color(0xffFF4267);
 
 Color textChangePassword = const Color(0xff979797);
 Color fieldChangePassword = const Color(0xff343434);
