@@ -45,16 +45,22 @@ class HomeView extends GetView<HomeController> {
                     Get.toNamed(Routes.JADWAL_SEMINAR);
                   },
                 ),
-                SizedBox(
-                  height: 24.h,
-                ),
+                SizedBox(height: 24.h),
                 CardMenuWidget(
                   judul: "Riwayat Seminar",
                   imageUrl: "assets/images/riwayatseminar_bg.png",
                   onTap: () {
                     Get.toNamed(Routes.RIWAYAT_SEMINAR);
                   },
-                )
+                ),
+                SizedBox(height: 24.h),
+                CardMenuWidget(
+                  judul: "Daftar Mahasiswa",
+                  imageUrl: "assets/images/mahasiswa_bg.png",
+                  onTap: () {
+                    Get.toNamed(Routes.MAHASISWA);
+                  },
+                ),
               ],
             ),
           )

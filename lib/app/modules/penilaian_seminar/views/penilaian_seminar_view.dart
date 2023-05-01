@@ -42,7 +42,9 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
                 Row(
                   children: [
                     Obx(
-                      () => ChipsChoice<int>.single(
+                      () =>
+                          // Pembimbing KP
+                          ChipsChoice<int>.single(
                         value: controller.selectedChips.value,
                         onChanged: (val) {
                           if (val == 0) {
@@ -71,6 +73,37 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
                           ),
                         ),
                       ),
+
+                      // Penguji KP
+                      //   ChipsChoice<int>.single(
+                      //   value: controller.selectedChips.value,
+                      //   onChanged: (val) {
+                      //     if (val == 0) {
+                      //       controller.indexFormNilaiPengKP.value = 0;
+                      //     }
+                      //     controller.selectedChips.value = val;
+                      //   },
+                      //   choiceItems: C2Choice.listFrom<int, String>(
+                      //     source: controller.listPenilaianPengKP,
+                      //     value: (i, v) => i,
+                      //     label: (i, v) => v,
+                      //   ),
+                      //   choiceStyle: C2ChipStyle.filled(
+                      //     selectedStyle: C2ChipStyle(
+                      //       foregroundColor: Colors.white,
+                      //       backgroundColor: primaryColor,
+                      //     ),
+                      //     color: Colors.grey[200],
+                      //     padding: EdgeInsets.symmetric(
+                      //       horizontal: 12.w,
+                      //     ),
+                      //     height: 44.h,
+                      //     foregroundStyle: poppins.copyWith(
+                      //       fontSize: 16.sp,
+                      //       fontWeight: FontWeight.w500,
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ],
                 ),
@@ -78,8 +111,11 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
             ),
           ),
 
-          // kERJA PRAKTEK
+          // Pembimbing KP
           Obx(() => controller.viewListPenilaianPembKP()),
+
+          // Penguji KP
+          // Obx(() => controller.viewListPenilaianPengKP()),
         ],
       ),
     );
@@ -138,10 +174,9 @@ class CatatanKPView extends StatelessWidget {
                   filled: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.r),
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       width: 2,
-                      style: BorderStyle.solid,
-                      color: Colors.grey,
+                      color: Colors.grey.shade200,
                     ),
                   ),
                 ),
@@ -182,10 +217,9 @@ class CatatanKPView extends StatelessWidget {
                   filled: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.r),
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       width: 2,
-                      style: BorderStyle.solid,
-                      color: Colors.grey,
+                      color: Colors.grey.shade200,
                     ),
                   ),
                 ),
@@ -226,10 +260,10 @@ class CatatanKPView extends StatelessWidget {
                   filled: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.r),
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       width: 2,
                       style: BorderStyle.solid,
-                      color: Colors.grey,
+                      color: Colors.grey.shade200,
                     ),
                   ),
                 ),

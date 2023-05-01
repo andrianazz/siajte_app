@@ -15,6 +15,8 @@ abstract class Routes {
   static const PENILAIAN_SEMINAR = _Paths.PENILAIAN_SEMINAR;
   static const RIWAYAT_SEMINAR = _Paths.RIWAYAT_SEMINAR;
   static const DETAIL_RIWAYAT_SEMINAR = _Paths.DETAIL_RIWAYAT_SEMINAR;
+  static const MAHASISWA = _Paths.MAHASISWA;
+  static const DETAIL_MAHASISWA = _Paths.DETAIL_MAHASISWA;
 }
 
 abstract class _Paths {
@@ -28,4 +30,6 @@ abstract class _Paths {
   static const PENILAIAN_SEMINAR = '/penilaian-seminar';
   static const RIWAYAT_SEMINAR = '/riwayat-seminar';
   static const DETAIL_RIWAYAT_SEMINAR = '/detail-riwayat-seminar';
+  static const MAHASISWA = '/mahasiswa';
+  static const DETAIL_MAHASISWA = '/detail-mahasiswa';
 }
