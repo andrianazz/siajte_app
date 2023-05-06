@@ -61,7 +61,7 @@ class MahasiswaView extends GetView<MahasiswaController> {
                   future: controller.getAllMahasiswa(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      snapshot.data!.sort((a, b) => b.nama!.compareTo(a.nama!));
+                      snapshot.data!.sort((a, b) => a.nama!.compareTo(b.nama!));
 
                       return Column(
                         children: snapshot.data!
@@ -87,6 +87,14 @@ class MahasiswaView extends GetView<MahasiswaController> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(Routes.ADD_MAHASISWA);
+        },
+        child: const Icon(
+          Icons.add,
+        ),
       ),
     );
   }

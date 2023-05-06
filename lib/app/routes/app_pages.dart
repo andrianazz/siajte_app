@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/add_mahasiswa/bindings/add_mahasiswa_binding.dart';
+import '../modules/add_mahasiswa/views/add_mahasiswa_view.dart';
 import '../modules/change_password/bindings/change_password_binding.dart';
 import '../modules/change_password/views/change_password_view.dart';
 import '../modules/detail_mahasiswa/bindings/detail_mahasiswa_binding.dart';
@@ -88,6 +90,11 @@ class AppPages {
       name: _Paths.DETAIL_MAHASISWA,
       page: () => const DetailMahasiswaView(),
       binding: DetailMahasiswaBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_MAHASISWA,
+      page: () => const AddMahasiswaView(),
+      binding: AddMahasiswaBinding(),
     ),
   ];
 }

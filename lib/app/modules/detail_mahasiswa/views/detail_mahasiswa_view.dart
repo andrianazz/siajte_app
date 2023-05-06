@@ -156,6 +156,41 @@ class DetailMahasiswaView extends GetView<DetailMahasiswaController> {
                     },
                   ),
                 ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Obx(
+                  () => SizedBox(
+                    width: double.infinity,
+                    height: 44.h,
+                    child: ElevatedButton(
+                      onPressed: controller.isLoading.isFalse
+                          ? () async {
+                              await controller.dialogDelete(mahasiswa.id!);
+                            }
+                          : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: redColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: controller.isLoading.isFalse
+                          ? Text(
+                              'Hapus Mahasiswa',
+                              style: poppins.copyWith(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            )
+                          : CircularProgressIndicator(
+                              strokeWidth: 4.w,
+                              color: Colors.white,
+                            ),
+                    ),
+                  ),
+                ),
                 SizedBox(height: 40.h),
               ],
             ),

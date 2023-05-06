@@ -17,6 +17,7 @@ abstract class Routes {
   static const DETAIL_RIWAYAT_SEMINAR = _Paths.DETAIL_RIWAYAT_SEMINAR;
   static const MAHASISWA = _Paths.MAHASISWA;
   static const DETAIL_MAHASISWA = _Paths.DETAIL_MAHASISWA;
+  static const ADD_MAHASISWA = _Paths.ADD_MAHASISWA;
 }
 
 abstract class _Paths {
@@ -32,4 +33,5 @@ abstract class _Paths {
   static const DETAIL_RIWAYAT_SEMINAR = '/detail-riwayat-seminar';
   static const MAHASISWA = '/mahasiswa';
   static const DETAIL_MAHASISWA = '/detail-mahasiswa';
+  static const ADD_MAHASISWA = '/add-mahasiswa';
 }
