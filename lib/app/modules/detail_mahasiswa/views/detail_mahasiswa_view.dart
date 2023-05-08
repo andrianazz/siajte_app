@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/widgets/appbar_widget.dart';
 
 import '../../../theme/colors.dart';
@@ -27,21 +28,40 @@ class DetailMahasiswaView extends GetView<DetailMahasiswaController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () => Get.back(),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.arrow_back_ios),
-                      SizedBox(width: 16.w),
-                      Text(
-                        'Kembali',
-                        style: poppins.copyWith(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w600,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () => Get.back(),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.arrow_back_ios),
+                          SizedBox(width: 16.w),
+                          Text(
+                            'Kembali',
+                            style: poppins.copyWith(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        Get.toNamed(Routes.EDIT_MAHASISWA,
+                            arguments: mahasiswa);
+                      },
+                      icon: const Icon(Icons.update),
+                      label: const Text("Edit"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: secondaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 24.h),
                 Container(
@@ -112,8 +132,9 @@ class DetailMahasiswaView extends GetView<DetailMahasiswaController> {
                               }
 
                               if (snapshot.hasError) {
-                                return const Center(
-                                  child: Text("Error"),
+                                return const DetailMahasiswa(
+                                  textTitle: "Prodi",
+                                  textSubtitle: "-",
                                 );
                               }
                               return DetailMahasiswa(
@@ -135,8 +156,9 @@ class DetailMahasiswaView extends GetView<DetailMahasiswaController> {
                               }
 
                               if (snapshot.hasError) {
-                                return const Center(
-                                  child: Text("Error"),
+                                return const DetailMahasiswa(
+                                  textTitle: "Konsentasi",
+                                  textSubtitle: "-",
                                 );
                               }
                               return DetailMahasiswa(

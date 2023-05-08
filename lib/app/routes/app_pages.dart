@@ -8,6 +8,8 @@ import '../modules/detail_mahasiswa/bindings/detail_mahasiswa_binding.dart';
 import '../modules/detail_mahasiswa/views/detail_mahasiswa_view.dart';
 import '../modules/detail_riwayat_seminar/bindings/detail_riwayat_seminar_binding.dart';
 import '../modules/detail_riwayat_seminar/views/detail_riwayat_seminar_view.dart';
+import '../modules/edit_mahasiswa/bindings/edit_mahasiswa_binding.dart';
+import '../modules/edit_mahasiswa/views/edit_mahasiswa_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/jadwal_seminar/bindings/jadwal_seminar_binding.dart';
@@ -95,6 +97,11 @@ class AppPages {
       name: _Paths.ADD_MAHASISWA,
       page: () => const AddMahasiswaView(),
       binding: AddMahasiswaBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_MAHASISWA,
+      page: () => const EditMahasiswaView(),
+      binding: EditMahasiswaBinding(),
     ),
   ];
 }

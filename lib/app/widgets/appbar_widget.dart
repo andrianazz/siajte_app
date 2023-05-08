@@ -11,7 +11,8 @@ class AppbarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.find<HomeController>();
+    // HomeController controller = Get.find<HomeController>();
+    HomeController controller = Get.put(HomeController());
 
     return AppBar(
       backgroundColor: Colors.white,
