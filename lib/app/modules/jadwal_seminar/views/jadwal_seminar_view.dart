@@ -1,6 +1,7 @@
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import 'package:get/get.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
@@ -118,6 +119,38 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: secondaryColor,
+        foregroundColor: Colors.white,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.edit_document),
+            backgroundColor: textKP,
+            foregroundColor: Colors.white,
+            label: 'KP',
+            onTap: () {
+              Get.toNamed(Routes.ADD_JADWAL_KP);
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.file_copy_outlined),
+            backgroundColor: textProposal,
+            foregroundColor: Colors.white,
+            label: 'Proposal',
+            onTap: () {},
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.file_copy),
+            backgroundColor: textSkripsi,
+            foregroundColor: Colors.white,
+            label: 'Skripsi',
+            onTap: () {},
           ),
         ],
       ),
