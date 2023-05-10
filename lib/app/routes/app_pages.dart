@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/add_jadwal_kp/bindings/add_jadwal_kp_binding.dart';
 import '../modules/add_jadwal_kp/views/add_jadwal_kp_view.dart';
+import '../modules/add_jadwal_proposal/bindings/add_jadwal_proposal_binding.dart';
+import '../modules/add_jadwal_proposal/views/add_jadwal_proposal_view.dart';
 import '../modules/add_mahasiswa/bindings/add_mahasiswa_binding.dart';
 import '../modules/add_mahasiswa/views/add_mahasiswa_view.dart';
 import '../modules/change_password/bindings/change_password_binding.dart';
@@ -109,6 +111,11 @@ class AppPages {
       name: _Paths.ADD_JADWAL_KP,
       page: () => const AddJadwalKpView(),
       binding: AddJadwalKpBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_JADWAL_PROPOSAL,
+      page: () => const AddJadwalProposalView(),
+      binding: AddJadwalProposalBinding(),
     ),
   ];
 }

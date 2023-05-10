@@ -9,17 +9,20 @@ import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/variable.dart';
 
-class AddJadwalKpController extends GetxController {
+class AddJadwalProposalController extends GetxController {
   Dio dio = Dio();
   late SharedPreferences prefs;
 
   late Mahasiswa mahasiswa;
 
-  late Dosen pembimbing;
-  late Dosen penguji;
+  late Dosen pembimbing1;
+  late Dosen pembimbing2;
+  late Dosen penguji1;
+  late Dosen penguji2;
+  late Dosen penguji3;
 
   late int prodiId;
-  TextEditingController judulKP = TextEditingController();
+  TextEditingController judulProposal = TextEditingController();
   Rx<DateTime> tanggal = DateTime.now().obs;
   Rx<TimeOfDay> waktu = TimeOfDay.now().obs;
   TextEditingController lokasi = TextEditingController();
@@ -66,7 +69,7 @@ class AddJadwalKpController extends GetxController {
     return allDosen;
   }
 
-  Future<Map<String, dynamic>> addJadwalKPAPI() async {
+  Future<Map<String, dynamic>> addJadwalProposalAPI() async {
     isLoading.value = true;
     prefs = await SharedPreferences.getInstance();
     final user = prefs.getString("user");
@@ -74,13 +77,16 @@ class AddJadwalKpController extends GetxController {
 
     try {
       var response = await dio.post(
-        "$baseUrlAPI/penjadwalan-kp",
+        "$baseUrlAPI/penjadwalan-sempro",
         data: {
           "mahasiswa_nim": mahasiswa.nim,
-          "pembimbing_nip": pembimbing.nip,
-          "penguji_nip": penguji.nip,
+          "pembimbingsatu_nip": pembimbing1.nip,
+          "pembimbingdua_nip": pembimbing2.nip,
+          "pengujisatu_nip": penguji1.nip,
+          "pengujidua_nip": penguji2.nip,
+          "pengujitiga_nip": penguji3.nip,
           "prodi_id": prodiId,
-          "judul_kp": judulKP.text,
+          "judul_proposal": judulProposal.text,
           "tanggal": tanggal.value.toString().substring(0, 10),
           "waktu": "${waktu.value.hour}:${waktu.value.minute}:00",
           "lokasi": lokasi.text,

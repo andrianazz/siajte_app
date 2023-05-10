@@ -143,7 +143,9 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
             backgroundColor: textProposal,
             foregroundColor: Colors.white,
             label: 'Proposal',
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(Routes.ADD_JADWAL_PROPOSAL);
+            },
           ),
           SpeedDialChild(
             child: const Icon(Icons.file_copy),
