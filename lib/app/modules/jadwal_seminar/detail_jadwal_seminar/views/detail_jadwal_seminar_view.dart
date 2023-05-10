@@ -194,6 +194,32 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                     },
                   ),
                 ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50.h,
+                  child: ElevatedButton.icon(
+                    onPressed: () async {
+                      await controller.deleteJadwal();
+                    },
+                    icon: const Icon(Icons.delete),
+                    label: Text(
+                      "DELETE",
+                      style: poppins.copyWith(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: textDanger,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                ),
                 SizedBox(height: 40.h),
 
                 //Input Nilai untuk Dosen

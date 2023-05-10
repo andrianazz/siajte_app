@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_sempro_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 
 import '../../../../theme/variable.dart';
 
@@ -103,6 +107,155 @@ class DetailJadwalSeminarController extends GetxController {
       penguji2.value = await getDosenWithNip(penjadwalanSkripsi.pengujiduaNip!);
       penguji3.value =
           await getDosenWithNip(penjadwalanSkripsi.pengujitigaNip!);
+    }
+  }
+
+  Future<void> deleteJadwal() async {
+    //delete jadwal with dio
+    if (Get.arguments is PenjadwalanKp) {
+      PenjadwalanKp penjadwalanKp = Get.arguments;
+
+      Get.defaultDialog(
+        title: "Konfirmasi",
+        middleText:
+            "Apakah kamu yakin ingin menghapus seminar ${penjadwalanKp.jenisSeminar} ini?",
+        actions: [
+          ElevatedButton(
+            onPressed: () async {
+              try {
+                var response = await dio
+                    .delete("$baseUrlAPI/penjadwalan-kp/${penjadwalanKp.id}");
+
+                var data = response.data;
+
+                if (data != null) {
+                  String jadwalKp = jsonEncode({'data': data['data']});
+
+                  Get.snackbar("DELETE Jadwal Berhasil", "${data['status']}");
+
+                  Get.offAllNamed(Routes.JADWAL_SEMINAR);
+                } else if (response.statusCode == 401) {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 401");
+                } else {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 500");
+                }
+              } on DioError catch (e) {
+                if (e.type == DioErrorType.connectionTimeout) {
+                  Get.snackbar("DELETE Jadwal Gagal", "Connection Timeout");
+                } else {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 500");
+                }
+              }
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red),
+            ),
+            child: const Text("Ya"),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text("Tidak"),
+          ),
+        ],
+      );
+    } else if (Get.arguments is PenjadwalanSempro) {
+      PenjadwalanSempro penjadwalanSempro = Get.arguments;
+
+      Get.defaultDialog(
+        title: "Konfirmasi",
+        middleText:
+            "Apakah kamu yakin ingin menghapus seminar ${penjadwalanSempro.jenisSeminar} ini?",
+        actions: [
+          ElevatedButton(
+            onPressed: () async {
+              try {
+                var response = await dio.delete(
+                    "$baseUrlAPI/penjadwalan-sempro/${penjadwalanSempro.id}");
+
+                var data = response.data;
+
+                if (data != null) {
+                  String jadwalSempro = jsonEncode({'data': data['data']});
+
+                  Get.snackbar("DELETE Jadwal Berhasil", "${data['status']}");
+
+                  Get.offAllNamed(Routes.JADWAL_SEMINAR);
+                } else if (response.statusCode == 401) {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 401");
+                } else {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 500");
+                }
+              } on DioError catch (e) {
+                if (e.type == DioErrorType.connectionTimeout) {
+                  Get.snackbar("DELETE Jadwal Gagal", "Connection Timeout");
+                } else {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 500");
+                }
+              }
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red),
+            ),
+            child: const Text("Ya"),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text("Tidak"),
+          ),
+        ],
+      );
+    } else {
+      PenjadwalanSkripsi penjadwalanSkripsi = Get.arguments;
+
+      Get.defaultDialog(
+        title: "Konfirmasi",
+        middleText:
+            "Apakah kamu yakin ingin menghapus seminar ${penjadwalanSkripsi.jenisSeminar} ini?",
+        actions: [
+          ElevatedButton(
+            onPressed: () async {
+              try {
+                var response = await dio.delete(
+                    "$baseUrlAPI/penjadwalan-skripsi/${penjadwalanSkripsi.id}");
+
+                var data = response.data;
+
+                if (data != null) {
+                  String jadwalSempro = jsonEncode({'data': data['data']});
+
+                  Get.snackbar("DELETE Jadwal Berhasil", "${data['status']}");
+
+                  Get.offAllNamed(Routes.JADWAL_SEMINAR);
+                } else if (response.statusCode == 401) {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 401");
+                } else {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 500");
+                }
+              } on DioError catch (e) {
+                if (e.type == DioErrorType.connectionTimeout) {
+                  Get.snackbar("DELETE Jadwal Gagal", "Connection Timeout");
+                } else {
+                  Get.snackbar("DELETE Jadwal Gagal", "Status 500");
+                }
+              }
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red),
+            ),
+            child: const Text("Ya"),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text("Tidak"),
+          ),
+        ],
+      );
     }
   }
 }
