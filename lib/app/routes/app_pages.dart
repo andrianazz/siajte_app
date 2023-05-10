@@ -18,6 +18,8 @@ import '../modules/edit_jadwal_kp/bindings/edit_jadwal_kp_binding.dart';
 import '../modules/edit_jadwal_kp/views/edit_jadwal_kp_view.dart';
 import '../modules/edit_jadwal_proposal/bindings/edit_jadwal_proposal_binding.dart';
 import '../modules/edit_jadwal_proposal/views/edit_jadwal_proposal_view.dart';
+import '../modules/edit_jadwal_skripsi/bindings/edit_jadwal_skripsi_binding.dart';
+import '../modules/edit_jadwal_skripsi/views/edit_jadwal_skripsi_view.dart';
 import '../modules/edit_mahasiswa/bindings/edit_mahasiswa_binding.dart';
 import '../modules/edit_mahasiswa/views/edit_mahasiswa_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -137,6 +139,11 @@ class AppPages {
       name: _Paths.EDIT_JADWAL_PROPOSAL,
       page: () => const EditJadwalProposalView(),
       binding: EditJadwalProposalBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_JADWAL_SKRIPSI,
+      page: () => const EditJadwalSkripsiView(),
+      binding: EditJadwalSkripsiBinding(),
     ),
   ];
 }
