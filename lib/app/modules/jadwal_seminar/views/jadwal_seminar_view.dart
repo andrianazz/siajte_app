@@ -152,7 +152,9 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
             backgroundColor: textSkripsi,
             foregroundColor: Colors.white,
             label: 'Skripsi',
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(Routes.ADD_JADWAL_SKRIPSI);
+            },
           ),
         ],
       ),
