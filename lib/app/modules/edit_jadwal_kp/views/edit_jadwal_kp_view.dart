@@ -5,14 +5,13 @@ import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/dosen_model.dart';
 import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
 import 'package:siajte_app/app/theme/colors.dart';
+import 'package:siajte_app/app/theme/style.dart';
 import 'package:siajte_app/app/widgets/appbar_widget.dart';
 
-import '../../../theme/style.dart';
-import '../controllers/add_jadwal_kp_controller.dart';
+import '../controllers/edit_jadwal_kp_controller.dart';
 
-class AddJadwalKpView extends GetView<AddJadwalKpController> {
-  const AddJadwalKpView({Key? key}) : super(key: key);
-
+class EditJadwalKpView extends GetView<EditJadwalKpController> {
+  const EditJadwalKpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +24,7 @@ class AddJadwalKpView extends GetView<AddJadwalKpController> {
         children: [
           SizedBox(height: 30.h),
           Text(
-            "Tambah Jadwal KP",
+            "Edit Jadwal KP",
             style: poppins.copyWith(
               fontSize: 18.sp,
               fontWeight: FontWeight.w700,
@@ -74,7 +73,8 @@ class AddJadwalKpView extends GetView<AddJadwalKpController> {
                       return const Text("error");
                     }
 
-                    return DropdownButtonFormField(
+                    return DropdownButtonFormField<Mahasiswa>(
+                      value: controller.mahasiswa,
                       items: snapshot.data!
                           .map(
                             (element) => DropdownMenuItem(
@@ -111,6 +111,7 @@ class AddJadwalKpView extends GetView<AddJadwalKpController> {
                 ),
                 SizedBox(height: 8.h),
                 DropdownButtonFormField(
+                  value: controller.penjadwalanKp.prodiId,
                   items: const [
                     DropdownMenuItem(
                       value: 3,
@@ -194,6 +195,7 @@ class AddJadwalKpView extends GetView<AddJadwalKpController> {
                     }
                     if (snapshot.hasError) {}
                     return DropdownButtonFormField(
+                      value: controller.pembimbing,
                       items: snapshot.data!
                           .map((e) => DropdownMenuItem(
                                 value: e,
@@ -247,6 +249,7 @@ class AddJadwalKpView extends GetView<AddJadwalKpController> {
                     }
                     if (snapshot.hasError) {}
                     return DropdownButtonFormField(
+                      value: controller.penguji,
                       items: snapshot.data!
                           .map((e) => DropdownMenuItem(
                                 value: e,
@@ -382,7 +385,7 @@ class AddJadwalKpView extends GetView<AddJadwalKpController> {
                     child: ElevatedButton(
                       onPressed: controller.isLoading.isFalse
                           ? () async {
-                              await controller.addJadwalKPAPI();
+                              await controller.editJadwalKPAPI();
                             }
                           : null,
                       style: ElevatedButton.styleFrom(
@@ -393,7 +396,7 @@ class AddJadwalKpView extends GetView<AddJadwalKpController> {
                       ),
                       child: controller.isLoading.isFalse
                           ? Text(
-                              'Tambah Jadwal Seminar',
+                              'Ubah Jadwal Seminar',
                               style: poppins.copyWith(
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w500,

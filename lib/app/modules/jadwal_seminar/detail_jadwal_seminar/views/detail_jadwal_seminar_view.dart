@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
+import 'package:siajte_app/app/data/models/penjadwalan_sempro_model.dart';
+import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 
 import '../../../../theme/colors.dart';
@@ -30,14 +33,39 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                 GestureDetector(
                   onTap: () => Get.back(),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Icon(Icons.arrow_back_ios),
-                      SizedBox(width: 16.w),
-                      Text(
-                        'Kembali',
-                        style: poppins.copyWith(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w600,
+                      Row(
+                        children: [
+                          const Icon(Icons.arrow_back_ios),
+                          SizedBox(width: 16.w),
+                          Text(
+                            'Kembali',
+                            style: poppins.copyWith(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton.icon(
+                        onPressed: () async {
+                          if (Get.arguments is PenjadwalanKp) {
+                            Get.toNamed(Routes.EDIT_JADWAL_KP,
+                                arguments: Get.arguments);
+                          } else if (Get.arguments is PenjadwalanSempro) {
+                            Get.snackbar("Route", "Edit Sempro");
+                          } else if (Get.arguments is PenjadwalanSkripsi) {
+                            Get.snackbar("Route", "Edit Skripsi");
+                          }
+                        },
+                        icon: const Icon(Icons.update),
+                        label: const Text("Edit"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: secondaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                       ),
                     ],
