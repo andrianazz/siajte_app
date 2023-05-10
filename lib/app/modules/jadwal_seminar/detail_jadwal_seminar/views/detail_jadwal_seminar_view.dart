@@ -54,7 +54,8 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                             Get.toNamed(Routes.EDIT_JADWAL_KP,
                                 arguments: Get.arguments);
                           } else if (Get.arguments is PenjadwalanSempro) {
-                            Get.snackbar("Route", "Edit Sempro");
+                            Get.toNamed(Routes.EDIT_JADWAL_PROPOSAL,
+                                arguments: Get.arguments);
                           } else if (Get.arguments is PenjadwalanSkripsi) {
                             Get.snackbar("Route", "Edit Skripsi");
                           }

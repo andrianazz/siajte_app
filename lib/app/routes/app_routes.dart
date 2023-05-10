@@ -23,6 +23,7 @@ abstract class Routes {
   static const ADD_JADWAL_PROPOSAL = _Paths.ADD_JADWAL_PROPOSAL;
   static const ADD_JADWAL_SKRIPSI = _Paths.ADD_JADWAL_SKRIPSI;
   static const EDIT_JADWAL_KP = _Paths.EDIT_JADWAL_KP;
+  static const EDIT_JADWAL_PROPOSAL = _Paths.EDIT_JADWAL_PROPOSAL;
 }
 
 abstract class _Paths {
@@ -44,4 +45,5 @@ abstract class _Paths {
   static const ADD_JADWAL_PROPOSAL = '/add-jadwal-proposal';
   static const ADD_JADWAL_SKRIPSI = '/add-jadwal-skripsi';
   static const EDIT_JADWAL_KP = '/edit-jadwal-kp';
+  static const EDIT_JADWAL_PROPOSAL = '/edit-jadwal-proposal';
 }

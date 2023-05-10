@@ -6,31 +6,34 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siajte_app/app/data/models/dosen_model.dart';
 import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
-import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
+import 'package:siajte_app/app/data/models/penjadwalan_sempro_model.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/variable.dart';
 
-class EditJadwalKpController extends GetxController {
-  PenjadwalanKp penjadwalanKp = Get.arguments;
+class EditJadwalProposalController extends GetxController {
+  PenjadwalanSempro penjadwalanSempro = Get.arguments;
 
   Dio dio = Dio();
   late SharedPreferences prefs;
 
   late Mahasiswa mahasiswa;
 
-  late Dosen pembimbing;
-  late Dosen penguji;
+  late Dosen pembimbing1;
+  late Dosen pembimbing2;
+  late Dosen penguji1;
+  late Dosen penguji2;
+  late Dosen penguji3;
 
-  late int prodiId = penjadwalanKp.prodiId!;
-  late TextEditingController judulKP =
-      TextEditingController(text: penjadwalanKp.judulKp);
-  late Rx<DateTime> tanggal = DateTime.parse(penjadwalanKp.tanggal!).obs;
+  late int prodiId = penjadwalanSempro.prodiId!;
+  late TextEditingController judulProposal =
+      TextEditingController(text: penjadwalanSempro.judulProposal);
+  late Rx<DateTime> tanggal = DateTime.parse(penjadwalanSempro.tanggal!).obs;
   late Rx<TimeOfDay> waktu = TimeOfDay(
-          hour: int.parse(penjadwalanKp.waktu!.substring(0, 2)),
-          minute: int.parse(penjadwalanKp.waktu!.substring(3, 5)))
+          hour: int.parse(penjadwalanSempro.waktu!.substring(0, 2)),
+          minute: int.parse(penjadwalanSempro.waktu!.substring(3, 5)))
       .obs;
   late TextEditingController lokasi =
-      TextEditingController(text: penjadwalanKp.lokasi);
+      TextEditingController(text: penjadwalanSempro.lokasi);
 
   RxBool isLoading = false.obs;
 
@@ -44,7 +47,7 @@ class EditJadwalKpController extends GetxController {
         }
 
         mahasiswa = allMahasiswa
-            .where((element) => element.nim == penjadwalanKp.mahasiswaNim)
+            .where((element) => element.nim == penjadwalanSempro.mahasiswaNim)
             .first;
 
         //sort mahasiswa nama
@@ -70,12 +73,25 @@ class EditJadwalKpController extends GetxController {
         //sort mahasiswa nama
         allDosen.sort((a, b) => a.nama!.compareTo(b.nama!));
 
-        pembimbing = allDosen
-            .where((element) => element.nip == penjadwalanKp.pembimbingNip)
+        pembimbing1 = allDosen
+            .where(
+                (element) => element.nip == penjadwalanSempro.pembimbingsatuNip)
+            .first;
+        pembimbing2 = allDosen
+            .where(
+                (element) => element.nip == penjadwalanSempro.pembimbingduaNip)
             .first;
 
-        penguji = allDosen
-            .where((element) => element.nip == penjadwalanKp.pengujiNip)
+        penguji1 = allDosen
+            .where((element) => element.nip == penjadwalanSempro.pengujisatuNip)
+            .first;
+
+        penguji2 = allDosen
+            .where((element) => element.nip == penjadwalanSempro.pengujiduaNip)
+            .first;
+
+        penguji3 = allDosen
+            .where((element) => element.nip == penjadwalanSempro.pengujitigaNip)
             .first;
 
         return allDosen;
@@ -86,7 +102,7 @@ class EditJadwalKpController extends GetxController {
     return allDosen;
   }
 
-  Future<Map<String, dynamic>> editJadwalKPAPI() async {
+  Future<Map<String, dynamic>> editJadwalSemproAPI() async {
     isLoading.value = true;
     prefs = await SharedPreferences.getInstance();
     final user = prefs.getString("user");
@@ -94,14 +110,17 @@ class EditJadwalKpController extends GetxController {
 
     try {
       var response = await dio.put(
-        "$baseUrlAPI/penjadwalan-kp/${penjadwalanKp.id}",
+        "$baseUrlAPI/penjadwalan-sempro/${penjadwalanSempro.id}",
         data: {
           "mahasiswa_nim": mahasiswa.nim,
-          "pembimbing_nip": pembimbing.nip,
-          "penguji_nip": penguji.nip,
+          "pembimbingsatu_nip": pembimbing1.nip,
+          "pembimbingdua_nip": pembimbing2.nip,
+          "pengujisatu_nip": penguji1.nip,
+          "pengujidua_nip": penguji2.nip,
+          "pengujitiga_nip": penguji3.nip,
           "prodi_id": prodiId,
-          "jenis_seminar": "KP",
-          "judul_kp": judulKP.text,
+          "jenis_seminar": "Proposal",
+          "judul_proposal": judulProposal.text,
           "tanggal": tanggal.value.toString().substring(0, 10),
           "waktu": "${waktu.value.hour}:${waktu.value.minute}:00",
           "lokasi": lokasi.text,
@@ -116,7 +135,7 @@ class EditJadwalKpController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        String jadwalKP = jsonEncode({'data': data['data']});
+        String jadwalSempro = jsonEncode({'data': data['data']});
 
         Get.snackbar("UPDATE Jadwal Berhasil", "${data['status']}");
         isLoading.value = false;
