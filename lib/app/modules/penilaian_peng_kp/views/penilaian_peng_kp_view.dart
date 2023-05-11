@@ -4,18 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:siajte_app/app/theme/colors.dart';
-import 'package:siajte_app/app/theme/style.dart';
 
-import '../controllers/penilaian_pemb_kp_controller.dart';
+import '../../../theme/style.dart';
+import '../controllers/penilaian_peng_kp_controller.dart';
 
-class PenilaianPembKpView extends GetView<PenilaianPembKpController> {
-  const PenilaianPembKpView({Key? key}) : super(key: key);
+class PenilaianPengKpView extends GetView<PenilaianPengKpController> {
+  const PenilaianPengKpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Penilaian Pembimbing KP',
+          'Penilaian Penguji KP',
           style: poppins.copyWith(
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
@@ -48,12 +48,12 @@ class PenilaianPembKpView extends GetView<PenilaianPembKpController> {
                         value: controller.selectedChips.value,
                         onChanged: (val) {
                           if (val == 0) {
-                            controller.indexFormNilaiPembKP.value = 0;
+                            controller.indexFormNilaiPengKP.value = 0;
                           }
                           controller.selectedChips.value = val;
                         },
                         choiceItems: C2Choice.listFrom<int, String>(
-                          source: controller.listPenilaianPembKP,
+                          source: controller.listPenilaianPengKP,
                           value: (i, v) => i,
                           label: (i, v) => v,
                         ),
@@ -81,21 +81,22 @@ class PenilaianPembKpView extends GetView<PenilaianPembKpController> {
           ),
 
           // Pembimbing KP
-          Obx(() => controller.viewListPenilaianPembKP()),
+          Obx(() => controller.viewListPenilaianPengKP()),
         ],
       ),
     );
   }
 }
 
-class CatatanKPView extends StatelessWidget {
-  const CatatanKPView({
+class SaranPerbaikanKPView extends StatelessWidget {
+  const SaranPerbaikanKPView({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    PenilaianPembKpController controller = Get.put(PenilaianPembKpController());
+    PenilaianPengKpController controller = Get.put(PenilaianPengKpController());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -112,7 +113,7 @@ class CatatanKPView extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
               child: Text(
-                'Catatan 1',
+                'Perbaikan 1',
                 style: poppins.copyWith(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
@@ -126,7 +127,7 @@ class CatatanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
-                maxLines: 3,
+                maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 22.w,
@@ -154,7 +155,7 @@ class CatatanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: Text(
-                'Catatan 2',
+                'Perbaikan 2',
                 style: poppins.copyWith(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
@@ -168,7 +169,7 @@ class CatatanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
-                maxLines: 3,
+                maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 22.w,
@@ -197,7 +198,7 @@ class CatatanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: Text(
-                'Catatan 3',
+                'Perbaikan 3',
                 style: poppins.copyWith(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
@@ -211,7 +212,53 @@ class CatatanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
-                maxLines: 3,
+                maxLines: 2,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 22.w,
+                    vertical: 17.h,
+                  ),
+                  labelStyle: poppins.copyWith(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: fieldChangePassword,
+                  ),
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                    borderSide: BorderSide(
+                      width: 2,
+                      style: BorderStyle.solid,
+                      color: Colors.grey.shade200,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: Text(
+                'Perbaikan 4',
+                style: poppins.copyWith(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: fieldChangePassword,
+                ),
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: TextFormField(
+                maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 22.w,
@@ -236,6 +283,50 @@ class CatatanKPView extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        SizedBox(height: 15.h),
+        Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 24.w,
+          ),
+          child: Text(
+            'Perbaikan 5',
+            style: poppins.copyWith(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w700,
+              color: fieldChangePassword,
+            ),
+          ),
+        ),
+        SizedBox(height: 8.h),
+        Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 24.w,
+          ),
+          child: TextFormField(
+            maxLines: 2,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 22.w,
+                vertical: 17.h,
+              ),
+              labelStyle: poppins.copyWith(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                color: fieldChangePassword,
+              ),
+              fillColor: Colors.white,
+              filled: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.r),
+                borderSide: BorderSide(
+                  width: 2,
+                  style: BorderStyle.solid,
+                  color: Colors.grey.shade200,
+                ),
+              ),
+            ),
+          ),
         ),
         SizedBox(height: 50.h),
         Container(
@@ -272,7 +363,8 @@ class PenilaianPembimbingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PenilaianPembKpController controller = Get.put(PenilaianPembKpController());
+    PenilaianPengKpController controller = Get.put(PenilaianPengKpController());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -230,7 +230,11 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                       CardSubDetailWidget(
                         onTap: () {
                           if (Get.arguments is PenjadwalanKp) {
-                            Get.toNamed(Routes.PENILAIAN_PEMB_KP);
+                            // Pembimbing
+                            // Get.toNamed(Routes.PENILAIAN_PEMB_KP);
+
+                            // Penguji
+                            Get.toNamed(Routes.PENILAIAN_PENG_KP);
                           } else if (Get.arguments is PenjadwalanSempro) {
                             Get.snackbar("Routes", "Penilaian Sempro");
                           } else if (Get.arguments is PenjadwalanSkripsi) {

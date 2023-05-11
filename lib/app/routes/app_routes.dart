@@ -26,6 +26,8 @@ abstract class Routes {
   static const EDIT_JADWAL_PROPOSAL = _Paths.EDIT_JADWAL_PROPOSAL;
   static const EDIT_JADWAL_SKRIPSI = _Paths.EDIT_JADWAL_SKRIPSI;
   static const PENILAIAN_PEMB_KP = _Paths.PENILAIAN_PEMB_KP;
+  static const PENIALAIAN_PEMBI_KP = _Paths.PENIALAIAN_PEMBI_KP;
+  static const PENILAIAN_PENG_KP = _Paths.PENILAIAN_PENG_KP;
 }
 
 abstract class _Paths {
@@ -50,4 +52,6 @@ abstract class _Paths {
   static const EDIT_JADWAL_PROPOSAL = '/edit-jadwal-proposal';
   static const EDIT_JADWAL_SKRIPSI = '/edit-jadwal-skripsi';
   static const PENILAIAN_PEMB_KP = '/penilaian-pemb-kp';
+  static const PENIALAIAN_PEMBI_KP = '/penialaian-pembi-kp';
+  static const PENILAIAN_PENG_KP = '/penilaian-peng-kp';
 }
