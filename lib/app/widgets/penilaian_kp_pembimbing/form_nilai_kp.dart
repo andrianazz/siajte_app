@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
+import 'package:siajte_app/app/modules/penilaian_pemb_kp/controllers/penilaian_pemb_kp_controller.dart';
 import 'package:siajte_app/app/widgets/penilaian_kp_pembimbing/card_penilaian.dart';
 
-import '../../modules/penilaian_seminar/controllers/penilaian_seminar_controller.dart';
 import '../../theme/colors.dart';
 import '../../theme/style.dart';
 
@@ -15,8 +15,7 @@ class FormNilaiKPView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PenilaianSeminarController controller =
-        Get.find<PenilaianSeminarController>();
+    PenilaianPembKpController controller = Get.put(PenilaianPembKpController());
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

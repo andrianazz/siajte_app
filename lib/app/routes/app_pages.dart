@@ -32,6 +32,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/mahasiswa/bindings/mahasiswa_binding.dart';
 import '../modules/mahasiswa/views/mahasiswa_view.dart';
+import '../modules/penilaian_pemb_kp/bindings/penilaian_pemb_kp_binding.dart';
+import '../modules/penilaian_pemb_kp/views/penilaian_pemb_kp_view.dart';
 import '../modules/penilaian_seminar/bindings/penilaian_seminar_binding.dart';
 import '../modules/penilaian_seminar/views/penilaian_seminar_view.dart';
 import '../modules/riwayat_seminar/bindings/riwayat_seminar_binding.dart';
@@ -144,6 +146,11 @@ class AppPages {
       name: _Paths.EDIT_JADWAL_SKRIPSI,
       page: () => const EditJadwalSkripsiView(),
       binding: EditJadwalSkripsiBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENILAIAN_PEMB_KP,
+      page: () => const PenilaianPembKpView(),
+      binding: PenilaianPembKpBinding(),
     ),
   ];
 }

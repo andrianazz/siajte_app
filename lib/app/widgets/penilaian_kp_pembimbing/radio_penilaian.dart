@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/penilaian_pemb_kp/controllers/penilaian_pemb_kp_controller.dart';
 
-import '../../modules/penilaian_seminar/controllers/penilaian_seminar_controller.dart';
 import '../../theme/colors.dart';
 import '../../theme/style.dart';
 
@@ -17,7 +17,8 @@ class RadioPenilaian extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PenilaianSeminarController controller = Get.find();
+    PenilaianPembKpController controller = Get.put(PenilaianPembKpController());
+
     return Obx(
       () => GestureDetector(
         onTap: () {

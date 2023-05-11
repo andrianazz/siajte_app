@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:siajte_app/app/modules/penilaian_seminar/controllers/penilaian_seminar_controller.dart';
+import 'package:siajte_app/app/modules/penilaian_pemb_kp/controllers/penilaian_pemb_kp_controller.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/widgets/penilaian_kp_pembimbing/radio_penilaian.dart';
 
@@ -21,7 +21,7 @@ class CardPenilaian extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PenilaianSeminarController controller = Get.find();
+    PenilaianPembKpController controller = Get.put(PenilaianPembKpController());
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 24.w),

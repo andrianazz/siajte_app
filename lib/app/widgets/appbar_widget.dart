@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 
 import '../modules/home/controllers/home_controller.dart';
@@ -20,46 +21,49 @@ class AppbarWidget extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Image.asset(
-                'assets/images/logo.png',
-                width: 24.w,
-                height: 24.h,
-              ),
-              SizedBox(width: 16.w),
-              FutureBuilder(
-                future: controller.getUser(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(
-                      'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
-                      style: poppins.copyWith(
-                          color: Colors.black,
+          GestureDetector(
+            onTap: () => Get.offAllNamed(Routes.HOME),
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 24.w,
+                  height: 24.h,
+                ),
+                SizedBox(width: 16.w),
+                FutureBuilder(
+                  future: controller.getUser(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(
+                        'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
+                        style: poppins.copyWith(
+                            color: Colors.black,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text(
+                        'Error',
+                        style: poppins.copyWith(
                           fontSize: 12.sp,
-                          fontWeight: FontWeight.w600),
-                    );
-                  } else if (snapshot.hasError) {
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      );
+                    }
                     return Text(
-                      'Error',
+                      'Loading...',
                       style: poppins.copyWith(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     );
-                  }
-                  return Text(
-                    'Loading...',
-                    style: poppins.copyWith(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  );
-                },
-              ),
-            ],
+                  },
+                ),
+              ],
+            ),
           ),
           FutureBuilder(
             future: controller.getUser(),

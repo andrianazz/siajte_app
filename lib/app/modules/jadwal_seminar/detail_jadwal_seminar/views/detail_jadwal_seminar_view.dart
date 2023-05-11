@@ -229,7 +229,13 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                     children: [
                       CardSubDetailWidget(
                         onTap: () {
-                          Get.toNamed(Routes.PENILAIAN_SEMINAR);
+                          if (Get.arguments is PenjadwalanKp) {
+                            Get.toNamed(Routes.PENILAIAN_PEMB_KP);
+                          } else if (Get.arguments is PenjadwalanSempro) {
+                            Get.snackbar("Routes", "Penilaian Sempro");
+                          } else if (Get.arguments is PenjadwalanSkripsi) {
+                            Get.snackbar("Routes", "Penilaian Skripsi");
+                          }
                         },
                         title: "Input / Edit Nilai",
                         color: primaryColor,

@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:siajte_app/app/modules/penilaian_pemb_kp/controllers/penilaian_pemb_kp_controller.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
-import '../controllers/penilaian_seminar_controller.dart';
+import '../controllers/penilaian_pemb_kp_controller.dart';
 
-class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
-  const PenilaianSeminarView({Key? key}) : super(key: key);
+class PenilaianPembKpView extends GetView<PenilaianPembKpController> {
+  const PenilaianPembKpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,37 +73,6 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
                           ),
                         ),
                       ),
-
-                      // Penguji KP
-                      //   ChipsChoice<int>.single(
-                      //   value: controller.selectedChips.value,
-                      //   onChanged: (val) {
-                      //     if (val == 0) {
-                      //       controller.indexFormNilaiPengKP.value = 0;
-                      //     }
-                      //     controller.selectedChips.value = val;
-                      //   },
-                      //   choiceItems: C2Choice.listFrom<int, String>(
-                      //     source: controller.listPenilaianPengKP,
-                      //     value: (i, v) => i,
-                      //     label: (i, v) => v,
-                      //   ),
-                      //   choiceStyle: C2ChipStyle.filled(
-                      //     selectedStyle: C2ChipStyle(
-                      //       foregroundColor: Colors.white,
-                      //       backgroundColor: primaryColor,
-                      //     ),
-                      //     color: Colors.grey[200],
-                      //     padding: EdgeInsets.symmetric(
-                      //       horizontal: 12.w,
-                      //     ),
-                      //     height: 44.h,
-                      //     foregroundStyle: poppins.copyWith(
-                      //       fontSize: 16.sp,
-                      //       fontWeight: FontWeight.w500,
-                      //     ),
-                      //   ),
-                      // ),
                     ),
                   ],
                 ),
@@ -114,9 +82,6 @@ class PenilaianSeminarView extends GetView<PenilaianSeminarController> {
 
           // Pembimbing KP
           Obx(() => controller.viewListPenilaianPembKP()),
-
-          // Penguji KP
-          // Obx(() => controller.viewListPenilaianPengKP()),
         ],
       ),
     );
