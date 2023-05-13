@@ -231,15 +231,16 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                         onTap: () {
                           if (Get.arguments is PenjadwalanKp) {
                             // Pembimbing
-                            // Get.toNamed(Routes.PENILAIAN_PEMB_KP);
+                            Get.toNamed(Routes.PENILAIAN_PEMB_KP);
 
                             // Penguji
-                            Get.toNamed(Routes.PENILAIAN_PENG_KP);
+                            // Get.toNamed(Routes.PENILAIAN_PENG_KP);
                           } else if (Get.arguments is PenjadwalanSempro) {
                             // Pembimbing
-                            Get.toNamed(Routes.PENILAIAN_PEMB_PROPOSAL);
+                            // Get.toNamed(Routes.PENILAIAN_PEMB_PROPOSAL);
 
                             // Penguji
+                            Get.toNamed(Routes.PENILAIAN_PENG_PROPOSAL);
                           } else if (Get.arguments is PenjadwalanSkripsi) {
                             Get.snackbar("Routes", "Penilaian Skripsi");
                           }
