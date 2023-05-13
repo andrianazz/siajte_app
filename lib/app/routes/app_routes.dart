@@ -30,6 +30,7 @@ abstract class Routes {
   static const PENILAIAN_PENG_KP = _Paths.PENILAIAN_PENG_KP;
   static const PENILAIAN_PEMB_PROPOSAL = _Paths.PENILAIAN_PEMB_PROPOSAL;
   static const PENILAIAN_PENG_PROPOSAL = _Paths.PENILAIAN_PENG_PROPOSAL;
+  static const PENIALIAN_PEMB_SKIPSI = _Paths.PENIALIAN_PEMB_SKIPSI;
 }
 
 abstract class _Paths {
@@ -58,4 +59,5 @@ abstract class _Paths {
   static const PENILAIAN_PENG_KP = '/penilaian-peng-kp';
   static const PENILAIAN_PEMB_PROPOSAL = '/penilaian-pemb-proposal';
   static const PENILAIAN_PENG_PROPOSAL = '/penilaian-peng-proposal';
+  static const PENIALIAN_PEMB_SKIPSI = '/penialian-pemb-skipsi';
 }
