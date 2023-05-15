@@ -243,7 +243,10 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                             Get.toNamed(Routes.PENILAIAN_PENG_PROPOSAL);
                           } else if (Get.arguments is PenjadwalanSkripsi) {
                             //Pembimbing
-                            Get.toNamed(Routes.PENIALIAN_PEMB_SKIPSI);
+                            // Get.toNamed(Routes.PENIALIAN_PEMB_SKIPSI);
+
+                            // Penguji
+                            Get.toNamed(Routes.PENILAIAN_PENG_SKRIPSI);
                           }
                         },
                         title: "Input / Edit Nilai",

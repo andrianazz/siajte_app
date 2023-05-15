@@ -42,6 +42,8 @@ import '../modules/penilaian_peng_kp/bindings/penilaian_peng_kp_binding.dart';
 import '../modules/penilaian_peng_kp/views/penilaian_peng_kp_view.dart';
 import '../modules/penilaian_peng_proposal/bindings/penilaian_peng_proposal_binding.dart';
 import '../modules/penilaian_peng_proposal/views/penilaian_peng_proposal_view.dart';
+import '../modules/penilaian_peng_skripsi/bindings/penilaian_peng_skripsi_binding.dart';
+import '../modules/penilaian_peng_skripsi/views/penilaian_peng_skripsi_view.dart';
 import '../modules/penilaian_seminar/bindings/penilaian_seminar_binding.dart';
 import '../modules/penilaian_seminar/views/penilaian_seminar_view.dart';
 import '../modules/riwayat_seminar/bindings/riwayat_seminar_binding.dart';
@@ -179,6 +181,11 @@ class AppPages {
       name: _Paths.PENIALIAN_PEMB_SKIPSI,
       page: () => const PenialianPembSkipsiView(),
       binding: PenialianPembSkipsiBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENILAIAN_PENG_SKRIPSI,
+      page: () => const PenilaianPengSkripsiView(),
+      binding: PenilaianPengSkripsiBinding(),
     ),
   ];
 }
