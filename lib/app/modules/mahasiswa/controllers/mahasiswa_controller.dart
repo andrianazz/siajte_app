@@ -8,6 +8,9 @@ class MahasiswaController extends GetxController {
   Dio dio = Dio();
   TextEditingController searchC = TextEditingController();
 
+  RxList<Mahasiswa> allMahasiswa = <Mahasiswa>[].obs;
+  RxList<Mahasiswa> filterMahasiswa = <Mahasiswa>[].obs;
+
   Future<List<Mahasiswa>> getAllMahasiswa() async {
     List<Mahasiswa> listMahasiswa = <Mahasiswa>[];
 
@@ -15,6 +18,8 @@ class MahasiswaController extends GetxController {
     for (var item in response.data['data']) {
       listMahasiswa.add(Mahasiswa.fromJson(item));
     }
+
+    listMahasiswa.sort((a, b) => a.nama!.compareTo(b.nama!));
 
     return listMahasiswa;
   }
@@ -33,5 +38,28 @@ class MahasiswaController extends GetxController {
     String prodi = response.data['data']['nama_prodi'].toString();
 
     return prodi;
+  }
+
+  void getMahasiswabyName(String name) {
+    List<Mahasiswa> result = [];
+
+    if (name.isEmpty) {
+      result = allMahasiswa;
+    } else {
+      result = allMahasiswa
+          .where((mahasiswa) =>
+              mahasiswa.nama!.toLowerCase().contains(name.toLowerCase()))
+          .toList();
+    }
+
+    filterMahasiswa.value = result;
+  }
+
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    allMahasiswa.value = await getAllMahasiswa();
+    filterMahasiswa.value = allMahasiswa;
   }
 }

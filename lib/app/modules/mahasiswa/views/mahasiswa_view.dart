@@ -31,7 +31,6 @@ class MahasiswaView extends GetView<MahasiswaController> {
                 Form(
                   // key: controller.formKey,
                   child: TextFormField(
-                    controller: controller.searchC,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Search tidak boleh kosong';
@@ -39,7 +38,7 @@ class MahasiswaView extends GetView<MahasiswaController> {
                       return null;
                     },
                     onFieldSubmitted: (value) async {
-                      Get.toNamed(Routes.SEARCH_MAHASISWA, arguments: value);
+                      controller.getMahasiswabyName(value);
                     },
                     style: poppins.copyWith(
                       fontSize: 14.sp,
@@ -57,33 +56,25 @@ class MahasiswaView extends GetView<MahasiswaController> {
                   ),
                 ),
                 SizedBox(height: 24.h),
-
-                // Tampilan Web
-                FutureBuilder(
-                  future: controller.getAllMahasiswa(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      snapshot.data!.sort((a, b) => a.nama!.compareTo(b.nama!));
-
-                      return Column(
-                        children: snapshot.data!
-                            .map(
-                              (mahasiswa) => CardMahasiswa(
-                                mahasiswa: mahasiswa,
-                                onTap: () {
-                                  Get.toNamed(Routes.DETAIL_MAHASISWA,
-                                      arguments: mahasiswa);
-                                },
-                              ),
-                            )
-                            .toList(),
-                      );
-                    } else if (snapshot.hasError) {
-                      return const Text("error");
-                    } else {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                  },
+                SizedBox(
+                  height: 500.h,
+                  child: Obx(
+                    () => ListView.builder(
+                      itemCount: controller.filterMahasiswa.value.length,
+                      itemBuilder: (context, index) {
+                        return CardMahasiswa(
+                          mahasiswa: controller.filterMahasiswa.value[index],
+                          onTap: () {
+                            Get.toNamed(
+                              Routes.DETAIL_MAHASISWA,
+                              arguments:
+                                  controller.filterMahasiswa.value[index],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ],
             ),
