@@ -48,6 +48,8 @@ import '../modules/penilaian_seminar/bindings/penilaian_seminar_binding.dart';
 import '../modules/penilaian_seminar/views/penilaian_seminar_view.dart';
 import '../modules/riwayat_seminar/bindings/riwayat_seminar_binding.dart';
 import '../modules/riwayat_seminar/views/riwayat_seminar_view.dart';
+import '../modules/search_mahasiswa/bindings/search_mahasiswa_binding.dart';
+import '../modules/search_mahasiswa/views/search_mahasiswa_view.dart';
 import '../modules/success/bindings/success_binding.dart';
 import '../modules/success/views/success_view.dart';
 
@@ -186,6 +188,11 @@ class AppPages {
       name: _Paths.PENILAIAN_PENG_SKRIPSI,
       page: () => const PenilaianPengSkripsiView(),
       binding: PenilaianPengSkripsiBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH_MAHASISWA,
+      page: () => const SearchMahasiswaView(),
+      binding: SearchMahasiswaBinding(),
     ),
   ];
 }

@@ -53,14 +53,26 @@ class HomeView extends GetView<HomeController> {
                     Get.toNamed(Routes.RIWAYAT_SEMINAR);
                   },
                 ),
-                SizedBox(height: 24.h),
-                CardMenuWidget(
-                  judul: "Daftar Mahasiswa",
-                  imageUrl: "assets/images/mahasiswa_bg.png",
-                  onTap: () {
-                    Get.toNamed(Routes.MAHASISWA);
+                FutureBuilder<Object>(
+                  future: controller.getUser(),
+                  builder: (context, snapshot) {
+                    return controller.mapUser['role'] == "web"
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 24.h),
+                              CardMenuWidget(
+                                judul: "Daftar Mahasiswa",
+                                imageUrl: "assets/images/mahasiswa_bg.png",
+                                onTap: () {
+                                  Get.toNamed(Routes.MAHASISWA);
+                                },
+                              ),
+                            ],
+                          )
+                        : const SizedBox();
                   },
-                ),
+                )
               ],
             ),
           )

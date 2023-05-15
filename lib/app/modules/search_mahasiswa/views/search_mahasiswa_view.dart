@@ -7,10 +7,10 @@ import 'package:siajte_app/app/theme/style.dart';
 import 'package:siajte_app/app/widgets/appbar_widget.dart';
 import 'package:siajte_app/app/widgets/mahasiswa/card_mahasiswa_widget.dart';
 
-import '../controllers/mahasiswa_controller.dart';
+import '../controllers/search_mahasiswa_controller.dart';
 
-class MahasiswaView extends GetView<MahasiswaController> {
-  const MahasiswaView({Key? key}) : super(key: key);
+class SearchMahasiswaView extends GetView<SearchMahasiswaController> {
+  const SearchMahasiswaView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,15 +31,15 @@ class MahasiswaView extends GetView<MahasiswaController> {
                 Form(
                   // key: controller.formKey,
                   child: TextFormField(
-                    controller: controller.searchC,
+                    onTap: () {
+                      Get.back();
+                    },
+                    readOnly: true,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Search tidak boleh kosong';
                       }
                       return null;
-                    },
-                    onFieldSubmitted: (value) async {
-                      Get.toNamed(Routes.SEARCH_MAHASISWA, arguments: value);
                     },
                     style: poppins.copyWith(
                       fontSize: 14.sp,
@@ -48,7 +48,7 @@ class MahasiswaView extends GetView<MahasiswaController> {
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.w, vertical: 10.h),
-                      hintText: 'Cari Nama Mahasiswa....',
+                      hintText: 'Cari Kembali....',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -60,7 +60,7 @@ class MahasiswaView extends GetView<MahasiswaController> {
 
                 // Tampilan Web
                 FutureBuilder(
-                  future: controller.getAllMahasiswa(),
+                  future: controller.getMahasiswabyName(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       snapshot.data!.sort((a, b) => a.nama!.compareTo(b.nama!));

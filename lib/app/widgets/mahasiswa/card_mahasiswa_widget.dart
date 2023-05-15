@@ -17,7 +17,7 @@ class CardMahasiswa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MahasiswaController controller = Get.find();
+    MahasiswaController controller = Get.put(MahasiswaController());
     return Container(
       margin: EdgeInsets.only(bottom: 20.h),
       decoration: BoxDecoration(
