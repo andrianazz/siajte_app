@@ -29,13 +29,15 @@ class JadwalSeminarController extends GetxController {
 
     isLoading.value = true;
     allJadwal.value = await getJadwalSeminar();
-    filterJadwal.value = allJadwal;
+
     isLoading.value = false;
 
     if (homeC.mapUser['role'] == 'mahasiswa') {
       filterJadwalSeminarWithNim(homeC.mapUser['data']['nim']);
     } else if (homeC.mapUser['role'] == 'dosen') {
       filterJadwalSeminarWithNip(homeC.mapUser['data']['nip']);
+    } else {
+      filterJadwal.value = allJadwal;
     }
   }
 
@@ -43,9 +45,16 @@ class JadwalSeminarController extends GetxController {
     List<Penjadwalan> result = [];
 
     if (val.isEmpty) {
-      result = allJadwal;
+      if (homeC.mapUser['role'] == 'mahasiswa') {
+        result = await returnFilterJadwalSeminarWithNim(
+            homeC.mapUser['data']['nim']);
+      } else if (homeC.mapUser['role'] == 'dosen') {
+        filterJadwalSeminarWithNip(homeC.mapUser['data']['nip']);
+      } else {
+        result = allJadwal;
+      }
     } else {
-      result = allJadwal.where((element) {
+      result = filterJadwal.where((element) {
         return val.contains(element.jenisSeminar);
       }).toList();
     }
@@ -57,11 +66,18 @@ class JadwalSeminarController extends GetxController {
     List<Penjadwalan> result = [];
 
     if (nama.isEmpty) {
-      result = allJadwal;
+      if (homeC.mapUser['role'] == 'mahasiswa') {
+        result = await returnFilterJadwalSeminarWithNim(
+            homeC.mapUser['data']['nim']);
+      } else if (homeC.mapUser['role'] == 'dosen') {
+        filterJadwalSeminarWithNip(homeC.mapUser['data']['nip']);
+      } else {
+        result = allJadwal;
+      }
     } else {
       String nim = await getMahasiswaWithNama(nama);
 
-      result = allJadwal.where((element) {
+      result = filterJadwal.where((element) {
         return element.mahasiswaNim!.toLowerCase().contains(nim.toLowerCase());
       }).toList();
     }
@@ -70,70 +86,71 @@ class JadwalSeminarController extends GetxController {
   }
 
   void filterJadwalSeminarWithNim(String nimMhs) async {
+    isLoading.value = true;
     List<Penjadwalan> result = [];
 
     result = allJadwal.where((element) {
       return element.mahasiswaNim!.toLowerCase().contains(nimMhs.toLowerCase());
     }).toList();
 
+    isLoading.value = false;
+
     filterJadwal.value = result;
   }
 
-  void filterJadwalSeminarWithNip(String nipDosen) async {
+  Future<List<Penjadwalan>> returnFilterJadwalSeminarWithNim(
+      String nimMhs) async {
+    isLoading.value = true;
     List<Penjadwalan> result = [];
 
-    if (nipDosen.isEmpty) {
-      result = allJadwal;
-    } else {
-      for (var item in allJadwal) {
-        if (item is PenjadwalanKp) {
-          result = allJadwal
-              .where((p0) => item.pembimbingNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pengujiNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .toList();
-        } else if (item is PenjadwalanSempro) {
-          result = allJadwal
-              .where((p0) => item.pembimbingsatuNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pembimbingduaNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pengujisatuNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pengujiduaNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pengujitigaNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .toList();
-        } else if (item is PenjadwalanSkripsi) {
-          result = allJadwal
-              .where((p0) => item.pembimbingsatuNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pembimbingduaNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pengujisatuNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pengujiduaNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .where((element) => item.pengujitigaNip!
-                  .toLowerCase()
-                  .contains(nipDosen.toLowerCase()))
-              .toList();
+    result = allJadwal.where((element) {
+      return element.mahasiswaNim!.toLowerCase().contains(nimMhs.toLowerCase());
+    }).toList();
+
+    isLoading.value = false;
+
+    return result;
+  }
+
+  void filterJadwalSeminarWithNip(String nipDosen) async {
+    isLoading.value = true;
+    List<Penjadwalan> result = [];
+
+    List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
+    List<PenjadwalanSempro> listJadwalSeminarSempro = await getJadwalSempro();
+    List<PenjadwalanSkripsi> listJadwalSeminarSkripsi =
+        await getJadwalSkripsi();
+
+    for (var item in listJadwalSeminarKP) {
+      if (item.pembimbingNip!.contains(nipDosen) ||
+          item.pengujiNip!.contains(nipDosen)) {
+        result.add(item);
+      }
+    }
+
+    for (var item in listJadwalSeminarSempro) {
+      if (item.pembimbingsatuNip!.contains(nipDosen) ||
+          item.pembimbingduaNip!.contains(nipDosen) ||
+          item.pengujisatuNip!.contains(nipDosen) ||
+          item.pengujiduaNip!.contains(nipDosen) ||
+          item.pengujitigaNip!.contains(nipDosen)) {
+        {
+          result.add(item);
         }
       }
     }
+
+    for (var item in listJadwalSeminarSkripsi) {
+      if (item.pembimbingsatuNip!.contains(nipDosen) ||
+          item.pembimbingduaNip!.contains(nipDosen) ||
+          item.pengujisatuNip!.contains(nipDosen) ||
+          item.pengujiduaNip!.contains(nipDosen) ||
+          item.pengujitigaNip!.contains(nipDosen)) {
+        result.add(item);
+      }
+    }
+
+    isLoading.value = false;
 
     filterJadwal.value = result;
   }
