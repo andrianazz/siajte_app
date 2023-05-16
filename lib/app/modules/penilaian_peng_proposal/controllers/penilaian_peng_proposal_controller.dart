@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/data/models/penjadwalan_sempro_model.dart';
+import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_proposal/views/penilaian_peng_proposal_view.dart';
 import 'package:siajte_app/app/widgets/penilaian_peng_sempro/card_ba_sempro.dart';
 import 'package:siajte_app/app/widgets/penilaian_peng_sempro/form_nilai_peng_sempro.dart';
 
 class PenilaianPengProposalController extends GetxController {
   PageController pageController = PageController();
+
+  HomeController homeC = Get.put(HomeController());
+  PenjadwalanSempro jadwalSempro = Get.arguments;
 
   RxInt selectedChips = 0.obs;
 
@@ -25,29 +30,41 @@ class PenilaianPengProposalController extends GetxController {
   RxList<String> listPenilaianPengSempro = [
     "Form Nilai",
     "Saran Perbaikan",
-    "Revisi Judul",
-    "Berita Acara",
   ].obs;
 
   RxInt indexFormNilaiPengSempro = 0.obs;
 
   Widget viewListPenilaianPengProposal() {
-    switch (selectedChips.value) {
-      case 0:
-        return const FormNilaiPengSempro();
+    if (jadwalSempro.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
+      switch (selectedChips.value) {
+        case 0:
+          return const FormNilaiPengSempro();
 
-      case 1:
-        return const SaranPerbaikanSemproView();
+        case 1:
+          return const SaranPerbaikanSemproView();
 
-      case 2:
-        return const RevisiJudulView();
+        case 2:
+          return const RevisiJudulView();
 
-      case 3:
-        return const CardBASempro();
+        case 3:
+          return const CardBASempro();
 
-      default:
-        // return const FormNilaiKPView();
-        return const FormNilaiPengSempro();
+        default:
+          // return const FormNilaiKPView();
+          return const FormNilaiPengSempro();
+      }
+    } else {
+      switch (selectedChips.value) {
+        case 0:
+          return const FormNilaiPengSempro();
+
+        case 1:
+          return const SaranPerbaikanSemproView();
+
+        default:
+          // return const FormNilaiKPView();
+          return const FormNilaiPengSempro();
+      }
     }
   }
 
@@ -74,4 +91,16 @@ class PenilaianPengProposalController extends GetxController {
     [1, 2, 3, 4, 5],
     [1.2, 2.4, 3.6, 4.8, 6]
   ];
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    if (jadwalSempro.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
+      listPenilaianPengSempro.addAll([
+        "Revisi Judul",
+        "Berita Acara",
+      ]);
+    }
+  }
 }

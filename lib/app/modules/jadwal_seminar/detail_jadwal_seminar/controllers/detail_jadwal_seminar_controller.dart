@@ -22,9 +22,18 @@ class DetailJadwalSeminarController extends GetxController {
   RxString lokasi = ''.obs;
   RxString pembimbing1 = ''.obs;
   RxString pembimbing2 = '-'.obs;
+
+  RxString nimPemb1 = ''.obs;
+  RxString nimPemb2 = ''.obs;
+
   RxString penguji1 = ''.obs;
   RxString penguji2 = '-'.obs;
   RxString penguji3 = '-'.obs;
+
+  RxString nimPeng1 = ''.obs;
+  RxString nimPeng2 = ''.obs;
+  RxString nimPeng3 = ''.obs;
+
   RxString judul = ''.obs;
 
   //get mahasiswa nama with nim
@@ -64,6 +73,10 @@ class DetailJadwalSeminarController extends GetxController {
       lokasi.value = penjadwalanKp.lokasi!;
       pembimbing1.value = await getDosenWithNip(penjadwalanKp.pembimbingNip!);
       penguji1.value = await getDosenWithNip(penjadwalanKp.pengujiNip!);
+
+      nimPemb1.value = penjadwalanKp.pembimbingNip!;
+      nimPeng1.value = penjadwalanKp.pengujiNip!;
+
       judul.value = penjadwalanKp.judulKp!;
     } else if (Get.arguments is PenjadwalanSempro) {
       PenjadwalanSempro penjadwalanSempro = Get.arguments;
@@ -79,9 +92,18 @@ class DetailJadwalSeminarController extends GetxController {
           await getDosenWithNip(penjadwalanSempro.pembimbingsatuNip!);
       pembimbing2.value =
           await getDosenWithNip(penjadwalanSempro.pembimbingduaNip!);
+
+      nimPemb1.value = penjadwalanSempro.pembimbingsatuNip!;
+      nimPemb2.value = penjadwalanSempro.pembimbingduaNip!;
+
       penguji1.value = await getDosenWithNip(penjadwalanSempro.pengujisatuNip!);
       penguji2.value = await getDosenWithNip(penjadwalanSempro.pengujiduaNip!);
       penguji3.value = await getDosenWithNip(penjadwalanSempro.pengujitigaNip!);
+
+      nimPeng1.value = penjadwalanSempro.pengujisatuNip!;
+      nimPeng2.value = penjadwalanSempro.pengujiduaNip!;
+      nimPeng3.value = penjadwalanSempro.pengujitigaNip!;
+
       judul.value = penjadwalanSempro.judulProposal!;
     } else {
       PenjadwalanSkripsi penjadwalanSkripsi = Get.arguments;
@@ -103,10 +125,18 @@ class DetailJadwalSeminarController extends GetxController {
           await getDosenWithNip(penjadwalanSkripsi.pembimbingsatuNip!);
       pembimbing2.value =
           await getDosenWithNip(penjadwalanSkripsi.pembimbingduaNip!);
+
+      nimPemb1.value = penjadwalanSkripsi.pembimbingsatuNip!;
+      nimPemb2.value = penjadwalanSkripsi.pembimbingduaNip!;
+
       penguji1.value = penguji1Nama;
       penguji2.value = await getDosenWithNip(penjadwalanSkripsi.pengujiduaNip!);
       penguji3.value =
           await getDosenWithNip(penjadwalanSkripsi.pengujitigaNip!);
+
+      nimPeng1.value = penjadwalanSkripsi.pengujisatuNip!;
+      nimPeng2.value = penjadwalanSkripsi.pengujiduaNip!;
+      nimPeng3.value = penjadwalanSkripsi.pengujitigaNip!;
     }
   }
 

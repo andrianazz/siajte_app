@@ -16,7 +16,7 @@ class PenilaianPengProposalView
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Penilaian Penguji KP',
+          'Penilaian Penguji Proposal',
           style: poppins.copyWith(
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,

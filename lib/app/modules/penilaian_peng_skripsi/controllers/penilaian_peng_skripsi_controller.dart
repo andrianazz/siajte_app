@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
+import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_skripsi/views/penilaian_peng_skripsi_view.dart';
 import 'package:siajte_app/app/widgets/penilaian_peng_skripsi/card_ba_skripsi.dart';
 import 'package:siajte_app/app/widgets/penilaian_peng_skripsi/form_nilai_peng_skripsi.dart';
 
 class PenilaianPengSkripsiController extends GetxController {
   PageController pageController = PageController();
+
+  HomeController homeC = Get.put(HomeController());
+  PenjadwalanSkripsi jadwalSkripsi = Get.arguments;
 
   RxInt selectedChips = 0.obs;
 
@@ -31,32 +36,46 @@ class PenilaianPengSkripsiController extends GetxController {
   RxList<String> listPenilaianPengSkripsi = [
     "Form Nilai",
     "Saran Perbaikan",
-    "Revisi Judul",
-    "Berita Acara",
   ].obs;
 
   RxInt indexFormNilaiPengSkripsi = 0.obs;
 
   Widget viewListPenilaianPengProposal() {
-    switch (selectedChips.value) {
-      case 0:
-        return const FormNilaiPengSkripsi();
-      // return const Text("Form Nilai");
+    if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
+      switch (selectedChips.value) {
+        case 0:
+          return const FormNilaiPengSkripsi();
+        // return const Text("Form Nilai");
 
-      case 1:
-        return const SaranPerbaikanskripsiView();
-      // return const Text("Saran Perbaikan");
+        case 1:
+          return const SaranPerbaikanskripsiView();
+        // return const Text("Saran Perbaikan");
 
-      case 2:
-        return const RevisiJudulView();
-      // return const Text("Revisi Judul");
+        case 2:
+          return const RevisiJudulView();
+        // return const Text("Revisi Judul");
 
-      case 3:
-        return const CardBASkripsi();
+        case 3:
+          return const CardBASkripsi();
 
-      default:
-        return const FormNilaiPengSkripsi();
-      // return const Text("Form Nilai");
+        default:
+          return const FormNilaiPengSkripsi();
+        // return const Text("Form Nilai");
+      }
+    } else {
+      switch (selectedChips.value) {
+        case 0:
+          return const FormNilaiPengSkripsi();
+        // return const Text("Form Nilai");
+
+        case 1:
+          return const SaranPerbaikanskripsiView();
+        // return const Text("Saran Perbaikan");
+
+        default:
+          return const FormNilaiPengSkripsi();
+        // return const Text("Form Nilai");
+      }
     }
   }
 
@@ -93,5 +112,18 @@ class PenilaianPengSkripsiController extends GetxController {
     [0.8, 1.6, 2.4, 3.2, 4],
     [0.6, 1.2, 1.8, 2.4, 3],
     [0.6, 1.2, 1.8, 2.4, 3],
+    [0.6, 1.2, 1.8, 2.4, 3],
   ];
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
+      listPenilaianPengSkripsi.addAll([
+        "Revisi Judul",
+        "Berita Acara",
+      ]);
+    }
+  }
 }
