@@ -59,21 +59,30 @@ class MahasiswaView extends GetView<MahasiswaController> {
                 SizedBox(
                   height: 500.h,
                   child: Obx(
-                    () => ListView.builder(
-                      itemCount: controller.filterMahasiswa.value.length,
-                      itemBuilder: (context, index) {
-                        return CardMahasiswa(
-                          mahasiswa: controller.filterMahasiswa.value[index],
-                          onTap: () {
-                            Get.toNamed(
-                              Routes.DETAIL_MAHASISWA,
-                              arguments:
-                                  controller.filterMahasiswa.value[index],
-                            );
-                          },
-                        );
-                      },
-                    ),
+                    () => controller.isLoading.isFalse
+                        ? ListView.builder(
+                            itemCount: controller.filterMahasiswa.value.length,
+                            itemBuilder: (context, index) {
+                              return CardMahasiswa(
+                                mahasiswa:
+                                    controller.filterMahasiswa.value[index],
+                                onTap: () {
+                                  Get.toNamed(
+                                    Routes.DETAIL_MAHASISWA,
+                                    arguments:
+                                        controller.filterMahasiswa.value[index],
+                                  );
+                                },
+                              );
+                            },
+                          )
+                        : Center(
+                            child: SizedBox(
+                              width: 20.w,
+                              height: 20.h,
+                              child: const CircularProgressIndicator(),
+                            ),
+                          ),
                   ),
                 ),
               ],

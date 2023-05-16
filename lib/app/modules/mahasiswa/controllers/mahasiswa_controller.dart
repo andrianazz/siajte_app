@@ -5,6 +5,8 @@ import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
 import 'package:siajte_app/app/theme/variable.dart';
 
 class MahasiswaController extends GetxController {
+  RxBool isLoading = false.obs;
+
   Dio dio = Dio();
   TextEditingController searchC = TextEditingController();
 
@@ -12,6 +14,7 @@ class MahasiswaController extends GetxController {
   RxList<Mahasiswa> filterMahasiswa = <Mahasiswa>[].obs;
 
   Future<List<Mahasiswa>> getAllMahasiswa() async {
+    isLoading.value = true;
     List<Mahasiswa> listMahasiswa = <Mahasiswa>[];
 
     var response = await dio.get("$baseUrlAPI/mahasiswa");
@@ -20,6 +23,7 @@ class MahasiswaController extends GetxController {
     }
 
     listMahasiswa.sort((a, b) => a.nama!.compareTo(b.nama!));
+    isLoading.value = false;
 
     return listMahasiswa;
   }
@@ -41,6 +45,7 @@ class MahasiswaController extends GetxController {
   }
 
   void getMahasiswabyName(String name) {
+    isLoading.value = true;
     List<Mahasiswa> result = [];
 
     if (name.isEmpty) {
@@ -51,6 +56,8 @@ class MahasiswaController extends GetxController {
               mahasiswa.nama!.toLowerCase().contains(name.toLowerCase()))
           .toList();
     }
+
+    isLoading.value = false;
 
     filterMahasiswa.value = result;
   }

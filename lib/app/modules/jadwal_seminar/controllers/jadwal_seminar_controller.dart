@@ -204,6 +204,8 @@ class JadwalSeminarController extends GetxController {
   }
 
   Future<List<Penjadwalan>> getJadwalSeminar() async {
+    isLoading.value = true;
+
     List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
     List<PenjadwalanSempro> listJadwalSeminarSempro = await getJadwalSempro();
     List<PenjadwalanSkripsi> listJadwalSeminarSkripsi =
@@ -235,6 +237,7 @@ class JadwalSeminarController extends GetxController {
     }
 
     penjadwalan.sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
+    isLoading.value = false;
 
     return penjadwalan;
   }

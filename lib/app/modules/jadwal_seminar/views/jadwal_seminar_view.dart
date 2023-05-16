@@ -96,22 +96,32 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
                 SizedBox(height: 24.h),
                 // Tampilan Web
                 SizedBox(
+                  width: double.infinity,
                   height: 500.h,
                   child: Obx(
-                    () => ListView.builder(
-                      itemCount: controller.filterJadwal.value.length,
-                      itemBuilder: (context, index) {
-                        return CardJadwalWidget(
-                          onTap: () {
-                            Get.toNamed(
-                              Routes.DETAIL_JADWAL_SEMINAR,
-                              arguments: controller.filterJadwal.value[index],
-                            );
-                          },
-                          penjadwalan: controller.filterJadwal.value[index],
-                        );
-                      },
-                    ),
+                    () => controller.isLoading.isFalse
+                        ? ListView.builder(
+                            itemCount: controller.filterJadwal.value.length,
+                            itemBuilder: (context, index) {
+                              return CardJadwalWidget(
+                                onTap: () {
+                                  Get.toNamed(
+                                    Routes.DETAIL_JADWAL_SEMINAR,
+                                    arguments:
+                                        controller.filterJadwal.value[index],
+                                  );
+                                },
+                                penjadwalan:
+                                    controller.filterJadwal.value[index],
+                              );
+                            },
+                          )
+                        : SizedBox(
+                            width: 20.w,
+                            height: 20.h,
+                            child: const Center(
+                                child: CircularProgressIndicator()),
+                          ),
                   ),
                 ),
               ],
