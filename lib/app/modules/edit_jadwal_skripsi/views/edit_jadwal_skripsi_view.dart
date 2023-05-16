@@ -411,7 +411,8 @@ class EditJadwalSkripsiView extends GetView<EditJadwalSkripsiController> {
                     }
                     if (snapshot.hasError) {}
                     return DropdownButtonFormField(
-                      value: controller.penguji3,
+                      //condition if penguji 3 is null value is null
+                      value: null,
                       items: snapshot.data!
                           .map((e) => DropdownMenuItem(
                                 value: e,

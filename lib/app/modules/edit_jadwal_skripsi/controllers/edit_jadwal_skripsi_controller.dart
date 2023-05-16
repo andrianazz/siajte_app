@@ -77,10 +77,13 @@ class EditJadwalSkripsiController extends GetxController {
             .where((element) =>
                 element.nip == penjadwalanSkripsi.pembimbingsatuNip)
             .first;
-        pembimbing2 = allDosen
-            .where(
-                (element) => element.nip == penjadwalanSkripsi.pembimbingduaNip)
-            .first;
+
+        if (penjadwalanSkripsi.pembimbingduaNip!.isNotEmpty) {
+          pembimbing2 = allDosen
+              .where((element) =>
+                  element.nip == penjadwalanSkripsi.pembimbingduaNip)
+              .first;
+        }
 
         penguji1 = allDosen
             .where(
@@ -91,10 +94,12 @@ class EditJadwalSkripsiController extends GetxController {
             .where((element) => element.nip == penjadwalanSkripsi.pengujiduaNip)
             .first;
 
-        penguji3 = allDosen
-            .where(
-                (element) => element.nip == penjadwalanSkripsi.pengujitigaNip)
-            .first;
+        if (penjadwalanSkripsi.pengujitigaNip!.isNotEmpty) {
+          penguji3 = allDosen
+              .where(
+                  (element) => element.nip == penjadwalanSkripsi.pengujitigaNip)
+              .first;
+        }
 
         return allDosen;
       }
