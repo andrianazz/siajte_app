@@ -127,6 +127,7 @@ class SaranPerbaikanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.revisiNaskah1C,
                 maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -169,6 +170,7 @@ class SaranPerbaikanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.revisiNaskah2C,
                 maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -212,6 +214,7 @@ class SaranPerbaikanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.revisiNaskah3C,
                 maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -258,6 +261,7 @@ class SaranPerbaikanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.revisiNaskah4C,
                 maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -304,6 +308,7 @@ class SaranPerbaikanKPView extends StatelessWidget {
             horizontal: 24.w,
           ),
           child: TextFormField(
+            controller: controller.revisiNaskah5C,
             maxLines: 2,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
@@ -341,7 +346,9 @@ class SaranPerbaikanKPView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            onPressed: () {
+            onPressed: () async {
+              await controller.updateCatatanKPAPI(
+                  controller.existPenilaianKpPeng.id.toString());
               controller.selectedChips.value++;
             },
             child: Text(

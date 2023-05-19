@@ -1,6 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/penilaian_pemb_kp/controllers/penilaian_pemb_kp_controller.dart';
+import 'package:siajte_app/app/modules/penilaian_peng_kp/controllers/penilaian_peng_kp_controller.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -9,6 +11,11 @@ class CardBAKP extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PenilaianPembKpController pembimbingC =
+        Get.put(PenilaianPembKpController());
+
+    PenilaianPengKpController pengujiC = Get.put(PenilaianPengKpController());
+
     return Column(
       children: [
         Container(
@@ -82,33 +89,58 @@ class CardBAKP extends StatelessWidget {
                       const DetailTextBA(title: " "),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Nilai",
-                        style: poppins.copyWith(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      const NilaiTextBA(
-                        title: "-",
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                    ],
-                  )
+                  FutureBuilder(
+                      future: pengujiC.getPenilaianKPPeng(
+                          pembimbingC.penjadwalanKp.pengujiNip.toString()),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+
+                        if (snapshot.hasError) {
+                          return Center(
+                              child: Text("Error: ${snapshot.error}"));
+                        }
+                        return Column(
+                          children: [
+                            Text(
+                              "Nilai",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            NilaiTextBA(
+                                title:
+                                    pengujiC.existPenilaianKpPeng.presentasi ??
+                                        "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pengujiC.existPenilaianKpPeng.materi ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title:
+                                    pengujiC.existPenilaianKpPeng.tanyaJawab ??
+                                        "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pengujiC
+                                        .existPenilaianKpPeng.totalNilaiAngka ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pengujiC
+                                        .existPenilaianKpPeng.totalNilaiHuruf ??
+                                    "-"),
+                          ],
+                        );
+                      })
                 ],
               ),
               SizedBox(height: 12.h),
@@ -175,33 +207,48 @@ class CardBAKP extends StatelessWidget {
                       const DetailTextBA(title: " "),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Nilai",
-                        style: poppins.copyWith(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      const NilaiTextBA(
-                        title: "-",
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                    ],
-                  )
+                  FutureBuilder(
+                      future: pembimbingC.getPenilaianKP(),
+                      builder: (context, snapshot) {
+                        return Column(
+                          children: [
+                            Text(
+                              "Nilai",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            NilaiTextBA(
+                                title: pembimbingC
+                                        .existPenilaianKpPemb.presentasi ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title:
+                                    pembimbingC.existPenilaianKpPemb.materi ??
+                                        "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pembimbingC
+                                        .existPenilaianKpPemb.tanyaJawab ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pembimbingC
+                                        .existPenilaianKpPemb.totalNilaiAngka ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pembimbingC
+                                        .existPenilaianKpPemb.totalNilaiHuruf ??
+                                    "-"),
+                          ],
+                        );
+                      })
                 ],
               ),
               SizedBox(height: 12.h),
@@ -242,25 +289,38 @@ class CardBAKP extends StatelessWidget {
                           title: "Nilai Pembimbing Lapangan 40%"),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Total Nilai",
-                        style: poppins.copyWith(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                    ],
-                  ),
+                  FutureBuilder(
+                      future: pembimbingC.getBeritaAcara(),
+                      builder: (context, snapshot) {
+                        return Column(
+                          children: [
+                            Text(
+                              "Total Nilai",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            NilaiTextBA(
+                                title: pembimbingC.baNilaiSeminar.value
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pembimbingC.baNilaiPembimbing.value
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pembimbingC.baNilaiLapangan.value
+                                        .toString() ??
+                                    "-"),
+                          ],
+                        );
+                      }),
                 ],
               ),
               SizedBox(height: 12.h),
@@ -280,7 +340,7 @@ class CardBAKP extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "90",
+                    pembimbingC.baTotalAkhir.value.toString() ?? "-",
                     style: poppins.copyWith(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.w600,

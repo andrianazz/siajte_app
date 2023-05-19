@@ -126,6 +126,7 @@ class CatatanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.catatan1C,
                 maxLines: 3,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -168,6 +169,7 @@ class CatatanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.catatan2C,
                 maxLines: 3,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -211,6 +213,7 @@ class CatatanKPView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.catatan3C,
                 maxLines: 3,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -250,7 +253,9 @@ class CatatanKPView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            onPressed: () {
+            onPressed: () async {
+              await controller.updateCatatanKPAPI(
+                  controller.existPenilaianKpPemb.id.toString());
               controller.selectedChips.value++;
             },
             child: Text(
@@ -305,6 +310,7 @@ class PenilaianPembimbingView extends StatelessWidget {
                   horizontal: 24.w,
                 ),
                 child: TextFormField(
+                  controller: controller.nilaiLapanganC,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 22.w,
@@ -345,7 +351,9 @@ class PenilaianPembimbingView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            onPressed: () {
+            onPressed: () async {
+              await controller.updateNilaiLapPembKPAPI(
+                  controller.existPenilaianKpPemb.id.toString());
               controller.selectedChips.value++;
             },
             child: Text(

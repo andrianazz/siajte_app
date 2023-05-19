@@ -51,28 +51,31 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                           ),
                         ],
                       ),
-                      ElevatedButton.icon(
-                        onPressed: () async {
-                          if (Get.arguments is PenjadwalanKp) {
-                            Get.toNamed(Routes.EDIT_JADWAL_KP,
-                                arguments: Get.arguments);
-                          } else if (Get.arguments is PenjadwalanSempro) {
-                            Get.toNamed(Routes.EDIT_JADWAL_PROPOSAL,
-                                arguments: Get.arguments);
-                          } else if (Get.arguments is PenjadwalanSkripsi) {
-                            Get.toNamed(Routes.EDIT_JADWAL_SKRIPSI,
-                                arguments: Get.arguments);
-                          }
-                        },
-                        icon: const Icon(Icons.update),
-                        label: const Text("Edit"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: secondaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                      ),
+                      homeC.mapUser['role'] == "web"
+                          ? ElevatedButton.icon(
+                              onPressed: () async {
+                                if (Get.arguments is PenjadwalanKp) {
+                                  Get.toNamed(Routes.EDIT_JADWAL_KP,
+                                      arguments: Get.arguments);
+                                } else if (Get.arguments is PenjadwalanSempro) {
+                                  Get.toNamed(Routes.EDIT_JADWAL_PROPOSAL,
+                                      arguments: Get.arguments);
+                                } else if (Get.arguments
+                                    is PenjadwalanSkripsi) {
+                                  Get.toNamed(Routes.EDIT_JADWAL_SKRIPSI,
+                                      arguments: Get.arguments);
+                                }
+                              },
+                              icon: const Icon(Icons.update),
+                              label: const Text("Edit"),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: secondaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
                     ],
                   ),
                 ),
@@ -200,7 +203,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                 SizedBox(
                   height: 20.h,
                 ),
-                SizedBox(
+                homeC.mapUser['role'] == "web" ? SizedBox(
                   width: double.infinity,
                   height: 50.h,
                   child: ElevatedButton.icon(
@@ -209,7 +212,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                     },
                     icon: const Icon(Icons.delete),
                     label: Text(
-                      "DELETE",
+                      "HAPUS SEMINAR",
                       style: poppins.copyWith(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
@@ -222,7 +225,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                       ),
                     ),
                   ),
-                ),
+                ) : const SizedBox(),
                 SizedBox(height: 40.h),
 
                 //Input Nilai untuk Dosen

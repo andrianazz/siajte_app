@@ -32,72 +32,80 @@ class FormNilaiKPView extends StatelessWidget {
             color: primaryColor,
             borderRadius: BorderRadius.circular(8.r),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Total Nilai',
-                    style: poppins.copyWith(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                  Container(
-                    width: 40.w,
-                    height: 40.h,
-                    margin: EdgeInsets.symmetric(vertical: 6.w),
-                    color: Colors.white,
-                    child: Center(
-                      child: Text(
-                        '80',
-                        style: poppins.copyWith(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          color: primaryColor,
+          child: FutureBuilder(
+              future: controller.getTotalandHuruf(),
+              builder: (context, snapshot) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Total Nilai',
+                          style: poppins.copyWith(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Nilai Huruf',
-                    style: poppins.copyWith(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                  Container(
-                    width: 40.w,
-                    height: 40.h,
-                    margin: EdgeInsets.symmetric(vertical: 6.w),
-                    color: Colors.white,
-                    child: Center(
-                      child: Text(
-                        'A',
-                        style: poppins.copyWith(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          color: primaryColor,
+                        SizedBox(height: 8.h),
+                        Obx(
+                          () => Container(
+                            width: 40.w,
+                            height: 40.h,
+                            margin: EdgeInsets.symmetric(vertical: 6.w),
+                            color: Colors.white,
+                            child: Center(
+                              child: Text(
+                                controller.totalNilai.value.ceil().toString(),
+                                style: poppins.copyWith(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: primaryColor,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                ],
-              )
-            ],
-          ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Nilai Huruf',
+                          style: poppins.copyWith(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: 8.h),
+                        Obx(
+                          () => Container(
+                            width: 40.w,
+                            height: 40.h,
+                            margin: EdgeInsets.symmetric(vertical: 6.w),
+                            color: Colors.white,
+                            child: Center(
+                              child: Text(
+                                controller.nilaiHuruf.value,
+                                style: poppins.copyWith(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: primaryColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                );
+              }),
         ),
         SizedBox(
           height: 50.h,

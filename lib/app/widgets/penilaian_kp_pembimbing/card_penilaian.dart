@@ -37,11 +37,11 @@ class CardPenilaian extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          const RadioPenilaian(title: "Sangat Baik", score: 2),
-          const RadioPenilaian(title: "Baik", score: 4),
-          const RadioPenilaian(title: "Biasa", score: 6),
-          const RadioPenilaian(title: "Kurang Baik", score: 8),
-          const RadioPenilaian(title: "Sangat Kurang Baik", score: 10),
+          const RadioPenilaian(title: "Sangat Baik", score: 10.0),
+          const RadioPenilaian(title: "Baik", score: 8.0),
+          const RadioPenilaian(title: "Biasa", score: 6.0),
+          const RadioPenilaian(title: "Kurang Baik", score: 4.0),
+          const RadioPenilaian(title: "Sangat Kurang Baik", score: 2.0),
           SizedBox(height: 10.h),
           SizedBox(
             width: double.infinity,
@@ -54,9 +54,13 @@ class CardPenilaian extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (controller.indexFormNilaiPembKP.value <
                     controller.listFormNilaiPembKP.length - 1) {
+                  // await controller.addFormNilaiPembKPAPI(
+                  //     controller.existPenilaianKpPemb.id.toString());
+                  print(controller.existPenilaianKpPemb.id);
+
                   controller.indexFormNilaiPembKP.value++;
                   controller.pageController.nextPage(
                     duration: const Duration(milliseconds: 300),
@@ -64,6 +68,9 @@ class CardPenilaian extends StatelessWidget {
                   );
                 } else if (controller.indexFormNilaiPembKP.value ==
                     controller.listFormNilaiPembKP.length - 1) {
+                  await controller.updateFormNilaiPembKPAPI(
+                      controller.existPenilaianKpPemb.id.toString());
+
                   controller.selectedChips.value++;
                 }
               },
