@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -159,8 +157,6 @@ class DetailJadwalSeminarController extends GetxController {
                 var data = response.data;
 
                 if (data != null) {
-                  String jadwalKp = jsonEncode({'data': data['data']});
-
                   Get.snackbar("DELETE Jadwal Berhasil", "${data['status']}");
 
                   Get.offAllNamed(Routes.JADWAL_SEMINAR);
@@ -207,8 +203,6 @@ class DetailJadwalSeminarController extends GetxController {
                 var data = response.data;
 
                 if (data != null) {
-                  String jadwalSempro = jsonEncode({'data': data['data']});
-
                   Get.snackbar("DELETE Jadwal Berhasil", "${data['status']}");
 
                   Get.offAllNamed(Routes.JADWAL_SEMINAR);
@@ -255,8 +249,6 @@ class DetailJadwalSeminarController extends GetxController {
                 var data = response.data;
 
                 if (data != null) {
-                  String jadwalSempro = jsonEncode({'data': data['data']});
-
                   Get.snackbar("DELETE Jadwal Berhasil", "${data['status']}");
 
                   Get.offAllNamed(Routes.JADWAL_SEMINAR);

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,8 +43,6 @@ class AddMahasiswaController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        String mahasiswa = jsonEncode({'data': data['data']});
-
         Get.snackbar("Add Mahasiswa Berhasil", "${data['message']}");
         isLoading.value = false;
         Get.offAllNamed(Routes.MAHASISWA);

@@ -102,8 +102,6 @@ class AddJadwalSkripsiController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        String jadwalKP = jsonEncode({'data': data['data']});
-
         Get.snackbar("ADD Jadwal Berhasil", "${data['message']}");
         isLoading.value = false;
         Get.offAllNamed(Routes.JADWAL_SEMINAR);

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -89,8 +87,6 @@ class EditJadwalKpController extends GetxController {
   Future<Map<String, dynamic>> editJadwalKPAPI() async {
     isLoading.value = true;
     prefs = await SharedPreferences.getInstance();
-    final user = prefs.getString("user");
-    Map<String, dynamic> mapUser = jsonDecode(user!);
 
     try {
       var response = await dio.put(
@@ -116,8 +112,6 @@ class EditJadwalKpController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        String jadwalKP = jsonEncode({'data': data['data']});
-
         Get.snackbar("UPDATE Jadwal Berhasil", "${data['status']}");
         isLoading.value = false;
         Get.offAllNamed(Routes.JADWAL_SEMINAR);
