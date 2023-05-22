@@ -65,7 +65,7 @@ class PenilaianPengKpController extends GetxController {
     "tanya_jawab": 0.0,
   }.obs;
 
-  Future<void> getPenilaianKPPeng(String nipPemb) async {
+  Future<void> getPenilaianKPPeng(String nipPeng) async {
     isLoading.value = true;
     List<PenilaianKpPeng> listPenilaianKPPeng = <PenilaianKpPeng>[];
 
@@ -75,12 +75,12 @@ class PenilaianPengKpController extends GetxController {
     }
 
     if (listPenilaianKPPeng
-        .where((element) => element.pengujiNip!.contains(nipPemb))
+        .where((element) => element.pengujiNip!.contains(nipPeng))
         .toList()
         .isNotEmpty) {
-      print("Ada data");
+      print("Ada data Penguji");
       existPenilaianKpPeng = listPenilaianKPPeng
-          .where((element) => element.pengujiNip!.contains(nipPemb))
+          .where((element) => element.pengujiNip!.contains(nipPeng))
           .first;
 
       scoreMapPeng.value['presentasi'] = existPenilaianKpPeng.presentasi != null
@@ -102,7 +102,7 @@ class PenilaianPengKpController extends GetxController {
       revisiNaskah4C.text = existPenilaianKpPeng.revisiNaskah4 ?? "";
       revisiNaskah5C.text = existPenilaianKpPeng.revisiNaskah5 ?? "";
     } else {
-      print("Buat Baru");
+      print("Buat Baru Penguji");
       await addPenilaianKPPengAPI();
     }
   }
@@ -145,7 +145,7 @@ class PenilaianPengKpController extends GetxController {
         "$baseUrlAPI/penilaian-kp-penguji",
         data: {
           "penjadwalan_kp_id": penjadwalanKp.id,
-          "penguji_nip": penjadwalanKp.pembimbingNip,
+          "penguji_nip": penjadwalanKp.pengujiNip,
         },
         options: Options(
           receiveDataWhenStatusError: true,
@@ -225,14 +225,14 @@ class PenilaianPengKpController extends GetxController {
       var data = response.data;
 
       if (data != null) {
+        getTotalandHuruf();
+
         String penilaian = jsonEncode({'data': data['data']});
 
         Get.snackbar("UPDATE Penilaian FORM Berhasil", "${data['status']}");
         existPenilaianKpPeng = PenilaianKpPeng.fromJson(data['data']);
 
         isLoading.value = false;
-
-        getTotalandHuruf();
 
         return data;
       } else if (response.statusCode == 401) {
@@ -291,14 +291,14 @@ class PenilaianPengKpController extends GetxController {
       var data = response.data;
 
       if (data != null) {
+        getTotalandHuruf();
+
         String penilaian = jsonEncode({'data': data['data']});
 
         Get.snackbar("UPDATE Penilaian FORM Berhasil", "${data['status']}");
         existPenilaianKpPeng = PenilaianKpPeng.fromJson(data['data']);
 
         isLoading.value = false;
-
-        getTotalandHuruf();
 
         return data;
       } else if (response.statusCode == 401) {
@@ -338,6 +338,6 @@ class PenilaianPengKpController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    await getPenilaianKPPeng(homeC.mapUser['data']['nip']);
+    await getPenilaianKPPeng(penjadwalanKp.pengujiNip.toString());
   }
 }
