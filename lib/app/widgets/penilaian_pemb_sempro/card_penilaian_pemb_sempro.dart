@@ -36,11 +36,11 @@ class CardPenilaianPembSempro extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          const RadioPembSempro(title: "Sangat Baik", score: 1.8),
-          const RadioPembSempro(title: "Baik", score: 3.6),
+          const RadioPembSempro(title: "Sangat Baik", score: 9),
+          const RadioPembSempro(title: "Baik", score: 7.2),
           const RadioPembSempro(title: "Biasa", score: 5.4),
-          const RadioPembSempro(title: "Kurang Baik", score: 7.2),
-          const RadioPembSempro(title: "Sangat Kurang Baik", score: 9),
+          const RadioPembSempro(title: "Kurang Baik", score: 3.6),
+          const RadioPembSempro(title: "Sangat Kurang Baik", score: 1.8),
           SizedBox(height: 10.h),
           SizedBox(
             width: double.infinity,
@@ -63,6 +63,8 @@ class CardPenilaianPembSempro extends StatelessWidget {
                   );
                 } else if (controller.indexFormNilaiPembSempro.value ==
                     controller.listFormNilaiPembSempro.length - 1) {
+                  controller.updateFormNilaiPembSemproAPI(
+                      controller.existPenilaianSemproPemb.id.toString());
                   controller.selectedChips.value++;
                 }
               },
