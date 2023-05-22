@@ -510,7 +510,6 @@ class PenilaianPengProposalController extends GetxController {
   }
 
   Future<void> getBeritaAcara() async {
-    double totalBeritaAcara = 0.0;
     final responsePemb =
         await dio.get("$baseUrlAPI/penilaian-sempro-pembimbing");
     final responsePeng = await dio.get("$baseUrlAPI/penilaian-sempro-penguji");
