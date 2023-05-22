@@ -290,37 +290,35 @@ class CardBAKP extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                      future: pembimbingC.getBeritaAcara(),
-                      builder: (context, snapshot) {
-                        return Column(
-                          children: [
-                            Text(
-                              "Total Nilai",
-                              style: poppins.copyWith(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
+                    future: pembimbingC.getBeritaAcara(),
+                    builder: (context, snapshot) {
+                      return Column(
+                        children: [
+                          Text(
+                            "Total Nilai",
+                            style: poppins.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
                             ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            NilaiTextBA(
-                                title: pembimbingC.baNilaiSeminar.value
-                                        .toString() ??
-                                    "-"),
-                            SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pembimbingC.baNilaiPembimbing.value
-                                        .toString() ??
-                                    "-"),
-                            SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pembimbingC.baNilaiLapangan.value
-                                        .toString() ??
-                                    "-"),
-                          ],
-                        );
-                      }),
+                          ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          NilaiTextBA(
+                              title:
+                                  pembimbingC.baNilaiSeminar.value.toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pembimbingC.baNilaiPembimbing.value
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title:
+                                  pembimbingC.baNilaiLapangan.value.toString()),
+                        ],
+                      );
+                    },
+                  ),
                 ],
               ),
               SizedBox(height: 12.h),
@@ -340,7 +338,7 @@ class CardBAKP extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    pembimbingC.baTotalAkhir.value.toString() ?? "-",
+                    pembimbingC.baTotalAkhir.value.toString(),
                     style: poppins.copyWith(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.w600,

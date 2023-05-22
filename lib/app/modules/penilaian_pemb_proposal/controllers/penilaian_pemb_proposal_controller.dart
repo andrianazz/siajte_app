@@ -1,4 +1,4 @@
-import 'dart:convert';
+// ignore_for_file: invalid_use_of_protected_member
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -160,8 +160,6 @@ class PenilaianPembProposalController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        String penilaian = jsonEncode({'data': data['data']});
-
         Get.snackbar("Add Penilaian Berhasil", "${data['message']}");
         existPenilaianSemproPemb = PenilaianSemproPemb.fromJson(data['data']);
 
@@ -225,12 +223,12 @@ class PenilaianPembProposalController extends GetxController {
         ),
       );
 
+      print(response2.statusCode);
+
       var data = response.data;
 
       if (data != null) {
         getTotalandHuruf();
-
-        String penilaian = jsonEncode({'data': data['data']});
 
         Get.snackbar("UPDATE Penilaian FORM Berhasil", "${data['message']}");
         existPenilaianSemproPemb = PenilaianSemproPemb.fromJson(data['data']);

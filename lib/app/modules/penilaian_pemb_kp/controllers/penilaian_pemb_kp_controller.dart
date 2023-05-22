@@ -1,4 +1,4 @@
-import 'dart:convert';
+// ignore_for_file: invalid_use_of_protected_member
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -170,8 +170,6 @@ class PenilaianPembKpController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        String penilaian = jsonEncode({'data': data['data']});
-
         Get.snackbar("Add Penilaian Berhasil", "${data['status']}");
         existPenilaianKpPemb = PenilaianKpPemb.fromJson(data['data']);
 
@@ -235,11 +233,11 @@ class PenilaianPembKpController extends GetxController {
         ),
       );
 
+      print(response2.statusCode);
+
       var data = response.data;
 
       if (data != null) {
-        String penilaian = jsonEncode({'data': data['data']});
-
         Get.snackbar("UPDATE Penilaian FORM Berhasil", "${data['status']}");
         existPenilaianKpPemb = PenilaianKpPemb.fromJson(data['data']);
 
@@ -302,8 +300,6 @@ class PenilaianPembKpController extends GetxController {
       if (data != null) {
         getTotalandHuruf();
 
-        String penilaian = jsonEncode({'data': data['data']});
-
         Get.snackbar("UPDATE Penilaian FORM Berhasil", "${data['status']}");
         existPenilaianKpPemb = PenilaianKpPemb.fromJson(data['data']);
 
@@ -350,9 +346,9 @@ class PenilaianPembKpController extends GetxController {
       var response = await dio.put(
         "$baseUrlAPI/penilaian-kp-pembimbing/$id",
         data: {
-          "catatan1": catatan1C.text ?? "",
-          "catatan2": catatan2C.text ?? "",
-          "catatan3": catatan3C.text ?? "",
+          "catatan1": catatan1C.text,
+          "catatan2": catatan2C.text,
+          "catatan3": catatan3C.text,
         },
         options: Options(
           receiveDataWhenStatusError: true,
@@ -365,8 +361,6 @@ class PenilaianPembKpController extends GetxController {
 
       if (data != null) {
         getTotalandHuruf();
-
-        String penilaian = jsonEncode({'data': data['data']});
 
         Get.snackbar("UPDATE Penilaian FORM Berhasil", "${data['status']}");
         existPenilaianKpPemb = PenilaianKpPemb.fromJson(data['data']);
