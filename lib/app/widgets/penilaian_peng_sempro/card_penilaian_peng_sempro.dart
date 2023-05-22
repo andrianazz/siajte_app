@@ -41,11 +41,11 @@ class CardPenilaianPengSempro extends StatelessWidget {
           SizedBox(height: 20.h),
           //Change score in RadioPengSempro based on index scoreAll
 
-          RadioPengSempro(title: "Sangat Baik", score: value[0]),
-          RadioPengSempro(title: "Baik", score: value[1]),
+          RadioPengSempro(title: "Sangat Baik", score: value[4]),
+          RadioPengSempro(title: "Baik", score: value[3]),
           RadioPengSempro(title: "Biasa", score: value[2]),
-          RadioPengSempro(title: "Kurang Baik", score: value[3]),
-          RadioPengSempro(title: "Sangat Kurang Baik", score: value[4]),
+          RadioPengSempro(title: "Kurang Baik", score: value[1]),
+          RadioPengSempro(title: "Sangat Kurang Baik", score: value[0]),
           SizedBox(height: 10.h),
           SizedBox(
             width: double.infinity,
@@ -58,7 +58,7 @@ class CardPenilaianPengSempro extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (controller.indexFormNilaiPengSempro.value <
                     controller.listFormNilaiPengSempro.length - 1) {
                   controller.indexFormNilaiPengSempro.value++;
@@ -68,6 +68,8 @@ class CardPenilaianPengSempro extends StatelessWidget {
                   );
                 } else if (controller.indexFormNilaiPengSempro.value ==
                     controller.listFormNilaiPengSempro.length - 1) {
+                  await controller.updateFormNilaiPengSemproAPI(
+                      controller.existPenilaianSemproPeng.id.toString());
                   controller.selectedChips.value++;
                 }
               },

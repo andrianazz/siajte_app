@@ -132,11 +132,11 @@ class JadwalSeminarController extends GetxController {
       if (item.pembimbingsatuNip!.contains(nipDosen) ||
           item.pembimbingduaNip!.contains(nipDosen) ||
           item.pengujisatuNip!.contains(nipDosen) ||
-          item.pengujiduaNip!.contains(nipDosen) ||
+          item.pengujiduaNip!.contains(nipDosen)) {
+        result.add(item);
+      } else if (item.pengujitigaNip != null &&
           item.pengujitigaNip!.contains(nipDosen)) {
-        {
-          result.add(item);
-        }
+        result.add(item);
       }
     }
 
@@ -144,7 +144,9 @@ class JadwalSeminarController extends GetxController {
       if (item.pembimbingsatuNip!.contains(nipDosen) ||
           item.pembimbingduaNip!.contains(nipDosen) ||
           item.pengujisatuNip!.contains(nipDosen) ||
-          item.pengujiduaNip!.contains(nipDosen) ||
+          item.pengujiduaNip!.contains(nipDosen)) {
+        result.add(item);
+      } else if (item.pengujitigaNip != null &&
           item.pengujitigaNip!.contains(nipDosen)) {
         result.add(item);
       }

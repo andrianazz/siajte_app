@@ -199,6 +199,8 @@ class PenilaianPembProposalController extends GetxController {
   Future<Map<String, dynamic>> updateFormNilaiPembSemproAPI(String id) async {
     isLoading.value = true;
 
+    getTotalandHuruf();
+
     try {
       var response = await dio.put(
         "$baseUrlAPI/penilaian-sempro-pembimbing/$id",
@@ -228,8 +230,6 @@ class PenilaianPembProposalController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        getTotalandHuruf();
-
         Get.snackbar("UPDATE Penilaian FORM Berhasil", "${data['message']}");
         existPenilaianSemproPemb = PenilaianSemproPemb.fromJson(data['data']);
 

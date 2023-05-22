@@ -209,6 +209,8 @@ class PenilaianPembKpController extends GetxController {
   Future<Map<String, dynamic>> updateFormNilaiPembKPAPI(String id) async {
     isLoading.value = true;
 
+    getTotalandHuruf();
+
     try {
       var response = await dio.put(
         "$baseUrlAPI/penilaian-kp-pembimbing/$id",
@@ -242,8 +244,6 @@ class PenilaianPembKpController extends GetxController {
         existPenilaianKpPemb = PenilaianKpPemb.fromJson(data['data']);
 
         isLoading.value = false;
-
-        getTotalandHuruf();
 
         return data;
       } else if (response.statusCode == 401) {

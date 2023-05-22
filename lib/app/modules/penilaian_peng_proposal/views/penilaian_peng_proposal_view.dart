@@ -129,6 +129,7 @@ class SaranPerbaikanSemproView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.revisiNaskah1C,
                 maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -171,6 +172,7 @@ class SaranPerbaikanSemproView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.revisiNaskah2C,
                 maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -214,6 +216,7 @@ class SaranPerbaikanSemproView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.revisiNaskah3C,
                 maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -260,6 +263,7 @@ class SaranPerbaikanSemproView extends StatelessWidget {
                 horizontal: 24.w,
               ),
               child: TextFormField(
+                controller: controller.revisiNaskah4C,
                 maxLines: 2,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -306,6 +310,7 @@ class SaranPerbaikanSemproView extends StatelessWidget {
             horizontal: 24.w,
           ),
           child: TextFormField(
+            controller: controller.revisiNaskah5C,
             maxLines: 2,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
@@ -343,7 +348,9 @@ class SaranPerbaikanSemproView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            onPressed: () {
+            onPressed: () async {
+              await controller.updateCatatanSemproAPI(
+                  controller.existPenilaianSemproPeng.id.toString());
               controller.selectedChips.value++;
             },
             child: Text(
@@ -396,6 +403,7 @@ class RevisiJudulView extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Container(
                   child: TextFormField(
+                    controller: controller.oldJudulC,
                     readOnly: true,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(
@@ -433,6 +441,7 @@ class RevisiJudulView extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Container(
                   child: TextFormField(
+                    controller: controller.newJudulC,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 22.w,

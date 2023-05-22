@@ -1,0 +1,23 @@
+{
+    "id": 1,
+    "penjadwalan_sempro_id": 1,
+    "penguji_nip": "444",
+    "presentasi": null,
+    "tingkat_penguasaan_materi": null,
+    "keaslian": null,
+    "ketepatan_metodologi": null,
+    "penguasaan_dasar_teori": null,
+    "kecermatan_perumusan_masalah": null,
+    "tinjauan_pustaka": null,
+    "tata_tulis": null,
+    "sumbangan_pemikiran": null,
+    "revisi_naskah1": null,
+    "revisi_naskah2": null,
+    "revisi_naskah3": null,
+    "revisi_naskah4": null,
+    "revisi_naskah5": null,
+    "total_nilai_huruf": null,
+    "total_nilai_angka": null,
+    "created_at": "2023-05-22T03:49:35.000000Z",
+    "updated_at": "2023-05-22T03:49:35.000000Z"
+}

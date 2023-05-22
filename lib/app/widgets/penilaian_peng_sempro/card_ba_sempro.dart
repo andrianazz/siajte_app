@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/penilaian_pemb_proposal/controllers/penilaian_pemb_proposal_controller.dart';
+import 'package:siajte_app/app/modules/penilaian_peng_proposal/controllers/penilaian_peng_proposal_controller.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -8,6 +11,11 @@ class CardBASempro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PenilaianPembProposalController pembProposalController =
+        Get.put(PenilaianPembProposalController());
+    PenilaianPengProposalController pengProposalController =
+        Get.put(PenilaianPengProposalController());
+
     return Column(
       children: [
         Container(
@@ -110,116 +118,307 @@ class CardBASempro extends StatelessWidget {
                       ],
                     ),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Penguji 1",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
-                    ),
+                    FutureBuilder(
+                        future: pengProposalController.getPenilaianKPPeng(
+                            pengProposalController
+                                .penjadwalanSempro.pengujisatuNip
+                                .toString()),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          if (snapshot.hasError) {
+                            return Center(
+                              child: Text(snapshot.error.toString()),
+                            );
+                          }
+
+                          return Column(
+                            children: [
+                              Text(
+                                "Penguji 1",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .presentasi ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .tingkatPenguasaanMateri ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng.keaslian ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .ketepatanMetodologi ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .penguasaanDasarTeori ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .kecermatanPerumusanMasalah ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .tinjauanPustaka ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng.tataTulis ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .sumbanganPemikiran ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController.totalNilai
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController.nilaiHuruf
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: (pengProposalController.totalNilai / 9)
+                                          .ceil()
+                                          .toString() ??
+                                      "-"),
+                            ],
+                          );
+                        }),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Penguji 2",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
-                    ),
+                    FutureBuilder(
+                        future: pengProposalController.getPenilaianKPPeng(
+                            pengProposalController
+                                .penjadwalanSempro.pengujiduaNip
+                                .toString()),
+                        builder: (context, snapshot) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Penguji 2",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .presentasi ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .tingkatPenguasaanMateri ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng.keaslian ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .ketepatanMetodologi ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .penguasaanDasarTeori ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .kecermatanPerumusanMasalah ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .tinjauanPustaka ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng.tataTulis ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController
+                                          .existPenilaianSemproPeng
+                                          .sumbanganPemikiran ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController.totalNilai
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController.nilaiHuruf
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: (pengProposalController.totalNilai / 9)
+                                          .ceil()
+                                          .toString() ??
+                                      "-"),
+                            ],
+                          );
+                        }),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Penguji 3",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
+                    FutureBuilder(
+                      future: pengProposalController.getPenilaianKPPeng(
+                          pengProposalController
+                              .penjadwalanSempro.pengujitigaNip
+                              .toString()),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text("Error: ${snapshot.error}"),
+                          );
+                        }
+
+                        return FutureBuilder(
+                          future: pengProposalController.getPenilaianKPPeng(
+                              pengProposalController
+                                  .penjadwalanSempro.pengujitigaNip
+                                  .toString()),
+                          builder: (context, snapshot) {
+                            return Column(
+                              children: [
+                                Text(
+                                  "Penguji 3",
+                                  style: poppins.copyWith(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(height: 15.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .presentasi ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .tingkatPenguasaanMateri ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .keaslian ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .ketepatanMetodologi ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .penguasaanDasarTeori ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .kecermatanPerumusanMasalah ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .tinjauanPustaka ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .tataTulis ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController
+                                            .existPenilaianSemproPeng
+                                            .sumbanganPemikiran ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController.totalNilai
+                                            .toString() ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title: pengProposalController.nilaiHuruf
+                                            .toString() ??
+                                        "-"),
+                                SizedBox(height: 10.h),
+                                NilaiTextBA(
+                                    title:
+                                        (pengProposalController.totalNilai / 9)
+                                                .ceil()
+                                                .toString() ??
+                                            "-"),
+                              ],
+                            );
+                          },
+                        );
+                      },
                     )
                   ],
                 ),
@@ -300,61 +499,159 @@ class CardBASempro extends StatelessWidget {
                       ],
                     ),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Pembimbing 1",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
-                    ),
+                    FutureBuilder(
+                        future: pembProposalController.getPenilaianSempro(
+                            pembProposalController
+                                .penjadwalanSempro.pembimbingsatuNip
+                                .toString()),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          if (snapshot.hasError) {
+                            return const Center(
+                              child: Text("Error"),
+                            );
+                          }
+
+                          return Column(
+                            children: [
+                              Text(
+                                "Pembimbing 1",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(height: 15.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb
+                                          .penguasaanDasarTeori ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb
+                                          .tingkatPenguasaanMateri ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb
+                                          .tinjauanPustaka ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb.tataTulis ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb
+                                          .sikapDanKepribadian ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController.totalNilai
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController.nilaiHuruf
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: (pembProposalController.totalNilai / 6)
+                                          .ceil()
+                                          .toString() ??
+                                      "-"),
+                            ],
+                          );
+                        }),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Pembimbing 2",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
-                    )
+                    FutureBuilder(
+                        future: pembProposalController.getPenilaianSempro(
+                            pembProposalController
+                                .penjadwalanSempro.pembimbingduaNip
+                                .toString()),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          if (snapshot.hasError) {
+                            return const Center(
+                              child: Text("Error"),
+                            );
+                          }
+
+                          return Column(
+                            children: [
+                              Text(
+                                "Pembimbing 2",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(height: 15.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb
+                                          .penguasaanDasarTeori ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb
+                                          .tingkatPenguasaanMateri ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb
+                                          .tinjauanPustaka ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb.tataTulis ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController
+                                          .existPenilaianSemproPemb
+                                          .sikapDanKepribadian ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController.totalNilai
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pembProposalController.nilaiHuruf
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: (pembProposalController.totalNilai / 6)
+                                          .ceil()
+                                          .toString() ??
+                                      "-"),
+                            ],
+                          );
+                        })
                   ],
                 ),
               ),
@@ -393,25 +690,51 @@ class CardBASempro extends StatelessWidget {
                       const DetailTextBA(title: "Keterangan"),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Total Nilai",
-                        style: poppins.copyWith(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                    ],
-                  ),
+                  FutureBuilder(
+                      future: pengProposalController.getBeritaAcara(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.hasError) {
+                          return const Center(
+                            child: Text("Error"),
+                          );
+                        }
+
+                        return Column(
+                          children: [
+                            Text(
+                              "Total Nilai",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            NilaiTextBA(
+                                title: pengProposalController.baNilaiAkhir
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pengProposalController.baNilaiHuruf
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: pengProposalController.baKeterangan
+                                        .toString() ??
+                                    "-"),
+                          ],
+                        );
+                      }),
                 ],
               ),
               SizedBox(height: 12.h),
