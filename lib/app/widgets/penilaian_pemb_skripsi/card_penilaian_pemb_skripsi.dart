@@ -38,11 +38,11 @@ class CardPenilaianPembSkripsi extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          RadioPembSkripsi(title: "Sangat Baik", score: value[0]),
-          RadioPembSkripsi(title: "Baik", score: value[1]),
+          RadioPembSkripsi(title: "Sangat Baik", score: value[4]),
+          RadioPembSkripsi(title: "Baik", score: value[3]),
           RadioPembSkripsi(title: "Biasa", score: value[2]),
-          RadioPembSkripsi(title: "Kurang Baik", score: value[3]),
-          RadioPembSkripsi(title: "Sangat Kurang Baik", score: value[4]),
+          RadioPembSkripsi(title: "Kurang Baik", score: value[1]),
+          RadioPembSkripsi(title: "Sangat Kurang Baik", score: value[0]),
           SizedBox(height: 10.h),
           SizedBox(
             width: double.infinity,
@@ -55,7 +55,7 @@ class CardPenilaianPembSkripsi extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (controller.indexFormNilaiPembSkripsi.value <
                     controller.listFormNilaiPembSkripsi.length - 1) {
                   controller.indexFormNilaiPembSkripsi.value++;
@@ -65,6 +65,8 @@ class CardPenilaianPembSkripsi extends StatelessWidget {
                   );
                 } else if (controller.indexFormNilaiPembSkripsi.value ==
                     controller.listFormNilaiPembSkripsi.length - 1) {
+                  await controller.updateFormNilaiPembSkripsiAPI(
+                      controller.existPenilaianSkripsiPemb.id.toString());
                   controller.selectedChips.value++;
                 }
               },

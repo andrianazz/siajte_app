@@ -15,7 +15,7 @@ class PenialianPembSkipsiView extends GetView<PenialianPembSkipsiController> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Penilaian Pembimbing Proposal',
+          'Penilaian Pembimbing Skripsi',
           style: poppins.copyWith(
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
