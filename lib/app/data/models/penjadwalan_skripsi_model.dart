@@ -1,7 +1,7 @@
 import 'abstact_penjadwalan.dart';
 
 class PenjadwalanSkripsi extends Penjadwalan {
-  @override
+  // ignore: annotate_overrides
   int? id;
   @override
   String? mahasiswaNim;

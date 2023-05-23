@@ -41,11 +41,11 @@ class CardPenilaianPengSkripsi extends StatelessWidget {
           SizedBox(height: 20.h),
           //Change score in RadioPengSempro based on index scoreAll
 
-          RadioPengSkripsi(title: "Sangat Baik", score: value[0]),
-          RadioPengSkripsi(title: "Baik", score: value[1]),
+          RadioPengSkripsi(title: "Sangat Baik", score: value[4]),
+          RadioPengSkripsi(title: "Baik", score: value[3]),
           RadioPengSkripsi(title: "Biasa", score: value[2]),
-          RadioPengSkripsi(title: "Kurang Baik", score: value[3]),
-          RadioPengSkripsi(title: "Sangat Kurang Baik", score: value[4]),
+          RadioPengSkripsi(title: "Kurang Baik", score: value[1]),
+          RadioPengSkripsi(title: "Sangat Kurang Baik", score: value[0]),
           SizedBox(height: 10.h),
           SizedBox(
             width: double.infinity,
@@ -58,7 +58,7 @@ class CardPenilaianPengSkripsi extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (controller.indexFormNilaiPengSkripsi.value <
                     controller.listFormNilaiPengSkripsi.length - 1) {
                   controller.indexFormNilaiPengSkripsi.value++;
@@ -68,6 +68,8 @@ class CardPenilaianPengSkripsi extends StatelessWidget {
                   );
                 } else if (controller.indexFormNilaiPengSkripsi.value ==
                     controller.listFormNilaiPengSkripsi.length - 1) {
+                  await controller.updateFormNilaiPengSkripsiAPI(
+                      controller.existPenilaianSkripsiPeng.id.toString());
                   controller.selectedChips.value++;
                 }
               },

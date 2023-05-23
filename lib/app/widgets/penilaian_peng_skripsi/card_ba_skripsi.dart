@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
+import 'package:siajte_app/app/modules/penilaian_peng_skripsi/controllers/penilaian_peng_skripsi_controller.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -8,6 +11,11 @@ class CardBASkripsi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PenialianPembSkipsiController penilaianPembController =
+        Get.put(PenialianPembSkipsiController());
+    PenilaianPengSkripsiController penilaianPengController =
+        Get.put(PenilaianPengSkripsiController());
+
     return Column(
       children: [
         Container(
@@ -134,149 +142,490 @@ class CardBASkripsi extends StatelessWidget {
                       ],
                     ),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Penguji 1",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
+                    FutureBuilder(
+                      future: penilaianPengController.getPenilaianSkripsiPeng(
+                          penilaianPengController.jadwalSkripsi.pengujisatuNip
+                              .toString()),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text(snapshot.error.toString()),
+                          );
+                        }
+
+                        return Column(
+                          children: [
+                            Text(
+                              "Penguji 1",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: 15.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.presentasi
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng
+                                        .tingkatPenguasaanMateri
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.keaslian
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng
+                                        .ketepatanMetodologi
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng
+                                        .penguasaanDasarTeori
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng
+                                        .kecermatanPerumusanMasalah
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng
+                                        .tinjauanPustaka
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.tataTulis
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.tools
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.penyajianData
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.hasil
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.pembahasan
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.kesimpulan
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng.luaran
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController
+                                        .existPenilaianSkripsiPeng
+                                        .sumbanganPemikiran
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPengController.totalNilai.value
+                                        .ceil()
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title:
+                                    penilaianPengController.nilaiHuruf.value ??
+                                        "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title:
+                                    (penilaianPengController.totalNilai.value /
+                                                15)
+                                            .ceil()
+                                            .toString() ??
+                                        "-"),
+                          ],
+                        );
+                      },
                     ),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Penguji 2",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
-                    ),
+                    FutureBuilder(
+                        future: penilaianPengController.getPenilaianSkripsiPeng(
+                            penilaianPengController.jadwalSkripsi.pengujiduaNip
+                                .toString()),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          if (snapshot.hasError) {
+                            return Center(
+                              child: Text(snapshot.error.toString()),
+                            );
+                          }
+
+                          return Column(
+                            children: [
+                              Text(
+                                "Penguji 2",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(height: 15.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng.presentasi
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng
+                                          .tingkatPenguasaanMateri
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng.keaslian
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng
+                                          .ketepatanMetodologi
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng
+                                          .penguasaanDasarTeori
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng
+                                          .kecermatanPerumusanMasalah
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng
+                                          .tinjauanPustaka
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng.tataTulis
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng.tools
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng
+                                          .penyajianData
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng.hasil
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng.pembahasan
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng.kesimpulan
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng.luaran
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .existPenilaianSkripsiPeng
+                                          .sumbanganPemikiran
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .totalNilai.value
+                                          .ceil()
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: penilaianPengController
+                                          .nilaiHuruf.value ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: (penilaianPengController
+                                                  .totalNilai.value /
+                                              15)
+                                          .ceil()
+                                          .toString() ??
+                                      "-"),
+                            ],
+                          );
+                        }),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Penguji 3",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
-                    )
+                    penilaianPengController.jadwalSkripsi.pengujitigaNip == null
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                            ],
+                          )
+                        : FutureBuilder(
+                            future: penilaianPengController
+                                .getPenilaianSkripsiPeng(penilaianPengController
+                                    .jadwalSkripsi.pengujitigaNip
+                                    .toString()),
+                            builder: (context, snapshot) {
+                              return Column(
+                                children: [
+                                  Text(
+                                    "Penguji 3",
+                                    style: poppins.copyWith(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(height: 15.h),
+                                  Column(
+                                    children: [
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .presentasi
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .tingkatPenguasaanMateri
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .keaslian
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .ketepatanMetodologi
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .penguasaanDasarTeori
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .kecermatanPerumusanMasalah
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .tinjauanPustaka
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .tataTulis
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .tools
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .penyajianData
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .hasil
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .pembahasan
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .kesimpulan
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .luaran
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .existPenilaianSkripsiPeng
+                                                  .sumbanganPemikiran
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .totalNilai.value
+                                                  .ceil()
+                                                  .toString() ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: penilaianPengController
+                                                  .nilaiHuruf.value ??
+                                              "-"),
+                                      SizedBox(height: 10.h),
+                                      NilaiTextBA(
+                                          title: (penilaianPengController
+                                                          .totalNilai.value /
+                                                      15)
+                                                  .ceil()
+                                                  .toString() ??
+                                              "-"),
+                                    ],
+                                  )
+                                ],
+                              );
+                            },
+                          )
                   ],
                 ),
               ),
@@ -360,64 +709,203 @@ class CardBASkripsi extends StatelessWidget {
                       ],
                     ),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Pembimbing 1",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
+                    FutureBuilder(
+                      future: penilaianPembController.getPenilaianSkripsi(
+                          penilaianPembController
+                              .penjadwalanSkripsi.pembimbingsatuNip
+                              .toString()),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text(
+                              'Error: ${snapshot.error}',
+                              style: poppins,
+                            ),
+                          );
+                        }
+
+                        return Column(
+                          children: [
+                            Text(
+                              "Pembimbing 1",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: 15.h),
+                            NilaiTextBA(
+                                title: penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .penguasaanDasarTeori
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .tingkatPenguasaanMateri
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .tinjauanPustaka
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPembController
+                                        .existPenilaianSkripsiPemb.tataTulis
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .hasilDanPembahasan
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .sikapDanKepribadian
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPembController.totalNilai.value
+                                        .ceil()
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title: penilaianPembController.nilaiHuruf.value
+                                        .toString() ??
+                                    "-"),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                                title:
+                                    (penilaianPembController.totalNilai.value /
+                                                6)
+                                            .ceil()
+                                            .toString() ??
+                                        "-"),
+                          ],
+                        );
+                      },
                     ),
                     SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Text(
-                          "Pembimbing 2",
-                          style: poppins.copyWith(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 15.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                        SizedBox(height: 10.h),
-                        const NilaiTextBA(title: "-"),
-                      ],
+                    FutureBuilder(
+                      future: penilaianPembController.getPenilaianSkripsi(
+                          penilaianPembController
+                              .penjadwalanSkripsi.pembimbingduaNip
+                              .toString()),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text(
+                              'Error: ${snapshot.error}',
+                              style: poppins,
+                            ),
+                          );
+                        }
+
+                        return Column(
+                          children: [
+                            Text(
+                              "Pembimbing 2",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: 15.h),
+                            NilaiTextBA(
+                              title: penilaianPembController
+                                      .existPenilaianSkripsiPemb
+                                      .penguasaanDasarTeori
+                                      .toString() ??
+                                  "-",
+                            ),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                              title: penilaianPembController
+                                      .existPenilaianSkripsiPemb
+                                      .tingkatPenguasaanMateri
+                                      .toString() ??
+                                  "-",
+                            ),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                              title: penilaianPembController
+                                      .existPenilaianSkripsiPemb.tinjauanPustaka
+                                      .toString() ??
+                                  "-",
+                            ),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                              title: penilaianPembController
+                                      .existPenilaianSkripsiPemb.tataTulis
+                                      .toString() ??
+                                  "-",
+                            ),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                              title: penilaianPembController
+                                      .existPenilaianSkripsiPemb
+                                      .hasilDanPembahasan
+                                      .toString() ??
+                                  "-",
+                            ),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                              title: penilaianPembController
+                                      .existPenilaianSkripsiPemb
+                                      .sikapDanKepribadian
+                                      .toString() ??
+                                  "-",
+                            ),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                              title: penilaianPembController.totalNilai.value
+                                      .ceil()
+                                      .toString() ??
+                                  "-",
+                            ),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                              title: penilaianPembController.nilaiHuruf.value
+                                      .toString() ??
+                                  "-",
+                            ),
+                            SizedBox(height: 10.h),
+                            NilaiTextBA(
+                              title:
+                                  (penilaianPembController.totalNilai.value / 6)
+                                          .ceil()
+                                          .toString() ??
+                                      "-",
+                            ),
+                          ],
+                        );
+                      },
                     )
                   ],
                 ),
@@ -457,24 +945,38 @@ class CardBASkripsi extends StatelessWidget {
                       const DetailTextBA(title: "Keterangan"),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Total Nilai",
-                        style: poppins.copyWith(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                      SizedBox(height: 10.h),
-                      const NilaiTextBA(title: "-"),
-                    ],
+                  FutureBuilder(
+                    future: penilaianPengController.getBeritaAcara(),
+                    builder: (context, snapshot) {
+                      return Column(
+                        children: [
+                          Text(
+                            "Total Nilai",
+                            style: poppins.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          NilaiTextBA(
+                              title: penilaianPengController.baNilaiAkhir.value
+                                      .toString() ??
+                                  "-"),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: penilaianPengController.baNilaiHuruf.value
+                                      .toString() ??
+                                  "-"),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: penilaianPengController.baKeterangan.value
+                                      .toString() ??
+                                  "-"),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),
