@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:siajte_app/app/widgets/card_jadwal_widget.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/style.dart';
 import '../../../widgets/appbar_widget.dart';
-import '../../../widgets/card_riwayat_widget.dart';
 import '../controllers/riwayat_seminar_controller.dart';
 
 class RiwayatSeminarView extends GetView<RiwayatSeminarController> {
@@ -34,6 +34,9 @@ class RiwayatSeminarView extends GetView<RiwayatSeminarController> {
                   // key: controller.formKey,
                   child: TextFormField(
                     // controller: controller.userC,
+                    onFieldSubmitted: (value) {
+                      controller.filterJadwalSeminarWithName(value);
+                    },
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Search tidak boleh kosong';
@@ -57,12 +60,14 @@ class RiwayatSeminarView extends GetView<RiwayatSeminarController> {
                   ),
                 ),
                 SizedBox(height: 24.h),
+
                 Container(
                   child: Obx(
                     () => ChipsChoice<String>.multiple(
                       value: controller.selectedChoice.toList(),
                       onChanged: (val) {
                         controller.selectedChoice.value = val;
+                        controller.filterJadwalSeminarWithChoice(val);
                       },
                       choiceItems: C2Choice.listFrom<String, String>(
                         source: controller.listJenisSeminar,
@@ -89,32 +94,34 @@ class RiwayatSeminarView extends GetView<RiwayatSeminarController> {
                 ),
                 SizedBox(height: 24.h),
                 // Tampilan Web
-                FutureBuilder(
-                  future: controller.getJadwalSeminar(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      snapshot.data!
-                          .sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
-
-                      return Column(
-                        children: snapshot.data!
-                            .map((e) => CardRiwayatWidget(
-                                  onTap: () {
-                                    Get.toNamed(
-                                      Routes.DETAIL_RIWAYAT_SEMINAR,
-                                      arguments: e,
-                                    );
-                                  },
-                                  penjadwalan: e,
-                                ))
-                            .toList(),
-                      );
-                    } else if (snapshot.hasError) {
-                      return const Text("error");
-                    } else {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                  },
+                SizedBox(
+                  width: double.infinity,
+                  height: 500.h,
+                  child: Obx(
+                    () => controller.isLoading.isFalse
+                        ? ListView.builder(
+                            itemCount: controller.filterJadwal.value.length,
+                            itemBuilder: (context, index) {
+                              return CardJadwalWidget(
+                                onTap: () {
+                                  Get.toNamed(
+                                    Routes.DETAIL_JADWAL_SEMINAR,
+                                    arguments:
+                                        controller.filterJadwal.value[index],
+                                  );
+                                },
+                                penjadwalan:
+                                    controller.filterJadwal.value[index],
+                              );
+                            },
+                          )
+                        : SizedBox(
+                            width: 20.w,
+                            height: 20.h,
+                            child: const Center(
+                                child: CircularProgressIndicator()),
+                          ),
+                  ),
                 ),
               ],
             ),

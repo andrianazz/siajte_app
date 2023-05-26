@@ -203,29 +203,31 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                 SizedBox(
                   height: 20.h,
                 ),
-                homeC.mapUser['role'] == "web" ? SizedBox(
-                  width: double.infinity,
-                  height: 50.h,
-                  child: ElevatedButton.icon(
-                    onPressed: () async {
-                      await controller.deleteJadwal();
-                    },
-                    icon: const Icon(Icons.delete),
-                    label: Text(
-                      "HAPUS SEMINAR",
-                      style: poppins.copyWith(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: textDanger,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                  ),
-                ) : const SizedBox(),
+                homeC.mapUser['role'] == "web"
+                    ? SizedBox(
+                        width: double.infinity,
+                        height: 50.h,
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            await controller.deleteJadwal();
+                          },
+                          icon: const Icon(Icons.delete),
+                          label: Text(
+                            "HAPUS SEMINAR",
+                            style: poppins.copyWith(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: textDanger,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
                 SizedBox(height: 40.h),
 
                 //Input Nilai untuk Dosen
@@ -309,26 +311,8 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                 //Riwayat Seminar untuk Mahasiswa
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      CardSubDetailWidget(
-                        onTap: () {},
-                        title: "Perbaikan Penguji 1",
-                        color: primaryColor,
-                      ),
-                      SizedBox(width: 12.w),
-                      CardSubDetailWidget(
-                        onTap: () {},
-                        title: "Perbaikan Penguji 2",
-                        color: secondaryColor,
-                      ),
-                      SizedBox(width: 12.w),
-                      CardSubDetailWidget(
-                        onTap: () {},
-                        title: "Perbaikan Penguji 3",
-                        color: textSkripsi,
-                      ),
-                    ],
+                  child: Obx(
+                    () => controller.riwayatSeminarCondition(),
                   ),
                 )
               ],

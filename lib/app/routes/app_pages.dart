@@ -50,6 +50,8 @@ import '../modules/riwayat_seminar/bindings/riwayat_seminar_binding.dart';
 import '../modules/riwayat_seminar/views/riwayat_seminar_view.dart';
 import '../modules/success/bindings/success_binding.dart';
 import '../modules/success/views/success_view.dart';
+import '../modules/web_appearance/bindings/web_appearance_binding.dart';
+import '../modules/web_appearance/views/web_appearance_view.dart';
 
 part 'app_routes.dart';
 
@@ -186,6 +188,11 @@ class AppPages {
       name: _Paths.PENILAIAN_PENG_SKRIPSI,
       page: () => const PenilaianPengSkripsiView(),
       binding: PenilaianPengSkripsiBinding(),
+    ),
+    GetPage(
+      name: _Paths.WEB_APPEARANCE,
+      page: () => const WebAppearanceView(),
+      binding: WebAppearanceBinding(),
     ),
   ];
 }

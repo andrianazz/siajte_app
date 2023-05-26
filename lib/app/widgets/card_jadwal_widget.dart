@@ -19,7 +19,7 @@ class CardJadwalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    JadwalSeminarController jadwalSeminarC = Get.find();
+    JadwalSeminarController jadwalSeminarC = Get.put(JadwalSeminarController());
 
     return Container(
       margin: EdgeInsets.only(bottom: 20.h),

@@ -98,10 +98,6 @@ class JadwalSeminarController extends GetxController {
     isLoading.value = false;
 
     filterJadwal.value = result;
-
-    if (filterJadwal.value.isEmpty) {
-      Get.snackbar("Informasi", "Tidak ada Data");
-    }
   }
 
   Future<List<Penjadwalan>> returnFilterJadwalSeminarWithNim(
@@ -167,10 +163,6 @@ class JadwalSeminarController extends GetxController {
     isLoading.value = false;
 
     filterJadwal.value = result;
-
-    if (filterJadwal.value.isEmpty) {
-      Get.snackbar("Informasi", "Tidak ada Data");
-    }
   }
 
   void selectedJenisSeminar(String val) {
@@ -279,10 +271,6 @@ class JadwalSeminarController extends GetxController {
 
     penjadwalan.sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
     isLoading.value = false;
-
-    if (penjadwalan.isEmpty) {
-      Get.snackbar("Informasi", "Tidak ada Data");
-    }
 
     return penjadwalan;
   }

@@ -32,6 +32,7 @@ abstract class Routes {
   static const PENIALIAN_PEMB_SKIPSI = _Paths.PENIALIAN_PEMB_SKIPSI;
   static const PENILAIAN_PENG_SKRIPSI = _Paths.PENILAIAN_PENG_SKRIPSI;
   static const SEARCH_MAHASISWA = _Paths.SEARCH_MAHASISWA;
+  static const WEB_APPEARANCE = _Paths.WEB_APPEARANCE;
 }
 
 abstract class _Paths {
@@ -62,4 +63,5 @@ abstract class _Paths {
   static const PENIALIAN_PEMB_SKIPSI = '/penialian-pemb-skipsi';
   static const PENILAIAN_PENG_SKRIPSI = '/penilaian-peng-skripsi';
   static const SEARCH_MAHASISWA = '/search-mahasiswa';
+  static const WEB_APPEARANCE = '/web-appearance';
 }

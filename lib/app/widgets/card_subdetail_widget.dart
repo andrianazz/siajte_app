@@ -29,6 +29,8 @@ class CardSubDetailWidget extends StatelessWidget {
               fontWeight: FontWeight.w600,
               color: secondaryJadwalSeminar,
             ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           GestureDetector(
             onTap: () {
@@ -57,6 +59,8 @@ class CardSubDetailWidget extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   )
                 ],
               ),

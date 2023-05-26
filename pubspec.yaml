@@ -15,7 +15,9 @@ dependencies:
   chips_choice: 3.0.0
   im_stepper: 1.0.1+1
   flutter_speed_dial: ^6.2.0
-
+  webview_flutter: 4.2.1
+  syncfusion_flutter_pdfviewer: 21.2.6
+  path_provider: 2.0.15
   flutter: 
     sdk: flutter
 

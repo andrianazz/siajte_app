@@ -1,16 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_sempro_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
+import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
+import 'package:siajte_app/app/theme/colors.dart';
+import 'package:siajte_app/app/widgets/card_subdetail_widget.dart';
 
 import '../../../../theme/variable.dart';
 
 class DetailJadwalSeminarController extends GetxController {
   Dio dio = Dio();
 
+  HomeController homeC = Get.put(HomeController());
+
+  RxString idSeminar = ''.obs;
   RxString nama = ''.obs;
   RxString nim = ''.obs;
   RxString seminar = ''.obs;
@@ -18,6 +25,7 @@ class DetailJadwalSeminarController extends GetxController {
   RxString tanggal = ''.obs;
   RxString waktu = ''.obs;
   RxString lokasi = ''.obs;
+  RxInt status = 0.obs;
   RxString pembimbing1 = ''.obs;
   RxString pembimbing2 = '-'.obs;
 
@@ -62,11 +70,15 @@ class DetailJadwalSeminarController extends GetxController {
     if (Get.arguments is PenjadwalanKp) {
       PenjadwalanKp penjadwalanKp = Get.arguments;
 
+      idSeminar.value = penjadwalanKp.id!.toString();
       nama.value = await getMahasiswaWithNim(penjadwalanKp.mahasiswaNim!);
       nim.value = penjadwalanKp.mahasiswaNim!;
       seminar.value = penjadwalanKp.jenisSeminar!;
       prodi.value = await getProdiWithId(penjadwalanKp.prodiId!.toString());
       tanggal.value = penjadwalanKp.tanggal!;
+
+      status.value = int.parse(penjadwalanKp.statusSeminar!);
+
       waktu.value = penjadwalanKp.waktu!;
       lokasi.value = penjadwalanKp.lokasi!;
       pembimbing1.value = await getDosenWithNip(penjadwalanKp.pembimbingNip!);
@@ -79,11 +91,13 @@ class DetailJadwalSeminarController extends GetxController {
     } else if (Get.arguments is PenjadwalanSempro) {
       PenjadwalanSempro penjadwalanSempro = Get.arguments;
 
+      idSeminar.value = penjadwalanSempro.id!.toString();
       nama.value = await getMahasiswaWithNim(penjadwalanSempro.mahasiswaNim!);
       nim.value = penjadwalanSempro.mahasiswaNim!;
       seminar.value = penjadwalanSempro.jenisSeminar!;
       prodi.value = await getProdiWithId(penjadwalanSempro.prodiId!.toString());
       tanggal.value = penjadwalanSempro.tanggal!;
+      status.value = int.parse(penjadwalanSempro.statusSeminar!);
       waktu.value = penjadwalanSempro.waktu!;
       lokasi.value = penjadwalanSempro.lokasi!;
       pembimbing1.value =
@@ -106,6 +120,8 @@ class DetailJadwalSeminarController extends GetxController {
     } else {
       PenjadwalanSkripsi penjadwalanSkripsi = Get.arguments;
 
+      idSeminar.value = penjadwalanSkripsi.id!.toString();
+
       String penguji1Nama =
           await getDosenWithNip(penjadwalanSkripsi.pengujisatuNip!.toString());
 
@@ -117,6 +133,7 @@ class DetailJadwalSeminarController extends GetxController {
       prodi.value =
           await getProdiWithId(penjadwalanSkripsi.prodiId!.toString());
       tanggal.value = penjadwalanSkripsi.tanggal!;
+      status.value = int.parse(penjadwalanSkripsi.statusSeminar!);
       waktu.value = penjadwalanSkripsi.waktu!;
       lokasi.value = penjadwalanSkripsi.lokasi!;
       pembimbing1.value =
@@ -279,5 +296,70 @@ class DetailJadwalSeminarController extends GetxController {
         ],
       );
     }
+  }
+
+  Widget riwayatSeminarCondition() {
+    if (homeC.mapUser['role'] == "dosen") {
+      if (seminar.value == "KP") {
+        //Pembimbing
+        if (nimPemb1.contains(homeC.mapUser['data']['nip'])) {
+          return Row(
+            children: [
+              CardSubDetailWidget(
+                onTap: () {
+                  Get.toNamed(Routes.WEB_APPEARANCE);
+                },
+                title: "Perbaikan Penguji 1",
+                color: primaryColor,
+              ),
+              SizedBox(width: 12.w),
+              CardSubDetailWidget(
+                onTap: () {},
+                title: "Berita Acara",
+                color: secondaryColor,
+              ),
+            ],
+          );
+        }
+        //Penguji
+        if (nimPeng1.contains(homeC.mapUser['data']['nip'])) {
+          return Row(
+            children: [
+              CardSubDetailWidget(
+                onTap: () {
+                  Get.toNamed(Routes.WEB_APPEARANCE,
+                      arguments:
+                          "$baseUrl/perbaikan2-pengujikp/${idSeminar.value}/${nimPeng1.value}");
+                },
+                title: "Perbaikan Penguji 1",
+                color: primaryColor,
+              ),
+              SizedBox(width: 12.w),
+              CardSubDetailWidget(
+                onTap: () {},
+                title: "Form Nilai Seminar",
+                color: secondaryColor,
+              ),
+            ],
+          );
+        }
+      } else if (seminar.value == "Proposal") {
+        return const SizedBox();
+      } else if (seminar.value == "Skripsi") {
+        return const SizedBox();
+      }
+    } else if (homeC.mapUser['role'] == "mahasiswa") {
+      if (seminar.value == "KP") {
+        return const SizedBox();
+      } else if (seminar.value == "Proposal") {
+        return const SizedBox();
+      } else if (seminar.value == "Skripsi") {
+        return const SizedBox();
+      }
+    } else {
+      return const SizedBox();
+    }
+
+    return const SizedBox();
   }
 }
