@@ -131,42 +131,44 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
           ),
         ],
       ),
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        backgroundColor: secondaryColor,
-        foregroundColor: Colors.white,
-        overlayColor: Colors.black,
-        overlayOpacity: 0.5,
-        children: [
-          SpeedDialChild(
-            child: const Icon(Icons.edit_document),
-            backgroundColor: textKP,
-            foregroundColor: Colors.white,
-            label: 'KP',
-            onTap: () {
-              Get.toNamed(Routes.ADD_JADWAL_KP);
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.file_copy_outlined),
-            backgroundColor: textProposal,
-            foregroundColor: Colors.white,
-            label: 'Proposal',
-            onTap: () {
-              Get.toNamed(Routes.ADD_JADWAL_PROPOSAL);
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.file_copy),
-            backgroundColor: textSkripsi,
-            foregroundColor: Colors.white,
-            label: 'Skripsi',
-            onTap: () {
-              Get.toNamed(Routes.ADD_JADWAL_SKRIPSI);
-            },
-          ),
-        ],
-      ),
+      floatingActionButton: controller.homeC.mapUser['role'] == "web"
+          ? SpeedDial(
+              animatedIcon: AnimatedIcons.menu_close,
+              backgroundColor: secondaryColor,
+              foregroundColor: Colors.white,
+              overlayColor: Colors.black,
+              overlayOpacity: 0.5,
+              children: [
+                SpeedDialChild(
+                  child: const Icon(Icons.edit_document),
+                  backgroundColor: textKP,
+                  foregroundColor: Colors.white,
+                  label: 'KP',
+                  onTap: () {
+                    Get.toNamed(Routes.ADD_JADWAL_KP);
+                  },
+                ),
+                SpeedDialChild(
+                  child: const Icon(Icons.file_copy_outlined),
+                  backgroundColor: textProposal,
+                  foregroundColor: Colors.white,
+                  label: 'Proposal',
+                  onTap: () {
+                    Get.toNamed(Routes.ADD_JADWAL_PROPOSAL);
+                  },
+                ),
+                SpeedDialChild(
+                  child: const Icon(Icons.file_copy),
+                  backgroundColor: textSkripsi,
+                  foregroundColor: Colors.white,
+                  label: 'Skripsi',
+                  onTap: () {
+                    Get.toNamed(Routes.ADD_JADWAL_SKRIPSI);
+                  },
+                ),
+              ],
+            )
+          : const SizedBox(),
     );
   }
 }

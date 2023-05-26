@@ -89,6 +89,8 @@ class JadwalSeminarController extends GetxController {
     isLoading.value = true;
     List<Penjadwalan> result = [];
 
+    result = allJadwal.where((p0) => p0.statusSeminar!.contains("0")).toList();
+
     result = allJadwal.where((element) {
       return element.mahasiswaNim!.toLowerCase().contains(nimMhs.toLowerCase());
     }).toList();
@@ -96,6 +98,10 @@ class JadwalSeminarController extends GetxController {
     isLoading.value = false;
 
     filterJadwal.value = result;
+
+    if (filterJadwal.value.isEmpty) {
+      Get.snackbar("Informasi", "Tidak ada Data");
+    }
   }
 
   Future<List<Penjadwalan>> returnFilterJadwalSeminarWithNim(
@@ -122,39 +128,49 @@ class JadwalSeminarController extends GetxController {
         await getJadwalSkripsi();
 
     for (var item in listJadwalSeminarKP) {
-      if (item.pembimbingNip!.contains(nipDosen) ||
-          item.pengujiNip!.contains(nipDosen)) {
-        result.add(item);
+      if (item.statusSeminar!.contains("0")) {
+        if (item.pembimbingNip!.contains(nipDosen) ||
+            item.pengujiNip!.contains(nipDosen)) {
+          result.add(item);
+        }
       }
     }
 
     for (var item in listJadwalSeminarSempro) {
-      if (item.pembimbingsatuNip!.contains(nipDosen) ||
-          item.pembimbingduaNip!.contains(nipDosen) ||
-          item.pengujisatuNip!.contains(nipDosen) ||
-          item.pengujiduaNip!.contains(nipDosen)) {
-        result.add(item);
-      } else if (item.pengujitigaNip != null &&
-          item.pengujitigaNip!.contains(nipDosen)) {
-        result.add(item);
+      if (item.statusSeminar!.contains("0")) {
+        if (item.pembimbingsatuNip!.contains(nipDosen) ||
+            item.pembimbingduaNip!.contains(nipDosen) ||
+            item.pengujisatuNip!.contains(nipDosen) ||
+            item.pengujiduaNip!.contains(nipDosen)) {
+          result.add(item);
+        } else if (item.pengujitigaNip != null &&
+            item.pengujitigaNip!.contains(nipDosen)) {
+          result.add(item);
+        }
       }
     }
 
     for (var item in listJadwalSeminarSkripsi) {
-      if (item.pembimbingsatuNip!.contains(nipDosen) ||
-          item.pembimbingduaNip!.contains(nipDosen) ||
-          item.pengujisatuNip!.contains(nipDosen) ||
-          item.pengujiduaNip!.contains(nipDosen)) {
-        result.add(item);
-      } else if (item.pengujitigaNip != null &&
-          item.pengujitigaNip!.contains(nipDosen)) {
-        result.add(item);
+      if (item.statusSeminar!.contains("0")) {
+        if (item.pembimbingsatuNip!.contains(nipDosen) ||
+            item.pembimbingduaNip!.contains(nipDosen) ||
+            item.pengujisatuNip!.contains(nipDosen) ||
+            item.pengujiduaNip!.contains(nipDosen)) {
+          result.add(item);
+        } else if (item.pengujitigaNip != null &&
+            item.pengujitigaNip!.contains(nipDosen)) {
+          result.add(item);
+        }
       }
     }
 
     isLoading.value = false;
 
     filterJadwal.value = result;
+
+    if (filterJadwal.value.isEmpty) {
+      Get.snackbar("Informasi", "Tidak ada Data");
+    }
   }
 
   void selectedJenisSeminar(String val) {
@@ -232,15 +248,21 @@ class JadwalSeminarController extends GetxController {
 
     List<Penjadwalan> penjadwalan = [];
     for (var item in listJadwalSeminarKP) {
-      penjadwalan.add(item);
+      if (item.statusSeminar!.contains("0")) {
+        penjadwalan.add(item);
+      }
     }
 
     for (var item in listJadwalSeminarSempro) {
-      penjadwalan.add(item);
+      if (item.statusSeminar!.contains("0")) {
+        penjadwalan.add(item);
+      }
     }
 
     for (var item in listJadwalSeminarSkripsi) {
-      penjadwalan.add(item);
+      if (item.statusSeminar!.contains("0")) {
+        penjadwalan.add(item);
+      }
     }
 
     if (selectedChoice.isNotEmpty) {
@@ -257,6 +279,10 @@ class JadwalSeminarController extends GetxController {
 
     penjadwalan.sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
     isLoading.value = false;
+
+    if (penjadwalan.isEmpty) {
+      Get.snackbar("Informasi", "Tidak ada Data");
+    }
 
     return penjadwalan;
   }
