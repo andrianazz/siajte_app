@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:siajte_app/app/widgets/appbar_widget.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../controllers/web_appearance_controller.dart';
 
@@ -24,9 +23,11 @@ class WebAppearanceView extends GetView<WebAppearanceController> {
               );
             }
 
-            return SfPdfViewer.asset(
-              snapshot.data.toString(),
-            );
+            return const SizedBox();
+
+            // return SfPdfViewer.asset(
+            //   snapshot.data.toString(),
+            // );
           },
         )
 
