@@ -12,6 +12,7 @@ import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 import 'package:siajte_app/app/theme/variable.dart';
 
 import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class JadwalSeminarController extends GetxController {
   RxBool isLoading = false.obs;
@@ -33,14 +34,17 @@ class JadwalSeminarController extends GetxController {
     isLoading.value = true;
     allJadwal.value = await getJadwalSeminar();
 
-    await makeNotificationLocal();
+    tz.initializeTimeZones();
+    tz.getLocation('Asia/Jakarta');
 
     isLoading.value = false;
 
     if (homeC.mapUser['role'] == 'mahasiswa') {
       filterJadwalSeminarWithNim(homeC.mapUser['data']['nim']);
+      makeNotificationLocal();
     } else if (homeC.mapUser['role'] == 'dosen') {
       filterJadwalSeminarWithNip(homeC.mapUser['data']['nip']);
+      makeNotificationLocal();
     } else {
       filterJadwal.value = allJadwal;
     }
@@ -48,7 +52,7 @@ class JadwalSeminarController extends GetxController {
 
   Future<void> makeNotificationLocal() async {
     List<DateTime> listTanggal = [];
-    allJadwal.map((element) {
+    filterJadwal.value.map((element) {
       listTanggal.add(DateTime.parse("${element.tanggal!} ${element.waktu!}"));
     }).toList();
 
@@ -62,7 +66,50 @@ class JadwalSeminarController extends GetxController {
     }
 
     print(listTanggal2);
-    listTanggal2.map((e) => scheduleNotification(e)).toList();
+    listTanggal2.map((e) {
+      if (e.isAfter(DateTime.now())) {
+        scheduleNotification(e);
+      }
+    }).toList();
+  }
+
+  Future<void> scheduleNotification(DateTime scheduledDateTime) async {
+    tz.initializeTimeZones();
+    tz.setLocalLocation(tz.getLocation("Asia/Jakarta"));
+
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+
+    // Konfigurasi notifikasi
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'channel id',
+      'channel name',
+      channelDescription: 'channel description',
+      importance: Importance.max,
+      priority: Priority.high,
+      playSound: true,
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    //Convert DateTime to TZDateTime
+    final scheduled = tz.TZDateTime.from(scheduledDateTime, tz.local);
+    print(scheduled);
+
+    // Menjadwalkan notifikasi
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      0, // ID notifikasi (dapat digunakan untuk membatalkan notifikasi)
+      'Jadwal Seminar',
+      'Seminar akan dilaksanakan pada ${scheduled.hour}:${scheduled.minute} mohon untuk hadir tepat waktu',
+      scheduled,
+      platformChannelSpecifics,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
+
+    print("berhasil membuat notif baru");
   }
 
   void filterJadwalSeminarWithChoice(List<String> val) async {
@@ -314,40 +361,5 @@ class JadwalSeminarController extends GetxController {
     String nimMahasiswa = response.data['data'][0]['nim'];
 
     return nimMahasiswa;
-  }
-
-  Future<void> scheduleNotification(DateTime scheduledDateTime) async {
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-
-    // Konfigurasi notifikasi
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
-        AndroidNotificationDetails(
-      '1',
-      'jadwal',
-      channelDescription: 'jadwal Seminar',
-      importance: Importance.max,
-      priority: Priority.high,
-      ticker: 'ticker',
-    );
-    const NotificationDetails platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-
-    // TZDateTime time = TZDateTime.from(scheduledDateTime, tz.local);
-    // Ubah waktu ke dalam zona waktu yang diinginkan
-    final tz.TZDateTime scheduledDate =
-        tz.TZDateTime.from(scheduledDateTime, tz.local);
-
-    // Menjadwalkan notifikasi
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      0, // ID notifikasi (dapat digunakan untuk membatalkan notifikasi)
-      'Jadwal Seminar',
-      'Seminar akan dilaksanakan pada ${scheduledDate.hour}:${scheduledDate.minute} mohon untuk hadir tepat waktu',
-      scheduledDate,
-      platformChannelSpecifics,
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-    );
   }
 }

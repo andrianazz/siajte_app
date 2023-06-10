@@ -131,7 +131,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
           ),
-          Obx(() => controller.changeView())
+          SizedBox(height: 1000.h, child: Obx(() => controller.changeView()))
         ],
       ),
     );
