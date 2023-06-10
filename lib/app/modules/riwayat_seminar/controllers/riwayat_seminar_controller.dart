@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
+import 'package:siajte_app/app/modules/jadwal_seminar/controllers/jadwal_seminar_controller.dart';
 
 import '../../../data/models/abstact_penjadwalan.dart';
 import '../../../data/models/dosen_model.dart';
@@ -12,6 +13,8 @@ import '../../../data/models/prodi_model.dart';
 import '../../../theme/variable.dart';
 
 class RiwayatSeminarController extends GetxController {
+  JadwalSeminarController jadwalSeminarC = Get.put(JadwalSeminarController());
+
   RxBool isLoading = false.obs;
   RxList<String> selectedChoice = <String>[].obs;
   List<String> listJenisSeminar = ['Skripsi', 'Proposal', 'KP'];

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
 import 'package:siajte_app/app/data/models/dosen_model.dart';
@@ -9,6 +10,8 @@ import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/data/models/prodi_model.dart';
 import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 import 'package:siajte_app/app/theme/variable.dart';
+
+import 'package:timezone/timezone.dart' as tz;
 
 class JadwalSeminarController extends GetxController {
   RxBool isLoading = false.obs;
@@ -30,6 +33,8 @@ class JadwalSeminarController extends GetxController {
     isLoading.value = true;
     allJadwal.value = await getJadwalSeminar();
 
+    await makeNotificationLocal();
+
     isLoading.value = false;
 
     if (homeC.mapUser['role'] == 'mahasiswa') {
@@ -39,6 +44,25 @@ class JadwalSeminarController extends GetxController {
     } else {
       filterJadwal.value = allJadwal;
     }
+  }
+
+  Future<void> makeNotificationLocal() async {
+    List<DateTime> listTanggal = [];
+    allJadwal.map((element) {
+      listTanggal.add(DateTime.parse("${element.tanggal!} ${element.waktu!}"));
+    }).toList();
+
+    // jadikan listTanggal 24 jam sebelumnya, 1 jam sebelumnya, 30 menit sebelumnya, dan jam sekarang
+    List<DateTime> listTanggal2 = [];
+    for (var item in listTanggal) {
+      listTanggal2.add(item.subtract(const Duration(hours: 24)));
+      listTanggal2.add(item.subtract(const Duration(hours: 1)));
+      listTanggal2.add(item.subtract(const Duration(minutes: 30)));
+      listTanggal2.add(item);
+    }
+
+    print(listTanggal2);
+    listTanggal2.map((e) => scheduleNotification(e)).toList();
   }
 
   void filterJadwalSeminarWithChoice(List<String> val) async {
@@ -290,5 +314,40 @@ class JadwalSeminarController extends GetxController {
     String nimMahasiswa = response.data['data'][0]['nim'];
 
     return nimMahasiswa;
+  }
+
+  Future<void> scheduleNotification(DateTime scheduledDateTime) async {
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+
+    // Konfigurasi notifikasi
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      '1',
+      'jadwal',
+      channelDescription: 'jadwal Seminar',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    // TZDateTime time = TZDateTime.from(scheduledDateTime, tz.local);
+    // Ubah waktu ke dalam zona waktu yang diinginkan
+    final tz.TZDateTime scheduledDate =
+        tz.TZDateTime.from(scheduledDateTime, tz.local);
+
+    // Menjadwalkan notifikasi
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      0, // ID notifikasi (dapat digunakan untuk membatalkan notifikasi)
+      'Jadwal Seminar',
+      'Seminar akan dilaksanakan pada ${scheduledDate.hour}:${scheduledDate.minute} mohon untuk hadir tepat waktu',
+      scheduledDate,
+      platformChannelSpecifics,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
   }
 }
