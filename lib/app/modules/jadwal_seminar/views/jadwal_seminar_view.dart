@@ -8,10 +8,10 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/style.dart';
+import 'package:siajte_app/app/widgets/appbar_widget.dart';
 import 'package:siajte_app/app/widgets/card_jadwal_widget.dart';
 
 import '../../../theme/colors.dart';
-import '../../../widgets/appbar_widget.dart';
 import '../controllers/jadwal_seminar_controller.dart';
 
 class JadwalSeminarView extends GetView<JadwalSeminarController> {
