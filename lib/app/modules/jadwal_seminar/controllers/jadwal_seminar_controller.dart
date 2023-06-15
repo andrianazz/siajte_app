@@ -206,12 +206,14 @@ class JadwalSeminarController extends GetxController {
     for (var item in listJadwalSeminarSempro) {
       if (item.statusSeminar!.contains("0")) {
         if (item.pembimbingsatuNip!.contains(nipDosen) ||
-            item.pembimbingduaNip!.contains(nipDosen) ||
             item.pengujisatuNip!.contains(nipDosen) ||
             item.pengujiduaNip!.contains(nipDosen)) {
           result.add(item);
         } else if (item.pengujitigaNip != null &&
             item.pengujitigaNip!.contains(nipDosen)) {
+          result.add(item);
+        } else if (item.pembimbingduaNip != null &&
+            item.pembimbingduaNip!.contains(nipDosen)) {
           result.add(item);
         }
       }
@@ -220,12 +222,14 @@ class JadwalSeminarController extends GetxController {
     for (var item in listJadwalSeminarSkripsi) {
       if (item.statusSeminar!.contains("0")) {
         if (item.pembimbingsatuNip!.contains(nipDosen) ||
-            item.pembimbingduaNip!.contains(nipDosen) ||
             item.pengujisatuNip!.contains(nipDosen) ||
             item.pengujiduaNip!.contains(nipDosen)) {
           result.add(item);
         } else if (item.pengujitigaNip != null &&
             item.pengujitigaNip!.contains(nipDosen)) {
+          result.add(item);
+        } else if (item.pembimbingduaNip != null &&
+            item.pembimbingduaNip!.contains(nipDosen)) {
           result.add(item);
         }
       }
