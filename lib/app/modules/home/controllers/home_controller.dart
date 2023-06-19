@@ -36,6 +36,7 @@ class HomeController extends GetxController {
       await deletePreference();
     } else {
       debugPrint(prefs.getString('user')!);
+      Get.forceAppUpdate();
     }
   }
 

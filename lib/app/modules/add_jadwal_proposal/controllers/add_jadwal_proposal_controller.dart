@@ -76,22 +76,24 @@ class AddJadwalProposalController extends GetxController {
     Map<String, dynamic> mapUser = jsonDecode(user!);
 
     try {
+      Map<String, dynamic> dataMap = {
+        "mahasiswa_nim": mahasiswa.nim,
+        "pembimbingsatu_nip": pembimbing1.nip,
+        "pembimbingdua_nip": pembimbing2.nip,
+        "pengujisatu_nip": penguji1.nip,
+        "pengujidua_nip": penguji2.nip,
+        "pengujitiga_nip": penguji3.nip,
+        "prodi_id": prodiId,
+        "judul_proposal": judulProposal.text,
+        "tanggal": tanggal.value.toString().substring(0, 10),
+        "waktu": "${waktu.value.hour}:${waktu.value.minute}:00",
+        "lokasi": lokasi.text,
+        "user_id": mapUser['data']['id'],
+      };
+
       var response = await dio.post(
         "$baseUrlAPI/penjadwalan-sempro",
-        data: {
-          "mahasiswa_nim": mahasiswa.nim,
-          "pembimbingsatu_nip": pembimbing1.nip,
-          "pembimbingdua_nip": pembimbing2.nip,
-          "pengujisatu_nip": penguji1.nip,
-          "pengujidua_nip": penguji2.nip,
-          "pengujitiga_nip": penguji3.nip,
-          "prodi_id": prodiId,
-          "judul_proposal": judulProposal.text,
-          "tanggal": tanggal.value.toString().substring(0, 10),
-          "waktu": "${waktu.value.hour}:${waktu.value.minute}:00",
-          "lokasi": lokasi.text,
-          "user_id": mapUser['data']['id'],
-        },
+        data: dataMap,
         options: Options(
           receiveDataWhenStatusError: true,
           sendTimeout: const Duration(seconds: 5), // 60 seconds
@@ -102,7 +104,7 @@ class AddJadwalProposalController extends GetxController {
       var data = response.data;
 
       if (data != null) {
-        Get.snackbar("ADD Jadwal Berhasil", "${data['message']}");
+        Get.snackbar("ADD Jadwal Berhasil", "${data['status']}");
         isLoading.value = false;
         Get.offAllNamed(Routes.JADWAL_SEMINAR);
 
