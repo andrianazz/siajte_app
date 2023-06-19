@@ -311,10 +311,8 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                 //Riwayat Seminar untuk Mahasiswa
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Obx(
-                    () => controller.riwayatSeminarCondition(),
-                  ),
-                )
+                  child: controller.riwayatSeminarCondition(),
+                ),
               ],
             ),
           )

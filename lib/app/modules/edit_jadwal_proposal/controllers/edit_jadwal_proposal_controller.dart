@@ -17,10 +17,10 @@ class EditJadwalProposalController extends GetxController {
   late Mahasiswa mahasiswa;
 
   late Dosen pembimbing1;
-  late Dosen pembimbing2;
+  Dosen? pembimbing2;
   late Dosen penguji1;
   late Dosen penguji2;
-  late Dosen penguji3;
+  Dosen? penguji3;
 
   late int prodiId = penjadwalanSempro.prodiId!;
   late TextEditingController judulProposal =
@@ -116,10 +116,10 @@ class EditJadwalProposalController extends GetxController {
         data: {
           "mahasiswa_nim": mahasiswa.nim,
           "pembimbingsatu_nip": pembimbing1.nip,
-          "pembimbingdua_nip": pembimbing2.nip,
+          "pembimbingdua_nip": pembimbing2!.nip,
           "pengujisatu_nip": penguji1.nip,
           "pengujidua_nip": penguji2.nip,
-          "pengujitiga_nip": penguji3.nip,
+          "pengujitiga_nip": penguji3!.nip,
           "prodi_id": prodiId,
           "jenis_seminar": "Proposal",
           "judul_proposal": judulProposal.text,

@@ -100,23 +100,29 @@ class DetailJadwalSeminarController extends GetxController {
       status.value = int.parse(penjadwalanSempro.statusSeminar!);
       waktu.value = penjadwalanSempro.waktu!;
       lokasi.value = penjadwalanSempro.lokasi!;
+      judul.value = penjadwalanSempro.judulProposal!;
+
       pembimbing1.value =
           await getDosenWithNip(penjadwalanSempro.pembimbingsatuNip!);
-      pembimbing2.value =
-          await getDosenWithNip(penjadwalanSempro.pembimbingduaNip!);
+
+      if (penjadwalanSempro.pembimbingduaNip != null) {
+        pembimbing2.value =
+            await getDosenWithNip(penjadwalanSempro.pembimbingduaNip!);
+      }
 
       nimPemb1.value = penjadwalanSempro.pembimbingsatuNip!;
-      nimPemb2.value = penjadwalanSempro.pembimbingduaNip!;
+      nimPemb2.value = penjadwalanSempro.pembimbingduaNip ?? "";
 
       penguji1.value = await getDosenWithNip(penjadwalanSempro.pengujisatuNip!);
       penguji2.value = await getDosenWithNip(penjadwalanSempro.pengujiduaNip!);
-      penguji3.value = await getDosenWithNip(penjadwalanSempro.pengujitigaNip!);
 
+      if (penjadwalanSempro.pengujitigaNip != null) {
+        penguji3.value =
+            await getDosenWithNip(penjadwalanSempro.pengujitigaNip!);
+      }
       nimPeng1.value = penjadwalanSempro.pengujisatuNip!;
       nimPeng2.value = penjadwalanSempro.pengujiduaNip!;
-      nimPeng3.value = penjadwalanSempro.pengujitigaNip!;
-
-      judul.value = penjadwalanSempro.judulProposal!;
+      nimPeng3.value = penjadwalanSempro.pengujitigaNip ?? "";
     } else {
       PenjadwalanSkripsi penjadwalanSkripsi = Get.arguments;
 
@@ -138,20 +144,25 @@ class DetailJadwalSeminarController extends GetxController {
       lokasi.value = penjadwalanSkripsi.lokasi!;
       pembimbing1.value =
           await getDosenWithNip(penjadwalanSkripsi.pembimbingsatuNip!);
-      pembimbing2.value =
-          await getDosenWithNip(penjadwalanSkripsi.pembimbingduaNip!);
+
+      if (penjadwalanSkripsi.pembimbingduaNip != null) {
+        pembimbing2.value =
+            await getDosenWithNip(penjadwalanSkripsi.pembimbingduaNip!);
+      }
 
       nimPemb1.value = penjadwalanSkripsi.pembimbingsatuNip!;
-      nimPemb2.value = penjadwalanSkripsi.pembimbingduaNip!;
+      nimPemb2.value = penjadwalanSkripsi.pembimbingduaNip ?? "";
 
       penguji1.value = penguji1Nama;
       penguji2.value = await getDosenWithNip(penjadwalanSkripsi.pengujiduaNip!);
-      penguji3.value =
-          await getDosenWithNip(penjadwalanSkripsi.pengujitigaNip!);
+      if (penjadwalanSkripsi.pengujitigaNip != null) {
+        penguji3.value =
+            await getDosenWithNip(penjadwalanSkripsi.pengujitigaNip!);
+      }
 
       nimPeng1.value = penjadwalanSkripsi.pengujisatuNip!;
       nimPeng2.value = penjadwalanSkripsi.pengujiduaNip!;
-      nimPeng3.value = penjadwalanSkripsi.pengujitigaNip!;
+      nimPeng3.value = penjadwalanSkripsi.pengujitigaNip ?? "";
     }
   }
 
@@ -356,7 +367,7 @@ class DetailJadwalSeminarController extends GetxController {
       } else if (seminar.value == "Skripsi") {
         return const SizedBox();
       }
-    } else {
+    } else if (homeC.mapUser['role'] == "web") {
       return const SizedBox();
     }
 
