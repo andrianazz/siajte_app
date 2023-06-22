@@ -78,7 +78,7 @@ class PenjadwalanSempro extends Penjadwalan {
     pengujisatuNip = json['pengujisatu_nip'];
     pengujiduaNip = json['pengujidua_nip'];
     pengujitigaNip = json['pengujitiga_nip'];
-    prodiId = json['prodi_id'];
+    prodiId = int.parse(json['prodi_id']);
     jenisSeminar = json['jenis_seminar'];
     judulProposal = json['judul_proposal'];
     revisiProposal = json['revisi_proposal'];

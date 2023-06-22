@@ -52,7 +52,7 @@ class PenjadwalanKp extends Penjadwalan {
     mahasiswaNim = json['mahasiswa_nim'];
     pembimbingNip = json['pembimbing_nip'];
     pengujiNip = json['penguji_nip'];
-    prodiId = json['prodi_id'];
+    prodiId = int.parse(json['prodi_id']);
     jenisSeminar = json['jenis_seminar'];
     judulKp = json['judul_kp'];
     tanggal = json['tanggal'];

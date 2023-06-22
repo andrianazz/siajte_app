@@ -25,8 +25,8 @@ class Mahasiswa {
   Mahasiswa.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     roleId = json['role_id'];
-    prodiId = json['prodi_id'];
-    konsentrasiId = json['konsentrasi_id'];
+    prodiId = int.parse(json['prodi_id']);
+    konsentrasiId = int.parse(json['konsentrasi_id']);
     nim = json['nim'];
     nama = json['nama'];
     angkatan = json['angkatan'];

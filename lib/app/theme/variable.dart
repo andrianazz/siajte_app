@@ -1,9 +1,10 @@
-//For RealDevice
-// const String baseUrl = "http://192.168.45.248:8000/api";
+//For Real Server
+const String baseUrlAPI = "https://penilaianseminar.my.id/api";
+const String baseUrl = "https://penilaianseminar.my.id";
 
 // For Emulator
-const String baseUrlAPI = "http://10.0.2.2:8000/api";
-const String baseUrl = "http://10.0.2.2:8000";
+// const String baseUrlAPI = "http://10.0.2.2:8000/api";
+// const String baseUrl = "http://10.0.2.2:8000";
 
 //Real Device
 // const String baseUrlAPI = "http://192.168.22.70/laravel/public/api";
