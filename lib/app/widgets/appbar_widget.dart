@@ -65,42 +65,42 @@ class AppbarWidget extends StatelessWidget {
               ],
             ),
           ),
-          FutureBuilder(
-            future: controller.getUser(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return SizedBox(
-                  width: 100.w,
-                  child: Text(
-                    '${(controller.mapUser['data']['nama']).toString().capitalize}',
-                    style: poppins.copyWith(
-                        color: Colors.black,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.end,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                );
-              } else if (snapshot.hasError) {
-                return Text(
-                  'Error',
-                  style: poppins.copyWith(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                );
-              }
-              return Text(
-                'Loading...',
-                style: poppins.copyWith(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              );
-            },
-          )
+          // FutureBuilder(
+          //   future: controller.getUser(),
+          //   builder: (context, snapshot) {
+          //     if (snapshot.hasData) {
+          //       return SizedBox(
+          //         width: 100.w,
+          //         child: Text(
+          //           '${(controller.mapUser['data']['nama']).toString().capitalize}',
+          //           style: poppins.copyWith(
+          //               color: Colors.black,
+          //               fontSize: 12.sp,
+          //               fontWeight: FontWeight.w600),
+          //           textAlign: TextAlign.end,
+          //           overflow: TextOverflow.ellipsis,
+          //         ),
+          //       );
+          //     } else if (snapshot.hasError) {
+          //       return Text(
+          //         'Error',
+          //         style: poppins.copyWith(
+          //           fontSize: 12.sp,
+          //           fontWeight: FontWeight.w600,
+          //           color: Colors.black,
+          //         ),
+          //       );
+          //     }
+          //     return Text(
+          //       'Loading...',
+          //       style: poppins.copyWith(
+          //         fontSize: 12.sp,
+          //         fontWeight: FontWeight.w600,
+          //         color: Colors.black,
+          //       ),
+          //     );
+          //   },
+          // )
         ],
       ),
       actions: <Widget>[

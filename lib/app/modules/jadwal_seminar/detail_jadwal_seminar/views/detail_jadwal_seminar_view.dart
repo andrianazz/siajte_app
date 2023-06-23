@@ -29,7 +29,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+            margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -79,17 +79,17 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                     ],
                   ),
                 ),
-                SizedBox(height: 24.h),
-                Container(
-                  width: 327.w,
-                  height: 180.h,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/images/detail_seminar.png"),
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                SizedBox(height: 24.h),
+                // SizedBox(height: 5.h),
+                // Container(
+                //   width: 327.w,
+                //   height: 180.h,
+                //   decoration: const BoxDecoration(
+                //     image: DecorationImage(
+                //         image: AssetImage("assets/images/detail_seminar.png"),
+                //         fit: BoxFit.cover),
+                //   ),
+                // ),
+                SizedBox(height: 15.h),
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(
@@ -125,72 +125,72 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                             textTitle: "Nama",
                             textSubtitle: controller.nama.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "NIM",
                             textSubtitle: controller.nim.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Seminar",
                             textSubtitle: controller.seminar.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Judul",
                             textSubtitle: controller.judul.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Prodi",
                             textSubtitle: controller.prodi.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Tanggal",
                             textSubtitle: controller.tanggal.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Waktu",
                             textSubtitle: controller.waktu.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Lokasi",
                             textSubtitle: controller.lokasi.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           Divider(
                             color: dividerColor,
                             thickness: 1,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Pembimbing",
                             textSubtitle: controller.pembimbing1.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "",
                             textSubtitle: controller.pembimbing2.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           Divider(
                             color: dividerColor,
                             thickness: 1,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Penguji",
                             textSubtitle: controller.penguji1.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "",
                             textSubtitle: controller.penguji2.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "",
                             textSubtitle: controller.penguji3.value,
@@ -201,7 +201,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                   ),
                 ),
                 SizedBox(
-                  height: 20.h,
+                  height: 10.h,
                 ),
                 homeC.mapUser['role'] == "web"
                     ? SizedBox(
@@ -228,7 +228,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                         ),
                       )
                     : const SizedBox(),
-                SizedBox(height: 40.h),
+                SizedBox(height: 10.h),
 
                 //Input Nilai untuk Dosen
                 SingleChildScrollView(
@@ -257,23 +257,32 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                                 } else if (Get.arguments is PenjadwalanSempro) {
                                   final PenjadwalanSempro data = Get.arguments;
 
-                                  if (data.pembimbingsatuNip!.contains(
-                                          homeC.mapUser['data']['nip']) ||
-                                      data.pembimbingduaNip!.contains(
-                                          homeC.mapUser['data']['nip'])) {
+                                  if (data.pembimbingsatuNip!
+                                      .contains(homeC.mapUser['data']['nip'])) {
                                     //Pembimbing
 
                                     Get.toNamed(Routes.PENILAIAN_PEMB_PROPOSAL,
                                         arguments: data);
                                   } else if ((data.pengujisatuNip!.contains(
-                                              homeC.mapUser['data']['nip']) ||
-                                          data.pengujiduaNip!.contains(
-                                              homeC.mapUser['data']['nip'])) ||
-                                      data.pengujitigaNip!.contains(
-                                          homeC.mapUser['data']['nip'])) {
+                                          homeC.mapUser['data']['nip']) ||
+                                      data.pengujiduaNip!.contains(
+                                          homeC.mapUser['data']['nip']))) {
                                     //Penguji
                                     Get.toNamed(Routes.PENILAIAN_PENG_PROPOSAL,
                                         arguments: data);
+                                  } else if (data.pembimbingduaNip != null ||
+                                      data.pengujitigaNip != null) {
+                                    if (data.pembimbingduaNip!.contains(
+                                        homeC.mapUser['data']['nip'])) {
+                                      Get.toNamed(
+                                          Routes.PENILAIAN_PEMB_PROPOSAL,
+                                          arguments: data);
+                                    } else if (data.pengujitigaNip!.contains(
+                                        homeC.mapUser['data']['nip'])) {
+                                      Get.toNamed(
+                                          Routes.PENILAIAN_PENG_PROPOSAL,
+                                          arguments: data);
+                                    }
                                   }
                                 } else if (Get.arguments
                                     is PenjadwalanSkripsi) {

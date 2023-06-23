@@ -21,7 +21,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+            margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -41,17 +41,17 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                     ],
                   ),
                 ),
-                SizedBox(height: 24.h),
-                Container(
-                  width: 327.w,
-                  height: 180.h,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/images/detail_seminar.png"),
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                SizedBox(height: 24.h),
+                // SizedBox(height: 24.h),
+                // Container(
+                //   width: 327.w,
+                //   height: 180.h,
+                //   decoration: const BoxDecoration(
+                //     image: DecorationImage(
+                //         image: AssetImage("assets/images/detail_seminar.png"),
+                //         fit: BoxFit.cover),
+                //   ),
+                // ),
+                SizedBox(height: 15.h),
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(
@@ -87,72 +87,72 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                             textTitle: "Nama",
                             textSubtitle: controller.nama.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "NIM",
                             textSubtitle: controller.nim.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Seminar",
                             textSubtitle: controller.seminar.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Judul",
                             textSubtitle: controller.judul.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Prodi",
                             textSubtitle: controller.prodi.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Tanggal",
                             textSubtitle: controller.tanggal.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Waktu",
                             textSubtitle: controller.waktu.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Lokasi",
                             textSubtitle: controller.lokasi.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           Divider(
                             color: dividerColor,
                             thickness: 1,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Pembimbing",
                             textSubtitle: controller.pembimbing1.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "",
                             textSubtitle: controller.pembimbing2.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           Divider(
                             color: dividerColor,
                             thickness: 1,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "Penguji",
                             textSubtitle: controller.penguji1.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "",
                             textSubtitle: controller.penguji2.value,
                           ),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: 5.h),
                           DetailSeminar(
                             textTitle: "",
                             textSubtitle: controller.penguji3.value,
@@ -162,7 +162,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                     },
                   ),
                 ),
-                SizedBox(height: 40.h),
+                SizedBox(height: 10.h),
 
                 //Input Nilai untuk Dosen
                 SingleChildScrollView(
