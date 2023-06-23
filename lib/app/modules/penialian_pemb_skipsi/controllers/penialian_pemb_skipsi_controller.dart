@@ -296,12 +296,14 @@ class PenialianPembSkipsiController extends GetxController {
       print("pemb sempro 1");
       await getPenilaianSkripsi(
           penjadwalanSkripsi.pembimbingsatuNip.toString());
+      Get.forceAppUpdate();
     } else if (penjadwalanSkripsi.pembimbingduaNip != null) {
       if (penjadwalanSkripsi.pembimbingduaNip.toString() ==
           homeC.mapUser['data']['nip'].toString()) {
         print("pemb sempro 2");
         await getPenilaianSkripsi(
             penjadwalanSkripsi.pembimbingduaNip.toString());
+        Get.forceAppUpdate();
       }
     }
   }

@@ -276,12 +276,14 @@ class PenilaianPembProposalController extends GetxController {
     if (penjadwalanSempro.pembimbingsatuNip.toString() ==
         homeC.mapUser['data']['nip'].toString()) {
       print("pemb sempro 1");
+      Get.forceAppUpdate();
       await getPenilaianSempro(penjadwalanSempro.pembimbingsatuNip.toString());
     } else if (penjadwalanSempro.pembimbingduaNip != null) {
       if (penjadwalanSempro.pembimbingduaNip.toString() ==
           homeC.mapUser['data']['nip'].toString()) {
         print("pemb sempro 2");
         await getPenilaianSempro(penjadwalanSempro.pembimbingduaNip.toString());
+        Get.forceAppUpdate();
       }
     }
   }

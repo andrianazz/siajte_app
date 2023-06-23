@@ -334,5 +334,6 @@ class PenilaianPengKpController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     await getPenilaianKPPeng(penjadwalanKp.pengujiNip.toString());
+    Get.forceAppUpdate();
   }
 }

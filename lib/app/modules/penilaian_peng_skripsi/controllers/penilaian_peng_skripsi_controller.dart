@@ -611,11 +611,13 @@ class PenilaianPengSkripsiController extends GetxController {
     if (jadwalSkripsi.pengujiduaNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 2");
       await getPenilaianSkripsiPeng(jadwalSkripsi.pengujiduaNip.toString());
+      Get.forceAppUpdate();
     } else if (jadwalSkripsi.pengujitigaNip != null) {
       if (jadwalSkripsi.pengujitigaNip!
           .contains(homeC.mapUser['data']['nip'])) {
         print("peng sempro 3");
         await getPenilaianSkripsiPeng(jadwalSkripsi.pengujitigaNip.toString());
+        Get.forceAppUpdate();
       }
     }
   }

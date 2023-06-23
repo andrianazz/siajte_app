@@ -502,10 +502,12 @@ class PenilaianPengProposalController extends GetxController {
     if (jadwalSempro.pengujiduaNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 2");
       await getPenilaianKPPeng(penjadwalanSempro.pengujiduaNip.toString());
+      Get.forceAppUpdate();
     } else if (jadwalSempro.pengujitigaNip != null) {
       if (jadwalSempro.pengujitigaNip!.contains(homeC.mapUser['data']['nip'])) {
         print("peng sempro 3");
         await getPenilaianKPPeng(penjadwalanSempro.pengujitigaNip.toString());
+        Get.forceAppUpdate();
       }
     }
   }

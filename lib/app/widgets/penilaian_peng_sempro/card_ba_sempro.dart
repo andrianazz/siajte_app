@@ -323,9 +323,7 @@ class CardBASempro extends StatelessWidget {
                         }
 
                         if (snapshot.hasError) {
-                          return Center(
-                            child: Text("Error: ${snapshot.error}"),
-                          );
+                          return const SizedBox();
                         }
 
                         return FutureBuilder(
@@ -590,9 +588,7 @@ class CardBASempro extends StatelessWidget {
                           }
 
                           if (snapshot.hasError) {
-                            return const Center(
-                              child: Text("Error"),
-                            );
+                            return const SizedBox();
                           }
 
                           return Column(

@@ -819,12 +819,7 @@ class CardBASkripsi extends StatelessWidget {
                         }
 
                         if (snapshot.hasError) {
-                          return Center(
-                            child: Text(
-                              'Error: ${snapshot.error}',
-                              style: poppins,
-                            ),
-                          );
+                          return const SizedBox();
                         }
 
                         return Column(
