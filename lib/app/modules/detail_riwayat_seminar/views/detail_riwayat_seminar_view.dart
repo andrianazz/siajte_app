@@ -164,20 +164,20 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                 ),
                 SizedBox(height: 10.h),
 
-                //Input Nilai untuk Dosen
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      CardSubDetailWidget(
-                        onTap: () {},
-                        title: "Input / Edit Nilai",
-                        color: primaryColor,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20.h),
+                // //Input Nilai untuk Dosen
+                // SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   child: Row(
+                //     children: [
+                //       CardSubDetailWidget(
+                //         onTap: () {},
+                //         title: "Input / Edit Nilai",
+                //         color: primaryColor,
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(height: 20.h),
 
                 //Riwayat Seminar untuk Mahasiswa
                 SingleChildScrollView(

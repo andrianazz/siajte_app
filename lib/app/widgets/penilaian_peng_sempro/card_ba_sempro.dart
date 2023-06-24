@@ -6,6 +6,8 @@ import 'package:siajte_app/app/modules/penilaian_peng_proposal/controllers/penil
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
+import '../../routes/app_pages.dart';
+
 class CardBASempro extends StatelessWidget {
   const CardBASempro({super.key});
 
@@ -767,7 +769,59 @@ class CardBASempro extends StatelessWidget {
           width: double.infinity,
           height: 44.h,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              //TODO: Checking Lagi
+
+              Get.dialog(
+                AlertDialog(
+                  title: Text(
+                    "Selesaikan Seminar",
+                    style: poppins.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  content: Text(
+                    "Apakah anda yakin ingin menyelesaikan seminar ini?",
+                    style: poppins.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        "Batal",
+                        style: poppins.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        pengProposalController.selesaikanSeminar(
+                            pengProposalController.penjadwalanSempro.id);
+                        Get.offAllNamed(Routes.HOME);
+                        Get.forceAppUpdate();
+                      },
+                      child: Text(
+                        "Selesaikan",
+                        style: poppins.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(

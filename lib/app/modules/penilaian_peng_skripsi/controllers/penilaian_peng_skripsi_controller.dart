@@ -242,6 +242,25 @@ class PenilaianPengSkripsiController extends GetxController {
     }
   }
 
+  Future<void> selesaikanSeminar(id) async {
+    isLoading.value = true;
+
+    var response = await dio.put(
+      "$baseUrlAPI/penjadwalan-skripsi/$id",
+      data: {
+        "status_seminar": 1,
+      },
+      options: Options(
+        receiveDataWhenStatusError: true,
+        sendTimeout: const Duration(seconds: 5), // 60 seconds
+        receiveTimeout: const Duration(seconds: 2),
+      ),
+    );
+
+    var data = response.data;
+    Get.snackbar("Berhasil Selesaikan Seminar", "${data['status']}");
+  }
+
   Future<void> getTotalandHuruf() async {
     //sum value of scoreMapPemb
     double total = scoreMapPengSkripsi.value['presentasi'] +

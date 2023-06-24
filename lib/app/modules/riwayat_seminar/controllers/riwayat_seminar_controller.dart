@@ -47,6 +47,8 @@ class RiwayatSeminarController extends GetxController {
 
     isLoading.value = false;
 
+    result.sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
+
     filterJadwal.value = result;
   }
 
@@ -67,6 +69,8 @@ class RiwayatSeminarController extends GetxController {
         return val.contains(element.jenisSeminar);
       }).toList();
     }
+
+    //tgl seminar ascending
 
     filterJadwal.value = result;
   }
@@ -153,6 +157,8 @@ class RiwayatSeminarController extends GetxController {
         penjadwalan.add(item);
       }
     }
+
+    penjadwalan.sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
 
     return penjadwalan;
   }
@@ -258,6 +264,8 @@ class RiwayatSeminarController extends GetxController {
     }
 
     isLoading.value = false;
+
+    result.sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
 
     filterJadwal.value = result;
   }

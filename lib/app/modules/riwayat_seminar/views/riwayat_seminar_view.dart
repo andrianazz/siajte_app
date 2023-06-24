@@ -105,7 +105,7 @@ class RiwayatSeminarView extends GetView<RiwayatSeminarController> {
                               return CardJadwalWidget(
                                 onTap: () {
                                   Get.toNamed(
-                                    Routes.DETAIL_JADWAL_SEMINAR,
+                                    Routes.DETAIL_RIWAYAT_SEMINAR,
                                     arguments:
                                         controller.filterJadwal.value[index],
                                   );

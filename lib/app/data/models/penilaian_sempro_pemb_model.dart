@@ -27,8 +27,8 @@ class PenilaianSemproPemb {
       this.updatedAt});
 
   PenilaianSemproPemb.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    penjadwalanSemproId = int.parse(json['penjadwalan_sempro_id']);
+    id = int.parse(json['id'].toString());
+    penjadwalanSemproId = int.parse(json['penjadwalan_sempro_id'].toString());
     pembimbingNip = json['pembimbing_nip'];
     penguasaanDasarTeori = json['penguasaan_dasar_teori'].toString();
     tingkatPenguasaanMateri = json['tingkat_penguasaan_materi'].toString();

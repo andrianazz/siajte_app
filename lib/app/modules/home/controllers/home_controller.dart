@@ -317,7 +317,7 @@ class HomeController extends GetxController {
                                 return CardJadwalWidget(
                                   onTap: () {
                                     Get.toNamed(
-                                      Routes.DETAIL_JADWAL_SEMINAR,
+                                      Routes.DETAIL_RIWAYAT_SEMINAR,
                                       arguments: riwayatSeminarC
                                           .filterJadwal.value[index],
                                     );

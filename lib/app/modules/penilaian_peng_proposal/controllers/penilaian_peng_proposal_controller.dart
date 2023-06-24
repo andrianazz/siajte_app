@@ -358,6 +358,25 @@ class PenilaianPengProposalController extends GetxController {
     return {"status": false, "message": "Terjadi kesalahan"};
   }
 
+  Future<void> selesaikanSeminar(id) async {
+    isLoading.value = true;
+
+    var response = await dio.put(
+      "$baseUrlAPI/penjadwalan-sempro/$id",
+      data: {
+        "status_seminar": 1,
+      },
+      options: Options(
+        receiveDataWhenStatusError: true,
+        sendTimeout: const Duration(seconds: 5), // 60 seconds
+        receiveTimeout: const Duration(seconds: 2),
+      ),
+    );
+
+    var data = response.data;
+    Get.snackbar("Berhasil Selesaikan Seminar", "${data['status']}");
+  }
+
   Future<Map<String, dynamic>> updateCatatanSemproAPI(String id) async {
     isLoading.value = true;
 
@@ -497,6 +516,7 @@ class PenilaianPengProposalController extends GetxController {
         "Revisi Judul",
         "Berita Acara",
       ]);
+      Get.forceAppUpdate();
     }
 
     if (jadwalSempro.pengujiduaNip!.contains(homeC.mapUser['data']['nip'])) {
@@ -526,32 +546,46 @@ class PenilaianPengProposalController extends GetxController {
 
       if (dataPemb != null && dataPeng != null) {
         dataPemb.forEach((element) {
-          if (element['penjadwalan_sempro_id'] == penjadwalanSempro.id) {
+          if (element['penjadwalan_sempro_id'] ==
+              penjadwalanSempro.id.toString()) {
             pemb.add(PenilaianSemproPemb.fromJson(element));
           }
         });
 
         dataPeng.forEach((element) {
-          if (element['penjadwalan_sempro_id'] == penjadwalanSempro.id) {
+          if (element['penjadwalan_sempro_id'] ==
+              penjadwalanSempro.id.toString()) {
             peng.add(PenilaianSemproPeng.fromJson(element));
           }
         });
 
-        double totalPemb = pemb.map((expense) => expense.totalNilaiAngka).fold(
+        // double totalPemb = pemb.map((expense) => expense.totalNilaiAngka).fold(
+        //     0,
+        //     (prev, amount) =>
+        //         double.parse(prev.toString()) +
+        //         double.parse(amount.toString()));
+
+        double totalPemb = dataPemb.map((e) => e['total_nilai_angka']).fold(
             0,
             (prev, amount) =>
                 double.parse(prev.toString()) +
                 double.parse(amount.toString()));
 
-        totalPemb = totalPemb / pemb.length;
+        totalPemb = totalPemb / dataPemb.length;
 
-        double totalPeng = peng.map((e) => e.totalNilaiAngka).fold(
+        // double totalPeng = peng.map((e) => e.totalNilaiAngka).fold(
+        //     0,
+        //     (prev, amount) =>
+        //         double.parse(prev.toString()) +
+        //         double.parse(amount.toString()));
+
+        double totalPeng = dataPeng.map((e) => e['total_nilai_angka']).fold(
             0,
             (prev, amount) =>
                 double.parse(prev.toString()) +
                 double.parse(amount.toString()));
 
-        totalPeng = totalPeng / peng.length;
+        totalPeng = totalPeng / dataPeng.length;
 
         baNilaiAkhir.value = (totalPemb + totalPeng).ceilToDouble();
         if (baNilaiAkhir > 70) {
