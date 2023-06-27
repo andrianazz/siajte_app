@@ -84,28 +84,6 @@ class EditJadwalProposalController extends GetxController {
                 (element) => element.nip == penjadwalanSempro.pembimbingsatuNip)
             .first;
 
-        if (penjadwalanSempro.pembimbingduaNip!.isNotEmpty) {
-          pembimbing2.value = allDosen
-              .where((element) =>
-                  element.nip == penjadwalanSempro.pembimbingduaNip)
-              .first;
-        }
-
-        penguji1.value = allDosen
-            .where((element) => element.nip == penjadwalanSempro.pengujisatuNip)
-            .first;
-
-        penguji2.value = allDosen
-            .where((element) => element.nip == penjadwalanSempro.pengujiduaNip)
-            .first;
-
-        if (penjadwalanSempro.pengujitigaNip!.isNotEmpty) {
-          penguji3.value = allDosen
-              .where(
-                  (element) => element.nip == penjadwalanSempro.pengujitigaNip)
-              .first;
-        }
-
         return allDosen;
       }
     } catch (e) {

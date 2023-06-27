@@ -14,10 +14,15 @@ class EditJadwalKpController extends GetxController {
   Dio dio = Dio();
   late SharedPreferences prefs;
 
-  late Mahasiswa mahasiswa;
+  //Type data biasa
+  // late Mahasiswa mahasiswa;
+  // late Dosen pembimbing;
+  // late Dosen penguji;
 
-  late Dosen pembimbing;
-  late Dosen penguji;
+  // Type data Rx
+  late Rx<Mahasiswa> mahasiswa = Mahasiswa().obs;
+  late Rx<Dosen> pembimbing = Dosen().obs;
+  late Rx<Dosen> penguji = Dosen().obs;
 
   late int prodiId = penjadwalanKp.prodiId!;
   late TextEditingController judulKP =
@@ -41,7 +46,7 @@ class EditJadwalKpController extends GetxController {
           allMahasiswa.add(Mahasiswa.fromJson(item));
         }
 
-        mahasiswa = allMahasiswa
+        mahasiswa.value = allMahasiswa
             .where((element) => element.nim == penjadwalanKp.mahasiswaNim)
             .first;
 
@@ -56,7 +61,7 @@ class EditJadwalKpController extends GetxController {
     return allMahasiswa;
   }
 
-  Future<List<Dosen>> getAllDosen() async {
+  Future<List<Dosen>> getAllDosen1() async {
     List<Dosen> allDosen = [];
     try {
       var response = await dio.get('$baseUrlAPI/dosen');
@@ -68,11 +73,31 @@ class EditJadwalKpController extends GetxController {
         //sort mahasiswa nama
         allDosen.sort((a, b) => a.nama!.compareTo(b.nama!));
 
-        pembimbing = allDosen
+        pembimbing.value = allDosen
             .where((element) => element.nip == penjadwalanKp.pembimbingNip)
             .first;
 
-        penguji = allDosen
+        return allDosen;
+      }
+    } catch (e) {
+      print(e);
+    }
+    return allDosen;
+  }
+
+  Future<List<Dosen>> getAllDosen2() async {
+    List<Dosen> allDosen = [];
+    try {
+      var response = await dio.get('$baseUrlAPI/dosen');
+      if (response.statusCode == 200) {
+        for (var item in response.data['data']) {
+          allDosen.add(Dosen.fromJson(item));
+        }
+
+        //sort mahasiswa nama
+        allDosen.sort((a, b) => a.nama!.compareTo(b.nama!));
+
+        penguji.value = allDosen
             .where((element) => element.nip == penjadwalanKp.pengujiNip)
             .first;
 
@@ -92,9 +117,9 @@ class EditJadwalKpController extends GetxController {
       var response = await dio.put(
         "$baseUrlAPI/penjadwalan-kp/${penjadwalanKp.id}",
         data: {
-          "mahasiswa_nim": mahasiswa.nim,
-          "pembimbing_nip": pembimbing.nip,
-          "penguji_nip": penguji.nip,
+          "mahasiswa_nim": mahasiswa.value.nim,
+          "pembimbing_nip": pembimbing.value.nip,
+          "penguji_nip": penguji.value.nip,
           "prodi_id": prodiId,
           "jenis_seminar": "KP",
           "judul_kp": judulKP.text,
