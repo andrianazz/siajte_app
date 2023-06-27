@@ -67,13 +67,18 @@ class JadwalSeminarController extends GetxController {
 
     print(listTanggal2);
     listTanggal2.map((e) {
+      int index = listTanggal2.indexOf(e);
       if (e.isAfter(DateTime.now())) {
-        scheduleNotification(e);
+        // if (listTanggal2.indexOf(e) == 0) {
+        //   scheduleNotification(e);
+        // }
+        scheduleNotification(e, index);
       }
     }).toList();
   }
 
-  Future<void> scheduleNotification(DateTime scheduledDateTime) async {
+  Future<void> scheduleNotification(
+      DateTime scheduledDateTime, int index) async {
     tz.initializeTimeZones();
     tz.setLocalLocation(tz.getLocation("Asia/Jakarta"));
 
@@ -99,7 +104,7 @@ class JadwalSeminarController extends GetxController {
 
     // Menjadwalkan notifikasi
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      0, // ID notifikasi (dapat digunakan untuk membatalkan notifikasi)
+      index, // ID notifikasi (dapat digunakan untuk membatalkan notifikasi)
       'Jadwal Seminar',
       'Seminar akan dilaksanakan pada ${scheduled.hour}:${scheduled.minute} mohon untuk hadir tepat waktu',
       scheduled,
