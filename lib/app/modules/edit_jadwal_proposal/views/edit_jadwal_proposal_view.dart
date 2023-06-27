@@ -74,7 +74,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                     }
 
                     return DropdownButtonFormField(
-                      value: controller.mahasiswa,
+                      value: controller.mahasiswa.value,
                       items: snapshot.data!
                           .map(
                             (element) => DropdownMenuItem(
@@ -87,7 +87,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                           )
                           .toList(),
                       onChanged: (value) {
-                        controller.mahasiswa = value!;
+                        controller.mahasiswa.value = value as Mahasiswa;
                       },
                       decoration: InputDecoration(
                         hintText: 'Pilih Mahasiswa',
@@ -173,7 +173,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                 ),
                 SizedBox(height: 8.h),
                 FutureBuilder<List<Dosen>>(
-                  future: controller.getAllDosen(),
+                  future: controller.getAllDosen1(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return DropdownButtonFormField(
@@ -195,7 +195,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                     }
                     if (snapshot.hasError) {}
                     return DropdownButtonFormField(
-                      value: controller.pembimbing1,
+                      value: controller.pembimbing1.value,
                       items: snapshot.data!
                           .map((e) => DropdownMenuItem(
                                 value: e,
@@ -203,7 +203,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                               ))
                           .toList(),
                       onChanged: (value) {
-                        controller.pembimbing1 = value!;
+                        controller.pembimbing1.value = value as Dosen;
                       },
                       decoration: InputDecoration(
                         hintText: 'Pilih Pembimbing',
@@ -227,7 +227,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                 ),
                 SizedBox(height: 8.h),
                 FutureBuilder<List<Dosen>>(
-                  future: controller.getAllDosen(),
+                  future: controller.getAllDosen2(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return DropdownButtonFormField(
@@ -249,7 +249,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                     }
                     if (snapshot.hasError) {}
                     return DropdownButtonFormField(
-                      value: controller.pembimbing2,
+                      value: controller.pembimbing2.value,
                       items: snapshot.data!
                           .map((e) => DropdownMenuItem(
                                 value: e,
@@ -257,7 +257,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                               ))
                           .toList(),
                       onChanged: (value) {
-                        controller.pembimbing2 = value!;
+                        controller.pembimbing2.value = value as Dosen;
                       },
                       decoration: InputDecoration(
                         hintText: 'Pilih Pembimbing',
@@ -281,7 +281,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                 ),
                 SizedBox(height: 8.h),
                 FutureBuilder<List<Dosen>>(
-                  future: controller.getAllDosen(),
+                  future: controller.getAllDosen3(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return DropdownButtonFormField(
@@ -303,7 +303,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                     }
                     if (snapshot.hasError) {}
                     return DropdownButtonFormField(
-                      value: controller.penguji1,
+                      value: controller.penguji1.value,
                       items: snapshot.data!
                           .map((e) => DropdownMenuItem(
                                 value: e,
@@ -311,7 +311,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                               ))
                           .toList(),
                       onChanged: (value) {
-                        controller.penguji1 = value!;
+                        controller.penguji1.value = value as Dosen;
                       },
                       decoration: InputDecoration(
                         hintText: 'Pilih Penguji',
@@ -335,7 +335,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                 ),
                 SizedBox(height: 8.h),
                 FutureBuilder<List<Dosen>>(
-                  future: controller.getAllDosen(),
+                  future: controller.getAllDosen4(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return DropdownButtonFormField(
@@ -357,7 +357,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                     }
                     if (snapshot.hasError) {}
                     return DropdownButtonFormField(
-                      value: controller.penguji2,
+                      value: controller.penguji2.value,
                       items: snapshot.data!
                           .map((e) => DropdownMenuItem(
                                 value: e,
@@ -365,7 +365,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                               ))
                           .toList(),
                       onChanged: (value) {
-                        controller.penguji2 = value!;
+                        controller.penguji2.value = value as Dosen;
                       },
                       decoration: InputDecoration(
                         hintText: 'Pilih Penguji',
@@ -389,7 +389,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                 ),
                 SizedBox(height: 8.h),
                 FutureBuilder<List<Dosen>>(
-                  future: controller.getAllDosen(),
+                  future: controller.getAllDosen5(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return DropdownButtonFormField(
@@ -411,7 +411,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                     }
                     if (snapshot.hasError) {}
                     return DropdownButtonFormField(
-                      value: controller.penguji3,
+                      value: controller.penguji3.value,
                       items: snapshot.data!
                           .map((e) => DropdownMenuItem(
                                 value: e,
@@ -419,7 +419,7 @@ class EditJadwalProposalView extends GetView<EditJadwalProposalController> {
                               ))
                           .toList(),
                       onChanged: (value) {
-                        controller.penguji3 = value!;
+                        controller.penguji3.value = value as Dosen;
                       },
                       decoration: InputDecoration(
                         hintText: 'Pilih Penguji',

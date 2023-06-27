@@ -14,13 +14,21 @@ class EditJadwalProposalController extends GetxController {
   Dio dio = Dio();
   late SharedPreferences prefs;
 
-  late Mahasiswa mahasiswa;
+  //Tipe data biasa
+  // late Mahasiswa mahasiswa;
+  // late Dosen pembimbing1;
+  // Dosen? pembimbing2;
+  // late Dosen penguji1;
+  // late Dosen penguji2;
+  // Dosen? penguji3;
 
-  late Dosen pembimbing1;
-  Dosen? pembimbing2;
-  late Dosen penguji1;
-  late Dosen penguji2;
-  Dosen? penguji3;
+  //Tipe data Rx
+  late Rx<Mahasiswa> mahasiswa = Mahasiswa().obs;
+  late Rx<Dosen> pembimbing1 = Dosen().obs;
+  late Rx<Dosen> pembimbing2 = Dosen().obs;
+  late Rx<Dosen> penguji1 = Dosen().obs;
+  late Rx<Dosen> penguji2 = Dosen().obs;
+  late Rx<Dosen> penguji3 = Dosen().obs;
 
   late int prodiId = penjadwalanSempro.prodiId!;
   late TextEditingController judulProposal =
@@ -44,7 +52,7 @@ class EditJadwalProposalController extends GetxController {
           allMahasiswa.add(Mahasiswa.fromJson(item));
         }
 
-        mahasiswa = allMahasiswa
+        mahasiswa.value = allMahasiswa
             .where((element) => element.nim == penjadwalanSempro.mahasiswaNim)
             .first;
 
@@ -59,7 +67,7 @@ class EditJadwalProposalController extends GetxController {
     return allMahasiswa;
   }
 
-  Future<List<Dosen>> getAllDosen() async {
+  Future<List<Dosen>> getAllDosen1() async {
     List<Dosen> allDosen = [];
     try {
       var response = await dio.get('$baseUrlAPI/dosen');
@@ -71,28 +79,130 @@ class EditJadwalProposalController extends GetxController {
         //sort mahasiswa nama
         allDosen.sort((a, b) => a.nama!.compareTo(b.nama!));
 
-        pembimbing1 = allDosen
+        pembimbing1.value = allDosen
             .where(
                 (element) => element.nip == penjadwalanSempro.pembimbingsatuNip)
             .first;
 
         if (penjadwalanSempro.pembimbingduaNip!.isNotEmpty) {
-          pembimbing2 = allDosen
+          pembimbing2.value = allDosen
               .where((element) =>
                   element.nip == penjadwalanSempro.pembimbingduaNip)
               .first;
         }
 
-        penguji1 = allDosen
+        penguji1.value = allDosen
             .where((element) => element.nip == penjadwalanSempro.pengujisatuNip)
             .first;
 
-        penguji2 = allDosen
+        penguji2.value = allDosen
             .where((element) => element.nip == penjadwalanSempro.pengujiduaNip)
             .first;
 
         if (penjadwalanSempro.pengujitigaNip!.isNotEmpty) {
-          penguji3 = allDosen
+          penguji3.value = allDosen
+              .where(
+                  (element) => element.nip == penjadwalanSempro.pengujitigaNip)
+              .first;
+        }
+
+        return allDosen;
+      }
+    } catch (e) {
+      print(e);
+    }
+    return allDosen;
+  }
+
+  Future<List<Dosen>> getAllDosen2() async {
+    List<Dosen> allDosen = [];
+    try {
+      var response = await dio.get('$baseUrlAPI/dosen');
+      if (response.statusCode == 200) {
+        for (var item in response.data['data']) {
+          allDosen.add(Dosen.fromJson(item));
+        }
+
+        //sort mahasiswa nama
+        allDosen.sort((a, b) => a.nama!.compareTo(b.nama!));
+
+        if (penjadwalanSempro.pembimbingduaNip!.isNotEmpty) {
+          pembimbing2.value = allDosen
+              .where((element) =>
+                  element.nip == penjadwalanSempro.pembimbingduaNip)
+              .first;
+        }
+
+        return allDosen;
+      }
+    } catch (e) {
+      print(e);
+    }
+    return allDosen;
+  }
+
+  Future<List<Dosen>> getAllDosen3() async {
+    List<Dosen> allDosen = [];
+    try {
+      var response = await dio.get('$baseUrlAPI/dosen');
+      if (response.statusCode == 200) {
+        for (var item in response.data['data']) {
+          allDosen.add(Dosen.fromJson(item));
+        }
+
+        //sort mahasiswa nama
+        allDosen.sort((a, b) => a.nama!.compareTo(b.nama!));
+
+        penguji1.value = allDosen
+            .where((element) => element.nip == penjadwalanSempro.pengujisatuNip)
+            .first;
+
+        return allDosen;
+      }
+    } catch (e) {
+      print(e);
+    }
+    return allDosen;
+  }
+
+  Future<List<Dosen>> getAllDosen4() async {
+    List<Dosen> allDosen = [];
+    try {
+      var response = await dio.get('$baseUrlAPI/dosen');
+      if (response.statusCode == 200) {
+        for (var item in response.data['data']) {
+          allDosen.add(Dosen.fromJson(item));
+        }
+
+        //sort mahasiswa nama
+        allDosen.sort((a, b) => a.nama!.compareTo(b.nama!));
+
+        penguji2.value = allDosen
+            .where((element) => element.nip == penjadwalanSempro.pengujiduaNip)
+            .first;
+
+        return allDosen;
+      }
+    } catch (e) {
+      print(e);
+    }
+    return allDosen;
+  }
+
+  Future<List<Dosen>> getAllDosen5() async {
+    List<Dosen> allDosen = [];
+    try {
+      var response = await dio.get('$baseUrlAPI/dosen');
+      if (response.statusCode == 200) {
+        for (var item in response.data['data']) {
+          allDosen.add(Dosen.fromJson(item));
+        }
+
+        //sort mahasiswa nama
+        allDosen.sort((a, b) => a.nama!.compareTo(b.nama!));
+
+        if (penjadwalanSempro.pengujitigaNip!.isNotEmpty) {
+          penguji3.value = allDosen
               .where(
                   (element) => element.nip == penjadwalanSempro.pengujitigaNip)
               .first;
@@ -114,12 +224,12 @@ class EditJadwalProposalController extends GetxController {
       var response = await dio.put(
         "$baseUrlAPI/penjadwalan-sempro/${penjadwalanSempro.id}",
         data: {
-          "mahasiswa_nim": mahasiswa.nim,
-          "pembimbingsatu_nip": pembimbing1.nip,
-          "pembimbingdua_nip": pembimbing2!.nip,
-          "pengujisatu_nip": penguji1.nip,
-          "pengujidua_nip": penguji2.nip,
-          "pengujitiga_nip": penguji3!.nip,
+          "mahasiswa_nim": mahasiswa.value.nim,
+          "pembimbingsatu_nip": pembimbing1.value.nip,
+          "pembimbingdua_nip": pembimbing2.value.nip,
+          "pengujisatu_nip": penguji1.value.nip,
+          "pengujidua_nip": penguji2.value.nip,
+          "pengujitiga_nip": penguji3.value.nip,
           "prodi_id": prodiId,
           "jenis_seminar": "Proposal",
           "judul_proposal": judulProposal.text,
