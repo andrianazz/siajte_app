@@ -7,11 +7,11 @@ import 'package:siajte_app/app/data/models/penjadwalan_sempro_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
+import 'package:siajte_app/app/widgets/card_inputnilai_widget.dart';
 
 import '../../../../theme/colors.dart';
 import '../../../../theme/style.dart';
 import '../../../../widgets/appbar_widget.dart';
-import '../../../../widgets/card_subdetail_widget.dart';
 import '../controllers/detail_jadwal_seminar_controller.dart';
 
 class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
@@ -236,7 +236,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                   child: Row(
                     children: [
                       homeC.mapUser['role'] == "dosen"
-                          ? CardSubDetailWidget(
+                          ? CardInputNilaiWidget(
                               onTap: () {
                                 if (Get.arguments is PenjadwalanKp) {
                                   //check if pembimbing

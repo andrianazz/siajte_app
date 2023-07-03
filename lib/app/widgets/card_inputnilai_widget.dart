@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../theme/colors.dart';
+import '../theme/style.dart';
+
+class CardInputNilaiWidget extends StatelessWidget {
+  final Function onTap;
+  final String title;
+  final Color color;
+  const CardInputNilaiWidget({
+    super.key,
+    required this.onTap,
+    required this.title,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width - 30.w,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: poppins.copyWith(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w600,
+              color: secondaryJadwalSeminar,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          GestureDetector(
+            onTap: () {
+              onTap();
+            },
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(
+                    Icons.assignment_add,
+                    color: Colors.white,
+                    size: 28.w,
+                  ),
+                  Text(
+                    title,
+                    style: poppins.copyWith(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

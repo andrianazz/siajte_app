@@ -26,6 +26,14 @@ class CardJadwalWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.7),
+            spreadRadius: 1,
+            blurRadius: 10,
+            offset: const Offset(1, 5),
+          ),
+        ],
       ),
       child: Material(
         color: Colors.transparent,

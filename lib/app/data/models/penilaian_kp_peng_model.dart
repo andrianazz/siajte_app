@@ -33,8 +33,8 @@ class PenilaianKpPeng {
       this.updatedAt});
 
   PenilaianKpPeng.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    penjadwalanKpId = json['penjadwalan_kp_id'];
+    id = int.parse(json['id'].toString());
+    penjadwalanKpId = int.parse(json['penjadwalan_kp_id'].toString());
     pengujiNip = json['penguji_nip'];
     presentasi = json['presentasi'];
     materi = json['materi'];

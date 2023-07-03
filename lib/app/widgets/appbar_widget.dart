@@ -18,52 +18,69 @@ class AppbarWidget extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
+      leading: Get.routing.current == Routes.HOME
+          ? const SizedBox()
+          : IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: primaryColor,
+              ),
+            ),
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.HOME),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/images/logo.png',
-                  width: 24.w,
-                  height: 24.h,
-                ),
-                SizedBox(width: 16.w),
-                FutureBuilder(
-                  future: controller.getUser(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Text(
-                        'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
-                        style: poppins.copyWith(
-                            color: Colors.black,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600),
-                      );
-                    } else if (snapshot.hasError) {
-                      return Text(
-                        'Error',
-                        style: poppins.copyWith(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      );
-                    }
-                    return Text(
-                      'Loading...',
-                      style: poppins.copyWith(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    );
-                  },
-                ),
-              ],
+            child: Image.asset(
+              'assets/images/logo.png',
+              width: 24.w,
+              height: 24.h,
             ),
+            // View Lama
+            // child: Row(
+            //   children: [
+            //     Image.asset(
+            //       'assets/images/logo.png',
+            //       width: 24.w,
+            //       height: 24.h,
+            //     ),
+            //     // SizedBox(width: 16.w),
+            //     // FutureBuilder(
+            //     //   future: controller.getUser(),
+            //     //   builder: (context, snapshot) {
+            //     //     if (snapshot.hasData) {
+            //     //       return Text(
+            //     //         'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
+            //     //         style: poppins.copyWith(
+            //     //             color: Colors.black,
+            //     //             fontSize: 12.sp,
+            //     //             fontWeight: FontWeight.w600),
+            //     //       );
+            //     //     } else if (snapshot.hasError) {
+            //     //       return Text(
+            //     //         'Error',
+            //     //         style: poppins.copyWith(
+            //     //           fontSize: 12.sp,
+            //     //           fontWeight: FontWeight.w600,
+            //     //           color: Colors.black,
+            //     //         ),
+            //     //       );
+            //     //     }
+            //     //     return Text(
+            //     //       'Loading...',
+            //     //       style: poppins.copyWith(
+            //     //         fontSize: 12.sp,
+            //     //         fontWeight: FontWeight.w600,
+            //     //         color: Colors.black,
+            //     //       ),
+            //     //     );
+            //     //   },
+            //     // ),
+            //   ],
+            // ),
           ),
           // FutureBuilder(
           //   future: controller.getUser(),
@@ -112,6 +129,49 @@ class AppbarWidget extends StatelessWidget {
               value: 0,
               child: Row(
                 children: [
+                  FutureBuilder(
+                    future: controller.getUser(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return SizedBox(
+                          width: 150.w,
+                          child: Text(
+                            '${(controller.mapUser['data']['nama']).toString().capitalize}',
+                            style: poppins.copyWith(
+                                color: Colors.black,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.start,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text(
+                          'Error',
+                          style: poppins.copyWith(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          ),
+                        );
+                      }
+                      return Text(
+                        'Loading...',
+                        style: poppins.copyWith(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
+            ),
+            PopupMenuItem<int>(
+              value: 1,
+              child: Row(
+                children: [
                   Text(
                     'Ubah Password',
                     style: poppins.copyWith(
@@ -123,7 +183,7 @@ class AppbarWidget extends StatelessWidget {
               ),
             ),
             PopupMenuItem<int>(
-              value: 1,
+              value: 2,
               child: Row(
                 children: [
                   Text(

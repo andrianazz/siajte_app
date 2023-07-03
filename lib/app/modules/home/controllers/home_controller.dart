@@ -59,10 +59,10 @@ class HomeController extends GetxController {
 
   handleClick(int item) async {
     switch (item) {
-      case 0:
+      case 1:
         Get.toNamed(Routes.CHANGE_PASSWORD);
         break;
-      case 1:
+      case 2:
         await logout();
         break;
     }
