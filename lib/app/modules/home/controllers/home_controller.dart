@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:chips_choice/chips_choice.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +9,6 @@ import 'package:siajte_app/app/modules/jadwal_seminar/controllers/jadwal_seminar
 import 'package:siajte_app/app/modules/mahasiswa/controllers/mahasiswa_controller.dart';
 import 'package:siajte_app/app/modules/riwayat_seminar/controllers/riwayat_seminar_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
-import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 import 'package:siajte_app/app/theme/variable.dart';
 import 'package:siajte_app/app/widgets/card_jadwal_widget.dart';
@@ -161,38 +159,39 @@ class HomeController extends GetxController {
                   ),
                   SizedBox(height: 24.h),
 
-                  Container(
-                    child: Obx(
-                      () => ChipsChoice<String>.multiple(
-                        value: jadwalSeminarC.selectedChoice.toList(),
-                        onChanged: (val) {
-                          jadwalSeminarC.selectedChoice.value = val;
-                          jadwalSeminarC.filterJadwalSeminarWithChoice(val);
-                        },
-                        choiceItems: C2Choice.listFrom<String, String>(
-                          source: jadwalSeminarC.listJenisSeminar,
-                          value: (i, v) => v,
-                          label: (i, v) => v,
-                        ),
-                        choiceStyle: C2ChipStyle.filled(
-                          selectedStyle: C2ChipStyle(
-                            foregroundColor: Colors.white,
-                            backgroundColor: primaryColor,
-                          ),
-                          color: Colors.grey[200],
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 12.w,
-                          ),
-                          height: 44.h,
-                          foregroundStyle: poppins.copyWith(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 24.h),
+                  // Tampilan Choice
+                  // Container(
+                  //   child: Obx(
+                  //     () => ChipsChoice<String>.multiple(
+                  //       value: jadwalSeminarC.selectedChoice.toList(),
+                  //       onChanged: (val) {
+                  //         jadwalSeminarC.selectedChoice.value = val;
+                  //         jadwalSeminarC.filterJadwalSeminarWithChoice(val);
+                  //       },
+                  //       choiceItems: C2Choice.listFrom<String, String>(
+                  //         source: jadwalSeminarC.listJenisSeminar,
+                  //         value: (i, v) => v,
+                  //         label: (i, v) => v,
+                  //       ),
+                  //       choiceStyle: C2ChipStyle.filled(
+                  //         selectedStyle: C2ChipStyle(
+                  //           foregroundColor: Colors.white,
+                  //           backgroundColor: primaryColor,
+                  //         ),
+                  //         color: Colors.grey[200],
+                  //         padding: EdgeInsets.symmetric(
+                  //           horizontal: 12.w,
+                  //         ),
+                  //         height: 44.h,
+                  //         foregroundStyle: poppins.copyWith(
+                  //           fontSize: 16.sp,
+                  //           fontWeight: FontWeight.w500,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 24.h),
                   // Tampilan Web
                   SizedBox(
                     width: double.infinity,
@@ -272,38 +271,39 @@ class HomeController extends GetxController {
                   ),
                   SizedBox(height: 24.h),
 
-                  Container(
-                    child: Obx(
-                      () => ChipsChoice<String>.multiple(
-                        value: riwayatSeminarC.selectedChoice.toList(),
-                        onChanged: (val) {
-                          riwayatSeminarC.selectedChoice.value = val;
-                          riwayatSeminarC.filterJadwalSeminarWithChoice(val);
-                        },
-                        choiceItems: C2Choice.listFrom<String, String>(
-                          source: riwayatSeminarC.listJenisSeminar,
-                          value: (i, v) => v,
-                          label: (i, v) => v,
-                        ),
-                        choiceStyle: C2ChipStyle.filled(
-                          selectedStyle: C2ChipStyle(
-                            foregroundColor: Colors.white,
-                            backgroundColor: primaryColor,
-                          ),
-                          color: Colors.grey[200],
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 12.w,
-                          ),
-                          height: 44.h,
-                          foregroundStyle: poppins.copyWith(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 24.h),
+                  // Tampilan Choice
+                  // Container(
+                  //   child: Obx(
+                  //     () => ChipsChoice<String>.multiple(
+                  //       value: riwayatSeminarC.selectedChoice.toList(),
+                  //       onChanged: (val) {
+                  //         riwayatSeminarC.selectedChoice.value = val;
+                  //         riwayatSeminarC.filterJadwalSeminarWithChoice(val);
+                  //       },
+                  //       choiceItems: C2Choice.listFrom<String, String>(
+                  //         source: riwayatSeminarC.listJenisSeminar,
+                  //         value: (i, v) => v,
+                  //         label: (i, v) => v,
+                  //       ),
+                  //       choiceStyle: C2ChipStyle.filled(
+                  //         selectedStyle: C2ChipStyle(
+                  //           foregroundColor: Colors.white,
+                  //           backgroundColor: primaryColor,
+                  //         ),
+                  //         color: Colors.grey[200],
+                  //         padding: EdgeInsets.symmetric(
+                  //           horizontal: 12.w,
+                  //         ),
+                  //         height: 44.h,
+                  //         foregroundStyle: poppins.copyWith(
+                  //           fontSize: 16.sp,
+                  //           fontWeight: FontWeight.w500,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 24.h),
                   // Tampilan Web
                   SizedBox(
                     width: double.infinity,
