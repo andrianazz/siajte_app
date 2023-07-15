@@ -36,21 +36,8 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                 GestureDetector(
                   onTap: () => Get.back(),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.arrow_back_ios),
-                          SizedBox(width: 16.w),
-                          Text(
-                            'Kembali',
-                            style: poppins.copyWith(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
                       homeC.mapUser['role'] == "web"
                           ? ElevatedButton.icon(
                               onPressed: () async {

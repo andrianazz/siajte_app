@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_use_of_protected_member
 
-import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -64,38 +63,39 @@ class JadwalSeminarView extends GetView<JadwalSeminarController> {
                 ),
                 SizedBox(height: 24.h),
 
-                Container(
-                  child: Obx(
-                    () => ChipsChoice<String>.multiple(
-                      value: controller.selectedChoice.toList(),
-                      onChanged: (val) {
-                        controller.selectedChoice.value = val;
-                        controller.filterJadwalSeminarWithChoice(val);
-                      },
-                      choiceItems: C2Choice.listFrom<String, String>(
-                        source: controller.listJenisSeminar,
-                        value: (i, v) => v,
-                        label: (i, v) => v,
-                      ),
-                      choiceStyle: C2ChipStyle.filled(
-                        selectedStyle: C2ChipStyle(
-                          foregroundColor: Colors.white,
-                          backgroundColor: primaryColor,
-                        ),
-                        color: Colors.grey[200],
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 12.w,
-                        ),
-                        height: 44.h,
-                        foregroundStyle: poppins.copyWith(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 24.h),
+                // Tampilan Choice
+                // Container(
+                //   child: Obx(
+                //     () => ChipsChoice<String>.multiple(
+                //       value: controller.selectedChoice.toList(),
+                //       onChanged: (val) {
+                //         controller.selectedChoice.value = val;
+                //         controller.filterJadwalSeminarWithChoice(val);
+                //       },
+                //       choiceItems: C2Choice.listFrom<String, String>(
+                //         source: controller.listJenisSeminar,
+                //         value: (i, v) => v,
+                //         label: (i, v) => v,
+                //       ),
+                //       choiceStyle: C2ChipStyle.filled(
+                //         selectedStyle: C2ChipStyle(
+                //           foregroundColor: Colors.white,
+                //           backgroundColor: primaryColor,
+                //         ),
+                //         color: Colors.grey[200],
+                //         padding: EdgeInsets.symmetric(
+                //           horizontal: 12.w,
+                //         ),
+                //         height: 44.h,
+                //         foregroundStyle: poppins.copyWith(
+                //           fontSize: 16.sp,
+                //           fontWeight: FontWeight.w500,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(height: 24.h),
                 // Tampilan Web
                 SizedBox(
                   width: double.infinity,
