@@ -180,7 +180,6 @@ class HomeView extends GetView<HomeController> {
             builder: (context, snapshot) {
               return controller.mapUser['role'] == "web"
                   ? Container(
-                      margin: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
