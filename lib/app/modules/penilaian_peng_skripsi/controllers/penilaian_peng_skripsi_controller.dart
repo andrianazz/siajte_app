@@ -377,13 +377,15 @@ class PenilaianPengSkripsiController extends GetxController {
 
       if (dataPemb != null && dataPeng != null) {
         dataPemb.forEach((element) {
-          if (element['penjadwalan_skripsi_id'] == jadwalSkripsi.id) {
+          if (element['penjadwalan_skripsi_id'].toString() ==
+              jadwalSkripsi.id.toString()) {
             pemb.add(PenilaianSkripsiPemb.fromJson(element));
           }
         });
 
         dataPeng.forEach((element) {
-          if (element['penjadwalan_skripsi_id'] == jadwalSkripsi.id) {
+          if (element['penjadwalan_skripsi_id'].toString() ==
+              jadwalSkripsi.id.toString()) {
             peng.add(PenilaianSkripsiPeng.fromJson(element));
           }
         });
@@ -629,6 +631,7 @@ class PenilaianPengSkripsiController extends GetxController {
       ]);
 
       await getPenilaianSkripsiPeng(jadwalSkripsi.pengujisatuNip.toString());
+      Get.forceAppUpdate();
     }
 
     if (jadwalSkripsi.pengujiduaNip!.contains(homeC.mapUser['data']['nip'])) {

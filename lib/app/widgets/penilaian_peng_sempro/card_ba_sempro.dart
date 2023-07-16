@@ -704,33 +704,35 @@ class CardBASempro extends StatelessWidget {
                           );
                         }
 
-                        return Column(
-                          children: [
-                            Text(
-                              "Total Nilai",
-                              style: poppins.copyWith(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
+                        return Obx(
+                          () => Column(
+                            children: [
+                              Text(
+                                "Total Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            NilaiTextBA(
-                                title: pengProposalController.baNilaiAkhir
-                                        .toString() ??
-                                    "-"),
-                            SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pengProposalController.baNilaiHuruf
-                                        .toString() ??
-                                    "-"),
-                            SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pengProposalController.baKeterangan
-                                        .toString() ??
-                                    "-"),
-                          ],
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              NilaiTextBA(
+                                  title: pengProposalController.baNilaiAkhir
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController.baNilaiHuruf
+                                          .toString() ??
+                                      "-"),
+                              SizedBox(height: 10.h),
+                              NilaiTextBA(
+                                  title: pengProposalController.baKeterangan
+                                          .toString() ??
+                                      "-"),
+                            ],
+                          ),
                         );
                       }),
                 ],

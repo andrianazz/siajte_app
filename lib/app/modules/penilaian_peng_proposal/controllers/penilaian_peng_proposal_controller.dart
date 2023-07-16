@@ -132,14 +132,14 @@ class PenilaianPengProposalController extends GetxController {
 
     if (listPenilaianKPPeng
         .where((element) => element.pengujiNip!.contains(nipPeng))
-        .where((element) => element.penjadwalanSemproId
-            .toString()
-            .contains(penjadwalanSempro.id.toString()))
         .toList()
         .isNotEmpty) {
       print("Ada data Penguji");
       existPenilaianSemproPeng = listPenilaianKPPeng
           .where((element) => element.pengujiNip!.contains(nipPeng))
+          .where((element) => element.penjadwalanSemproId
+              .toString()
+              .contains(penjadwalanSempro.id.toString()))
           .first;
 
       scoreMapPengSempro.value['presentasi'] =
@@ -540,6 +540,8 @@ class PenilaianPengProposalController extends GetxController {
         await dio.get("$baseUrlAPI/penilaian-sempro-pembimbing");
     final responsePeng = await dio.get("$baseUrlAPI/penilaian-sempro-penguji");
 
+    print("proses");
+
     if (responsePemb.statusCode == 200 && responsePeng.statusCode == 200) {
       List<PenilaianSemproPemb> pemb = [];
       List<PenilaianSemproPeng> peng = [];
@@ -549,14 +551,14 @@ class PenilaianPengProposalController extends GetxController {
 
       if (dataPemb != null && dataPeng != null) {
         dataPemb.forEach((element) {
-          if (element['penjadwalan_sempro_id'] ==
+          if (element['penjadwalan_sempro_id'].toString() ==
               penjadwalanSempro.id.toString()) {
             pemb.add(PenilaianSemproPemb.fromJson(element));
           }
         });
 
         dataPeng.forEach((element) {
-          if (element['penjadwalan_sempro_id'] ==
+          if (element['penjadwalan_sempro_id'].toString() ==
               penjadwalanSempro.id.toString()) {
             peng.add(PenilaianSemproPeng.fromJson(element));
           }

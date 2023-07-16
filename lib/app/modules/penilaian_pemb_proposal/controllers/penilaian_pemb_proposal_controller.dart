@@ -70,13 +70,13 @@ class PenilaianPembProposalController extends GetxController {
     if (listPenilaianKP
         .where((element) => element.pembimbingNip!.contains(nipPemb))
         .toList()
-        .where((element) => element.penjadwalanSemproId
-            .toString()
-            .contains(penjadwalanSempro.id.toString()))
         .isNotEmpty) {
       print("Ada data Pembimbing");
       existPenilaianSemproPemb = listPenilaianKP
           .where((element) => element.pembimbingNip!.contains(nipPemb))
+          .where((element) => element.penjadwalanSemproId
+              .toString()
+              .contains(penjadwalanSempro.id.toString()))
           .first;
 
       scoreMapPembSempro.value['penguasaan_dasar_teori'] =
