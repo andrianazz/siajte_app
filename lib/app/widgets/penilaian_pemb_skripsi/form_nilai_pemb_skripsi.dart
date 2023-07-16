@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:im_stepper/stepper.dart';
 import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
-import 'package:siajte_app/app/widgets/penilaian_pemb_skripsi/card_penilaian_pemb_skripsi.dart';
 
 class FormNilaiPembSkripsi extends StatelessWidget {
   const FormNilaiPembSkripsi({super.key});
@@ -105,81 +103,319 @@ class FormNilaiPembSkripsi extends StatelessWidget {
                 );
               }),
         ),
-        SizedBox(
-          height: 50.h,
-          width: double.infinity,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              SizedBox(
-                width: 24.w,
-              ),
-              Obx(
-                () => DotStepper(
-                  activeStep: controller.indexFormNilaiPembSkripsi.value,
-                  dotCount: controller.listFormNilaiPembSkripsi.length,
-                  direction: Axis.horizontal,
-                  shape: Shape.pipe,
-                  indicator: Indicator.shift,
-                  spacing: 20,
-                  onDotTapped: (tappedDotIndex) {
-                    controller.indexFormNilaiPembSkripsi.value = tappedDotIndex;
-                    controller.pageController.animateToPage(
-                      tappedDotIndex,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.bounceInOut,
-                    );
-                  },
-                  dotRadius: 50.w,
-                  lineConnectorDecoration: LineConnectorDecoration(
-                    color: Colors.grey.shade900,
-                    strokeWidth: 40.w,
-                  ),
-                  indicatorDecoration: const IndicatorDecoration(
-                    color: Colors.black,
-                    strokeColor: Colors.black,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 24.w,
-              ),
-            ],
-          ),
-        ),
-        Obx(
-          () => SizedBox(
-            width: double.infinity,
-            height: 550.h,
-            child: PageView(
-              controller: controller.pageController,
-              onPageChanged: (index) {
-                controller.indexFormNilaiPembSkripsi.value = index;
-                controller.pageController.jumpToPage(index);
-              },
-              children: controller.scoreMapPembSkripsi
-                  .map((key, value) {
-                    var no = controller.scoreMapPembSkripsi.keys
-                            .toList()
-                            .indexOf(key) +
+        // SizedBox(
+        //   height: 50.h,
+        //   width: double.infinity,
+        //   child: ListView(
+        //     scrollDirection: Axis.horizontal,
+        //     children: [
+        //       SizedBox(
+        //         width: 24.w,
+        //       ),
+        //       Obx(
+        //         () => DotStepper(
+        //           activeStep: controller.indexFormNilaiPembSkripsi.value,
+        //           dotCount: controller.listFormNilaiPembSkripsi.length,
+        //           direction: Axis.horizontal,
+        //           shape: Shape.pipe,
+        //           indicator: Indicator.shift,
+        //           spacing: 20,
+        //           onDotTapped: (tappedDotIndex) {
+        //             controller.indexFormNilaiPembSkripsi.value = tappedDotIndex;
+        //             controller.pageController.animateToPage(
+        //               tappedDotIndex,
+        //               duration: const Duration(milliseconds: 300),
+        //               curve: Curves.bounceInOut,
+        //             );
+        //           },
+        //           dotRadius: 50.w,
+        //           lineConnectorDecoration: LineConnectorDecoration(
+        //             color: Colors.grey.shade900,
+        //             strokeWidth: 40.w,
+        //           ),
+        //           indicatorDecoration: const IndicatorDecoration(
+        //             color: Colors.black,
+        //             strokeColor: Colors.black,
+        //           ),
+        //         ),
+        //       ),
+        //       SizedBox(
+        //         width: 24.w,
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        // Obx(
+        //   () => SizedBox(
+        //     width: double.infinity,
+        //     height: 550.h,
+        //     child: PageView(
+        //       controller: controller.pageController,
+        //       onPageChanged: (index) {
+        //         controller.indexFormNilaiPembSkripsi.value = index;
+        //         controller.pageController.jumpToPage(index);
+        //       },
+        //       children: controller.scoreMapPembSkripsi
+        //           .map((key, value) {
+        //             var no = controller.scoreMapPembSkripsi.keys
+        //                     .toList()
+        //                     .indexOf(key) +
+        //                 1;
+
+        //             return MapEntry(
+        //               key,
+        //               CardPenilaianPembSkripsi(
+        //                 no: "$no",
+        //                 title: key
+        //                     .split("_")
+        //                     .map((word) =>
+        //                         word[0].toUpperCase() + word.substring(1))
+        //                     .join(" "),
+        //                 score: value,
+        //                 value: controller.valueRadioAll[no - 1],
+        //               ),
+        //             );
+        //           })
+        //           .values
+        //           .toList(),
+        //     ),
+        //   ),
+        // ),
+
+        SizedBox(height: 24.h),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: controller.scoreMapPembSkripsi
+              .map((key, values) {
+                var no =
+                    controller.scoreMapPembSkripsi.keys.toList().indexOf(key) +
                         1;
 
-                    return MapEntry(
-                      key,
-                      CardPenilaianPembSkripsi(
-                        no: "$no",
-                        title: key
-                            .split("_")
-                            .map((word) =>
-                                word[0].toUpperCase() + word.substring(1))
-                            .join(" "),
-                        score: value,
-                        value: controller.valueRadioAll[no - 1],
-                      ),
-                    );
-                  })
-                  .values
-                  .toList(),
+                return MapEntry(
+                  key,
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 24.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "$no. ${key.split("_").map((word) => word[0].toUpperCase() + word.substring(1)).join(" ")}",
+                          style: poppins.copyWith(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(height: 10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Obx(
+                              () => Container(
+                                height: 80.h,
+                                width: 60.w,
+                                margin: EdgeInsets.only(bottom: 20.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  border: Border.all(
+                                    color: controller
+                                                .scoreMapPembSkripsi[key] ==
+                                            controller.valueRadioAll[no - 1][0]
+                                        ? textDanger
+                                        : Colors.grey.shade300,
+                                    width: 3,
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const Text("SKB"),
+                                    Radio(
+                                      value: controller.valueRadioAll[no - 1]
+                                          [0],
+                                      activeColor: textDanger,
+                                      groupValue:
+                                          controller.scoreMapPembSkripsi[key],
+                                      onChanged: (value) {
+                                        controller.scoreMapPembSkripsi[key] =
+                                            value;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Obx(
+                              () => Container(
+                                height: 80.h,
+                                width: 60.w,
+                                margin: EdgeInsets.only(bottom: 20.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  border: Border.all(
+                                    color: controller
+                                                .scoreMapPembSkripsi[key] ==
+                                            controller.valueRadioAll[no - 1][1]
+                                        ? textSkripsi
+                                        : Colors.grey.shade300,
+                                    width: 3,
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const Text("KB"),
+                                    Radio(
+                                      value: controller.valueRadioAll[no - 1]
+                                          [1],
+                                      activeColor: textSkripsi,
+                                      groupValue:
+                                          controller.scoreMapPembSkripsi[key],
+                                      onChanged: (value) {
+                                        controller.scoreMapPembSkripsi[key] =
+                                            value;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Obx(
+                              () => Container(
+                                height: 80.h,
+                                width: 60.w,
+                                margin: EdgeInsets.only(bottom: 20.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  border: Border.all(
+                                    color: controller
+                                                .scoreMapPembSkripsi[key] ==
+                                            controller.valueRadioAll[no - 1][2]
+                                        ? secondaryColor
+                                        : Colors.grey.shade300,
+                                    width: 3,
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const Text("N"),
+                                    Radio(
+                                      value: controller.valueRadioAll[no - 1]
+                                          [2],
+                                      activeColor: secondaryColor,
+                                      groupValue:
+                                          controller.scoreMapPembSkripsi[key],
+                                      onChanged: (value) {
+                                        controller.scoreMapPembSkripsi[key] =
+                                            value;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Obx(
+                              () => Container(
+                                height: 80.h,
+                                width: 60.w,
+                                margin: EdgeInsets.only(bottom: 20.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  border: Border.all(
+                                    color: controller
+                                                .scoreMapPembSkripsi[key] ==
+                                            controller.valueRadioAll[no - 1][3]
+                                        ? textKP
+                                        : Colors.grey.shade300,
+                                    width: 3,
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const Text("B"),
+                                    Radio(
+                                      value: controller.valueRadioAll[no - 1]
+                                          [3],
+                                      activeColor: textKP,
+                                      groupValue:
+                                          controller.scoreMapPembSkripsi[key],
+                                      onChanged: (value) {
+                                        controller.scoreMapPembSkripsi[key] =
+                                            value;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Obx(
+                              () => Container(
+                                height: 80.h,
+                                width: 60.w,
+                                margin: EdgeInsets.only(bottom: 20.h),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  border: Border.all(
+                                    color: controller
+                                                .scoreMapPembSkripsi[key] ==
+                                            controller.valueRadioAll[no - 1][4]
+                                        ? primaryColor
+                                        : Colors.grey.shade300,
+                                    width: 3,
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const Text("SB"),
+                                    Radio(
+                                      value: controller.valueRadioAll[no - 1]
+                                          [4],
+                                      activeColor: primaryColor,
+                                      groupValue:
+                                          controller.scoreMapPembSkripsi[key],
+                                      onChanged: (value) {
+                                        controller.scoreMapPembSkripsi[key] =
+                                            value;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              })
+              .values
+              .toList(),
+        ),
+        Container(
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              disabledBackgroundColor: primaryColor,
+              padding: EdgeInsets.symmetric(vertical: 12.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            onPressed: () async {
+              await controller.updateFormNilaiPembSkripsiAPI(
+                  controller.existPenilaianSkripsiPemb.id.toString());
+
+              controller.selectedChips.value++;
+            },
+            child: Text(
+              'Selanjutnya',
+              style:
+                  roboto.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w600),
             ),
           ),
         ),
