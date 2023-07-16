@@ -32,7 +32,7 @@ class PenilaianKpPemb {
 
   PenilaianKpPemb.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    penjadwalanKpId = json['penjadwalan_kp_id'];
+    penjadwalanKpId = int.parse(json['penjadwalan_kp_id'].toString());
     pembimbingNip = json['pembimbing_nip'];
     presentasi = json['presentasi'];
     materi = json['materi'];

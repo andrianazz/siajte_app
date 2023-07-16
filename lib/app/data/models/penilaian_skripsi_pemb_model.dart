@@ -30,7 +30,7 @@ class PenilaianSkripsiPemb {
 
   PenilaianSkripsiPemb.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    penjadwalanSkripsiId = int.parse(json['penjadwalan_skripsi_id']);
+    penjadwalanSkripsiId = int.parse(json['penjadwalan_skripsi_id'].toString());
     pembimbingNip = json['pembimbing_nip'];
     penguasaanDasarTeori = json['penguasaan_dasar_teori'];
     tingkatPenguasaanMateri = json['tingkat_penguasaan_materi'];

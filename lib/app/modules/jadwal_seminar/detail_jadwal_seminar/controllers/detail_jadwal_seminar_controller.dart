@@ -42,6 +42,8 @@ class DetailJadwalSeminarController extends GetxController {
 
   RxString judul = ''.obs;
 
+  RxBool isInputNilai = false.obs;
+
   //get mahasiswa nama with nim
   Future<String> getMahasiswaWithNim(String nim) async {
     var response =
@@ -87,6 +89,9 @@ class DetailJadwalSeminarController extends GetxController {
       nimPemb1.value = penjadwalanKp.pembimbingNip!;
       nimPeng1.value = penjadwalanKp.pengujiNip!;
 
+      isInputNilai.value = DateTime.now()
+          .isAfter(DateTime.parse("${tanggal.value} ${waktu.value}"));
+
       judul.value = penjadwalanKp.judulKp!;
     } else if (Get.arguments is PenjadwalanSempro) {
       PenjadwalanSempro penjadwalanSempro = Get.arguments;
@@ -123,6 +128,9 @@ class DetailJadwalSeminarController extends GetxController {
       nimPeng1.value = penjadwalanSempro.pengujisatuNip!;
       nimPeng2.value = penjadwalanSempro.pengujiduaNip!;
       nimPeng3.value = penjadwalanSempro.pengujitigaNip ?? "";
+
+      isInputNilai.value = DateTime.now()
+          .isAfter(DateTime.parse("${tanggal.value} ${waktu.value}"));
     } else {
       PenjadwalanSkripsi penjadwalanSkripsi = Get.arguments;
 
@@ -163,6 +171,9 @@ class DetailJadwalSeminarController extends GetxController {
       nimPeng1.value = penjadwalanSkripsi.pengujisatuNip!;
       nimPeng2.value = penjadwalanSkripsi.pengujiduaNip!;
       nimPeng3.value = penjadwalanSkripsi.pengujitigaNip ?? "";
+
+      isInputNilai.value = DateTime.now()
+          .isAfter(DateTime.parse("${tanggal.value} ${waktu.value}"));
     }
   }
 
@@ -372,5 +383,9 @@ class DetailJadwalSeminarController extends GetxController {
     }
 
     return const SizedBox();
+  }
+
+  Future<bool> getInputNilai() async {
+    return isInputNilai.value;
   }
 }

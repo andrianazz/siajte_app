@@ -223,80 +223,123 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                   child: Row(
                     children: [
                       homeC.mapUser['role'] == "dosen"
-                          ? CardInputNilaiWidget(
-                              onTap: () {
-                                if (Get.arguments is PenjadwalanKp) {
-                                  //check if pembimbing
+                          ? Obx(
+                              () => FutureBuilder<bool>(
+                                  future: controller.getInputNilai(),
+                                  builder: (context, snapshot) {
+                                    print(snapshot.data);
+                                    if (snapshot.data == true) {
+                                      return CardInputNilaiWidget(
+                                        onTap: () {
+                                          if (Get.arguments is PenjadwalanKp) {
+                                            //check if pembimbing
 
-                                  final PenjadwalanKp data = Get.arguments;
+                                            final PenjadwalanKp data =
+                                                Get.arguments;
 
-                                  if (data.pembimbingNip!
-                                      .contains(homeC.mapUser['data']['nip'])) {
-                                    //Pembimbing
-                                    Get.toNamed(Routes.PENILAIAN_PEMB_KP,
-                                        arguments: data);
-                                  } else if (data.pengujiNip!
-                                      .contains(homeC.mapUser['data']['nip'])) {
-                                    //Penguji
-                                    Get.toNamed(Routes.PENILAIAN_PENG_KP,
-                                        arguments: data);
-                                  }
-                                } else if (Get.arguments is PenjadwalanSempro) {
-                                  final PenjadwalanSempro data = Get.arguments;
+                                            if (data.pembimbingNip!.contains(
+                                                homeC.mapUser['data']['nip'])) {
+                                              //Pembimbing
+                                              Get.toNamed(
+                                                  Routes.PENILAIAN_PEMB_KP,
+                                                  arguments: data);
+                                            } else if (data.pengujiNip!
+                                                .contains(homeC.mapUser['data']
+                                                    ['nip'])) {
+                                              //Penguji
+                                              Get.toNamed(
+                                                  Routes.PENILAIAN_PENG_KP,
+                                                  arguments: data);
+                                            }
+                                          } else if (Get.arguments
+                                              is PenjadwalanSempro) {
+                                            final PenjadwalanSempro data =
+                                                Get.arguments;
 
-                                  if (data.pembimbingsatuNip!
-                                      .contains(homeC.mapUser['data']['nip'])) {
-                                    //Pembimbing
+                                            if (data.pembimbingsatuNip!
+                                                .contains(homeC.mapUser['data']
+                                                    ['nip'])) {
+                                              //Pembimbing
 
-                                    Get.toNamed(Routes.PENILAIAN_PEMB_PROPOSAL,
-                                        arguments: data);
-                                  } else if ((data.pengujisatuNip!.contains(
-                                          homeC.mapUser['data']['nip']) ||
-                                      data.pengujiduaNip!.contains(
-                                          homeC.mapUser['data']['nip']))) {
-                                    //Penguji
-                                    Get.toNamed(Routes.PENILAIAN_PENG_PROPOSAL,
-                                        arguments: data);
-                                  } else if (data.pembimbingduaNip != null ||
-                                      data.pengujitigaNip != null) {
-                                    if (data.pembimbingduaNip!.contains(
-                                        homeC.mapUser['data']['nip'])) {
-                                      Get.toNamed(
-                                          Routes.PENILAIAN_PEMB_PROPOSAL,
-                                          arguments: data);
-                                    } else if (data.pengujitigaNip!.contains(
-                                        homeC.mapUser['data']['nip'])) {
-                                      Get.toNamed(
-                                          Routes.PENILAIAN_PENG_PROPOSAL,
-                                          arguments: data);
+                                              Get.toNamed(
+                                                  Routes
+                                                      .PENILAIAN_PEMB_PROPOSAL,
+                                                  arguments: data);
+                                            } else if ((data.pengujisatuNip!
+                                                    .contains(
+                                                        homeC.mapUser['data']
+                                                            ['nip']) ||
+                                                data.pengujiduaNip!.contains(
+                                                    homeC.mapUser['data']
+                                                        ['nip']))) {
+                                              //Penguji
+                                              Get.toNamed(
+                                                  Routes
+                                                      .PENILAIAN_PENG_PROPOSAL,
+                                                  arguments: data);
+                                            } else if (data.pembimbingduaNip !=
+                                                    null ||
+                                                data.pengujitigaNip != null) {
+                                              if (data.pembimbingduaNip!
+                                                  .contains(
+                                                      homeC.mapUser['data']
+                                                          ['nip'])) {
+                                                Get.toNamed(
+                                                    Routes
+                                                        .PENILAIAN_PEMB_PROPOSAL,
+                                                    arguments: data);
+                                              } else if (data.pengujitigaNip!
+                                                  .contains(
+                                                      homeC.mapUser['data']
+                                                          ['nip'])) {
+                                                Get.toNamed(
+                                                    Routes
+                                                        .PENILAIAN_PENG_PROPOSAL,
+                                                    arguments: data);
+                                              }
+                                            }
+                                          } else if (Get.arguments
+                                              is PenjadwalanSkripsi) {
+                                            final PenjadwalanSkripsi data =
+                                                Get.arguments;
+
+                                            if (data.pembimbingsatuNip!
+                                                    .contains(
+                                                        homeC.mapUser['data']
+                                                            ['nip']) ||
+                                                data.pembimbingduaNip!.contains(
+                                                    homeC.mapUser['data']
+                                                        ['nip'])) {
+                                              //Pembimbing
+                                              Get.toNamed(
+                                                  Routes.PENIALIAN_PEMB_SKIPSI,
+                                                  arguments: data);
+                                            } else if (data.pengujisatuNip!
+                                                    .contains(
+                                                        homeC.mapUser['data']
+                                                            ['nip']) ||
+                                                data.pengujiduaNip!.contains(
+                                                    homeC.mapUser['data']['nip']) ||
+                                                data.pengujitigaNip!.contains(homeC.mapUser['data']['nip'])) {
+                                              //Penguji
+
+                                              Get.toNamed(
+                                                  Routes.PENILAIAN_PENG_SKRIPSI,
+                                                  arguments: data);
+                                            }
+                                          }
+                                        },
+                                        title: "Input / Edit Nilai",
+                                        color: primaryColor,
+                                      );
+                                    } else {
+                                      return CardInputNilaiWidget(
+                                        onTap: () {},
+                                        title: "Belum Dimulai",
+                                        color: redColor,
+                                      );
                                     }
-                                  }
-                                } else if (Get.arguments
-                                    is PenjadwalanSkripsi) {
-                                  final PenjadwalanSkripsi data = Get.arguments;
-
-                                  if (data.pembimbingsatuNip!.contains(
-                                          homeC.mapUser['data']['nip']) ||
-                                      data.pembimbingduaNip!.contains(
-                                          homeC.mapUser['data']['nip'])) {
-                                    //Pembimbing
-                                    Get.toNamed(Routes.PENIALIAN_PEMB_SKIPSI,
-                                        arguments: data);
-                                  } else if (data.pengujisatuNip!.contains(
-                                          homeC.mapUser['data']['nip']) ||
-                                      data.pengujiduaNip!.contains(
-                                          homeC.mapUser['data']['nip']) ||
-                                      data.pengujitigaNip!.contains(
-                                          homeC.mapUser['data']['nip'])) {
-                                    //Penguji
-
-                                    Get.toNamed(Routes.PENILAIAN_PENG_SKRIPSI,
-                                        arguments: data);
-                                  }
-                                }
-                              },
-                              title: "Input / Edit Nilai",
-                              color: primaryColor,
+                                  }),
                             )
                           : const SizedBox(),
                     ],
@@ -304,11 +347,11 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                 ),
                 SizedBox(height: 20.h),
 
-                //Riwayat Seminar untuk Mahasiswa
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: controller.riwayatSeminarCondition(),
-                ),
+                // //Riwayat Seminar untuk Mahasiswa
+                // SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   child: controller.riwayatSeminarCondition(),
+                // ),
               ],
             ),
           )
