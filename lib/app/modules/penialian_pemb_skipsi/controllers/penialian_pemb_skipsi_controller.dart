@@ -85,6 +85,9 @@ class PenialianPembSkipsiController extends GetxController {
       print("Ada data Pembimbing");
       existPenilaianSkripsiPemb = listPenilaianSkripsi
           .where((element) => element.pembimbingNip!.contains(nipPemb))
+          .where((element) => element.penjadwalanSkripsiId
+              .toString()
+              .contains(penjadwalanSkripsi.id.toString()))
           .first;
 
       scoreMapPembSkripsi.value['penguasaan_dasar_teori'] =

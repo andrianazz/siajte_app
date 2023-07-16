@@ -173,9 +173,13 @@ class CardBASkripsi extends StatelessWidget {
                             SizedBox(height: 15.h),
                             NilaiTextBA(
                                 title: penilaianPengController
+                                            .existPenilaianSkripsiPeng
+                                            .presentasi !=
+                                        null
+                                    ? penilaianPengController
                                         .existPenilaianSkripsiPeng.presentasi
-                                        .toString() ??
-                                    "-"),
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title: penilaianPengController
@@ -320,100 +324,160 @@ class CardBASkripsi extends StatelessWidget {
                               SizedBox(height: 15.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .presentasi !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng.presentasi
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .tingkatPenguasaanMateri !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng
                                           .tingkatPenguasaanMateri
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .keaslian !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng.keaslian
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .ketepatanMetodologi !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng
                                           .ketepatanMetodologi
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .penguasaanDasarTeori !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng
                                           .penguasaanDasarTeori
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .kecermatanPerumusanMasalah !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng
                                           .kecermatanPerumusanMasalah
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .tinjauanPustaka !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng
                                           .tinjauanPustaka
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .tataTulis !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng.tataTulis
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .tools !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng.tools
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .penyajianData !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng
                                           .penyajianData
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .hasil !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng.hasil
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .pembahasan !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng.pembahasan
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .kesimpulan !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng.kesimpulan
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .luaran !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng.luaran
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .sumbanganPemikiran !=
+                                          null
+                                      ? penilaianPengController
                                           .existPenilaianSkripsiPeng
                                           .sumbanganPemikiran
-                                          .toString() ??
-                                      "-"),
+                                          .toString()
+                                      : "-"),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
                                   title: penilaianPengController
@@ -495,134 +559,187 @@ class CardBASkripsi extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(height: 15.h),
-                                  Column(
-                                    children: [
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .presentasi
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .presentasi !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .presentasi
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .tingkatPenguasaanMateri
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .tingkatPenguasaanMateri !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .tingkatPenguasaanMateri
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .keaslian
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .keaslian !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .keaslian
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .ketepatanMetodologi
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .ketepatanMetodologi !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .ketepatanMetodologi
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .penguasaanDasarTeori
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .penguasaanDasarTeori !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .penguasaanDasarTeori
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .kecermatanPerumusanMasalah
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .kecermatanPerumusanMasalah !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .kecermatanPerumusanMasalah
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .tinjauanPustaka
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .tinjauanPustaka !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .tinjauanPustaka
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .tataTulis
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .tataTulis !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .tataTulis
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .tools
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .tools !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng.tools
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .penyajianData
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .penyajianData !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .penyajianData
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .hasil
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .hasil !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng.hasil
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .pembahasan
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .pembahasan !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .pembahasan
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .kesimpulan
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .kesimpulan !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .kesimpulan
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .luaran
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
+                                                  .luaran !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng.luaran
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .sumbanganPemikiran
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
-                                                  .totalNilai.value
-                                                  .ceil()
-                                                  .toString() ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: penilaianPengController
-                                                  .nilaiHuruf.value ??
-                                              "-"),
-                                      SizedBox(height: 10.h),
-                                      NilaiTextBA(
-                                          title: (penilaianPengController
-                                                          .totalNilai.value /
-                                                      15)
-                                                  .ceil()
-                                                  .toString() ??
-                                              "-"),
-                                    ],
-                                  )
+                                                  .sumbanganPemikiran !=
+                                              null
+                                          ? penilaianPengController
+                                              .existPenilaianSkripsiPeng
+                                              .sumbanganPemikiran
+                                              .toString()
+                                          : "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
+                                              .totalNilai.value
+                                              .ceil()
+                                              .toString() ??
+                                          "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: penilaianPengController
+                                              .nilaiHuruf.value ??
+                                          "-"),
+                                  SizedBox(height: 10.h),
+                                  NilaiTextBA(
+                                      title: (penilaianPengController
+                                                      .totalNilai.value /
+                                                  15)
+                                              .ceil()
+                                              .toString() ??
+                                          "-"),
                                 ],
                               );
                             },
@@ -744,44 +861,68 @@ class CardBASkripsi extends StatelessWidget {
                             SizedBox(height: 15.h),
                             NilaiTextBA(
                                 title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .penguasaanDasarTeori !=
+                                        null
+                                    ? penilaianPembController
                                         .existPenilaianSkripsiPemb
                                         .penguasaanDasarTeori
-                                        .toString() ??
-                                    "-"),
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .tingkatPenguasaanMateri !=
+                                        null
+                                    ? penilaianPembController
                                         .existPenilaianSkripsiPemb
                                         .tingkatPenguasaanMateri
-                                        .toString() ??
-                                    "-"),
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .tinjauanPustaka !=
+                                        null
+                                    ? penilaianPembController
                                         .existPenilaianSkripsiPemb
                                         .tinjauanPustaka
-                                        .toString() ??
-                                    "-"),
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .tataTulis !=
+                                        null
+                                    ? penilaianPembController
                                         .existPenilaianSkripsiPemb.tataTulis
-                                        .toString() ??
-                                    "-"),
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .hasilDanPembahasan !=
+                                        null
+                                    ? penilaianPembController
                                         .existPenilaianSkripsiPemb
                                         .hasilDanPembahasan
-                                        .toString() ??
-                                    "-"),
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .sikapDanKepribadian !=
+                                        null
+                                    ? penilaianPembController
                                         .existPenilaianSkripsiPemb
                                         .sikapDanKepribadian
-                                        .toString() ??
-                                    "-"),
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title: penilaianPembController.totalNilai.value
@@ -834,71 +975,88 @@ class CardBASkripsi extends StatelessWidget {
                             ),
                             SizedBox(height: 15.h),
                             NilaiTextBA(
-                              title: penilaianPembController
-                                      .existPenilaianSkripsiPemb
-                                      .penguasaanDasarTeori
-                                      .toString() ??
-                                  "-",
-                            ),
+                                title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .penguasaanDasarTeori !=
+                                        null
+                                    ? penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .penguasaanDasarTeori
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                              title: penilaianPembController
-                                      .existPenilaianSkripsiPemb
-                                      .tingkatPenguasaanMateri
-                                      .toString() ??
-                                  "-",
-                            ),
+                                title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .tingkatPenguasaanMateri !=
+                                        null
+                                    ? penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .tingkatPenguasaanMateri
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                              title: penilaianPembController
-                                      .existPenilaianSkripsiPemb.tinjauanPustaka
-                                      .toString() ??
-                                  "-",
-                            ),
+                                title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .tinjauanPustaka !=
+                                        null
+                                    ? penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .tinjauanPustaka
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                              title: penilaianPembController
-                                      .existPenilaianSkripsiPemb.tataTulis
-                                      .toString() ??
-                                  "-",
-                            ),
+                                title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .tataTulis !=
+                                        null
+                                    ? penilaianPembController
+                                        .existPenilaianSkripsiPemb.tataTulis
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                              title: penilaianPembController
-                                      .existPenilaianSkripsiPemb
-                                      .hasilDanPembahasan
-                                      .toString() ??
-                                  "-",
-                            ),
+                                title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .hasilDanPembahasan !=
+                                        null
+                                    ? penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .hasilDanPembahasan
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                              title: penilaianPembController
-                                      .existPenilaianSkripsiPemb
-                                      .sikapDanKepribadian
-                                      .toString() ??
-                                  "-",
-                            ),
+                                title: penilaianPembController
+                                            .existPenilaianSkripsiPemb
+                                            .sikapDanKepribadian !=
+                                        null
+                                    ? penilaianPembController
+                                        .existPenilaianSkripsiPemb
+                                        .sikapDanKepribadian
+                                        .toString()
+                                    : "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                              title: penilaianPembController.totalNilai.value
-                                      .ceil()
-                                      .toString() ??
-                                  "-",
-                            ),
+                                title: penilaianPembController.totalNilai.value
+                                        .ceil()
+                                        .toString() ??
+                                    "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                              title: penilaianPembController.nilaiHuruf.value
-                                      .toString() ??
-                                  "-",
-                            ),
+                                title: penilaianPembController.nilaiHuruf.value
+                                        .toString() ??
+                                    "-"),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                              title:
-                                  (penilaianPembController.totalNilai.value / 6)
-                                          .ceil()
-                                          .toString() ??
-                                      "-",
-                            ),
+                                title:
+                                    (penilaianPembController.totalNilai.value /
+                                                6)
+                                            .ceil()
+                                            .toString() ??
+                                        "-"),
                           ],
                         );
                       },

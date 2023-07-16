@@ -155,9 +155,12 @@ class PenilaianPengSkripsiController extends GetxController {
         .toList()
         .isNotEmpty) {
       print("Ada data Penguji");
-      
+
       existPenilaianSkripsiPeng = listPenilaianSkripsiPeng
           .where((element) => element.pengujiNip!.contains(nipPeng))
+          .where((element) => element.penjadwalanSkripsiId
+              .toString()
+              .contains(jadwalSkripsi.id.toString()))
           .first;
 
       scoreMapPengSkripsi.value['presentasi'] =
