@@ -10,12 +10,13 @@ import '../controllers/penilaian_peng_skripsi_controller.dart';
 
 class PenilaianPengSkripsiView extends GetView<PenilaianPengSkripsiController> {
   const PenilaianPengSkripsiView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Penilaian Penguji KP',
+          'Penilaian Penguji Skripsi',
           style: poppins.copyWith(
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,

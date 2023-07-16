@@ -155,6 +155,7 @@ class PenilaianPengSkripsiController extends GetxController {
         .toList()
         .isNotEmpty) {
       print("Ada data Penguji");
+      
       existPenilaianSkripsiPeng = listPenilaianSkripsiPeng
           .where((element) => element.pengujiNip!.contains(nipPeng))
           .first;
