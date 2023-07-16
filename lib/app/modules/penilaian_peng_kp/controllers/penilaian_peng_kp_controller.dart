@@ -77,6 +77,9 @@ class PenilaianPengKpController extends GetxController {
 
     if (listPenilaianKPPeng
         .where((element) => element.pengujiNip!.contains(nipPeng))
+        .where((element) => element.penjadwalanKpId
+            .toString()
+            .contains(penjadwalanKp.id.toString()))
         .toList()
         .isNotEmpty) {
       print("Ada data Penguji");
