@@ -89,6 +89,9 @@ class PenilaianPembKpController extends GetxController {
     if (listPenilaianKP
         .where((element) =>
             element.pembimbingNip!.contains(homeC.mapUser['data']['nip']))
+        .where((element) => element.penjadwalanKpId
+            .toString()
+            .contains(penjadwalanKp.id.toString()))
         .toList()
         .isNotEmpty) {
       print("Ada data Pembimbing");
