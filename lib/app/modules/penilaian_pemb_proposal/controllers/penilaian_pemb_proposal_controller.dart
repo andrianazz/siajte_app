@@ -69,6 +69,9 @@ class PenilaianPembProposalController extends GetxController {
 
     if (listPenilaianKP
         .where((element) => element.pembimbingNip!.contains(nipPemb))
+        .where((element) => element.penjadwalanSemproId
+            .toString()
+            .contains(penjadwalanSempro.id.toString()))
         .toList()
         .isNotEmpty) {
       print("Ada data Pembimbing");
