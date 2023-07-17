@@ -80,6 +80,9 @@ class PenialianPembSkipsiController extends GetxController {
 
     if (listPenilaianSkripsi
         .where((element) => element.pembimbingNip!.contains(nipPemb))
+        .where((element) => element.penjadwalanSkripsiId
+            .toString()
+            .contains(penjadwalanSkripsi.id.toString()))
         .toList()
         .isNotEmpty) {
       print("Ada data Pembimbing");
