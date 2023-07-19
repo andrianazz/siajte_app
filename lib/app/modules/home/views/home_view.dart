@@ -29,7 +29,6 @@ class HomeView extends GetView<HomeController> {
     return ListView(
       children: [
         Container(
-          width: double.infinity,
           height: 60.h,
           color: primaryColor.withGreen(100),
           child: Row(
@@ -98,6 +97,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
               ),
+
               // FutureBuilder<Object>(
               //   future: controller.getUser(),
               //   builder: (context, snapshot) {

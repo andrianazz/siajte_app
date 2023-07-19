@@ -22,6 +22,7 @@ class JadwalSeminarController extends GetxController {
   Dio dio = Dio();
 
   RxList<Penjadwalan> filterJadwal = <Penjadwalan>[].obs;
+  RxList<Penjadwalan> filterJadwalDosen = <Penjadwalan>[].obs;
   RxList<Penjadwalan> allJadwal = <Penjadwalan>[].obs;
 
   HomeController homeC = Get.put(HomeController());
@@ -33,17 +34,22 @@ class JadwalSeminarController extends GetxController {
 
     isLoading.value = true;
     allJadwal.value = await getJadwalSeminar();
+    filterJadwal.value = [];
 
     tz.initializeTimeZones();
     tz.getLocation('Asia/Jakarta');
 
     isLoading.value = false;
 
-    if (homeC.mapUser['role'] == 'mahasiswa') {
-      filterJadwalSeminarWithNim(homeC.mapUser['data']['nim']);
-      makeNotificationLocal();
-    } else if (homeC.mapUser['role'] == 'dosen') {
+    if (homeC.mapUser['role'] == 'dosen') {
       filterJadwalSeminarWithNip(homeC.mapUser['data']['nip']);
+      filterJadwal.value =
+          await returnJadwalSeminarWithNip(homeC.mapUser['data']['nip']);
+
+      makeNotificationLocal();
+    } else if (homeC.mapUser['role'] == 'mahasiswa') {
+      filterJadwalSeminarWithNim(homeC.mapUser['data']['nim']);
+
       makeNotificationLocal();
     } else {
       filterJadwal.value = allJadwal;
@@ -52,6 +58,7 @@ class JadwalSeminarController extends GetxController {
 
   Future<void> makeNotificationLocal() async {
     List<DateTime> listTanggal = [];
+
     filterJadwal.value.map((element) {
       listTanggal.add(DateTime.parse("${element.tanggal!} ${element.waktu!}"));
     }).toList();
@@ -192,7 +199,64 @@ class JadwalSeminarController extends GetxController {
 
   void filterJadwalSeminarWithNip(String nipDosen) async {
     isLoading.value = true;
-    List<Penjadwalan> result = [];
+    RxList<Penjadwalan> result = <Penjadwalan>[].obs;
+
+    List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
+    List<PenjadwalanSempro> listJadwalSeminarSempro = await getJadwalSempro();
+    List<PenjadwalanSkripsi> listJadwalSeminarSkripsi =
+        await getJadwalSkripsi();
+
+    for (var item in listJadwalSeminarKP) {
+      if (item.statusSeminar!.contains("0")) {
+        if (item.pembimbingNip!.contains(nipDosen) ||
+            item.pengujiNip!.contains(nipDosen)) {
+          result.add(item);
+        }
+      }
+    }
+
+    for (var item in listJadwalSeminarSempro) {
+      if (item.statusSeminar!.contains("0")) {
+        if (item.pembimbingsatuNip!.contains(nipDosen) ||
+            item.pengujisatuNip!.contains(nipDosen) ||
+            item.pengujiduaNip!.contains(nipDosen)) {
+          result.add(item);
+        } else if (item.pengujitigaNip != null &&
+            item.pengujitigaNip!.contains(nipDosen)) {
+          result.add(item);
+        } else if (item.pembimbingduaNip != null &&
+            item.pembimbingduaNip!.contains(nipDosen)) {
+          result.add(item);
+        }
+      }
+    }
+
+    for (var item in listJadwalSeminarSkripsi) {
+      if (item.statusSeminar!.contains("0")) {
+        if (item.pembimbingsatuNip!.contains(nipDosen) ||
+            item.pengujisatuNip!.contains(nipDosen) ||
+            item.pengujiduaNip!.contains(nipDosen)) {
+          result.add(item);
+        } else if (item.pengujitigaNip != null &&
+            item.pengujitigaNip!.contains(nipDosen)) {
+          result.add(item);
+        } else if (item.pembimbingduaNip != null &&
+            item.pembimbingduaNip!.contains(nipDosen)) {
+          result.add(item);
+        }
+      }
+    }
+
+    filterJadwal.value = result;
+    filterJadwalDosen.value = result;
+    update();
+
+    isLoading.value = false;
+  }
+
+  Future<List<Penjadwalan>> returnJadwalSeminarWithNip(String nipDosen) async {
+    isLoading.value = true;
+    RxList<Penjadwalan> result = <Penjadwalan>[].obs;
 
     List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
     List<PenjadwalanSempro> listJadwalSeminarSempro = await getJadwalSempro();
@@ -241,8 +305,7 @@ class JadwalSeminarController extends GetxController {
     }
 
     isLoading.value = false;
-
-    filterJadwal.value = result;
+    return result.value;
   }
 
   void selectedJenisSeminar(String val) {
