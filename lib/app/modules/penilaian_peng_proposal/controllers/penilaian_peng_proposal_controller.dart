@@ -543,8 +543,6 @@ class PenilaianPengProposalController extends GetxController {
         await dio.get("$baseUrlAPI/penilaian-sempro-pembimbing");
     final responsePeng = await dio.get("$baseUrlAPI/penilaian-sempro-penguji");
 
-    print("proses");
-
     if (responsePemb.statusCode == 200 && responsePeng.statusCode == 200) {
       List<PenilaianSemproPemb> pemb = [];
       List<PenilaianSemproPeng> peng = [];
@@ -567,33 +565,33 @@ class PenilaianPengProposalController extends GetxController {
           }
         });
 
-        // double totalPemb = pemb.map((expense) => expense.totalNilaiAngka).fold(
-        //     0,
-        //     (prev, amount) =>
-        //         double.parse(prev.toString()) +
-        //         double.parse(amount.toString()));
-
-        double totalPemb = dataPemb.map((e) => e['total_nilai_angka']).fold(
+        double totalPemb = pemb.map((expense) => expense.totalNilaiAngka).fold(
             0,
             (prev, amount) =>
                 double.parse(prev.toString()) +
                 double.parse(amount.toString()));
 
-        totalPemb = totalPemb / dataPemb.length;
-
-        // double totalPeng = peng.map((e) => e.totalNilaiAngka).fold(
+        // double totalPemb = dataPemb.map((e) => e['total_nilai_angka']).fold(
         //     0,
         //     (prev, amount) =>
         //         double.parse(prev.toString()) +
         //         double.parse(amount.toString()));
 
-        double totalPeng = dataPeng.map((e) => e['total_nilai_angka']).fold(
+        totalPemb = totalPemb / pemb.length;
+
+        double totalPeng = peng.map((e) => e.totalNilaiAngka).fold(
             0,
             (prev, amount) =>
                 double.parse(prev.toString()) +
                 double.parse(amount.toString()));
 
-        totalPeng = totalPeng / dataPeng.length;
+        // double totalPeng = dataPeng.map((e) => e['total_nilai_angka']).fold(
+        //     0,
+        //     (prev, amount) =>
+        //         double.parse(prev.toString()) +
+        //         double.parse(amount.toString()));
+
+        totalPeng = totalPeng / peng.length;
 
         baNilaiAkhir.value = (totalPemb + totalPeng).ceilToDouble();
         if (baNilaiAkhir > 70) {

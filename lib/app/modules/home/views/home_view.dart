@@ -29,112 +29,217 @@ class HomeView extends GetView<HomeController> {
     return ListView(
       children: [
         Container(
+          width: double.infinity,
           height: 60.h,
           color: primaryColor.withGreen(100),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
             children: [
+              // Obx(
+              //   () => Expanded(
+              //     child: Container(
+              //       height: double.infinity,
+              //       color: controller.selectedMenu.value == 0
+              //           ? primaryColor
+              //           : primaryColor.withGreen(100),
+              //       child: Column(
+              //         children: [
+              //           TextButton(
+              //             onPressed: () {
+              //               controller.changeIndex(0);
+              //             },
+              //             child: Text(
+              //               "Jadwal  Seminar",
+              //               style: poppins.copyWith(
+              //                   fontSize: 14.sp, color: Colors.white),
+              //             ),
+              //           ),
+              //           Container(
+              //             width: 100.w,
+              //             height: 2.h,
+              //             color: controller.selectedMenu.value == 0
+              //                 ? Colors.white
+              //                 : primaryColor.withGreen(100),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Obx(
+              //   () => Expanded(
+              //     child: Container(
+              //       height: double.infinity,
+              //       padding: EdgeInsets.symmetric(horizontal: 8.w),
+              //       color: controller.selectedMenu.value == 1
+              //           ? primaryColor
+              //           : primaryColor.withGreen(100),
+              //       child: Column(
+              //         children: [
+              //           TextButton(
+              //             onPressed: () {
+              //               controller.changeIndex(1);
+              //             },
+              //             child: Text(
+              //               "Riwayat Seminar",
+              //               style: poppins.copyWith(
+              //                   fontSize: 14.sp, color: Colors.white),
+              //             ),
+              //           ),
+              //           Container(
+              //             width: 100.w,
+              //             height: 2.h,
+              //             color: controller.selectedMenu.value == 1
+              //                 ? Colors.white
+              //                 : primaryColor.withGreen(100),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+
               Obx(
-                () => Expanded(
-                  child: Container(
-                    height: double.infinity,
-                    color: controller.selectedMenu.value == 0
-                        ? primaryColor
-                        : primaryColor.withGreen(100),
-                    child: Column(
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            controller.changeIndex(0);
-                          },
-                          child: Text(
-                            "Jadwal  Seminar",
-                            style: poppins.copyWith(
-                                fontSize: 14.sp, color: Colors.white),
-                          ),
+                () => Container(
+                  height: double.infinity,
+                  color: controller.selectedMenu.value == 0
+                      ? primaryColor
+                      : primaryColor.withGreen(100),
+                  child: Column(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          controller.changeIndex(0);
+                        },
+                        child: Text(
+                          "Jadwal  Seminar",
+                          style: poppins.copyWith(
+                              fontSize: 14.sp, color: Colors.white),
                         ),
-                        Container(
-                          width: 100.w,
-                          height: 2.h,
-                          color: controller.selectedMenu.value == 0
-                              ? Colors.white
-                              : primaryColor.withGreen(100),
-                        )
-                      ],
-                    ),
+                      ),
+                      Container(
+                        width: 100.w,
+                        height: 2.h,
+                        color: controller.selectedMenu.value == 0
+                            ? Colors.white
+                            : primaryColor.withGreen(100),
+                      )
+                    ],
                   ),
                 ),
               ),
               Obx(
-                () => Expanded(
-                  child: Container(
-                    height: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    color: controller.selectedMenu.value == 1
-                        ? primaryColor
-                        : primaryColor.withGreen(100),
-                    child: Column(
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            controller.changeIndex(1);
-                          },
-                          child: Text(
-                            "Riwayat Seminar",
-                            style: poppins.copyWith(
-                                fontSize: 14.sp, color: Colors.white),
-                          ),
+                () => Container(
+                  height: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 8.w),
+                  color: controller.selectedMenu.value == 1
+                      ? primaryColor
+                      : primaryColor.withGreen(100),
+                  child: Column(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          controller.changeIndex(1);
+                        },
+                        child: Text(
+                          "Riwayat Seminar",
+                          style: poppins.copyWith(
+                              fontSize: 14.sp, color: Colors.white),
                         ),
-                        Container(
-                          width: 100.w,
-                          height: 2.h,
-                          color: controller.selectedMenu.value == 1
-                              ? Colors.white
-                              : primaryColor.withGreen(100),
-                        )
-                      ],
-                    ),
+                      ),
+                      Container(
+                        width: 100.w,
+                        height: 2.h,
+                        color: controller.selectedMenu.value == 1
+                            ? Colors.white
+                            : primaryColor.withGreen(100),
+                      )
+                    ],
                   ),
                 ),
               ),
 
-              // FutureBuilder<Object>(
-              //   future: controller.getUser(),
-              //   builder: (context, snapshot) {
-              //     return controller.mapUser['role'] == "web"
-              //         ? Obx(
-              //             () => Container(
-              //               height: double.infinity,
-              //               padding: EdgeInsets.symmetric(horizontal: 8.w),
-              //               color: controller.selectedMenu.value == 2
-              //                   ? primaryColor
-              //                   : primaryColor.withGreen(100),
-              //               child: Column(
-              //                 children: [
-              //                   TextButton(
-              //                     onPressed: () {
-              //                       controller.changeIndex(2);
-              //                     },
-              //                     child: Text(
-              //                       "Daftar Mahasiswa",
-              //                       style: poppins.copyWith(
-              //                           fontSize: 14.sp, color: Colors.white),
-              //                     ),
-              //                   ),
-              //                   Container(
-              //                     width: 100.w,
-              //                     height: 2.h,
-              //                     color: controller.selectedMenu.value == 2
-              //                         ? Colors.white
-              //                         : primaryColor.withGreen(100),
-              //                   )
-              //                 ],
-              //               ),
-              //             ),
-              //           )
-              //         : const SizedBox();
-              //   },
-              // )
+              FutureBuilder<Object>(
+                future: controller.getUser(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const SizedBox();
+                  }
+                  return controller.mapUser['data']["role_id"] == "11"
+                      ? Obx(
+                          () => Container(
+                            height: double.infinity,
+                            padding: EdgeInsets.symmetric(horizontal: 8.w),
+                            color: controller.selectedMenu.value == 2
+                                ? primaryColor
+                                : primaryColor.withGreen(100),
+                            child: Column(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    controller.changeIndex(2);
+                                  },
+                                  child: Text(
+                                    "Persetujuan Koor TA",
+                                    style: poppins.copyWith(
+                                        fontSize: 14.sp, color: Colors.white),
+                                  ),
+                                ),
+                                Container(
+                                  width: 100.w,
+                                  height: 2.h,
+                                  color: controller.selectedMenu.value == 2
+                                      ? Colors.white
+                                      : primaryColor.withGreen(100),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      : const SizedBox();
+                },
+              ),
+              FutureBuilder<Object>(
+                future: controller.getUser(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const SizedBox();
+                  }
+
+                  return controller.mapUser['data']["role_id"] == "8"
+                      ? Obx(
+                          () => Container(
+                            height: double.infinity,
+                            padding: EdgeInsets.symmetric(horizontal: 8.w),
+                            color: controller.selectedMenu.value == 2
+                                ? primaryColor
+                                : primaryColor.withGreen(100),
+                            child: Column(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    controller.changeIndex(2);
+                                  },
+                                  child: Text(
+                                    "Persetujuan Kaprodi",
+                                    style: poppins.copyWith(
+                                        fontSize: 14.sp, color: Colors.white),
+                                  ),
+                                ),
+                                Container(
+                                  width: 100.w,
+                                  height: 2.h,
+                                  color: controller.selectedMenu.value == 3
+                                      ? Colors.white
+                                      : primaryColor.withGreen(100),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      : const SizedBox();
+                },
+              ),
             ],
           ),
         ),
