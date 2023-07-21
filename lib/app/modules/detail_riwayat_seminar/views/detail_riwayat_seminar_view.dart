@@ -387,6 +387,29 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       ],
                                     )
                                   : const SizedBox(),
+                              controller.seminar.value == "Proposal"
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 1",
+                                          color: redColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 2",
+                                          color: textSkripsi,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 3",
+                                          color: primaryColor,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox(),
                             ],
                           ),
                         ),
