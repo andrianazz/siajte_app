@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/style.dart';
@@ -13,6 +14,8 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
   const DetailRiwayatSeminarView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    HomeController homeC = Get.put(HomeController());
+
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(56),
@@ -25,22 +28,22 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () => Get.back(),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.arrow_back_ios),
-                      SizedBox(width: 16.w),
-                      Text(
-                        'Kembali',
-                        style: poppins.copyWith(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () => Get.back(),
+                //   child: Row(
+                //     children: [
+                //       const Icon(Icons.arrow_back_ios),
+                //       SizedBox(width: 16.w),
+                //       Text(
+                //         'Kembali',
+                //         style: poppins.copyWith(
+                //           fontSize: 20.sp,
+                //           fontWeight: FontWeight.w600,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 // SizedBox(height: 24.h),
                 // Container(
                 //   width: 327.w,
@@ -180,30 +183,82 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                 // SizedBox(height: 20.h),
 
                 //Riwayat Seminar untuk Mahasiswa
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      CardSubDetailWidget(
-                        onTap: () {},
-                        title: "Perbaikan Penguji 1",
-                        color: primaryColor,
-                      ),
-                      SizedBox(width: 12.w),
-                      CardSubDetailWidget(
-                        onTap: () {},
-                        title: "Perbaikan Penguji 2",
-                        color: secondaryColor,
-                      ),
-                      SizedBox(width: 12.w),
-                      CardSubDetailWidget(
-                        onTap: () {},
-                        title: "Perbaikan Penguji 3",
-                        color: textSkripsi,
-                      ),
-                    ],
-                  ),
-                )
+                homeC.mapUser['role'] == "dosen"
+                    ? Obx(
+                        () => SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              // Untuk Seminar KP
+                              controller.seminar.value == "KP" &&
+                                      controller.pembimbing1.value ==
+                                          homeC.mapUser['data']['nama']
+                                              .toString()
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji",
+                                          color: secondaryColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Berita \nAcara",
+                                          color: redColor,
+                                        )
+                                      ],
+                                    )
+                                  : const SizedBox(),
+                              controller.seminar.value == "KP" &&
+                                      controller.penguji1.value ==
+                                          homeC.mapUser['data']['nama']
+                                              .toString()
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji",
+                                          color: secondaryColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Form \nNilai",
+                                          color: redColor,
+                                        )
+                                      ],
+                                    )
+                                  : const SizedBox(),
+                            ],
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
+
+                //Riwayat Seminar untuk Mahasiswa
+                homeC.mapUser['role'] == "mahasiswa"
+                    ? Obx(
+                        () => SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              controller.seminar.value == "KP"
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji",
+                                          color: secondaryColor,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox(),
+                            ],
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
               ],
             ),
           )
