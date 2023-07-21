@@ -363,6 +363,139 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       ],
                                     )
                                   : const SizedBox(),
+
+                              // Untuk Seminar Skripsi
+                              controller.seminar.value == "Skripsi" &&
+                                      controller.pembimbing1.value ==
+                                          homeC.mapUser['data']['nama']
+                                              .toString()
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Lihat \nNilai",
+                                          color: primaryColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 1",
+                                          color: redColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 2",
+                                          color: textSkripsi,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 3",
+                                          color: primaryColor,
+                                        )
+                                      ],
+                                    )
+                                  : const SizedBox(),
+                              controller.seminar.value == "Skripsi" &&
+                                      controller.pembimbing2.value ==
+                                          homeC.mapUser['data']['nama']
+                                              .toString()
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Lihat \nNilai",
+                                          color: primaryColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 1",
+                                          color: redColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 2",
+                                          color: textSkripsi,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 3",
+                                          color: primaryColor,
+                                        )
+                                      ],
+                                    )
+                                  : const SizedBox(),
+                              controller.seminar.value == "Skripsi" &&
+                                      controller.penguji1.value ==
+                                          homeC.mapUser['data']['nama']
+                                              .toString()
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Lihat \nNilai",
+                                          color: primaryColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 1",
+                                          color: secondaryColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Berita \nAcara",
+                                          color: textSkripsi,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox(),
+                              controller.seminar.value == "Skripsi" &&
+                                      controller.penguji2.value ==
+                                          homeC.mapUser['data']['nama']
+                                              .toString()
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Lihat \nNilai",
+                                          color: primaryColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 2",
+                                          color: secondaryColor,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox(),
+
+                              controller.seminar.value == "Skripsi" &&
+                                      controller.penguji3.value ==
+                                          homeC.mapUser['data']['nama']
+                                              .toString()
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Lihat \nNilai",
+                                          color: primaryColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 3",
+                                          color: secondaryColor,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox(),
                             ],
                           ),
                         ),
@@ -388,6 +521,29 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                     )
                                   : const SizedBox(),
                               controller.seminar.value == "Proposal"
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 1",
+                                          color: redColor,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 2",
+                                          color: textSkripsi,
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        CardSubDetailWidget(
+                                          onTap: () {},
+                                          title: "Perbaikan Penguji 3",
+                                          color: primaryColor,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox(),
+                              controller.seminar.value == "Skripsi"
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
