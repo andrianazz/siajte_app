@@ -218,7 +218,7 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    controller.changeIndex(2);
+                                    controller.changeIndex(3);
                                   },
                                   child: Text(
                                     "Persetujuan Kaprodi",
@@ -243,7 +243,12 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
         ),
-        SizedBox(height: 1000.h, child: Obx(() => controller.changeView()))
+        SizedBox(
+          height: 1000.h,
+          child: Obx(
+            () => controller.changeView(),
+          ),
+        )
       ],
     );
   }

@@ -70,7 +70,7 @@ class PenjadwalanSkripsi extends Penjadwalan {
     pengujisatuNip = json['pengujisatu_nip'];
     pengujiduaNip = json['pengujidua_nip'];
     pengujitigaNip = json['pengujitiga_nip'];
-    prodiId = int.parse(json['prodi_id']);
+    prodiId = int.parse(json['prodi_id'].toString());
     jenisSeminar = json['jenis_seminar'];
     judulSkripsi = json['judul_skripsi'];
     revisiSkripsi = json['revisi_skripsi'];

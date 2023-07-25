@@ -5,12 +5,10 @@ import 'package:siajte_app/app/data/models/penilaian_skripsi_pemb_model.dart';
 import 'package:siajte_app/app/data/models/penilaian_skripsi_peng_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
-import 'package:siajte_app/app/modules/penilaian_peng_skripsi/views/penilaian_peng_skripsi_view.dart';
 import 'package:siajte_app/app/theme/variable.dart';
-import 'package:siajte_app/app/widgets/penilaian_peng_skripsi/card_ba_skripsi.dart';
-import 'package:siajte_app/app/widgets/penilaian_peng_skripsi/form_nilai_peng_skripsi.dart';
+import 'package:siajte_app/app/widgets/kaprodi/card_ba_skripsi_kaprodi.dart';
 
-class PenilaianPengSkripsiController extends GetxController {
+class PersetujuanKaprodiController extends GetxController {
   RxBool isLoading = false.obs;
   PageController pageController = PageController();
 
@@ -58,49 +56,17 @@ class PenilaianPengSkripsiController extends GetxController {
   ].obs;
 
   //Pembimbing KP
-  RxList<String> listPenilaianPengSkripsi = [
-    "Form Nilai",
-    "Saran Perbaikan",
-  ].obs;
+  RxList<String> listPenilaianPengSkripsi = ["Berita Acara"].obs;
 
   RxInt indexFormNilaiPengSkripsi = 0.obs;
 
   Widget viewListPenilaianPengProposal() {
-    if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
-      switch (selectedChips.value) {
-        case 0:
-          return const FormNilaiPengSkripsi();
-        // return const Text("Form Nilai");
+    switch (selectedChips.value) {
+      case 0:
+        return const CardBASkripsiKaprodi();
 
-        case 1:
-          return const SaranPerbaikanskripsiView();
-        // return const Text("Saran Perbaikan");
-
-        case 2:
-          return const RevisiJudulView();
-        // return const Text("Revisi Judul");
-
-        case 3:
-          return const CardBASkripsi();
-
-        default:
-          return const FormNilaiPengSkripsi();
-        // return const Text("Form Nilai");
-      }
-    } else {
-      switch (selectedChips.value) {
-        case 0:
-          return const FormNilaiPengSkripsi();
-        // return const Text("Form Nilai");
-
-        case 1:
-          return const SaranPerbaikanskripsiView();
-        // return const Text("Saran Perbaikan");
-
-        default:
-          return const FormNilaiPengSkripsi();
-        // return const Text("Form Nilai");
-      }
+      default:
+        return const CardBASkripsiKaprodi();
     }
   }
 
@@ -256,44 +222,6 @@ class PenilaianPengSkripsiController extends GetxController {
       "$baseUrlAPI/penjadwalan-skripsi/$id",
       data: {
         "status_seminar": 1,
-      },
-      options: Options(
-        receiveDataWhenStatusError: true,
-        sendTimeout: const Duration(seconds: 5), // 60 seconds
-        receiveTimeout: const Duration(seconds: 2),
-      ),
-    );
-
-    var data = response.data;
-    Get.snackbar("Berhasil Selesaikan Seminar", "${data['status']}");
-  }
-
-  Future<void> setujuiKoor(id) async {
-    isLoading.value = true;
-
-    var response = await dio.put(
-      "$baseUrlAPI/penjadwalan-skripsi/$id",
-      data: {
-        "status_seminar": 2,
-      },
-      options: Options(
-        receiveDataWhenStatusError: true,
-        sendTimeout: const Duration(seconds: 5), // 60 seconds
-        receiveTimeout: const Duration(seconds: 2),
-      ),
-    );
-
-    var data = response.data;
-    Get.snackbar("Berhasil Selesaikan Seminar", "${data['status']}");
-  }
-
-  Future<void> setujuiKaprodi(id) async {
-    isLoading.value = true;
-
-    var response = await dio.put(
-      "$baseUrlAPI/penjadwalan-skripsi/$id",
-      data: {
-        "status_seminar": 3,
       },
       options: Options(
         receiveDataWhenStatusError: true,

@@ -28,6 +28,8 @@ class RiwayatSeminarController extends GetxController {
   Dio dio = Dio();
 
   RxList<Penjadwalan> filterJadwal = <Penjadwalan>[].obs;
+  RxList<Penjadwalan> filterSkripsi2 = <Penjadwalan>[].obs;
+  RxList<Penjadwalan> filterSkripsi3 = <Penjadwalan>[].obs;
   RxList<Penjadwalan> allJadwal = <Penjadwalan>[].obs;
 
   void selectedJenisSeminar(String val) {
@@ -38,18 +40,28 @@ class RiwayatSeminarController extends GetxController {
   void filterJadwalSeminarWithNim(String nimMhs) async {
     isLoading.value = true;
     List<Penjadwalan> result = [];
+    List<Penjadwalan> result2 = [];
+    List<Penjadwalan> result3 = [];
 
     result = allJadwal.where((p0) => p0.statusSeminar!.contains("1")).toList();
+    result.removeWhere((element) =>
+        element.jenisSeminar == "Skripsi" && element.statusSeminar == "1");
 
     result = allJadwal.where((element) {
       return element.mahasiswaNim!.toLowerCase().contains(nimMhs.toLowerCase());
     }).toList();
+
+    result2 = allJadwal.where((p0) => p0.statusSeminar!.contains("1")).toList();
+
+    result3 = allJadwal.where((p0) => p0.statusSeminar!.contains("2")).toList();
 
     isLoading.value = false;
 
     result.sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
 
     filterJadwal.value = result;
+    filterSkripsi2.value = result2;
+    filterSkripsi3.value = result3;
   }
 
   void filterJadwalSeminarWithChoice(List<String> val) async {
@@ -73,6 +85,14 @@ class RiwayatSeminarController extends GetxController {
     //tgl seminar ascending
 
     filterJadwal.value = result;
+
+    filterSkripsi2.value = allJadwal.where((element) {
+      return element.statusSeminar! == "2";
+    }).toList();
+
+    filterSkripsi3.value = allJadwal.where((element) {
+      return element.statusSeminar! == "3";
+    }).toList();
   }
 
   Future<List<Mahasiswa>> getMahasiswa() async {
@@ -216,6 +236,8 @@ class RiwayatSeminarController extends GetxController {
   void filterJadwalSeminarWithNip(String nipDosen) async {
     isLoading.value = true;
     List<Penjadwalan> result = [];
+    List<Penjadwalan> result2 = [];
+    List<Penjadwalan> result3 = [];
 
     List<PenjadwalanKp> listJadwalSeminarKP = await getJadwalSeminarKP();
     List<PenjadwalanSempro> listJadwalSeminarSempro = await getJadwalSempro();
@@ -248,7 +270,7 @@ class RiwayatSeminarController extends GetxController {
     }
 
     for (var item in listJadwalSeminarSkripsi) {
-      if (int.parse(item.statusSeminar!) >= 1) {
+      if (int.parse(item.statusSeminar!) == 3) {
         if (item.pembimbingsatuNip!.contains(nipDosen) ||
             item.pengujisatuNip!.contains(nipDosen) ||
             item.pengujiduaNip!.contains(nipDosen)) {
@@ -263,11 +285,25 @@ class RiwayatSeminarController extends GetxController {
       }
     }
 
+    for (var item in listJadwalSeminarSkripsi) {
+      if (int.parse(item.statusSeminar!) == 1) {
+        result2.add(item);
+      }
+    }
+
+    for (var item in listJadwalSeminarSkripsi) {
+      if (int.parse(item.statusSeminar!) == 2) {
+        result3.add(item);
+      }
+    }
+
     isLoading.value = false;
 
     result.sort((a, b) => b.tanggal!.compareTo(a.tanggal!));
 
     filterJadwal.value = result;
+    filterSkripsi2.value = result2;
+    filterSkripsi3.value = result3;
   }
 
   Future<String> getMahasiswaWithNama(String nama) async {

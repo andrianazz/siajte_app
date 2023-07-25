@@ -12,7 +12,6 @@ import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/style.dart';
 import 'package:siajte_app/app/theme/variable.dart';
 import 'package:siajte_app/app/widgets/card_jadwal_widget.dart';
-import 'package:siajte_app/app/widgets/mahasiswa/card_mahasiswa_widget.dart';
 
 class HomeController extends GetxController {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -355,23 +354,25 @@ class HomeController extends GetxController {
                   Form(
                     // key: controller.formKey,
                     child: TextFormField(
+                      // controller: controller.userC,
+                      onFieldSubmitted: (value) {
+                        riwayatSeminarC.filterJadwalSeminarWithName(value);
+                      },
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Search tidak boleh kosong';
                         }
                         return null;
                       },
-                      onFieldSubmitted: (value) async {
-                        mahasiswaC.getMahasiswabyName(value);
-                      },
                       style: poppins.copyWith(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                       ),
+
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 10.h),
-                        hintText: 'Cari Nama Mahasiswa....',
+                        hintText: 'Search',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -381,32 +382,109 @@ class HomeController extends GetxController {
                   ),
                   SizedBox(height: 24.h),
                   SizedBox(
+                    width: double.infinity,
                     height: 500.h,
                     child: Obx(
-                      () => mahasiswaC.isLoading.isFalse
+                      () => riwayatSeminarC.isLoading.isFalse
                           ? ListView.builder(
                               itemCount:
-                                  mahasiswaC.filterMahasiswa.value.length,
+                                  riwayatSeminarC.filterSkripsi2.value.length,
                               itemBuilder: (context, index) {
-                                return CardMahasiswa(
-                                  mahasiswa:
-                                      mahasiswaC.filterMahasiswa.value[index],
+                                return CardJadwalWidget(
                                   onTap: () {
                                     Get.toNamed(
-                                      Routes.DETAIL_MAHASISWA,
-                                      arguments: mahasiswaC
-                                          .filterMahasiswa.value[index],
+                                      Routes.DETAIL_RIWAYAT_SEMINAR,
+                                      arguments: riwayatSeminarC
+                                          .filterSkripsi2.value[index],
                                     );
                                   },
+                                  penjadwalan: riwayatSeminarC
+                                      .filterSkripsi2.value[index],
                                 );
                               },
                             )
-                          : Center(
-                              child: SizedBox(
-                                width: 20.w,
-                                height: 20.h,
-                                child: const CircularProgressIndicator(),
-                              ),
+                          : SizedBox(
+                              width: 20.w,
+                              height: 20.h,
+                              child: const Center(
+                                  child: CircularProgressIndicator()),
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+
+      case 3:
+        return Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 24.w,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 24.h),
+                  Form(
+                    // key: controller.formKey,
+                    child: TextFormField(
+                      // controller: controller.userC,
+                      onFieldSubmitted: (value) {
+                        riwayatSeminarC.filterJadwalSeminarWithName(value);
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Search tidak boleh kosong';
+                        }
+                        return null;
+                      },
+                      style: poppins.copyWith(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 10.h),
+                        hintText: 'Search',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        suffixIcon: const Icon(Icons.search_rounded),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 24.h),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 500.h,
+                    child: Obx(
+                      () => riwayatSeminarC.isLoading.isFalse
+                          ? ListView.builder(
+                              itemCount:
+                                  riwayatSeminarC.filterSkripsi3.value.length,
+                              itemBuilder: (context, index) {
+                                return CardJadwalWidget(
+                                  onTap: () {
+                                    Get.toNamed(
+                                      Routes.DETAIL_RIWAYAT_SEMINAR,
+                                      arguments: riwayatSeminarC
+                                          .filterSkripsi3.value[index],
+                                    );
+                                  },
+                                  penjadwalan: riwayatSeminarC
+                                      .filterSkripsi3.value[index],
+                                );
+                              },
+                            )
+                          : SizedBox(
+                              width: 20.w,
+                              height: 20.h,
+                              child: const Center(
+                                  child: CircularProgressIndicator()),
                             ),
                     ),
                   ),

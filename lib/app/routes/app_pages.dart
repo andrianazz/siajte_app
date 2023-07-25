@@ -46,6 +46,10 @@ import '../modules/penilaian_peng_skripsi/bindings/penilaian_peng_skripsi_bindin
 import '../modules/penilaian_peng_skripsi/views/penilaian_peng_skripsi_view.dart';
 import '../modules/penilaian_seminar/bindings/penilaian_seminar_binding.dart';
 import '../modules/penilaian_seminar/views/penilaian_seminar_view.dart';
+import '../modules/persetujuan_kaprodi/bindings/persetujuan_kaprodi_binding.dart';
+import '../modules/persetujuan_kaprodi/views/persetujuan_kaprodi_view.dart';
+import '../modules/persetujuan_koor_ta/bindings/persetujuan_koor_ta_binding.dart';
+import '../modules/persetujuan_koor_ta/views/persetujuan_koor_ta_view.dart';
 import '../modules/riwayat_seminar/bindings/riwayat_seminar_binding.dart';
 import '../modules/riwayat_seminar/views/riwayat_seminar_view.dart';
 import '../modules/success/bindings/success_binding.dart';
@@ -193,6 +197,16 @@ class AppPages {
       name: _Paths.WEB_APPEARANCE,
       page: () => const WebAppearanceView(),
       binding: WebAppearanceBinding(),
+    ),
+    GetPage(
+      name: _Paths.PERSETUJUAN_KOOR_TA,
+      page: () => const PersetujuanKoorTaView(),
+      binding: PersetujuanKoorTaBinding(),
+    ),
+    GetPage(
+      name: _Paths.PERSETUJUAN_KAPRODI,
+      page: () => const PersetujuanKaprodiView(),
+      binding: PersetujuanKaprodiBinding(),
     ),
   ];
 }

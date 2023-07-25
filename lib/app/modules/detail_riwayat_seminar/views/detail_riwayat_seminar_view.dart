@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
+import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
+import 'package:siajte_app/app/theme/variable.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/style.dart';
@@ -189,6 +194,47 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
+                              //Untuk Kaprodi
+                              controller.seminar.value == "Skripsi" &&
+                                      controller.status.value == "1"
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {
+                                            final PenjadwalanSkripsi data =
+                                                Get.arguments;
+
+                                            Get.toNamed(
+                                                Routes.PERSETUJUAN_KOOR_TA,
+                                                arguments: data);
+                                          },
+                                          title: "Setujui Koor TA",
+                                          color: primaryColor,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox(),
+
+                              //Untuk Kaprodi
+                              controller.seminar.value == "Skripsi" &&
+                                      controller.status.value == "2"
+                                  ? Row(
+                                      children: [
+                                        CardSubDetailWidget(
+                                          onTap: () {
+                                            final PenjadwalanSkripsi data =
+                                                Get.arguments;
+
+                                            Get.toNamed(
+                                                Routes.PERSETUJUAN_KAPRODI,
+                                                arguments: data);
+                                          },
+                                          title: "Setujui Kaprodi",
+                                          color: primaryColor,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox(),
                               // Untuk Seminar KP
                               controller.seminar.value == "KP" &&
                                       controller.pembimbing1.value ==
@@ -368,7 +414,8 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                               controller.seminar.value == "Skripsi" &&
                                       controller.pembimbing1.value ==
                                           homeC.mapUser['data']['nama']
-                                              .toString()
+                                              .toString() &&
+                                      controller.status == "3"
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -400,7 +447,8 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                               controller.seminar.value == "Skripsi" &&
                                       controller.pembimbing2.value ==
                                           homeC.mapUser['data']['nama']
-                                              .toString()
+                                              .toString() &&
+                                      controller.status == "3"
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -432,7 +480,8 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                               controller.seminar.value == "Skripsi" &&
                                       controller.penguji1.value ==
                                           homeC.mapUser['data']['nama']
-                                              .toString()
+                                              .toString() &&
+                                      controller.status == "3"
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -458,7 +507,8 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                               controller.seminar.value == "Skripsi" &&
                                       controller.penguji2.value ==
                                           homeC.mapUser['data']['nama']
-                                              .toString()
+                                              .toString() &&
+                                      controller.status == "3"
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -479,7 +529,8 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                               controller.seminar.value == "Skripsi" &&
                                       controller.penguji3.value ==
                                           homeC.mapUser['data']['nama']
-                                              .toString()
+                                              .toString() &&
+                                      controller.status == "3"
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -513,7 +564,21 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () async {
+                                            PenjadwalanKp jadwalKP =
+                                                Get.arguments;
+                                            String id = jadwalKP.id.toString();
+                                            String penguji =
+                                                jadwalKP.pengujiNip!;
+
+                                            print(id);
+                                            print(penguji);
+
+                                            await launchUrl(
+                                                Uri.parse(
+                                                    "$baseUrl/perbaikan2-pengujikp/$id/$penguji"),
+                                                mode: LaunchMode.inAppWebView);
+                                          },
                                           title: "Perbaikan Penguji",
                                           color: secondaryColor,
                                         ),
@@ -543,7 +608,8 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       ],
                                     )
                                   : const SizedBox(),
-                              controller.seminar.value == "Skripsi"
+                              controller.seminar.value == "Skripsi" &&
+                                      controller.status == "3"
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(

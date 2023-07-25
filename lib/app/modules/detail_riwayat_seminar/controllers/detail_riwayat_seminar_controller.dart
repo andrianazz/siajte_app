@@ -22,6 +22,7 @@ class DetailRiwayatSeminarController extends GetxController {
   RxString penguji2 = '-'.obs;
   RxString penguji3 = '-'.obs;
   RxString judul = ''.obs;
+  RxString status = ''.obs;
 
   //get mahasiswa nama with nim
   Future<String> getMahasiswaWithNim(String nim) async {
@@ -61,6 +62,7 @@ class DetailRiwayatSeminarController extends GetxController {
       pembimbing1.value = await getDosenWithNip(penjadwalanKp.pembimbingNip!);
       penguji1.value = await getDosenWithNip(penjadwalanKp.pengujiNip!);
       judul.value = penjadwalanKp.judulKp!;
+      status.value = penjadwalanKp.statusSeminar!;
     } else if (Get.arguments is PenjadwalanSempro) {
       PenjadwalanSempro penjadwalanSempro = Get.arguments;
 
@@ -79,6 +81,7 @@ class DetailRiwayatSeminarController extends GetxController {
       penguji2.value = await getDosenWithNip(penjadwalanSempro.pengujiduaNip!);
       penguji3.value = await getDosenWithNip(penjadwalanSempro.pengujitigaNip!);
       judul.value = penjadwalanSempro.judulProposal!;
+      status.value = penjadwalanSempro.statusSeminar!;
     } else {
       PenjadwalanSkripsi penjadwalanSkripsi = Get.arguments;
 
@@ -86,6 +89,7 @@ class DetailRiwayatSeminarController extends GetxController {
           await getDosenWithNip(penjadwalanSkripsi.pengujisatuNip!.toString());
 
       judul.value = penjadwalanSkripsi.judulSkripsi!;
+      status.value = penjadwalanSkripsi.statusSeminar!;
 
       nama.value = await getMahasiswaWithNim(penjadwalanSkripsi.mahasiswaNim!);
       nim.value = penjadwalanSkripsi.mahasiswaNim!;

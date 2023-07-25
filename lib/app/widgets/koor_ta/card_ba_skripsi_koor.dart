@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_skripsi/controllers/penilaian_peng_skripsi_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
-class CardBASkripsi extends StatelessWidget {
-  const CardBASkripsi({super.key});
+class CardBASkripsiKoor extends StatelessWidget {
+  const CardBASkripsiKoor({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +16,6 @@ class CardBASkripsi extends StatelessWidget {
         Get.put(PenialianPembSkipsiController());
     PenilaianPengSkripsiController penilaianPengController =
         Get.put(PenilaianPengSkripsiController());
-
-    PenjadwalanSkripsi jadwalSkripsi = penilaianPengController.jadwalSkripsi;
 
     return Column(
       children: [
@@ -1204,13 +1201,13 @@ class CardBASkripsi extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        penilaianPengController.selesaikanSeminar(
+                        penilaianPengController.setujuiKoor(
                             penilaianPengController.jadwalSkripsi.id);
                         Get.offAllNamed(Routes.HOME);
                         Get.forceAppUpdate();
                       },
                       child: Text(
-                        "Selesaikan",
+                        "Setujui",
                         style: poppins.copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
@@ -1229,7 +1226,7 @@ class CardBASkripsi extends StatelessWidget {
               ),
             ),
             child: Text(
-              "Selesaikan Seminar",
+              "Setujui Koor TA",
               style: poppins.copyWith(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,

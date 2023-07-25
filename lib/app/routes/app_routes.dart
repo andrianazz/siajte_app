@@ -33,6 +33,9 @@ abstract class Routes {
   static const PENILAIAN_PENG_SKRIPSI = _Paths.PENILAIAN_PENG_SKRIPSI;
   static const SEARCH_MAHASISWA = _Paths.SEARCH_MAHASISWA;
   static const WEB_APPEARANCE = _Paths.WEB_APPEARANCE;
+  static const DETAIL_RIWAYAT_SKRIPSI = _Paths.DETAIL_RIWAYAT_SKRIPSI;
+  static const PERSETUJUAN_KOOR_TA = _Paths.PERSETUJUAN_KOOR_TA;
+  static const PERSETUJUAN_KAPRODI = _Paths.PERSETUJUAN_KAPRODI;
 }
 
 abstract class _Paths {
@@ -64,4 +67,7 @@ abstract class _Paths {
   static const PENILAIAN_PENG_SKRIPSI = '/penilaian-peng-skripsi';
   static const SEARCH_MAHASISWA = '/search-mahasiswa';
   static const WEB_APPEARANCE = '/web-appearance';
+  static const DETAIL_RIWAYAT_SKRIPSI = '/detail-riwayat-skripsi';
+  static const PERSETUJUAN_KOOR_TA = '/persetujuan-koor-ta';
+  static const PERSETUJUAN_KAPRODI = '/persetujuan-kaprodi';
 }
