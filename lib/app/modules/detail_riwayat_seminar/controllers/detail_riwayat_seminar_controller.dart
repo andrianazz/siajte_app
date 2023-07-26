@@ -5,6 +5,7 @@ import '../../../data/models/penjadwalan_kp_model.dart';
 import '../../../data/models/penjadwalan_sempro_model.dart';
 import '../../../data/models/penjadwalan_skripsi_model.dart';
 import '../../../theme/variable.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailRiwayatSeminarController extends GetxController {
   Dio dio = Dio();
@@ -107,6 +108,18 @@ class DetailRiwayatSeminarController extends GetxController {
       penguji2.value = await getDosenWithNip(penjadwalanSkripsi.pengujiduaNip!);
       penguji3.value =
           await getDosenWithNip(penjadwalanSkripsi.pengujitigaNip!);
+    }
+  }
+
+  void launchURL(String url) async {
+    Uri uriUrl = Uri.parse(url);
+    if (await canLaunchUrl(uriUrl)) {
+      await launchUrl(
+        uriUrl,
+        mode: LaunchMode.externalApplication,
+      );
+    } else {
+      throw 'Tidak dapat membuka $url';
     }
   }
 }

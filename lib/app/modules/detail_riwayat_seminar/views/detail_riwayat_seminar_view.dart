@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/variable.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/style.dart';
@@ -243,13 +241,19 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-pengujikp/${Get.arguments.id}/${Get.arguments.pengujiNip}");
+                                          },
                                           title: "Perbaikan Penguji",
                                           color: secondaryColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/beritaacara2-kp/${Get.arguments.id}");
+                                          },
                                           title: "Berita \nAcara",
                                           color: redColor,
                                         )
@@ -263,13 +267,19 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-pengujikp/${Get.arguments.id}/${Get.arguments.pengujiNip}");
+                                          },
                                           title: "Perbaikan Penguji",
                                           color: secondaryColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/nilai2-kp/${Get.arguments.id}");
+                                          },
                                           title: "Form \nNilai",
                                           color: redColor,
                                         )
@@ -565,19 +575,8 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       children: [
                                         CardSubDetailWidget(
                                           onTap: () async {
-                                            PenjadwalanKp jadwalKP =
-                                                Get.arguments;
-                                            String id = jadwalKP.id.toString();
-                                            String penguji =
-                                                jadwalKP.pengujiNip!;
-
-                                            print(id);
-                                            print(penguji);
-
-                                            await launchUrl(
-                                                Uri.parse(
-                                                    "$baseUrl/perbaikan2-pengujikp/$id/$penguji"),
-                                                mode: LaunchMode.inAppWebView);
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-pengujikp/${Get.arguments.id}/${Get.arguments.pengujiNip}");
                                           },
                                           title: "Perbaikan Penguji",
                                           color: secondaryColor,
