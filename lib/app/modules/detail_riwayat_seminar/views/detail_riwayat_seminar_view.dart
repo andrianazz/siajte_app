@@ -295,25 +295,37 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/nilai2-pembimbing-sempro/${Get.arguments.id}/${Get.arguments.pembimbingsatuNip}");
+                                          },
                                           title: "Lihat \nNilai",
                                           color: primaryColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujisatuNip}");
+                                          },
                                           title: "Perbaikan Penguji 1",
                                           color: redColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujiduaNip}");
+                                          },
                                           title: "Perbaikan Penguji 2",
                                           color: textSkripsi,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujitigaNip}");
+                                          },
                                           title: "Perbaikan Penguji 3",
                                           color: primaryColor,
                                         )
@@ -327,25 +339,37 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/nilai-pembimbing-sempro/${Get.arguments.id}/${Get.arguments.pembimbingduaNip}");
+                                          },
                                           title: "Lihat \nNilai",
                                           color: primaryColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujisatuNip}");
+                                          },
                                           title: "Perbaikan Penguji 1",
                                           color: redColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujiduaNip}");
+                                          },
                                           title: "Perbaikan Penguji 2",
                                           color: textSkripsi,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujitigaNip}");
+                                          },
                                           title: "Perbaikan Penguji 3",
                                           color: primaryColor,
                                         )
@@ -359,19 +383,28 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/nilai2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujisatuNip}");
+                                          },
                                           title: "Lihat \nNilai",
                                           color: primaryColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujisatuNip}");
+                                          },
                                           title: "Perbaikan Penguji 1",
                                           color: secondaryColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/beritaacara2-sempro/${Get.arguments.id}");
+                                          },
                                           title: "Berita \nAcara",
                                           color: textSkripsi,
                                         ),
@@ -385,13 +418,19 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/nilai2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujiduaNip}");
+                                          },
                                           title: "Lihat \nNilai",
                                           color: primaryColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujiduaNip}");
+                                          },
                                           title: "Perbaikan Penguji 2",
                                           color: secondaryColor,
                                         ),
@@ -406,13 +445,19 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/nilai2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujitigaNip}");
+                                          },
                                           title: "Lihat \nNilai",
                                           color: primaryColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujitigaNip}");
+                                          },
                                           title: "Perbaikan Penguji 3",
                                           color: secondaryColor,
                                         ),
@@ -588,19 +633,28 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujisatuNip}");
+                                          },
                                           title: "Perbaikan Penguji 1",
                                           color: redColor,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujiduaNip}");
+                                          },
                                           title: "Perbaikan Penguji 2",
                                           color: textSkripsi,
                                         ),
                                         SizedBox(width: 12.w),
                                         CardSubDetailWidget(
-                                          onTap: () {},
+                                          onTap: () {
+                                            controller.launchURL(
+                                                "$baseUrl/perbaikan2-penguji-sempro/${Get.arguments.id}/${Get.arguments.pengujitigaNip}");
+                                          },
                                           title: "Perbaikan Penguji 3",
                                           color: primaryColor,
                                         ),
