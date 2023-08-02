@@ -1204,7 +1204,6 @@ class CardBASkripsiKoor extends StatelessWidget {
                         penilaianPengController.setujuiKoor(
                             penilaianPengController.jadwalSkripsi.id);
                         Get.offAllNamed(Routes.HOME);
-                        Get.forceAppUpdate();
                       },
                       child: Text(
                         "Setujui",

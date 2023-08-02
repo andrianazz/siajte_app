@@ -1204,7 +1204,6 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                         penilaianPengController.setujuiKaprodi(
                             penilaianPengController.jadwalSkripsi.id);
                         Get.offAllNamed(Routes.HOME);
-                        Get.forceAppUpdate();
                       },
                       child: Text(
                         "Setujui",
