@@ -341,7 +341,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                         CardSubDetailWidget(
                                           onTap: () {
                                             controller.launchURL(
-                                                "$baseUrl/nilai-pembimbing-sempro/${Get.arguments.id}/${Get.arguments.pembimbingduaNip}");
+                                                "$baseUrl/nilai2-pembimbing-sempro/${Get.arguments.id}/${Get.arguments.pembimbingduaNip}");
                                           },
                                           title: "Lihat \nNilai",
                                           color: primaryColor,

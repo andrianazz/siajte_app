@@ -3,10 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/modules/penilaian_pemb_proposal/controllers/penilaian_pemb_proposal_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_proposal/controllers/penilaian_peng_proposal_controller.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
-
-import '../../routes/app_pages.dart';
 
 class CardBASempro extends StatelessWidget {
   const CardBASempro({super.key});
@@ -809,7 +808,6 @@ class CardBASempro extends StatelessWidget {
                         pengProposalController.selesaikanSeminar(
                             pengProposalController.penjadwalanSempro.id);
                         Get.offAllNamed(Routes.HOME);
-                        Get.forceAppUpdate();
                       },
                       child: Text(
                         "Selesaikan",

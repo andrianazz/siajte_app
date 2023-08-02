@@ -1207,7 +1207,6 @@ class CardBASkripsi extends StatelessWidget {
                         penilaianPengController.selesaikanSeminar(
                             penilaianPengController.jadwalSkripsi.id);
                         Get.offAllNamed(Routes.HOME);
-                        Get.forceAppUpdate();
                       },
                       child: Text(
                         "Selesaikan",

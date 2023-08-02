@@ -77,6 +77,25 @@ class PenilaianPembKpController extends GetxController {
   RxInt baNilaiLapangan = 0.obs;
   RxInt baTotalAkhir = 0.obs;
 
+  Future<void> selesaikanSeminar(id) async {
+    isLoading.value = true;
+
+    var response = await dio.put(
+      "$baseUrlAPI/penjadwalan-kp/$id",
+      data: {
+        "status_seminar": 1,
+      },
+      options: Options(
+        receiveDataWhenStatusError: true,
+        sendTimeout: const Duration(seconds: 5), // 60 seconds
+        receiveTimeout: const Duration(seconds: 2),
+      ),
+    );
+
+    var data = response.data;
+    Get.snackbar("Berhasil Selesaikan Seminar", "${data['status']}");
+  }
+
   Future<void> getPenilaianKP() async {
     isLoading.value = true;
     List<PenilaianKpPemb> listPenilaianKP = <PenilaianKpPemb>[];

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/modules/penilaian_pemb_kp/controllers/penilaian_pemb_kp_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_kp/controllers/penilaian_peng_kp_controller.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -366,7 +367,56 @@ class CardBAKP extends StatelessWidget {
           width: double.infinity,
           height: 44.h,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.dialog(
+                AlertDialog(
+                  title: Text(
+                    "Selesaikan Seminar",
+                    style: poppins.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  content: Text(
+                    "Apakah anda yakin ingin menyelesaikan seminar ini?",
+                    style: poppins.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        "Batal",
+                        style: poppins.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        pembimbingC
+                            .selesaikanSeminar(pembimbingC.penjadwalanKp.id);
+                        Get.offAllNamed(Routes.HOME);
+                      },
+                      child: Text(
+                        "Selesaikan",
+                        style: poppins.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(
