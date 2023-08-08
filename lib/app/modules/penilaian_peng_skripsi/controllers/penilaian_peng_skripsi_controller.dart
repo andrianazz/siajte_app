@@ -77,6 +77,7 @@ class PenilaianPengSkripsiController extends GetxController {
         // return const Text("Saran Perbaikan");
 
         case 2:
+          oldJudulC.text = jadwalSkripsi.judulSkripsi!;
           return const RevisiJudulView();
         // return const Text("Revisi Judul");
 

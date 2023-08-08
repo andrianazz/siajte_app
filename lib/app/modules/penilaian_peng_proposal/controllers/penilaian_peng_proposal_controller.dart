@@ -73,6 +73,7 @@ class PenilaianPengProposalController extends GetxController {
           return const SaranPerbaikanSemproView();
 
         case 2:
+          oldJudulC.text = penjadwalanSempro.judulProposal!;
           return const RevisiJudulView();
 
         case 3:

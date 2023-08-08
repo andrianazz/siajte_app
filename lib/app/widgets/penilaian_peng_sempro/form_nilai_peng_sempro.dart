@@ -181,6 +181,39 @@ class FormNilaiPengSempro extends StatelessWidget {
         //     ),
         //   ),
         // ),
+        SizedBox(height: 8.h),
+        Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: const Wrap(
+            alignment: WrapAlignment.center,
+            runSpacing: 2,
+            spacing: 2,
+            children: [
+              Text(
+                "SKB = Sangat Kurang Baik, ",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "KB = Kurang Baik,",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "N = Netral, ",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "B = Baik, ",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "SB = Sangat Baik,",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+
         SizedBox(height: 24.h),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
