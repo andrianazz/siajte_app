@@ -271,15 +271,14 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                                                             ['nip']) ||
                                                 data.pengujiduaNip!.contains(
                                                     homeC.mapUser['data']
-                                                        ['nip']))) {
+                                                        ['nip']) || data.pengujitigaNip!.contains(homeC.mapUser['data']['nip']))) {
                                               //Penguji
                                               Get.toNamed(
                                                   Routes
                                                       .PENILAIAN_PENG_PROPOSAL,
                                                   arguments: data);
                                             } else if (data.pembimbingduaNip !=
-                                                    null ||
-                                                data.pengujitigaNip != null) {
+                                                    null ) {
                                               if (data.pembimbingduaNip!
                                                   .contains(
                                                       homeC.mapUser['data']
@@ -287,14 +286,6 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                                                 Get.toNamed(
                                                     Routes
                                                         .PENILAIAN_PEMB_PROPOSAL,
-                                                    arguments: data);
-                                              } else if (data.pengujitigaNip!
-                                                  .contains(
-                                                      homeC.mapUser['data']
-                                                          ['nip'])) {
-                                                Get.toNamed(
-                                                    Routes
-                                                        .PENILAIAN_PENG_PROPOSAL,
                                                     arguments: data);
                                               }
                                             }

@@ -559,6 +559,10 @@ class PenilaianPengProposalController extends GetxController {
           }
         });
 
+        if (pemb.last.pembimbingNip.toString().contains("null")) {
+          pemb.removeLast();
+        }
+
         dataPeng.forEach((element) {
           if (element['penjadwalan_sempro_id'].toString() ==
               penjadwalanSempro.id.toString()) {
