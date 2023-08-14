@@ -16,7 +16,7 @@ class AddJadwalProposalController extends GetxController {
   late Mahasiswa mahasiswa;
 
   late Dosen pembimbing1;
-  late Dosen pembimbing2;
+  Dosen? pembimbing2;
   late Dosen penguji1;
   late Dosen penguji2;
   late Dosen penguji3;
@@ -76,10 +76,89 @@ class AddJadwalProposalController extends GetxController {
     Map<String, dynamic> mapUser = jsonDecode(user!);
 
     try {
-      Map<String, dynamic> dataMap = {
+      Map<String, dynamic> dataMap;
+
+      dataMap = {
         "mahasiswa_nim": mahasiswa.nim,
         "pembimbingsatu_nip": pembimbing1.nip,
-        "pembimbingdua_nip": pembimbing2.nip,
+        "pembimbingdua_nip": pembimbing2!.nip,
+        "pengujisatu_nip": penguji1.nip,
+        "pengujidua_nip": penguji2.nip,
+        "pengujitiga_nip": penguji3.nip,
+        "prodi_id": prodiId,
+        "judul_proposal": judulProposal.text,
+        "tanggal": tanggal.value.toString().substring(0, 10),
+        "waktu": "${waktu.value.hour}:${waktu.value.minute}:00",
+        "lokasi": lokasi.text,
+        "user_id": mapUser['data']['id'],
+      };
+
+      var response = await dio.post(
+        "$baseUrlAPI/penjadwalan-sempro",
+        data: dataMap,
+        options: Options(
+          receiveDataWhenStatusError: true,
+          sendTimeout: const Duration(seconds: 5), // 60 seconds
+          receiveTimeout: const Duration(seconds: 2),
+        ),
+      );
+
+      var data = response.data;
+
+      if (data != null) {
+        Get.snackbar("ADD Jadwal Berhasil", "${data['status']}");
+        isLoading.value = false;
+        Get.offAllNamed(Routes.JADWAL_SEMINAR);
+
+        return data;
+      } else if (response.statusCode == 401) {
+        isLoading.value = false;
+        Get.snackbar("ADD Jadwal Gagal", "Status 401");
+        return {"status": false, "message": "Terjadi kesalahan"};
+      } else {
+        isLoading.value = false;
+        Get.snackbar("ADD Jadwal Gagal", "Status 500");
+        return {"status": false, "message": "Terjadi kesalahan"};
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.connectionTimeout) {
+        isLoading.value = false;
+        Get.snackbar("ADD Jadwal Gagal", "Terjadi kesalahan koneksi");
+        Get.offAllNamed(Routes.JADWAL_SEMINAR);
+
+        return {"status": false, "message": "Terjadi kesalahan"};
+      }
+      if (e.type == DioErrorType.receiveTimeout) {
+        isLoading.value = false;
+        Get.snackbar("ADD Jadwal Gagal", "Terjadi kesalahan koneksi");
+        Get.offAllNamed(Routes.JADWAL_SEMINAR);
+
+        return {"status": false, "message": "Terjadi kesalahan"};
+      }
+      if (e.type == DioErrorType.sendTimeout) {
+        isLoading.value = false;
+        Get.snackbar("ADD Jadwal Gagal", "Terjadi kesalahan koneksi");
+        Get.offAllNamed(Routes.JADWAL_SEMINAR);
+
+        return {"status": false, "message": "Terjadi kesalahan"};
+      }
+    }
+
+    return {"status": false, "message": "Terjadi kesalahan"};
+  }
+
+  Future<Map<String, dynamic>> addJadwalProposalAPIWithoutPemb2() async {
+    isLoading.value = true;
+    prefs = await SharedPreferences.getInstance();
+    final user = prefs.getString("user");
+    Map<String, dynamic> mapUser = jsonDecode(user!);
+
+    try {
+      Map<String, dynamic> dataMap;
+
+      dataMap = {
+        "mahasiswa_nim": mahasiswa.nim,
+        "pembimbingsatu_nip": pembimbing1.nip,
         "pengujisatu_nip": penguji1.nip,
         "pengujidua_nip": penguji2.nip,
         "pengujitiga_nip": penguji3.nip,

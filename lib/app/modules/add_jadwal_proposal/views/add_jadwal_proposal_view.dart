@@ -540,7 +540,12 @@ class AddJadwalProposalView extends GetView<AddJadwalProposalController> {
                     child: ElevatedButton(
                       onPressed: controller.isLoading.isFalse
                           ? () async {
-                              await controller.addJadwalProposalAPI();
+                              if (controller.pembimbing2 != null) {
+                                await controller.addJadwalProposalAPI();
+                              } else {
+                                await controller
+                                    .addJadwalProposalAPIWithoutPemb2();
+                              }
                             }
                           : null,
                       style: ElevatedButton.styleFrom(
