@@ -540,7 +540,12 @@ class AddJadwalSkripsiView extends GetView<AddJadwalSkripsiController> {
                     child: ElevatedButton(
                       onPressed: controller.isLoading.isFalse
                           ? () async {
-                              await controller.addJadwalSkripsiAPI();
+                              if (controller.pembimbing2 != null) {
+                                await controller.addJadwalSkripsiAPI();
+                              } else {
+                                await controller
+                                    .addJadwalSkripsiAPIWithoutPemb2();
+                              }
                             }
                           : null,
                       style: ElevatedButton.styleFrom(

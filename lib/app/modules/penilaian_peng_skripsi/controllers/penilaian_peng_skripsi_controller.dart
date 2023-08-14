@@ -424,6 +424,11 @@ class PenilaianPengSkripsiController extends GetxController {
             pemb.add(PenilaianSkripsiPemb.fromJson(element));
           }
         });
+        print(pemb.last.toJson());
+
+        if (pemb.last.pembimbingNip.toString().contains("null")) {
+          pemb.removeLast();
+        }
 
         dataPeng.forEach((element) {
           if (element['penjadwalan_skripsi_id'].toString() ==

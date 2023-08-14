@@ -256,9 +256,8 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                                             final PenjadwalanSempro data =
                                                 Get.arguments;
 
-                                            if (data.pembimbingsatuNip!
-                                                .contains(homeC.mapUser['data']
-                                                    ['nip'])) {
+                                            if (data.pembimbingsatuNip!.contains(
+                                                homeC.mapUser['data']['nip'])) {
                                               //Pembimbing
 
                                               Get.toNamed(
@@ -271,14 +270,17 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                                                             ['nip']) ||
                                                 data.pengujiduaNip!.contains(
                                                     homeC.mapUser['data']
-                                                        ['nip']) || data.pengujitigaNip!.contains(homeC.mapUser['data']['nip']))) {
+                                                        ['nip']) ||
+                                                data.pengujitigaNip!.contains(
+                                                    homeC.mapUser['data']
+                                                        ['nip']))) {
                                               //Penguji
                                               Get.toNamed(
                                                   Routes
                                                       .PENILAIAN_PENG_PROPOSAL,
                                                   arguments: data);
                                             } else if (data.pembimbingduaNip !=
-                                                    null ) {
+                                                null) {
                                               if (data.pembimbingduaNip!
                                                   .contains(
                                                       homeC.mapUser['data']
@@ -294,13 +296,8 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                                             final PenjadwalanSkripsi data =
                                                 Get.arguments;
 
-                                            if (data.pembimbingsatuNip!
-                                                    .contains(
-                                                        homeC.mapUser['data']
-                                                            ['nip']) ||
-                                                data.pembimbingduaNip!.contains(
-                                                    homeC.mapUser['data']
-                                                        ['nip'])) {
+                                            if (data.pembimbingsatuNip!.contains(
+                                                homeC.mapUser['data']['nip'])) {
                                               //Pembimbing
                                               Get.toNamed(
                                                   Routes.PENIALIAN_PEMB_SKIPSI,
@@ -310,13 +307,27 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                                                         homeC.mapUser['data']
                                                             ['nip']) ||
                                                 data.pengujiduaNip!.contains(
-                                                    homeC.mapUser['data']['nip']) ||
-                                                data.pengujitigaNip!.contains(homeC.mapUser['data']['nip'])) {
+                                                    homeC.mapUser['data']
+                                                        ['nip']) ||
+                                                data.pengujitigaNip!.contains(
+                                                    homeC.mapUser['data']
+                                                        ['nip'])) {
                                               //Penguji
 
                                               Get.toNamed(
                                                   Routes.PENILAIAN_PENG_SKRIPSI,
                                                   arguments: data);
+                                            } else if (data.pembimbingduaNip !=
+                                                null) {
+                                              if (data.pembimbingduaNip!
+                                                  .contains(
+                                                      homeC.mapUser['data']
+                                                          ['nip'])) {
+                                                Get.toNamed(
+                                                    Routes
+                                                        .PENIALIAN_PEMB_SKIPSI,
+                                                    arguments: data);
+                                              }
                                             }
                                           }
                                         },
