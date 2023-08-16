@@ -325,21 +325,21 @@ class PenilaianPengSkripsiController extends GetxController {
         scoreMapPengSkripsi.value['luaran'] +
         scoreMapPengSkripsi.value['sumbangan_pemikiran'];
 
-    if (total > 47) {
+    if (total >= 39) {
       nilaiHuruf.value = "A";
-    } else if (total > 45) {
+    } else if (total >= 36) {
       nilaiHuruf.value = "A-";
-    } else if (total > 42) {
+    } else if (total >= 34) {
       nilaiHuruf.value = "B+";
-    } else if (total > 40) {
+    } else if (total >= 32) {
       nilaiHuruf.value = "B";
-    } else if (total > 36) {
+    } else if (total >= 30) {
       nilaiHuruf.value = "B-";
-    } else if (total > 33) {
+    } else if (total >= 27) {
       nilaiHuruf.value = "C+";
-    } else if (total > 32) {
+    } else if (total >= 25) {
       nilaiHuruf.value = "C";
-    } else if (total > 22) {
+    } else if (total >= 18) {
       nilaiHuruf.value = "D";
     } else {
       nilaiHuruf.value = "E";

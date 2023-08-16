@@ -140,21 +140,21 @@ class PenialianPembSkipsiController extends GetxController {
         scoreMapPembSkripsi.value['hasil_dan_pembahasan'] +
         scoreMapPembSkripsi.value['sikap_dan_kepribadian']);
 
-    if (total >= 44) {
+    if (total >= 47) {
       nilaiHuruf.value = "A";
-    } else if (total >= 42) {
+    } else if (total >= 44) {
       nilaiHuruf.value = "A-";
-    } else if (total >= 40) {
+    } else if (total >= 42) {
       nilaiHuruf.value = "B+";
     } else if (total >= 39) {
       nilaiHuruf.value = "B";
-    } else if (total >= 35) {
+    } else if (total >= 36) {
       nilaiHuruf.value = "B-";
-    } else if (total >= 31) {
+    } else if (total >= 33) {
       nilaiHuruf.value = "C+";
-    } else if (total >= 29) {
+    } else if (total >= 31) {
       nilaiHuruf.value = "C";
-    } else if (total >= 20) {
+    } else if (total >= 22) {
       nilaiHuruf.value = "D";
     } else {
       nilaiHuruf.value = "E";
