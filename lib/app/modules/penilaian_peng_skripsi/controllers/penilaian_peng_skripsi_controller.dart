@@ -453,11 +453,33 @@ class PenilaianPengSkripsiController extends GetxController {
         totalPeng = totalPeng / peng.length;
 
         baNilaiAkhir.value = (totalPemb + totalPeng).ceilToDouble();
-        if (baNilaiAkhir > 70) {
-          //Kondisi Penilaian
-
+        if (baNilaiAkhir >= 85) {
+          baNilaiHuruf.value = "A";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 80) {
+          baNilaiHuruf.value = "A-";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 75) {
+          baNilaiHuruf.value = "B+";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 70) {
           baNilaiHuruf.value = "B";
           baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 65) {
+          baNilaiHuruf.value = "B-";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 60) {
+          baNilaiHuruf.value = "C+";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 55) {
+          baNilaiHuruf.value = "C";
+          baKeterangan.value = "Tidak Lulus";
+        } else if (baNilaiAkhir >= 40) {
+          baNilaiHuruf.value = "D";
+          baKeterangan.value = "Tidak Lulus";
+        } else {
+          baNilaiHuruf.value = "E";
+          baKeterangan.value = "Tidak Lulus";
         }
 
         isLoading.value = false;
