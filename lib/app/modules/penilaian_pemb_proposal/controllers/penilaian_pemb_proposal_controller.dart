@@ -123,21 +123,21 @@ class PenilaianPembProposalController extends GetxController {
         scoreMapPembSempro.value['tata_tulis'] +
         scoreMapPembSempro.value['sikap_dan_kepribadian']);
 
-    if (total > 39) {
+    if (total >= 39) {
       nilaiHuruf.value = "A";
-    } else if (total > 35) {
+    } else if (total >= 36) {
       nilaiHuruf.value = "A-";
-    } else if (total > 33) {
+    } else if (total >= 34) {
       nilaiHuruf.value = "B+";
-    } else if (total > 32) {
+    } else if (total >= 32) {
       nilaiHuruf.value = "B";
-    } else if (total > 30) {
+    } else if (total >= 30) {
       nilaiHuruf.value = "B-";
-    } else if (total > 26) {
+    } else if (total >= 27) {
       nilaiHuruf.value = "C+";
-    } else if (total > 24) {
+    } else if (total >= 25) {
       nilaiHuruf.value = "C";
-    } else if (total > 17) {
+    } else if (total >= 18) {
       nilaiHuruf.value = "D";
     } else {
       nilaiHuruf.value = "E";

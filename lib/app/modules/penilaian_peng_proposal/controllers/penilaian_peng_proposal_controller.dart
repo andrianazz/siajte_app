@@ -215,21 +215,21 @@ class PenilaianPengProposalController extends GetxController {
         scoreMapPengSempro.value['tata_tulis'] +
         scoreMapPengSempro.value['sumbangan_pemikiran'];
 
-    if (total > 47) {
+    if (total >= 47) {
       nilaiHuruf.value = "A";
-    } else if (total > 45) {
+    } else if (total >= 44) {
       nilaiHuruf.value = "A-";
-    } else if (total > 42) {
+    } else if (total >= 42) {
       nilaiHuruf.value = "B+";
-    } else if (total > 40) {
+    } else if (total >= 39) {
       nilaiHuruf.value = "B";
-    } else if (total > 36) {
+    } else if (total >= 36) {
       nilaiHuruf.value = "B-";
-    } else if (total > 33) {
+    } else if (total >= 33) {
       nilaiHuruf.value = "C+";
-    } else if (total > 32) {
+    } else if (total >= 31) {
       nilaiHuruf.value = "C";
-    } else if (total > 22) {
+    } else if (total >= 22) {
       nilaiHuruf.value = "D";
     } else {
       nilaiHuruf.value = "E";
