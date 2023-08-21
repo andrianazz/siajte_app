@@ -29,7 +29,7 @@
     </queries>
 
    <application
-        android:label="siajte_app"
+        android:label="SITEI APP"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true"

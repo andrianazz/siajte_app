@@ -75,7 +75,7 @@ class CardJadwalWidget extends StatelessWidget {
                                 color: textJadwalSeminar),
                           );
                         } else if (snapshot.hasError) {
-                          return const Text("error");
+                          return const CircularProgressIndicator();
                         } else {
                           return const Center(
                               child: CircularProgressIndicator());

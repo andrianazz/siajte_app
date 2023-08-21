@@ -34,53 +34,55 @@ class AppbarWidget extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.HOME),
-            child: Image.asset(
-              'assets/images/logo.png',
-              width: 24.w,
-              height: 24.h,
-            ),
-            // View Lama
-            // child: Row(
-            //   children: [
-            //     Image.asset(
-            //       'assets/images/logo.png',
-            //       width: 24.w,
-            //       height: 24.h,
-            //     ),
-            //     // SizedBox(width: 16.w),
-            //     // FutureBuilder(
-            //     //   future: controller.getUser(),
-            //     //   builder: (context, snapshot) {
-            //     //     if (snapshot.hasData) {
-            //     //       return Text(
-            //     //         'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
-            //     //         style: poppins.copyWith(
-            //     //             color: Colors.black,
-            //     //             fontSize: 12.sp,
-            //     //             fontWeight: FontWeight.w600),
-            //     //       );
-            //     //     } else if (snapshot.hasError) {
-            //     //       return Text(
-            //     //         'Error',
-            //     //         style: poppins.copyWith(
-            //     //           fontSize: 12.sp,
-            //     //           fontWeight: FontWeight.w600,
-            //     //           color: Colors.black,
-            //     //         ),
-            //     //       );
-            //     //     }
-            //     //     return Text(
-            //     //       'Loading...',
-            //     //       style: poppins.copyWith(
-            //     //         fontSize: 12.sp,
-            //     //         fontWeight: FontWeight.w600,
-            //     //         color: Colors.black,
-            //     //       ),
-            //     //     );
-            //     //   },
-            //     // ),
-            //   ],
+            // child: Image.asset(
+            //   'assets/images/logo.png',
+            //   width: 24.w,
+            //   height: 24.h,
             // ),
+            // View Lama
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 24.w,
+                  height: 24.h,
+                ),
+                SizedBox(width: 16.w),
+                FutureBuilder(
+                  future: controller.getUser(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(
+                        'SITEI',
+                        // 'SITEI - ${(controller.mapUser['role']).toString().capitalize}',
+                        style: poppins.copyWith(
+                            color: Colors.black,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text(
+                        'Error',
+                        style: poppins.copyWith(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      );
+                    }
+                    return Text(
+                      'Loading...',
+                      style: poppins.copyWith(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
           // FutureBuilder(
           //   future: controller.getUser(),
