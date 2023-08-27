@@ -56,7 +56,7 @@ class PersetujuanKoorTaController extends GetxController {
   ].obs;
 
   //Pembimbing KP
-  RxList<String> listPenilaianPengSkripsi = ["Berita Acara"].obs;
+  RxList<String> listPenilaianKoorTA = ["Berita Acara"].obs;
 
   RxInt indexFormNilaiPengSkripsi = 0.obs;
 
@@ -275,6 +275,88 @@ class PersetujuanKoorTaController extends GetxController {
     totalNilai.value = total;
   }
 
+  Future<void> getBeritaAcara() async {
+    final responsePemb =
+        await dio.get("$baseUrlAPI/penilaian-skripsi-pembimbing");
+    final responsePeng = await dio.get("$baseUrlAPI/penilaian-skripsi-penguji");
+
+    if (responsePemb.statusCode == 200 && responsePeng.statusCode == 200) {
+      List<PenilaianSkripsiPemb> pemb = [];
+      List<PenilaianSkripsiPeng> peng = [];
+
+      final dataPemb = responsePemb.data['data'];
+      final dataPeng = responsePeng.data['data'];
+
+      if (dataPemb != null && dataPeng != null) {
+        dataPemb.forEach((element) {
+          if (element['penjadwalan_skripsi_id'].toString() ==
+              jadwalSkripsi.id.toString()) {
+            pemb.add(PenilaianSkripsiPemb.fromJson(element));
+          }
+        });
+
+        if (pemb.last.pembimbingNip.toString().contains("null")) {
+          pemb.removeLast();
+        }
+
+        dataPeng.forEach((element) {
+          if (element['penjadwalan_skripsi_id'].toString() ==
+              jadwalSkripsi.id.toString()) {
+            peng.add(PenilaianSkripsiPeng.fromJson(element));
+          }
+        });
+
+        double totalPemb = pemb.map((expense) => expense.totalNilaiAngka).fold(
+            0,
+            (prev, amount) =>
+                double.parse(prev.toString()) +
+                double.parse(amount.toString()));
+
+        totalPemb = totalPemb / pemb.length;
+
+        double totalPeng = peng.map((e) => e.totalNilaiAngka).fold(
+            0,
+            (prev, amount) =>
+                double.parse(prev.toString()) +
+                double.parse(amount.toString()));
+
+        totalPeng = totalPeng / peng.length;
+
+        baNilaiAkhir.value = (totalPemb + totalPeng).ceilToDouble();
+        if (baNilaiAkhir >= 85) {
+          baNilaiHuruf.value = "A";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 80) {
+          baNilaiHuruf.value = "A-";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 75) {
+          baNilaiHuruf.value = "B+";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 70) {
+          baNilaiHuruf.value = "B";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 65) {
+          baNilaiHuruf.value = "B-";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 60) {
+          baNilaiHuruf.value = "C+";
+          baKeterangan.value = "Lulus";
+        } else if (baNilaiAkhir >= 55) {
+          baNilaiHuruf.value = "C";
+          baKeterangan.value = "Tidak Lulus";
+        } else if (baNilaiAkhir >= 40) {
+          baNilaiHuruf.value = "D";
+          baKeterangan.value = "Tidak Lulus";
+        } else {
+          baNilaiHuruf.value = "E";
+          baKeterangan.value = "Tidak Lulus";
+        }
+
+        isLoading.value = false;
+      }
+    }
+  }
+
   Future<Map<String, dynamic>> addPenilaianSkripsiPengAPI(
       String nipPemb) async {
     isLoading.value = true;
@@ -330,62 +412,6 @@ class PersetujuanKoorTaController extends GetxController {
     }
 
     return {"status": false, "message": "Terjadi kesalahan"};
-  }
-
-  Future<void> getBeritaAcara() async {
-    final responsePemb =
-        await dio.get("$baseUrlAPI/penilaian-skripsi-pembimbing");
-    final responsePeng = await dio.get("$baseUrlAPI/penilaian-skripsi-penguji");
-
-    if (responsePemb.statusCode == 200 && responsePeng.statusCode == 200) {
-      List<PenilaianSkripsiPemb> pemb = [];
-      List<PenilaianSkripsiPeng> peng = [];
-
-      final dataPemb = responsePemb.data['data'];
-      final dataPeng = responsePeng.data['data'];
-
-      if (dataPemb != null && dataPeng != null) {
-        dataPemb.forEach((element) {
-          if (element['penjadwalan_skripsi_id'].toString() ==
-              jadwalSkripsi.id.toString()) {
-            pemb.add(PenilaianSkripsiPemb.fromJson(element));
-          }
-        });
-
-        dataPeng.forEach((element) {
-          if (element['penjadwalan_skripsi_id'].toString() ==
-              jadwalSkripsi.id.toString()) {
-            peng.add(PenilaianSkripsiPeng.fromJson(element));
-          }
-        });
-
-        double totalPemb = pemb.map((expense) => expense.totalNilaiAngka).fold(
-            0,
-            (prev, amount) =>
-                double.parse(prev.toString()) +
-                double.parse(amount.toString()));
-
-        totalPemb = totalPemb / pemb.length;
-
-        double totalPeng = peng.map((e) => e.totalNilaiAngka).fold(
-            0,
-            (prev, amount) =>
-                double.parse(prev.toString()) +
-                double.parse(amount.toString()));
-
-        totalPeng = totalPeng / peng.length;
-
-        baNilaiAkhir.value = (totalPemb + totalPeng).ceilToDouble();
-        if (baNilaiAkhir > 70) {
-          //Kondisi Penilaian
-
-          baNilaiHuruf.value = "B";
-          baKeterangan.value = "Lulus";
-        }
-
-        isLoading.value = false;
-      }
-    }
   }
 
   Future<Map<String, dynamic>> updateFormNilaiPengSkripsiAPI(String id) async {
@@ -593,11 +619,6 @@ class PersetujuanKoorTaController extends GetxController {
     super.onInit();
     if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 1");
-
-      listPenilaianPengSkripsi.addAll([
-        "Revisi Judul",
-        "Berita Acara",
-      ]);
 
       await getPenilaianSkripsiPeng(jadwalSkripsi.pengujisatuNip.toString());
       Get.forceAppUpdate();

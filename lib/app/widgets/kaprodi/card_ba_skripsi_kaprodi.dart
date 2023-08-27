@@ -502,7 +502,9 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                           );
                         }),
                     SizedBox(width: 10.w),
-                    penilaianPengController.jadwalSkripsi.pengujitigaNip == null
+                    penilaianPengController.jadwalSkripsi.pengujitigaNip
+                                .toString() ==
+                            "null"
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

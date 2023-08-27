@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_skripsi/controllers/penilaian_peng_skripsi_controller.dart';
+import 'package:siajte_app/app/modules/persetujuan_koor_ta/controllers/persetujuan_koor_ta_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
@@ -16,6 +17,8 @@ class CardBASkripsiKoor extends StatelessWidget {
         Get.put(PenialianPembSkipsiController());
     PenilaianPengSkripsiController penilaianPengController =
         Get.put(PenilaianPengSkripsiController());
+    PersetujuanKoorTaController persetujuanKoorTaController =
+        Get.put(PersetujuanKoorTaController());
 
     return Column(
       children: [
@@ -502,7 +505,9 @@ class CardBASkripsiKoor extends StatelessWidget {
                           );
                         }),
                     SizedBox(width: 10.w),
-                    penilaianPengController.jadwalSkripsi.pengujitigaNip == null
+                    penilaianPengController.jadwalSkripsi.pengujitigaNip
+                                .toString() ==
+                            "null"
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -549,6 +554,13 @@ class CardBASkripsiKoor extends StatelessWidget {
                                     .jadwalSkripsi.pengujitigaNip
                                     .toString()),
                             builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+
                               return Column(
                                 children: [
                                   Text(
@@ -562,8 +574,9 @@ class CardBASkripsiKoor extends StatelessWidget {
                                   NilaiTextBA(
                                       title: penilaianPengController
                                                   .existPenilaianSkripsiPeng
-                                                  .presentasi !=
-                                              null
+                                                  .presentasi
+                                                  .toString() !=
+                                              "null"
                                           ? penilaianPengController
                                               .existPenilaianSkripsiPeng
                                               .presentasi
@@ -1100,7 +1113,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                    future: penilaianPengController.getBeritaAcara(),
+                    future: persetujuanKoorTaController.getBeritaAcara(),
                     builder: (context, snapshot) {
                       return Column(
                         children: [
@@ -1115,17 +1128,20 @@ class CardBASkripsiKoor extends StatelessWidget {
                             height: 15.h,
                           ),
                           NilaiTextBA(
-                              title: penilaianPengController.baNilaiAkhir.value
+                              title: persetujuanKoorTaController
+                                      .baNilaiAkhir.value
                                       .toString() ??
                                   "-"),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: penilaianPengController.baNilaiHuruf.value
+                              title: persetujuanKoorTaController
+                                      .baNilaiHuruf.value
                                       .toString() ??
                                   "-"),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: penilaianPengController.baKeterangan.value
+                              title: persetujuanKoorTaController
+                                      .baKeterangan.value
                                       .toString() ??
                                   "-"),
                         ],

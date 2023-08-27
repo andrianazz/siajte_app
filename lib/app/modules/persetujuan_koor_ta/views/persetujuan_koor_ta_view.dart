@@ -50,10 +50,11 @@ class PersetujuanKoorTaView extends GetView<PersetujuanKoorTaController> {
                           if (val == 0) {
                             controller.indexFormNilaiPengSkripsi.value = 0;
                           }
+
                           controller.selectedChips.value = val;
                         },
                         choiceItems: C2Choice.listFrom<int, String>(
-                          source: controller.listPenilaianPengSkripsi,
+                          source: controller.listPenilaianKoorTA,
                           value: (i, v) => i,
                           label: (i, v) => v,
                         ),
