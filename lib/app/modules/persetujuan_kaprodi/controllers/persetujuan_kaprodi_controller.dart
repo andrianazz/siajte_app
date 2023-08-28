@@ -594,11 +594,6 @@ class PersetujuanKaprodiController extends GetxController {
     if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 1");
 
-      listPenilaianPengSkripsi.addAll([
-        "Revisi Judul",
-        "Berita Acara",
-      ]);
-
       await getPenilaianSkripsiPeng(jadwalSkripsi.pengujisatuNip.toString());
       Get.forceAppUpdate();
     }
