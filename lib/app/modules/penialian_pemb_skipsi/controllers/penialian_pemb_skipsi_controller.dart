@@ -303,7 +303,7 @@ class PenialianPembSkipsiController extends GetxController {
       await getPenilaianSkripsi(
           penjadwalanSkripsi.pembimbingsatuNip.toString());
       Get.forceAppUpdate();
-    } else if (penjadwalanSkripsi.pembimbingduaNip != null) {
+    } else if (penjadwalanSkripsi.pembimbingduaNip.toString() != "null") {
       if (penjadwalanSkripsi.pembimbingduaNip.toString() ==
           homeC.mapUser['data']['nip'].toString()) {
         print("pemb sempro 2");

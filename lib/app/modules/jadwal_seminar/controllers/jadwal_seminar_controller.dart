@@ -72,7 +72,6 @@ class JadwalSeminarController extends GetxController {
       listTanggal2.add(item);
     }
 
-    print(listTanggal2);
     listTanggal2.map((e) {
       int index = listTanggal2.indexOf(e);
       if (e.isAfter(DateTime.now())) {

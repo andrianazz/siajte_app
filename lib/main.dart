@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
-void main() async {
+Future main() async {
   tz.initializeTimeZones();
   WidgetsFlutterBinding.ensureInitialized();
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
