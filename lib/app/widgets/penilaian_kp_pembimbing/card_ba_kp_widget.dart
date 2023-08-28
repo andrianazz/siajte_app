@@ -91,19 +91,19 @@ class CardBAKP extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                      future: pengujiC.getPenilaianKPPeng(
-                          pembimbingC.penjadwalanKp.pengujiNip.toString()),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        }
+                    future: pengujiC.getPenilaianKPPengReturn(
+                        pembimbingC.penjadwalanKp.pengujiNip.toString()),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
 
-                        if (snapshot.hasError) {
-                          return Center(
-                              child: Text("Error: ${snapshot.error}"));
-                        }
+                      if (snapshot.hasError) {
+                        return const Center(
+                            child: Text("Error: refresh again"));
+                      }
+
+                      if (snapshot.data?.totalNilaiAngka.toString() == "null") {
                         return Column(
                           children: [
                             Text(
@@ -116,32 +116,56 @@ class CardBAKP extends StatelessWidget {
                             SizedBox(
                               height: 15.h,
                             ),
-                            NilaiTextBA(
-                                title:
-                                    pengujiC.existPenilaianKpPeng.presentasi ??
-                                        "-"),
+                            const NilaiTextBA(title: "-"),
                             SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pengujiC.existPenilaianKpPeng.materi ??
-                                    "-"),
+                            const NilaiTextBA(title: "-"),
                             SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title:
-                                    pengujiC.existPenilaianKpPeng.tanyaJawab ??
-                                        "-"),
+                            const NilaiTextBA(title: "-"),
                             SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pengujiC
-                                        .existPenilaianKpPeng.totalNilaiAngka ??
-                                    "-"),
+                            const NilaiTextBA(title: "-"),
                             SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pengujiC
-                                        .existPenilaianKpPeng.totalNilaiHuruf ??
-                                    "-"),
+                            const NilaiTextBA(title: "-"),
                           ],
                         );
-                      })
+                      }
+
+                      return Column(
+                        children: [
+                          Text(
+                            "Nilai",
+                            style: poppins.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          NilaiTextBA(
+                              title: pengujiC.existPenilaianKpPeng.presentasi
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pengujiC.existPenilaianKpPeng.materi
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pengujiC.existPenilaianKpPeng.tanyaJawab
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pengujiC
+                                  .existPenilaianKpPeng.totalNilaiAngka
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pengujiC
+                                  .existPenilaianKpPeng.totalNilaiHuruf
+                                  .toString()),
+                        ],
+                      );
+                    },
+                  )
                 ],
               ),
               SizedBox(height: 12.h),
@@ -209,19 +233,17 @@ class CardBAKP extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                      future: pembimbingC.getPenilaianKP(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        }
+                    future: pembimbingC.getPenilaianKPReturn(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
 
-                        if (snapshot.hasError) {
-                          return Center(
-                              child: Text("Error: ${snapshot.error}"));
-                        }
+                      if (snapshot.hasError) {
+                        return const Center(child: Text("refresh again"));
+                      }
 
+                      if (snapshot.data?.totalNilaiAngka.toString() == "null") {
                         return Column(
                           children: [
                             Text(
@@ -234,33 +256,56 @@ class CardBAKP extends StatelessWidget {
                             SizedBox(
                               height: 15.h,
                             ),
-                            NilaiTextBA(
-                                title: pembimbingC
-                                        .existPenilaianKpPemb.presentasi ??
-                                    "-"),
+                            const NilaiTextBA(title: "-"),
                             SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title:
-                                    pembimbingC.existPenilaianKpPemb.materi ??
-                                        "-"),
+                            const NilaiTextBA(title: "-"),
                             SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pembimbingC
-                                        .existPenilaianKpPemb.tanyaJawab ??
-                                    "-"),
+                            const NilaiTextBA(title: "-"),
                             SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pembimbingC
-                                        .existPenilaianKpPemb.totalNilaiAngka ??
-                                    "-"),
+                            const NilaiTextBA(title: "-"),
                             SizedBox(height: 10.h),
-                            NilaiTextBA(
-                                title: pembimbingC
-                                        .existPenilaianKpPemb.totalNilaiHuruf ??
-                                    "-"),
+                            const NilaiTextBA(title: "-"),
                           ],
                         );
-                      })
+                      }
+
+                      return Column(
+                        children: [
+                          Text(
+                            "Nilai",
+                            style: poppins.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          NilaiTextBA(
+                              title: pembimbingC.existPenilaianKpPemb.presentasi
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pembimbingC.existPenilaianKpPemb.materi
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pembimbingC.existPenilaianKpPemb.tanyaJawab
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pembimbingC
+                                  .existPenilaianKpPemb.totalNilaiAngka
+                                  .toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(
+                              title: pembimbingC
+                                  .existPenilaianKpPemb.totalNilaiHuruf
+                                  .toString()),
+                        ],
+                      );
+                    },
+                  )
                 ],
               ),
               SizedBox(height: 12.h),

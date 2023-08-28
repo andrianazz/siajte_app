@@ -122,14 +122,18 @@ class PenilaianPembKpController extends GetxController {
               .contains(penjadwalanKp.id.toString()))
           .first;
 
-      scoreMapPemb.value['presentasi'] = existPenilaianKpPemb.presentasi == null
-          ? 0.0
-          : double.parse(existPenilaianKpPemb.presentasi);
-      scoreMapPemb.value['materi'] = existPenilaianKpPemb.materi == null
-          ? 0.0
-          : double.parse(existPenilaianKpPemb.materi);
+      print(existPenilaianKpPemb.presentasi);
+
+      scoreMapPemb.value['presentasi'] =
+          existPenilaianKpPemb.presentasi.toString() == "null"
+              ? 0.0
+              : double.parse(existPenilaianKpPemb.presentasi);
+      scoreMapPemb.value['materi'] =
+          existPenilaianKpPemb.materi.toString() == "null"
+              ? 0.0
+              : double.parse(existPenilaianKpPemb.materi);
       scoreMapPemb.value['tanya_jawab'] =
-          existPenilaianKpPemb.tanyaJawab == null
+          existPenilaianKpPemb.tanyaJawab.toString() == "null"
               ? 0.0
               : double.parse(existPenilaianKpPemb.tanyaJawab);
 
@@ -142,6 +146,59 @@ class PenilaianPembKpController extends GetxController {
     } else {
       print("Buat Baru pembimbing");
       await addPenilaianKPPembAPI();
+    }
+  }
+
+  Future<PenilaianKpPemb> getPenilaianKPReturn() async {
+    isLoading.value = true;
+    List<PenilaianKpPemb> listPenilaianKP = <PenilaianKpPemb>[];
+
+    var response = await dio.get("$baseUrlAPI/penilaian-kp-pembimbing");
+    for (var item in response.data['data']) {
+      listPenilaianKP.add(PenilaianKpPemb.fromJson(item));
+    }
+
+    if (listPenilaianKP
+        .where((element) =>
+            element.pembimbingNip!.contains(homeC.mapUser['data']['nip']))
+        .where((element) => element.penjadwalanKpId
+            .toString()
+            .contains(penjadwalanKp.id.toString()))
+        .toList()
+        .isNotEmpty) {
+      print("Ada data Pembimbing");
+      existPenilaianKpPemb = listPenilaianKP
+          .where((element) =>
+              element.pembimbingNip!.contains(homeC.mapUser['data']['nip']))
+          .where((element) => element.penjadwalanKpId
+              .toString()
+              .contains(penjadwalanKp.id.toString()))
+          .first;
+
+      scoreMapPemb.value['presentasi'] =
+          existPenilaianKpPemb.presentasi.toString() == "null"
+              ? 0.0
+              : double.parse(existPenilaianKpPemb.presentasi);
+      scoreMapPemb.value['materi'] =
+          existPenilaianKpPemb.materi.toString() == "null"
+              ? 0.0
+              : double.parse(existPenilaianKpPemb.materi);
+      scoreMapPemb.value['tanya_jawab'] =
+          existPenilaianKpPemb.tanyaJawab.toString() == "null"
+              ? 0.0
+              : double.parse(existPenilaianKpPemb.tanyaJawab);
+
+      await getTotalandHuruf();
+
+      nilaiLapanganC.text = existPenilaianKpPemb.nilaiPembimbingLapangan ?? "";
+      catatan1C.text = existPenilaianKpPemb.catatan1 ?? "";
+      catatan2C.text = existPenilaianKpPemb.catatan2 ?? "";
+      catatan3C.text = existPenilaianKpPemb.catatan3 ?? "";
+      return existPenilaianKpPemb;
+    } else {
+      print("Buat Baru pembimbing");
+      await addPenilaianKPPembAPI();
+      return existPenilaianKpPemb;
     }
   }
 

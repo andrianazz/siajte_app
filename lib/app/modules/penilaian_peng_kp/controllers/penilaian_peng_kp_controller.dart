@@ -114,6 +114,57 @@ class PenilaianPengKpController extends GetxController {
     }
   }
 
+  Future<PenilaianKpPeng?> getPenilaianKPPengReturn(String nipPeng) async {
+    isLoading.value = true;
+    List<PenilaianKpPeng> listPenilaianKPPeng = <PenilaianKpPeng>[];
+
+    var response = await dio.get("$baseUrlAPI/penilaian-kp-penguji");
+    for (var item in response.data['data']) {
+      listPenilaianKPPeng.add(PenilaianKpPeng.fromJson(item));
+    }
+
+    if (listPenilaianKPPeng
+        .where((element) => element.pengujiNip!.contains(nipPeng))
+        .where((element) => element.penjadwalanKpId
+            .toString()
+            .contains(penjadwalanKp.id.toString()))
+        .toList()
+        .isNotEmpty) {
+      print("Ada data Penguji");
+      existPenilaianKpPeng = listPenilaianKPPeng
+          .where((element) => element.pengujiNip!.contains(nipPeng))
+          .where((element) => element.penjadwalanKpId
+              .toString()
+              .contains(penjadwalanKp.id.toString()))
+          .first;
+
+      scoreMapPeng.value['presentasi'] = existPenilaianKpPeng.presentasi != null
+          ? double.parse(existPenilaianKpPeng.presentasi!)
+          : 0.0;
+      scoreMapPeng.value['materi'] = existPenilaianKpPeng.materi != null
+          ? double.parse(existPenilaianKpPeng.materi!)
+          : 0.0;
+      scoreMapPeng.value['tanya_jawab'] =
+          existPenilaianKpPeng.tanyaJawab != null
+              ? double.parse(existPenilaianKpPeng.tanyaJawab!)
+              : 0.0;
+
+      await getTotalandHuruf();
+
+      revisiNaskah1C.text = existPenilaianKpPeng.revisiNaskah1 ?? "";
+      revisiNaskah2C.text = existPenilaianKpPeng.revisiNaskah2 ?? "";
+      revisiNaskah3C.text = existPenilaianKpPeng.revisiNaskah3 ?? "";
+      revisiNaskah4C.text = existPenilaianKpPeng.revisiNaskah4 ?? "";
+      revisiNaskah5C.text = existPenilaianKpPeng.revisiNaskah5 ?? "";
+
+      return existPenilaianKpPeng;
+    } else {
+      print("Buat Baru Penguji");
+      await addPenilaianKPPengAPI();
+      return null;
+    }
+  }
+
   Future<void> getTotalandHuruf() async {
     //sum value of scoreMapPemb
     double total = (scoreMapPeng.value['presentasi'] +
