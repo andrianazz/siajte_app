@@ -118,7 +118,12 @@ class PenilaianPengKpController extends GetxController {
     isLoading.value = true;
     List<PenilaianKpPeng> listPenilaianKPPeng = <PenilaianKpPeng>[];
 
-    var response = await dio.get("$baseUrlAPI/penilaian-kp-penguji");
+    var response = await dio.get("$baseUrlAPI/penilaian-kp-penguji",
+        options: Options(
+          receiveDataWhenStatusError: true,
+          sendTimeout: const Duration(seconds: 5), // 60 seconds
+          receiveTimeout: const Duration(seconds: 2),
+        ));
     for (var item in response.data['data']) {
       listPenilaianKPPeng.add(PenilaianKpPeng.fromJson(item));
     }

@@ -99,8 +99,16 @@ class CardBAKP extends StatelessWidget {
                       }
 
                       if (snapshot.hasError) {
-                        return const Center(
-                            child: Text("Error: refresh again"));
+                        print(snapshot.error);
+                        return Center(
+                          child: GestureDetector(
+                            onTap: () => Get.forceAppUpdate(),
+                            child: const Text(
+                              "refresh again \n klik here",
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
                       }
 
                       if (snapshot.data?.totalNilaiAngka.toString() == "null") {
@@ -240,7 +248,16 @@ class CardBAKP extends StatelessWidget {
                       }
 
                       if (snapshot.hasError) {
-                        return const Center(child: Text("refresh again"));
+                        print(snapshot.error);
+                        return Center(
+                          child: GestureDetector(
+                            onTap: () => Get.forceAppUpdate(),
+                            child: const Text(
+                              "refresh again \n klik here",
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
                       }
 
                       if (snapshot.data?.totalNilaiAngka.toString() == "null") {

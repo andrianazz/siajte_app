@@ -217,8 +217,18 @@ class HomeController extends GetxController {
                           : SizedBox(
                               width: 20.w,
                               height: 20.h,
-                              child: const Center(
-                                  child: CircularProgressIndicator()),
+                              child: Center(
+                                  child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const CircularProgressIndicator(),
+                                  SizedBox(height: 10.h),
+                                  GestureDetector(
+                                    onTap: () => Get.forceAppUpdate(),
+                                    child: const Text("Click for refresh"),
+                                  )
+                                ],
+                              )),
                             ),
                     ),
                   ),
