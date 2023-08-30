@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/home/views/home_view.dart';
 import 'package:siajte_app/app/modules/penilaian_pemb_kp/controllers/penilaian_pemb_kp_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_kp/controllers/penilaian_peng_kp_controller.dart';
-import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -101,13 +101,14 @@ class CardBAKP extends StatelessWidget {
                       if (snapshot.hasError) {
                         print(snapshot.error);
                         return Center(
-                          child: GestureDetector(
-                            onTap: () => Get.forceAppUpdate(),
-                            child: const Text(
-                              "refresh again \n klik here",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                          child: ElevatedButton(
+                              onPressed: () => Get.forceAppUpdate(),
+                              child: const Column(
+                                children: [
+                                  Text("refresh again"),
+                                  Icon(Icons.refresh),
+                                ],
+                              )),
                         );
                       }
 
@@ -250,13 +251,14 @@ class CardBAKP extends StatelessWidget {
                       if (snapshot.hasError) {
                         print(snapshot.error);
                         return Center(
-                          child: GestureDetector(
-                            onTap: () => Get.forceAppUpdate(),
-                            child: const Text(
-                              "refresh again \n klik here",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                          child: ElevatedButton(
+                              onPressed: () => Get.forceAppUpdate(),
+                              child: const Column(
+                                children: [
+                                  Text("refresh again"),
+                                  Icon(Icons.refresh),
+                                ],
+                              )),
                         );
                       }
 
@@ -464,7 +466,11 @@ class CardBAKP extends StatelessWidget {
                       onPressed: () {
                         pembimbingC
                             .selesaikanSeminar(pembimbingC.penjadwalanKp.id);
-                        Get.offAllNamed(Routes.HOME);
+                        Get.back();
+                        Get.back();
+                        Get.back();
+                        Get.forceAppUpdate();
+                        Get.offAll(() => const HomeView());
                       },
                       child: Text(
                         "Selesaikan",

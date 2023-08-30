@@ -94,6 +94,7 @@ class PenilaianPembKpController extends GetxController {
 
     var data = response.data;
     Get.snackbar("Berhasil Selesaikan Seminar", "${data['status']}");
+    isLoading.value = false;
   }
 
   Future<void> getPenilaianKP() async {

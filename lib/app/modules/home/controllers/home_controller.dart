@@ -218,17 +218,26 @@ class HomeController extends GetxController {
                               width: 20.w,
                               height: 20.h,
                               child: Center(
+                                child: ElevatedButton(
+                                  onPressed: () => Get.offAllNamed(Routes.HOME),
+                                  style: ElevatedButton.styleFrom(
+                                    fixedSize: Size(200.w, 100.h),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                  ),
                                   child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const CircularProgressIndicator(),
-                                  SizedBox(height: 10.h),
-                                  GestureDetector(
-                                    onTap: () => Get.forceAppUpdate(),
-                                    child: const Text("Click for refresh"),
-                                  )
-                                ],
-                              )),
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      const Text("Click for refresh"),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                     ),
                   ),
