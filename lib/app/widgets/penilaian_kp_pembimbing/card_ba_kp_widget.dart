@@ -105,7 +105,7 @@ class CardBAKP extends StatelessWidget {
                               onPressed: () => Get.forceAppUpdate(),
                               child: const Column(
                                 children: [
-                                  Text("refresh again"),
+                                  Text("refresh"),
                                   Icon(Icons.refresh),
                                 ],
                               )),
@@ -151,26 +151,18 @@ class CardBAKP extends StatelessWidget {
                             height: 15.h,
                           ),
                           NilaiTextBA(
-                              title: pengujiC.existPenilaianKpPeng.presentasi
-                                  .toString()),
+                              title: snapshot.data!.presentasi.toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(title: snapshot.data!.materi.toString()),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: pengujiC.existPenilaianKpPeng.materi
-                                  .toString()),
+                              title: snapshot.data!.tanyaJawab.toString()),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: pengujiC.existPenilaianKpPeng.tanyaJawab
-                                  .toString()),
+                              title: snapshot.data!.totalNilaiAngka.toString()),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: pengujiC
-                                  .existPenilaianKpPeng.totalNilaiAngka
-                                  .toString()),
-                          SizedBox(height: 10.h),
-                          NilaiTextBA(
-                              title: pengujiC
-                                  .existPenilaianKpPeng.totalNilaiHuruf
-                                  .toString()),
+                              title: snapshot.data!.totalNilaiHuruf.toString()),
                         ],
                       );
                     },
@@ -255,7 +247,7 @@ class CardBAKP extends StatelessWidget {
                               onPressed: () => Get.forceAppUpdate(),
                               child: const Column(
                                 children: [
-                                  Text("refresh again"),
+                                  Text("refresh"),
                                   Icon(Icons.refresh),
                                 ],
                               )),
@@ -301,26 +293,18 @@ class CardBAKP extends StatelessWidget {
                             height: 15.h,
                           ),
                           NilaiTextBA(
-                              title: pembimbingC.existPenilaianKpPemb.presentasi
-                                  .toString()),
+                              title: snapshot.data!.presentasi.toString()),
+                          SizedBox(height: 10.h),
+                          NilaiTextBA(title: snapshot.data!.materi.toString()),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: pembimbingC.existPenilaianKpPemb.materi
-                                  .toString()),
+                              title: snapshot.data!.tanyaJawab.toString()),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: pembimbingC.existPenilaianKpPemb.tanyaJawab
-                                  .toString()),
+                              title: snapshot.data!.totalNilaiAngka.toString()),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: pembimbingC
-                                  .existPenilaianKpPemb.totalNilaiAngka
-                                  .toString()),
-                          SizedBox(height: 10.h),
-                          NilaiTextBA(
-                              title: pembimbingC
-                                  .existPenilaianKpPemb.totalNilaiHuruf
-                                  .toString()),
+                              title: snapshot.data!.totalNilaiHuruf.toString()),
                         ],
                       );
                     },
