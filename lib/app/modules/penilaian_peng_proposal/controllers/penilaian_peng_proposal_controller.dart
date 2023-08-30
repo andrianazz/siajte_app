@@ -570,6 +570,8 @@ class PenilaianPengProposalController extends GetxController {
           }
         });
 
+        print(pemb.length);
+
         double totalPemb = pemb.map((expense) => expense.totalNilaiAngka).fold(
             0,
             (prev, amount) =>
