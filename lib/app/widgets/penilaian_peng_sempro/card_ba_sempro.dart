@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/home/views/home_view.dart';
 import 'package:siajte_app/app/modules/penilaian_pemb_proposal/controllers/penilaian_pemb_proposal_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_proposal/controllers/penilaian_peng_proposal_controller.dart';
-import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -760,8 +760,17 @@ class CardBASempro extends StatelessWidget {
                         }
 
                         if (snapshot.hasError) {
-                          return const Center(
-                            child: Text("Error"),
+                          return ElevatedButton(
+                            onPressed: () {
+                              Get.forceAppUpdate();
+                            },
+                            child: Column(
+                              children: [
+                                const Text("Refresh"),
+                                SizedBox(height: 10.h),
+                                const Icon(Icons.refresh),
+                              ],
+                            ),
                           );
                         }
 
@@ -869,7 +878,14 @@ class CardBASempro extends StatelessWidget {
                       onPressed: () {
                         pengProposalController.selesaikanSeminar(
                             pengProposalController.penjadwalanSempro.id);
-                        Get.offAllNamed(Routes.HOME);
+                        Get.back();
+                        Get.back();
+                        Get.back();
+                        Get.forceAppUpdate();
+
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          Get.offAll(() => const HomeView());
+                        });
                       },
                       child: Text(
                         "Selesaikan",

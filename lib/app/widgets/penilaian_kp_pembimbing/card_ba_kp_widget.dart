@@ -470,7 +470,9 @@ class CardBAKP extends StatelessWidget {
                         Get.back();
                         Get.back();
                         Get.forceAppUpdate();
-                        Get.offAll(() => const HomeView());
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          Get.offAll(() => const HomeView());
+                        });
                       },
                       child: Text(
                         "Selesaikan",

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siajte_app/app/modules/home/views/home_view.dart';
 import 'package:siajte_app/app/modules/jadwal_seminar/controllers/jadwal_seminar_controller.dart';
 import 'package:siajte_app/app/modules/mahasiswa/controllers/mahasiswa_controller.dart';
 import 'package:siajte_app/app/modules/riwayat_seminar/controllers/riwayat_seminar_controller.dart';
@@ -219,7 +220,10 @@ class HomeController extends GetxController {
                               height: 20.h,
                               child: Center(
                                 child: ElevatedButton(
-                                  onPressed: () => Get.offAllNamed(Routes.HOME),
+                                  onPressed: () {
+                                    Get.forceAppUpdate();
+                                    Get.offAll(() => const HomeView());
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     fixedSize: Size(200.w, 100.h),
                                     shape: RoundedRectangleBorder(
