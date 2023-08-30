@@ -83,26 +83,27 @@ class PenilaianPembProposalController extends GetxController {
           .first;
 
       scoreMapPembSempro.value['penguasaan_dasar_teori'] =
-          existPenilaianSemproPemb.penguasaanDasarTeori == null
+          existPenilaianSemproPemb.penguasaanDasarTeori.toString() == "null"
               ? 0.0
               : double.parse(
                   existPenilaianSemproPemb.penguasaanDasarTeori.toString());
       scoreMapPembSempro.value['tingkat_penguasaan_materi'] =
-          existPenilaianSemproPemb.tingkatPenguasaanMateri == null
+          existPenilaianSemproPemb.tingkatPenguasaanMateri.toString() == "null"
               ? 0.0
               : double.parse(
                   existPenilaianSemproPemb.tingkatPenguasaanMateri.toString());
       scoreMapPembSempro.value['tinjauan_pustaka'] = existPenilaianSemproPemb
-                  .tinjauanPustaka ==
-              null
+                  .tinjauanPustaka
+                  .toString() ==
+              "null"
           ? 0.0
           : double.parse(existPenilaianSemproPemb.tinjauanPustaka.toString());
       scoreMapPembSempro.value['tata_tulis'] =
-          existPenilaianSemproPemb.tataTulis == null
+          existPenilaianSemproPemb.tataTulis.toString() == "null"
               ? 0.0
               : double.parse(existPenilaianSemproPemb.tataTulis.toString());
       scoreMapPembSempro.value['sikap_dan_kepribadian'] =
-          existPenilaianSemproPemb.sikapDanKepribadian == null
+          existPenilaianSemproPemb.sikapDanKepribadian.toString() == "null"
               ? 0.0
               : double.parse(
                   existPenilaianSemproPemb.sikapDanKepribadian.toString());
@@ -284,7 +285,7 @@ class PenilaianPembProposalController extends GetxController {
       print("pemb sempro 1");
       await getPenilaianSempro(penjadwalanSempro.pembimbingsatuNip.toString());
       Get.forceAppUpdate();
-    } else if (penjadwalanSempro.pembimbingduaNip != null) {
+    } else if (penjadwalanSempro.pembimbingduaNip.toString() != "null") {
       if (penjadwalanSempro.pembimbingduaNip.toString() ==
           homeC.mapUser['data']['nip'].toString()) {
         print("pemb sempro 2");
