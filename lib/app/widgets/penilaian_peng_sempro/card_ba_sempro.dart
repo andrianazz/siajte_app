@@ -382,7 +382,7 @@ class CardBASempro extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                        future: pengProposalController.getPenilaianKPPeng(
+                        future: pengProposalController.getPenilaianKPPengReturn(
                             pengProposalController
                                 .penjadwalanSempro.pengujitigaNip
                                 .toString()),
@@ -409,6 +409,47 @@ class CardBASempro extends StatelessWidget {
                             );
                           }
 
+                          if (snapshot.data?.totalNilaiAngka.toString() ==
+                              "null") {
+                            return Column(
+                              children: [
+                                Text(
+                                  "Nilai",
+                                  style: poppins.copyWith(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                              ],
+                            );
+                          }
+
                           return Column(
                             children: [
                               Text(
@@ -422,72 +463,51 @@ class CardBASempro extends StatelessWidget {
                                 height: 15.h,
                               ),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng
-                                          .presentasi ??
-                                      "-"),
+                                  title: snapshot.data!.presentasi.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng
-                                          .tingkatPenguasaanMateri ??
-                                      "-"),
+                                  title: snapshot.data!.tingkatPenguasaanMateri
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng.keaslian ??
-                                      "-"),
+                                  title: snapshot.data!.keaslian.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng
-                                          .ketepatanMetodologi ??
-                                      "-"),
+                                  title: snapshot.data!.ketepatanMetodologi
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng
-                                          .penguasaanDasarTeori ??
-                                      "-"),
+                                  title: snapshot.data!.penguasaanDasarTeori
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng
-                                          .kecermatanPerumusanMasalah ??
-                                      "-"),
+                                  title: snapshot
+                                      .data!.kecermatanPerumusanMasalah
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng
-                                          .tinjauanPustaka ??
-                                      "-"),
+                                  title: snapshot.data!.tinjauanPustaka
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng.tataTulis ??
-                                      "-"),
+                                  title: snapshot.data!.tataTulis.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController
-                                          .existPenilaianSemproPeng
-                                          .sumbanganPemikiran ??
-                                      "-"),
+                                  title: snapshot.data!.sumbanganPemikiran
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController.totalNilai
-                                          .toString() ??
-                                      "-"),
+                                  title: snapshot.data!.totalNilaiAngka
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pengProposalController.nilaiHuruf
-                                          .toString() ??
-                                      "-"),
+                                  title: snapshot.data!.totalNilaiHuruf
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: (pengProposalController.totalNilai / 9)
-                                          .ceil()
-                                          .toString() ??
-                                      "-"),
+                                  title: (snapshot.data!.totalNilaiAngka / 9)
+                                      .ceil()
+                                      .toString()),
                             ],
                           );
                         }),
