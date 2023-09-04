@@ -203,6 +203,89 @@ class PenilaianPengProposalController extends GetxController {
     }
   }
 
+  Future<PenilaianSemproPeng?> getPenilaianKPPengReturn(String nipPeng) async {
+    isLoading.value = true;
+    List<PenilaianSemproPeng> listPenilaianKPPeng = <PenilaianSemproPeng>[];
+
+    var response = await dio.get("$baseUrlAPI/penilaian-sempro-penguji");
+    for (var item in response.data['data']) {
+      listPenilaianKPPeng.add(PenilaianSemproPeng.fromJson(item));
+    }
+
+    if (listPenilaianKPPeng
+        .where((element) => element.pengujiNip!.contains(nipPeng))
+        .where((element) => element.penjadwalanSemproId
+            .toString()
+            .contains(penjadwalanSempro.id.toString()))
+        .toList()
+        .isNotEmpty) {
+      print("Ada data Penguji");
+      existPenilaianSemproPeng = listPenilaianKPPeng
+          .where((element) => element.pengujiNip!.contains(nipPeng))
+          .where((element) => element.penjadwalanSemproId
+              .toString()
+              .contains(penjadwalanSempro.id.toString()))
+          .first;
+
+      scoreMapPengSempro.value['presentasi'] =
+          existPenilaianSemproPeng.presentasi != null
+              ? double.parse(existPenilaianSemproPeng.presentasi!.toString())
+              : 0.0;
+      scoreMapPengSempro.value['tingkat_penguasaan_materi'] =
+          existPenilaianSemproPeng.tingkatPenguasaanMateri != null
+              ? double.parse(
+                  existPenilaianSemproPeng.tingkatPenguasaanMateri!.toString())
+              : 0.0;
+      scoreMapPengSempro.value['keaslian'] =
+          existPenilaianSemproPeng.keaslian != null
+              ? double.parse(existPenilaianSemproPeng.keaslian!.toString())
+              : 0.0;
+      scoreMapPengSempro.value['ketepatan_metodologi'] =
+          existPenilaianSemproPeng.ketepatanMetodologi != null
+              ? double.parse(
+                  existPenilaianSemproPeng.ketepatanMetodologi!.toString())
+              : 0.0;
+      scoreMapPengSempro.value['penguasaan_dasar_teori'] =
+          existPenilaianSemproPeng.penguasaanDasarTeori != null
+              ? double.parse(
+                  existPenilaianSemproPeng.penguasaanDasarTeori!.toString())
+              : 0.0;
+      scoreMapPengSempro.value['kecermatan_perumusan_masalah'] =
+          existPenilaianSemproPeng.kecermatanPerumusanMasalah != null
+              ? double.parse(existPenilaianSemproPeng
+                  .kecermatanPerumusanMasalah!
+                  .toString())
+              : 0.0;
+      scoreMapPengSempro.value['tinjauan_pustaka'] = existPenilaianSemproPeng
+                  .tinjauanPustaka !=
+              null
+          ? double.parse(existPenilaianSemproPeng.tinjauanPustaka!.toString())
+          : 0.0;
+      scoreMapPengSempro.value['tata_tulis'] =
+          existPenilaianSemproPeng.tataTulis != null
+              ? double.parse(existPenilaianSemproPeng.tataTulis!)
+              : 0.0;
+      scoreMapPengSempro.value['sumbangan_pemikiran'] =
+          existPenilaianSemproPeng.sumbanganPemikiran != null
+              ? double.parse(
+                  existPenilaianSemproPeng.sumbanganPemikiran!.toString())
+              : 0.0;
+
+      await getTotalandHuruf();
+
+      revisiNaskah1C.text = existPenilaianSemproPeng.revisiNaskah1 ?? "";
+      revisiNaskah2C.text = existPenilaianSemproPeng.revisiNaskah2 ?? "";
+      revisiNaskah3C.text = existPenilaianSemproPeng.revisiNaskah3 ?? "";
+      revisiNaskah4C.text = existPenilaianSemproPeng.revisiNaskah4 ?? "";
+      revisiNaskah5C.text = existPenilaianSemproPeng.revisiNaskah5 ?? "";
+      return existPenilaianSemproPeng;
+    } else {
+      print("Buat Baru Penguji");
+      await addPenilaianKPPengAPI(nipPeng);
+      return null;
+    }
+  }
+
   Future<void> getTotalandHuruf() async {
     //sum value of scoreMapPemb
     double total = scoreMapPengSempro.value['presentasi'] +
