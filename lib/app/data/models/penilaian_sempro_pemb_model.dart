@@ -7,7 +7,7 @@ class PenilaianSemproPemb {
   String? tinjauanPustaka;
   String? tataTulis;
   String? sikapDanKepribadian;
-  String? totalNilaiAngka;
+  dynamic totalNilaiAngka;
   String? totalNilaiHuruf;
   String? createdAt;
   String? updatedAt;

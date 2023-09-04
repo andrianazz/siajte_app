@@ -116,6 +116,66 @@ class PenilaianPembProposalController extends GetxController {
     }
   }
 
+  Future<PenilaianSemproPemb?> getPenilaianSemproReturn(String nipPemb) async {
+    isLoading.value = true;
+    List<PenilaianSemproPemb> listPenilaianKP = <PenilaianSemproPemb>[];
+
+    var response = await dio.get("$baseUrlAPI/penilaian-sempro-pembimbing");
+    for (var item in response.data['data']) {
+      listPenilaianKP.add(PenilaianSemproPemb.fromJson(item));
+    }
+
+    if (listPenilaianKP
+        .where((element) => element.pembimbingNip!.contains(nipPemb))
+        .where((element) => element.penjadwalanSemproId
+            .toString()
+            .contains(penjadwalanSempro.id.toString()))
+        .toList()
+        .isNotEmpty) {
+      print("Ada data Pembimbing");
+      existPenilaianSemproPemb = listPenilaianKP
+          .where((element) => element.pembimbingNip!.contains(nipPemb))
+          .where((element) => element.penjadwalanSemproId
+              .toString()
+              .contains(penjadwalanSempro.id.toString()))
+          .first;
+
+      scoreMapPembSempro.value['penguasaan_dasar_teori'] =
+          existPenilaianSemproPemb.penguasaanDasarTeori.toString() == "null"
+              ? 0.0
+              : double.parse(
+                  existPenilaianSemproPemb.penguasaanDasarTeori.toString());
+      scoreMapPembSempro.value['tingkat_penguasaan_materi'] =
+          existPenilaianSemproPemb.tingkatPenguasaanMateri.toString() == "null"
+              ? 0.0
+              : double.parse(
+                  existPenilaianSemproPemb.tingkatPenguasaanMateri.toString());
+      scoreMapPembSempro.value['tinjauan_pustaka'] = existPenilaianSemproPemb
+                  .tinjauanPustaka
+                  .toString() ==
+              "null"
+          ? 0.0
+          : double.parse(existPenilaianSemproPemb.tinjauanPustaka.toString());
+      scoreMapPembSempro.value['tata_tulis'] =
+          existPenilaianSemproPemb.tataTulis.toString() == "null"
+              ? 0.0
+              : double.parse(existPenilaianSemproPemb.tataTulis.toString());
+      scoreMapPembSempro.value['sikap_dan_kepribadian'] =
+          existPenilaianSemproPemb.sikapDanKepribadian.toString() == "null"
+              ? 0.0
+              : double.parse(
+                  existPenilaianSemproPemb.sikapDanKepribadian.toString());
+
+      await getTotalandHuruf();
+      return existPenilaianSemproPemb;
+    } else {
+      print("Buat Baru pembimbing");
+
+      await addPenilaianSemproPembAPI(nipPemb);
+      return null;
+    }
+  }
+
   Future<void> getTotalandHuruf() async {
     //sum value of scoreMapPemb
     double total = (scoreMapPembSempro.value['penguasaan_dasar_teori'] +

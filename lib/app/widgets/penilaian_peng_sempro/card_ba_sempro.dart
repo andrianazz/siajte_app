@@ -591,7 +591,7 @@ class CardBASempro extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                        future: pembProposalController.getPenilaianSempro(
+                        future: pembProposalController.getPenilaianSemproReturn(
                             pembProposalController
                                 .penjadwalanSempro.pembimbingsatuNip
                                 .toString()),
@@ -629,50 +629,37 @@ class CardBASempro extends StatelessWidget {
                               ),
                               SizedBox(height: 15.h),
                               NilaiTextBA(
-                                  title: pembProposalController
-                                          .existPenilaianSemproPemb
-                                          .penguasaanDasarTeori ??
-                                      "-"),
+                                  title: snapshot.data!.penguasaanDasarTeori
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pembProposalController
-                                          .existPenilaianSemproPemb
-                                          .tingkatPenguasaanMateri ??
-                                      "-"),
+                                  title: snapshot.data!.tingkatPenguasaanMateri
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pembProposalController
-                                          .existPenilaianSemproPemb
-                                          .tinjauanPustaka ??
-                                      "-"),
+                                  title: snapshot.data!.tinjauanPustaka
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pembProposalController
-                                          .existPenilaianSemproPemb.tataTulis ??
-                                      "-"),
+                                  title: snapshot.data!.tataTulis.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pembProposalController
-                                          .existPenilaianSemproPemb
-                                          .sikapDanKepribadian ??
-                                      "-"),
+                                  title: snapshot.data!.sikapDanKepribadian
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pembProposalController.totalNilai
-                                          .ceil()
-                                          .toString() ??
-                                      "-"),
+                                  title: snapshot.data!.totalNilaiAngka!
+                                      .ceil()
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: pembProposalController.nilaiHuruf
-                                          .toString() ??
-                                      "-"),
+                                  title: snapshot.data!.totalNilaiHuruf
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: (pembProposalController.totalNilai / 6)
-                                          .ceil()
-                                          .toString() ??
-                                      "-"),
+                                  title: (snapshot.data!.totalNilaiAngka / 5)
+                                      .ceil()
+                                      .toString()),
                             ],
                           );
                         }),
@@ -762,7 +749,7 @@ class CardBASempro extends StatelessWidget {
                                   NilaiTextBA(
                                       title:
                                           (pembProposalController.totalNilai /
-                                                      6)
+                                                      5)
                                                   .ceil()
                                                   .toString() ??
                                               "-"),
