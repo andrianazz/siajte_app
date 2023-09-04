@@ -131,6 +131,71 @@ class PenialianPembSkipsiController extends GetxController {
     }
   }
 
+  Future<PenilaianSkripsiPemb?> getPenilaianSkripsiReturn(
+      String nipPemb) async {
+    isLoading.value = true;
+    List<PenilaianSkripsiPemb> listPenilaianSkripsi = <PenilaianSkripsiPemb>[];
+
+    var response = await dio.get("$baseUrlAPI/penilaian-skripsi-pembimbing");
+    for (var item in response.data['data']) {
+      listPenilaianSkripsi.add(PenilaianSkripsiPemb.fromJson(item));
+    }
+
+    if (listPenilaianSkripsi
+        .where((element) => element.pembimbingNip!.contains(nipPemb))
+        .where((element) => element.penjadwalanSkripsiId
+            .toString()
+            .contains(penjadwalanSkripsi.id.toString()))
+        .toList()
+        .isNotEmpty) {
+      print("Ada data Pembimbing");
+      existPenilaianSkripsiPemb = listPenilaianSkripsi
+          .where((element) => element.pembimbingNip!.contains(nipPemb))
+          .where((element) => element.penjadwalanSkripsiId
+              .toString()
+              .contains(penjadwalanSkripsi.id.toString()))
+          .first;
+
+      scoreMapPembSkripsi.value['penguasaan_dasar_teori'] =
+          existPenilaianSkripsiPemb.penguasaanDasarTeori == null
+              ? 0.0
+              : double.parse(
+                  existPenilaianSkripsiPemb.penguasaanDasarTeori.toString());
+      scoreMapPembSkripsi.value['tingkat_penguasaan_materi'] =
+          existPenilaianSkripsiPemb.tingkatPenguasaanMateri == null
+              ? 0.0
+              : double.parse(
+                  existPenilaianSkripsiPemb.tingkatPenguasaanMateri.toString());
+      scoreMapPembSkripsi.value['tinjauan_pustaka'] = existPenilaianSkripsiPemb
+                  .tinjauanPustaka ==
+              null
+          ? 0.0
+          : double.parse(existPenilaianSkripsiPemb.tinjauanPustaka.toString());
+      scoreMapPembSkripsi.value['tata_tulis'] =
+          existPenilaianSkripsiPemb.tataTulis == null
+              ? 0.0
+              : double.parse(existPenilaianSkripsiPemb.tataTulis.toString());
+      scoreMapPembSkripsi.value['hasil_dan_pembahasan'] =
+          existPenilaianSkripsiPemb.hasilDanPembahasan == null
+              ? 0.0
+              : double.parse(
+                  existPenilaianSkripsiPemb.hasilDanPembahasan.toString());
+      scoreMapPembSkripsi.value['sikap_dan_kepribadian'] =
+          existPenilaianSkripsiPemb.sikapDanKepribadian == null
+              ? 0.0
+              : double.parse(
+                  existPenilaianSkripsiPemb.sikapDanKepribadian.toString());
+
+      await getTotalandHuruf();
+      return existPenilaianSkripsiPemb;
+    } else {
+      print("Buat Baru pembimbing");
+
+      await addPenilaianSkripsiPembAPI(nipPemb);
+      return null;
+    }
+  }
+
   Future<void> getTotalandHuruf() async {
     //sum value of scoreMapPemb
     double total = (scoreMapPembSkripsi.value['penguasaan_dasar_teori'] +

@@ -8,7 +8,7 @@ class PenilaianSkripsiPemb {
   dynamic tataTulis;
   dynamic hasilDanPembahasan;
   dynamic sikapDanKepribadian;
-  String? totalNilaiAngka;
+  dynamic totalNilaiAngka;
   String? totalNilaiHuruf;
   String? createdAt;
   String? updatedAt;
