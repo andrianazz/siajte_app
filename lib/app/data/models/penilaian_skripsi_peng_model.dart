@@ -23,7 +23,7 @@ class PenilaianSkripsiPeng {
   dynamic revisiNaskah4;
   dynamic revisiNaskah5;
   String? totalNilaiHuruf;
-  String? totalNilaiAngka;
+  dynamic totalNilaiAngka;
   String? createdAt;
   String? updatedAt;
 

@@ -250,6 +250,118 @@ class PenilaianPengSkripsiController extends GetxController {
     }
   }
 
+  Future<PenilaianSkripsiPeng?> getPenilaianSkripsiPengReturn(
+      String nipPeng) async {
+    isLoading.value = true;
+    List<PenilaianSkripsiPeng> listPenilaianSkripsiPeng =
+        <PenilaianSkripsiPeng>[];
+
+    var response = await dio.get("$baseUrlAPI/penilaian-skripsi-penguji");
+    for (var item in response.data['data']) {
+      listPenilaianSkripsiPeng.add(PenilaianSkripsiPeng.fromJson(item));
+    }
+
+    if (listPenilaianSkripsiPeng
+        .where((element) => element.pengujiNip!.contains(nipPeng))
+        .where((element) => element.penjadwalanSkripsiId
+            .toString()
+            .contains(jadwalSkripsi.id.toString()))
+        .toList()
+        .isNotEmpty) {
+      print("Ada data Penguji");
+
+      existPenilaianSkripsiPeng = listPenilaianSkripsiPeng
+          .where((element) => element.pengujiNip!.contains(nipPeng))
+          .where((element) => element.penjadwalanSkripsiId
+              .toString()
+              .contains(jadwalSkripsi.id.toString()))
+          .first;
+
+      scoreMapPengSkripsi.value['presentasi'] =
+          existPenilaianSkripsiPeng.presentasi != null
+              ? double.parse(existPenilaianSkripsiPeng.presentasi!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['tingkat_penguasaan_materi'] =
+          existPenilaianSkripsiPeng.tingkatPenguasaanMateri != null
+              ? double.parse(
+                  existPenilaianSkripsiPeng.tingkatPenguasaanMateri!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['keaslian'] =
+          existPenilaianSkripsiPeng.keaslian != null
+              ? double.parse(existPenilaianSkripsiPeng.keaslian!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['ketepatan_metodologi'] =
+          existPenilaianSkripsiPeng.ketepatanMetodologi != null
+              ? double.parse(
+                  existPenilaianSkripsiPeng.ketepatanMetodologi!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['penguasaan_dasar_teori'] =
+          existPenilaianSkripsiPeng.penguasaanDasarTeori != null
+              ? double.parse(
+                  existPenilaianSkripsiPeng.penguasaanDasarTeori!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['kecermatan_perumusan_masalah'] =
+          existPenilaianSkripsiPeng.kecermatanPerumusanMasalah != null
+              ? double.parse(existPenilaianSkripsiPeng
+                      .kecermatanPerumusanMasalah!
+                      .toString())
+                  .toDouble()
+              : 0.0;
+      scoreMapPengSkripsi.value['tinjauan_pustaka'] = existPenilaianSkripsiPeng
+                  .tinjauanPustaka !=
+              null
+          ? double.parse(existPenilaianSkripsiPeng.tinjauanPustaka!.toString())
+          : 0.0;
+      scoreMapPengSkripsi.value['tata_tulis'] =
+          existPenilaianSkripsiPeng.tataTulis != null
+              ? double.parse(existPenilaianSkripsiPeng.tataTulis!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['tools'] =
+          existPenilaianSkripsiPeng.tools != null
+              ? double.parse(existPenilaianSkripsiPeng.tools!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['penyajian_data'] = existPenilaianSkripsiPeng
+                  .penyajianData !=
+              null
+          ? double.parse(existPenilaianSkripsiPeng.penyajianData!.toString())
+          : 0.0;
+      scoreMapPengSkripsi.value['hasil'] =
+          existPenilaianSkripsiPeng.hasil != null
+              ? double.parse(existPenilaianSkripsiPeng.hasil!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['pembahasan'] =
+          existPenilaianSkripsiPeng.pembahasan != null
+              ? double.parse(existPenilaianSkripsiPeng.pembahasan!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['kesimpulan'] =
+          existPenilaianSkripsiPeng.kesimpulan != null
+              ? double.parse(existPenilaianSkripsiPeng.kesimpulan!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['luaran'] =
+          existPenilaianSkripsiPeng.luaran != null
+              ? double.parse(existPenilaianSkripsiPeng.luaran!.toString())
+              : 0.0;
+      scoreMapPengSkripsi.value['sumbangan_pemikiran'] =
+          existPenilaianSkripsiPeng.sumbanganPemikiran != null
+              ? double.parse(
+                  existPenilaianSkripsiPeng.sumbanganPemikiran!.toString())
+              : 0.0;
+
+      await getTotalandHuruf();
+
+      revisiNaskah1C.text = existPenilaianSkripsiPeng.revisiNaskah1 ?? "";
+      revisiNaskah2C.text = existPenilaianSkripsiPeng.revisiNaskah2 ?? "";
+      revisiNaskah3C.text = existPenilaianSkripsiPeng.revisiNaskah3 ?? "";
+      revisiNaskah4C.text = existPenilaianSkripsiPeng.revisiNaskah4 ?? "";
+      revisiNaskah5C.text = existPenilaianSkripsiPeng.revisiNaskah5 ?? "";
+      return existPenilaianSkripsiPeng;
+    } else {
+      print("Buat Baru Penguji");
+      await addPenilaianSkripsiPengAPI(nipPeng);
+      return null;
+    }
+  }
+
   Future<void> selesaikanSeminar(id) async {
     isLoading.value = true;
 
