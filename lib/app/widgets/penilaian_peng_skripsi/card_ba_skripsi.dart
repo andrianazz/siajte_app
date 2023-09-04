@@ -1310,7 +1310,13 @@ class CardBASkripsi extends StatelessWidget {
                       onPressed: () {
                         penilaianPengController.selesaikanSeminar(
                             penilaianPengController.jadwalSkripsi.id);
-                        Get.offAllNamed(Routes.HOME);
+                        Get.back();
+                        Get.back();
+                        Get.back();
+
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          Get.offAll(() => Routes.HOME);
+                        });
                       },
                       child: Text(
                         "Selesaikan",

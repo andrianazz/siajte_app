@@ -881,7 +881,7 @@ class CardBASempro extends StatelessWidget {
                         Get.back();
                         Get.back();
                         Get.back();
-                        Get.forceAppUpdate();
+                        // Get.forceAppUpdate();
 
                         Future.delayed(const Duration(milliseconds: 500), () {
                           Get.offAll(() => const HomeView());

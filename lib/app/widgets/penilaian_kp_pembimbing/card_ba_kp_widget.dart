@@ -453,7 +453,9 @@ class CardBAKP extends StatelessWidget {
                         Get.back();
                         Get.back();
                         Get.back();
-                        Get.forceAppUpdate();
+                        // Future.delayed(const Duration(milliseconds: 500), () {
+                        //   Get.forceAppUpdate();
+                        // });
                         Future.delayed(const Duration(milliseconds: 500), () {
                           Get.offAll(() => const HomeView());
                         });

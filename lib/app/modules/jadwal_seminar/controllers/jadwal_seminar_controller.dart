@@ -58,9 +58,13 @@ class JadwalSeminarController extends GetxController {
 
   Future<void> makeNotificationLocal() async {
     List<DateTime> listTanggal = [];
+    List<String> listNama = [];
+    List<String> listNim = [];
 
-    filterJadwal.value.map((element) {
+    filterJadwal.value.map((element) async {
       listTanggal.add(DateTime.parse("${element.tanggal!} ${element.waktu!}"));
+      listNim.add(element.mahasiswaNim!);
+      listNama.add(await getMahasiswaWithNim(element.mahasiswaNim!));
     }).toList();
 
     // jadikan listTanggal 24 jam sebelumnya, 1 jam sebelumnya, 30 menit sebelumnya, dan jam sekarang
@@ -78,13 +82,13 @@ class JadwalSeminarController extends GetxController {
         // if (listTanggal2.indexOf(e) == 0) {
         //   scheduleNotification(e);
         // }
-        scheduleNotification(e, index);
+        scheduleNotification(e, listNama[index], listNim[index], index);
       }
     }).toList();
   }
 
   Future<void> scheduleNotification(
-      DateTime scheduledDateTime, int index) async {
+      DateTime scheduledDateTime, String nama, String nim, int index) async {
     tz.initializeTimeZones();
     tz.setLocalLocation(tz.getLocation("Asia/Jakarta"));
 
@@ -112,7 +116,8 @@ class JadwalSeminarController extends GetxController {
     await flutterLocalNotificationsPlugin.zonedSchedule(
       index, // ID notifikasi (dapat digunakan untuk membatalkan notifikasi)
       'Jadwal Seminar',
-      'Seminar akan dilaksanakan pada ${scheduled.hour}:${scheduled.minute} mohon untuk hadir tepat waktu',
+      // 'Seminar akan dilaksanakan pada ${scheduled.hour}:${scheduled.minute} mohon untuk hadir tepat waktu',
+      'Seminar atas nama : $nama, nim : $nim, akan dilaksanakan pada  tanggal ${scheduledDateTime.day}  jam ${scheduled.hour}:${scheduled.minute}',
       scheduled,
       platformChannelSpecifics,
       androidAllowWhileIdle: true,
