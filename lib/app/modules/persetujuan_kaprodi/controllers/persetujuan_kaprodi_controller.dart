@@ -614,6 +614,8 @@ class PersetujuanKaprodiController extends GetxController {
         penilaianPembController.penjadwalanSkripsi.pembimbingsatuNip
             .toString());
 
+    update();
+
     if (penilaianPembController.penjadwalanSkripsi.pembimbingduaNip
             .toString() !=
         "null") {

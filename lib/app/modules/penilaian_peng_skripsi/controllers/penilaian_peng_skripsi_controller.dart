@@ -75,6 +75,8 @@ class PenilaianPengSkripsiController extends GetxController {
   late Future<PenilaianSkripsiPemb?> pembimbing1;
   late Future<PenilaianSkripsiPemb?> pembimbing2;
 
+  late Future<void> beritaAcara;
+
   Widget viewListPenilaianPengProposal() {
     if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
       switch (selectedChips.value) {
@@ -848,6 +850,8 @@ class PenilaianPengSkripsiController extends GetxController {
           penilaianPembController.penjadwalanSkripsi.pembimbingduaNip
               .toString());
     }
+
+    beritaAcara = getBeritaAcara();
 
     if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 1");

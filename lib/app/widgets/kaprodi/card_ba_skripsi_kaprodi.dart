@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
-import 'package:siajte_app/app/modules/penilaian_peng_skripsi/controllers/penilaian_peng_skripsi_controller.dart';
 import 'package:siajte_app/app/modules/persetujuan_kaprodi/controllers/persetujuan_kaprodi_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
@@ -15,10 +13,6 @@ class CardBASkripsiKaprodi extends StatelessWidget {
   Widget build(BuildContext context) {
     PersetujuanKaprodiController kaprodiController =
         Get.put(PersetujuanKaprodiController());
-    PenialianPembSkipsiController penilaianPembController =
-        Get.put(PenialianPembSkipsiController());
-    PenilaianPengSkripsiController penilaianPengController =
-        Get.put(PenilaianPengSkripsiController());
 
     return Column(
       children: [
@@ -160,7 +154,9 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                           print(snapshot.error);
                           return Center(
                             child: ElevatedButton(
-                                onPressed: () => Get.forceAppUpdate(),
+                                onPressed: () {
+                                  Get.forceAppUpdate();
+                                },
                                 child: const Column(
                                   children: [
                                     Text("refresh"),
@@ -813,7 +809,7 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                       },
                     ),
                     SizedBox(width: 10.w),
-                    penilaianPembController.penjadwalanSkripsi.pembimbingduaNip
+                    kaprodiController.jadwalSkripsi.pembimbingduaNip
                                 .toString() !=
                             "null"
                         ? FutureBuilder(
@@ -971,7 +967,8 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                    future: penilaianPengController.getBeritaAcara(),
+                    future: kaprodiController.penilaianPengController
+                        .getBeritaAcara(),
                     builder: (context, snapshot) {
                       return Column(
                         children: [
@@ -986,17 +983,20 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                             height: 15.h,
                           ),
                           NilaiTextBA(
-                              title: penilaianPengController.baNilaiAkhir.value
+                              title: kaprodiController.penilaianPengController
+                                      .baNilaiAkhir.value
                                       .toString() ??
                                   "-"),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: penilaianPengController.baNilaiHuruf.value
+                              title: kaprodiController.penilaianPengController
+                                      .baNilaiHuruf.value
                                       .toString() ??
                                   "-"),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: penilaianPengController.baKeterangan.value
+                              title: kaprodiController.penilaianPengController
+                                      .baKeterangan.value
                                       .toString() ??
                                   "-"),
                         ],
@@ -1072,8 +1072,9 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        penilaianPengController.tolakKaprodi(
-                            penilaianPengController.jadwalSkripsi.id);
+                        kaprodiController.penilaianPengController.tolakKaprodi(
+                            kaprodiController
+                                .penilaianPengController.jadwalSkripsi.id);
                         Get.offAllNamed(Routes.HOME);
                       },
                       child: Text(
@@ -1142,8 +1143,9 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        penilaianPengController.setujuiKaprodi(
-                            penilaianPengController.jadwalSkripsi.id);
+                        kaprodiController.penilaianPengController
+                            .setujuiKaprodi(kaprodiController
+                                .penilaianPengController.jadwalSkripsi.id);
                         Get.offAllNamed(Routes.HOME);
                       },
                       child: Text(
