@@ -5,6 +5,7 @@ import 'package:siajte_app/app/data/models/penilaian_skripsi_pemb_model.dart';
 import 'package:siajte_app/app/data/models/penilaian_skripsi_peng_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
 import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
+import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_skripsi/views/penilaian_peng_skripsi_view.dart';
 import 'package:siajte_app/app/theme/variable.dart';
 import 'package:siajte_app/app/widgets/penilaian_peng_skripsi/card_ba_skripsi.dart';
@@ -64,6 +65,15 @@ class PenilaianPengSkripsiController extends GetxController {
   ].obs;
 
   RxInt indexFormNilaiPengSkripsi = 0.obs;
+
+  PenialianPembSkipsiController penilaianPembController =
+      Get.put(PenialianPembSkipsiController());
+
+  late Future<PenilaianSkripsiPeng?> penguji1;
+  late Future<PenilaianSkripsiPeng?> penguji2;
+  late Future<PenilaianSkripsiPeng?> penguji3;
+  late Future<PenilaianSkripsiPemb?> pembimbing1;
+  late Future<PenilaianSkripsiPemb?> pembimbing2;
 
   Widget viewListPenilaianPengProposal() {
     if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
@@ -821,6 +831,24 @@ class PenilaianPengSkripsiController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
+    penguji1 =
+        getPenilaianSkripsiPengReturn(jadwalSkripsi.pengujisatuNip.toString());
+    penguji2 =
+        getPenilaianSkripsiPengReturn(jadwalSkripsi.pengujiduaNip.toString());
+    penguji3 =
+        getPenilaianSkripsiPengReturn(jadwalSkripsi.pengujitigaNip.toString());
+    pembimbing1 = penilaianPembController.getPenilaianSkripsiReturn(
+        penilaianPembController.penjadwalanSkripsi.pembimbingsatuNip
+            .toString());
+
+    if (penilaianPembController.penjadwalanSkripsi.pembimbingduaNip
+            .toString() !=
+        "null") {
+      pembimbing2 = penilaianPembController.getPenilaianSkripsiReturn(
+          penilaianPembController.penjadwalanSkripsi.pembimbingduaNip
+              .toString());
+    }
+
     if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 1");
 

@@ -225,7 +225,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                       homeC.mapUser['role'] == "dosen"
                           ? Obx(
                               () => FutureBuilder<bool>(
-                                  future: controller.inputNilai,
+                                  future: controller.getInputNilai(),
                                   builder: (context, snapshot) {
                                     print(snapshot.data);
                                     if (snapshot.data == true) {

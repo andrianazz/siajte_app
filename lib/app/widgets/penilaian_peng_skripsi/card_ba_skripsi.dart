@@ -147,10 +147,7 @@ class CardBASkripsi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController
-                          .getPenilaianSkripsiPengReturn(penilaianPengController
-                              .jadwalSkripsi.pengujisatuNip
-                              .toString()),
+                      future: penilaianPengController.penguji1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -286,14 +283,17 @@ class CardBASkripsi extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(title: snapshot.data!.totalNilaiHuruf),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 15)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        15)
                                     .ceil()
                                     .toString()),
                           ],
@@ -302,10 +302,7 @@ class CardBASkripsi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController
-                          .getPenilaianSkripsiPengReturn(penilaianPengController
-                              .jadwalSkripsi.pengujiduaNip
-                              .toString()),
+                      future: penilaianPengController.penguji2,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -441,16 +438,19 @@ class CardBASkripsi extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title:
                                     snapshot.data!.totalNilaiHuruf.toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 15)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        15)
                                     .ceil()
                                     .toString()),
                           ],
@@ -459,10 +459,7 @@ class CardBASkripsi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController
-                          .getPenilaianSkripsiPengReturn(penilaianPengController
-                              .jadwalSkripsi.pengujitigaNip
-                              .toString()),
+                      future: penilaianPengController.penguji3,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -598,14 +595,17 @@ class CardBASkripsi extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(title: snapshot.data!.totalNilaiHuruf),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 15)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        15)
                                     .ceil()
                                     .toString()),
                           ],
@@ -696,10 +696,7 @@ class CardBASkripsi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPembController.getPenilaianSkripsiReturn(
-                          penilaianPembController
-                              .penjadwalanSkripsi.pembimbingsatuNip
-                              .toString()),
+                      future: penilaianPengController.pembimbing1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -791,16 +788,19 @@ class CardBASkripsi extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title:
                                     snapshot.data!.totalNilaiHuruf.toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 6)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        6)
                                     .ceil()
                                     .toString()),
                           ],
@@ -812,11 +812,7 @@ class CardBASkripsi extends StatelessWidget {
                                 .toString() !=
                             "null"
                         ? FutureBuilder(
-                            future: penilaianPembController
-                                .getPenilaianSkripsiReturn(
-                                    penilaianPembController
-                                        .penjadwalanSkripsi.pembimbingduaNip
-                                        .toString()),
+                            future: penilaianPengController.pembimbing2,
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -910,7 +906,8 @@ class CardBASkripsi extends StatelessWidget {
                                           .toString()),
                                   SizedBox(height: 10.h),
                                   NilaiTextBA(
-                                      title: snapshot.data!.totalNilaiAngka
+                                      title: double.parse(
+                                              snapshot.data!.totalNilaiAngka)
                                           .ceil()
                                           .toString()),
                                   SizedBox(height: 10.h),
@@ -919,11 +916,12 @@ class CardBASkripsi extends StatelessWidget {
                                           .toString()),
                                   SizedBox(height: 10.h),
                                   NilaiTextBA(
-                                      title:
-                                          (snapshot.data!.totalNilaiAngka / 6)
-                                                  .ceil()
-                                                  .toString() ??
-                                              "-"),
+                                      title: (double.parse(snapshot
+                                                      .data!.totalNilaiAngka) /
+                                                  6)
+                                              .ceil()
+                                              .toString() ??
+                                          "-"),
                                 ],
                               );
                             },
