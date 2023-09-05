@@ -235,7 +235,8 @@ class CardBASempro extends StatelessWidget {
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: snapshot.data!.totalNilaiAngka
+                                  title: double.parse(
+                                          snapshot.data!.totalNilaiAngka)
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
@@ -243,7 +244,9 @@ class CardBASempro extends StatelessWidget {
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: (snapshot.data!.totalNilaiAngka / 9)
+                                  title: (double.parse(
+                                              snapshot.data!.totalNilaiAngka) /
+                                          9)
                                       .ceil()
                                       .toString()),
                             ],
@@ -365,14 +368,17 @@ class CardBASempro extends StatelessWidget {
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title:
-                                    snapshot.data!.totalNilaiAngka.toString()),
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title:
                                     snapshot.data!.totalNilaiHuruf.toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 9)
+                                title: (double.parse(snapshot
+                                                .data!.totalNilaiAngka) /
+                                            9)
                                         .ceil()
                                         .toString() ??
                                     "-"),
@@ -497,7 +503,8 @@ class CardBASempro extends StatelessWidget {
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: snapshot.data!.totalNilaiAngka
+                                  title: double.parse(
+                                          snapshot.data!.totalNilaiAngka)
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
@@ -505,7 +512,9 @@ class CardBASempro extends StatelessWidget {
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: (snapshot.data!.totalNilaiAngka / 9)
+                                  title: (double.parse(
+                                              snapshot.data!.totalNilaiAngka) /
+                                          9)
                                       .ceil()
                                       .toString()),
                             ],
@@ -681,7 +690,8 @@ class CardBASempro extends StatelessWidget {
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: snapshot.data!.totalNilaiAngka!
+                                  title: double.parse(
+                                          snapshot.data!.totalNilaiAngka)
                                       .ceil()
                                       .toString()),
                               SizedBox(height: 10.h),
@@ -690,7 +700,9 @@ class CardBASempro extends StatelessWidget {
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: (snapshot.data!.totalNilaiAngka / 5)
+                                  title: (double.parse(
+                                              snapshot.data!.totalNilaiAngka) /
+                                          5)
                                       .ceil()
                                       .toString()),
                             ],
@@ -796,7 +808,8 @@ class CardBASempro extends StatelessWidget {
                                   ),
                                   SizedBox(height: 10.h),
                                   NilaiTextBA(
-                                    title: snapshot.data!.totalNilaiAngka
+                                    title: double.parse(
+                                            snapshot.data!.totalNilaiAngka)
                                         .ceil()
                                         .toString(),
                                   ),
@@ -806,7 +819,9 @@ class CardBASempro extends StatelessWidget {
                                           .toString()),
                                   SizedBox(height: 10.h),
                                   NilaiTextBA(
-                                    title: (snapshot.data!.totalNilaiAngka / 5)
+                                    title: (double.parse(snapshot
+                                                .data!.totalNilaiAngka) /
+                                            5)
                                         .ceil()
                                         .toString(),
                                   ),
