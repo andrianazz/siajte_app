@@ -583,6 +583,9 @@ class PenilaianPengSkripsiController extends GetxController {
 
         totalPeng = totalPeng / peng.length;
 
+        print(pemb.length);
+        print(peng.length);
+
         baNilaiAkhir.value = (totalPemb + totalPeng).ceilToDouble();
         if (baNilaiAkhir >= 85) {
           baNilaiHuruf.value = "A";

@@ -147,10 +147,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController
-                          .getPenilaianSkripsiPengReturn(penilaianPengController
-                              .jadwalSkripsi.pengujisatuNip
-                              .toString()),
+                      future: persetujuanKoorTaController.penguji1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -286,16 +283,19 @@ class CardBASkripsiKoor extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title:
                                     snapshot.data!.totalNilaiHuruf.toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 15)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        15)
                                     .ceil()
                                     .toString()),
                           ],
@@ -304,11 +304,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                        future: penilaianPengController
-                            .getPenilaianSkripsiPengReturn(
-                                penilaianPengController
-                                    .jadwalSkripsi.pengujiduaNip
-                                    .toString()),
+                        future: persetujuanKoorTaController.penguji2,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -448,7 +444,8 @@ class CardBASkripsiKoor extends StatelessWidget {
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: snapshot.data!.totalNilaiAngka
+                                  title: double.parse(
+                                          snapshot.data!.totalNilaiAngka)
                                       .ceil()
                                       .toString()),
                               SizedBox(height: 10.h),
@@ -456,7 +453,9 @@ class CardBASkripsiKoor extends StatelessWidget {
                                   title: snapshot.data!.totalNilaiHuruf),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: (snapshot.data!.totalNilaiAngka / 15)
+                                  title: (double.parse(snapshot
+                                                  .data!.totalNilaiAngka) /
+                                              15)
                                           .ceil()
                                           .toString() ??
                                       "-"),
@@ -465,10 +464,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                         }),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController
-                          .getPenilaianSkripsiPengReturn(penilaianPengController
-                              .jadwalSkripsi.pengujitigaNip
-                              .toString()),
+                      future: persetujuanKoorTaController.penguji3,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -604,14 +600,17 @@ class CardBASkripsiKoor extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(title: snapshot.data!.totalNilaiHuruf),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 15)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        15)
                                     .ceil()
                                     .toString()),
                           ],
@@ -702,10 +701,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPembController.getPenilaianSkripsiReturn(
-                          penilaianPembController
-                              .penjadwalanSkripsi.pembimbingsatuNip
-                              .toString()),
+                      future: persetujuanKoorTaController.pembimbing1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -797,16 +793,19 @@ class CardBASkripsiKoor extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title:
                                     snapshot.data!.totalNilaiHuruf.toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 6)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        6)
                                     .ceil()
                                     .toString()),
                           ],
@@ -818,11 +817,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                                 .toString() !=
                             "null"
                         ? FutureBuilder(
-                            future: penilaianPembController
-                                .getPenilaianSkripsiReturn(
-                                    penilaianPembController
-                                        .penjadwalanSkripsi.pembimbingduaNip
-                                        .toString()),
+                            future: persetujuanKoorTaController.pembimbing2,
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -916,7 +911,8 @@ class CardBASkripsiKoor extends StatelessWidget {
                                           .toString()),
                                   SizedBox(height: 10.h),
                                   NilaiTextBA(
-                                      title: snapshot.data!.totalNilaiAngka
+                                      title: double.parse(
+                                              snapshot.data!.totalNilaiAngka)
                                           .ceil()
                                           .toString()),
                                   SizedBox(height: 10.h),
@@ -925,11 +921,12 @@ class CardBASkripsiKoor extends StatelessWidget {
                                           .toString()),
                                   SizedBox(height: 10.h),
                                   NilaiTextBA(
-                                      title:
-                                          (snapshot.data!.totalNilaiAngka / 6)
-                                                  .ceil()
-                                                  .toString() ??
-                                              "-"),
+                                      title: (double.parse(snapshot
+                                                      .data!.totalNilaiAngka) /
+                                                  6)
+                                              .ceil()
+                                              .toString() ??
+                                          "-"),
                                 ],
                               );
                             },
@@ -974,7 +971,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                    future: persetujuanKoorTaController.getBeritaAcara(),
+                    future: penilaianPengController.getBeritaAcara(),
                     builder: (context, snapshot) {
                       return Column(
                         children: [
@@ -989,20 +986,17 @@ class CardBASkripsiKoor extends StatelessWidget {
                             height: 15.h,
                           ),
                           NilaiTextBA(
-                              title: persetujuanKoorTaController
-                                      .baNilaiAkhir.value
+                              title: penilaianPengController.baNilaiAkhir.value
                                       .toString() ??
                                   "-"),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: persetujuanKoorTaController
-                                      .baNilaiHuruf.value
+                              title: penilaianPengController.baNilaiHuruf.value
                                       .toString() ??
                                   "-"),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: persetujuanKoorTaController
-                                      .baKeterangan.value
+                              title: penilaianPengController.baKeterangan.value
                                       .toString() ??
                                   "-"),
                         ],
