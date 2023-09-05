@@ -301,9 +301,11 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                        future: penilaianPengController.getPenilaianSkripsiPeng(
-                            penilaianPengController.jadwalSkripsi.pengujiduaNip
-                                .toString()),
+                        future: penilaianPengController
+                            .getPenilaianSkripsiPengReturn(
+                                penilaianPengController
+                                    .jadwalSkripsi.pengujiduaNip
+                                    .toString()),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -313,8 +315,69 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                           }
 
                           if (snapshot.hasError) {
+                            print(snapshot.error);
                             return Center(
-                              child: Text(snapshot.error.toString()),
+                              child: ElevatedButton(
+                                  onPressed: () => Get.forceAppUpdate(),
+                                  child: const Column(
+                                    children: [
+                                      Text("refresh"),
+                                      Icon(Icons.refresh),
+                                    ],
+                                  )),
+                            );
+                          }
+
+                          if (snapshot.data?.totalNilaiAngka.toString() ==
+                              "null") {
+                            return Column(
+                              children: [
+                                Text(
+                                  "Nilai",
+                                  style: poppins.copyWith(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                              ],
                             );
                           }
 
@@ -329,178 +392,68 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                               ),
                               SizedBox(height: 15.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .presentasi !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng.presentasi
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.presentasi.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .tingkatPenguasaanMateri !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng
-                                          .tingkatPenguasaanMateri
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.tingkatPenguasaanMateri
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .keaslian !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng.keaslian
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.keaslian.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .ketepatanMetodologi !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng
-                                          .ketepatanMetodologi
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.ketepatanMetodologi
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .penguasaanDasarTeori !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng
-                                          .penguasaanDasarTeori
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.penguasaanDasarTeori
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .kecermatanPerumusanMasalah !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng
-                                          .kecermatanPerumusanMasalah
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot
+                                      .data!.kecermatanPerumusanMasalah
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .tinjauanPustaka !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng
-                                          .tinjauanPustaka
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.tinjauanPustaka
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .tataTulis !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng.tataTulis
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.tataTulis.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .tools !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng.tools
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.tools.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .penyajianData !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng
-                                          .penyajianData
-                                          .toString()
-                                      : "-"),
+                                  title:
+                                      snapshot.data!.penyajianData.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .hasil !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng.hasil
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.hasil.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .pembahasan !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng.pembahasan
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.pembahasan.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .kesimpulan !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng.kesimpulan
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.kesimpulan.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .luaran !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng.luaran
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.luaran.toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                              .existPenilaianSkripsiPeng
-                                              .sumbanganPemikiran !=
-                                          null
-                                      ? penilaianPengController
-                                          .existPenilaianSkripsiPeng
-                                          .sumbanganPemikiran
-                                          .toString()
-                                      : "-"),
+                                  title: snapshot.data!.sumbanganPemikiran
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                          .totalNilai.value
-                                          .ceil()
-                                          .toString() ??
-                                      "-"),
+                                  title: snapshot.data!.totalNilaiAngka
+                                      .ceil()
+                                      .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: penilaianPengController
-                                          .nilaiHuruf.value ??
-                                      "-"),
+                                  title: snapshot.data!.totalNilaiHuruf),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: (penilaianPengController
-                                                  .totalNilai.value /
-                                              15)
+                                  title: (snapshot.data!.totalNilaiAngka / 15)
                                           .ceil()
                                           .toString() ??
                                       "-"),
