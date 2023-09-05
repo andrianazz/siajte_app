@@ -88,7 +88,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: FutureBuilder(
-                    future: controller.getDetailPenjadwalan(),
+                    future: controller.detailPenjadwalan,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
@@ -225,7 +225,7 @@ class DetailJadwalSeminarView extends GetView<DetailJadwalSeminarController> {
                       homeC.mapUser['role'] == "dosen"
                           ? Obx(
                               () => FutureBuilder<bool>(
-                                  future: controller.getInputNilai(),
+                                  future: controller.inputNilai,
                                   builder: (context, snapshot) {
                                     print(snapshot.data);
                                     if (snapshot.data == true) {

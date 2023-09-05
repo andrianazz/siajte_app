@@ -44,6 +44,16 @@ class DetailJadwalSeminarController extends GetxController {
 
   RxBool isInputNilai = false.obs;
 
+  late Future<void> detailPenjadwalan;
+  late Future<bool> inputNilai;
+
+  @override
+  void onInit() {
+    super.onInit();
+    detailPenjadwalan = getDetailPenjadwalan();
+    inputNilai = getInputNilai();
+  }
+
   //get mahasiswa nama with nim
   Future<String> getMahasiswaWithNim(String nim) async {
     var response =
