@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:siajte_app/app/controllers/card_jadwal_controller_controller.dart';
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
 import 'package:siajte_app/app/modules/jadwal_seminar/controllers/jadwal_seminar_controller.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 
 import '../theme/colors.dart';
 import '../theme/style.dart';
@@ -35,9 +35,6 @@ class _CardJadwalWidgetState extends State<CardJadwalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    CardJadwalControllerController cardJadwalC =
-        Get.put(CardJadwalControllerController());
-
     return Container(
       margin: EdgeInsets.only(bottom: 20.h),
       decoration: BoxDecoration(
@@ -74,7 +71,8 @@ class _CardJadwalWidgetState extends State<CardJadwalWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FutureBuilder<String?>(
-                      future: namaMahasiswa,
+                      future: jadwalSeminarC.getMahasiswaWithNim(
+                          widget.penjadwalan!.mahasiswaNim!),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           return Text(
@@ -85,7 +83,10 @@ class _CardJadwalWidgetState extends State<CardJadwalWidget> {
                                 color: textJadwalSeminar),
                           );
                         } else if (snapshot.hasError) {
-                          return const Text("Test");
+                          return ElevatedButton(
+                            onPressed: () => Get.offAllNamed(Routes.HOME),
+                            child: const Text("refresh"),
+                          );
                         } else {
                           return const Center(
                               child: CircularProgressIndicator());

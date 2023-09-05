@@ -3,11 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
 import 'package:siajte_app/app/modules/riwayat_seminar/controllers/riwayat_seminar_controller.dart';
+import 'package:siajte_app/app/routes/app_pages.dart';
 
 import '../theme/colors.dart';
 import '../theme/style.dart';
 
-class CardRiwayatWidget extends StatelessWidget {
+class CardRiwayatWidget extends StatefulWidget {
   final Penjadwalan? penjadwalan;
   final Function onTap;
 
@@ -18,9 +19,28 @@ class CardRiwayatWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    RiwayatSeminarController riwayatSeminarC = Get.find();
+  State<CardRiwayatWidget> createState() => _CardRiwayatWidgetState();
+}
 
+class _CardRiwayatWidgetState extends State<CardRiwayatWidget> {
+  RiwayatSeminarController riwayatSeminarC = Get.find();
+  late Future<String> _namaMahasiswa;
+
+  @override
+  void initState() async {
+    super.initState();
+    _namaMahasiswa = riwayatSeminarC.getMahasiswaWithNim(
+      // penjadwalanKp != null
+      //     ? penjadwalanKp!.mahasiswaNim!
+      //     : penjadwalanSempro != null
+      //         ? penjadwalanSempro!.mahasiswaNim!
+      //         : penjadwalanSkripsi!.mahasiswaNim!,
+      widget.penjadwalan!.mahasiswaNim!,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 20.h),
       decoration: BoxDecoration(
@@ -32,7 +52,7 @@ class CardRiwayatWidget extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(15),
           onTap: () {
-            onTap();
+            widget.onTap();
           },
           child: Container(
             width: double.infinity,
@@ -48,14 +68,14 @@ class CardRiwayatWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    FutureBuilder<String>(
+                    FutureBuilder(
                       future: riwayatSeminarC.getMahasiswaWithNim(
                         // penjadwalanKp != null
                         //     ? penjadwalanKp!.mahasiswaNim!
                         //     : penjadwalanSempro != null
                         //         ? penjadwalanSempro!.mahasiswaNim!
                         //         : penjadwalanSkripsi!.mahasiswaNim!,
-                        penjadwalan!.mahasiswaNim!,
+                        widget.penjadwalan!.mahasiswaNim!,
                       ),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
@@ -67,7 +87,10 @@ class CardRiwayatWidget extends StatelessWidget {
                                 color: textJadwalSeminar),
                           );
                         } else if (snapshot.hasError) {
-                          return const Text("error");
+                          return ElevatedButton(
+                            onPressed: () => Get.offAllNamed(Routes.HOME),
+                            child: const Text("refresh"),
+                          );
                         } else {
                           return const Center(
                               child: CircularProgressIndicator());
@@ -80,7 +103,7 @@ class CardRiwayatWidget extends StatelessWidget {
                       //     : penjadwalanSempro != null
                       //         ? '${penjadwalanSempro!.tanggal}'
                       //         : '${penjadwalanSkripsi!.tanggal}',
-                      penjadwalan!.tanggal!,
+                      widget.penjadwalan!.tanggal!,
                       style: poppins.copyWith(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
@@ -127,13 +150,14 @@ class CardRiwayatWidget extends StatelessWidget {
                               //     : penjadwalanSempro != null
                               //         ? 'Proposal'
                               //         : 'Skripsi',
-                              penjadwalan!.jenisSeminar!,
+                              widget.penjadwalan!.jenisSeminar!,
                               style: poppins.copyWith(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
-                                color: penjadwalan!.jenisSeminar == "KP"
+                                color: widget.penjadwalan!.jenisSeminar == "KP"
                                     ? textKP
-                                    : penjadwalan!.jenisSeminar != "Proposal"
+                                    : widget.penjadwalan!.jenisSeminar !=
+                                            "Proposal"
                                         ? textProposal
                                         : textSkripsi,
                               ),
@@ -146,7 +170,7 @@ class CardRiwayatWidget extends StatelessWidget {
                               //     : penjadwalanSempro != null
                               //         ? '${penjadwalanSempro!.mahasiswaNim}'
                               //         : '${penjadwalanSkripsi!.mahasiswaNim}',
-                              penjadwalan!.mahasiswaNim!,
+                              widget.penjadwalan!.mahasiswaNim!,
                               style: poppins.copyWith(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
@@ -176,7 +200,7 @@ class CardRiwayatWidget extends StatelessWidget {
                           //     : penjadwalanSempro != null
                           //         ? '${penjadwalanSempro!.waktu}'
                           //         : '${penjadwalanSkripsi!.waktu}',
-                          penjadwalan!.waktu!,
+                          widget.penjadwalan!.waktu!,
                           style: poppins.copyWith(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
