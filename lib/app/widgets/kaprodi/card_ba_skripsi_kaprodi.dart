@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_skripsi/controllers/penilaian_peng_skripsi_controller.dart';
+import 'package:siajte_app/app/modules/persetujuan_kaprodi/controllers/persetujuan_kaprodi_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
@@ -12,6 +13,8 @@ class CardBASkripsiKaprodi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PersetujuanKaprodiController kaprodiController =
+        Get.put(PersetujuanKaprodiController());
     PenialianPembSkipsiController penilaianPembController =
         Get.put(PenialianPembSkipsiController());
     PenilaianPengSkripsiController penilaianPengController =
@@ -144,10 +147,7 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController
-                          .getPenilaianSkripsiPengReturn(penilaianPengController
-                              .jadwalSkripsi.pengujisatuNip
-                              .toString()),
+                      future: kaprodiController.penguji1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -283,16 +283,19 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title:
                                     snapshot.data!.totalNilaiHuruf.toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 15)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        15)
                                     .ceil()
                                     .toString()),
                           ],
@@ -301,11 +304,7 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                        future: penilaianPengController
-                            .getPenilaianSkripsiPengReturn(
-                                penilaianPengController
-                                    .jadwalSkripsi.pengujiduaNip
-                                    .toString()),
+                        future: kaprodiController.penguji2,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -445,7 +444,8 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                                       .toString()),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: snapshot.data!.totalNilaiAngka
+                                  title: double.parse(
+                                          snapshot.data!.totalNilaiAngka)
                                       .ceil()
                                       .toString()),
                               SizedBox(height: 10.h),
@@ -453,7 +453,9 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                                   title: snapshot.data!.totalNilaiHuruf),
                               SizedBox(height: 10.h),
                               NilaiTextBA(
-                                  title: (snapshot.data!.totalNilaiAngka / 15)
+                                  title: (double.parse(snapshot
+                                                  .data!.totalNilaiAngka) /
+                                              15)
                                           .ceil()
                                           .toString() ??
                                       "-"),
@@ -462,10 +464,7 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                         }),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController
-                          .getPenilaianSkripsiPengReturn(penilaianPengController
-                              .jadwalSkripsi.pengujitigaNip
-                              .toString()),
+                      future: kaprodiController.penguji3,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -601,14 +600,17 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(title: snapshot.data!.totalNilaiHuruf),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 15)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        15)
                                     .ceil()
                                     .toString()),
                           ],
@@ -699,10 +701,7 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPembController.getPenilaianSkripsiReturn(
-                          penilaianPembController
-                              .penjadwalanSkripsi.pembimbingsatuNip
-                              .toString()),
+                      future: kaprodiController.pembimbing1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -794,16 +793,19 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                                     .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: snapshot.data!.totalNilaiAngka
-                                    .ceil()
-                                    .toString()),
+                                title:
+                                    double.parse(snapshot.data!.totalNilaiAngka)
+                                        .ceil()
+                                        .toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
                                 title:
                                     snapshot.data!.totalNilaiHuruf.toString()),
                             SizedBox(height: 10.h),
                             NilaiTextBA(
-                                title: (snapshot.data!.totalNilaiAngka / 6)
+                                title: (double.parse(
+                                            snapshot.data!.totalNilaiAngka) /
+                                        6)
                                     .ceil()
                                     .toString()),
                           ],
@@ -815,11 +817,7 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                                 .toString() !=
                             "null"
                         ? FutureBuilder(
-                            future: penilaianPembController
-                                .getPenilaianSkripsiReturn(
-                                    penilaianPembController
-                                        .penjadwalanSkripsi.pembimbingduaNip
-                                        .toString()),
+                            future: kaprodiController.pembimbing2,
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -913,7 +911,8 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                                           .toString()),
                                   SizedBox(height: 10.h),
                                   NilaiTextBA(
-                                      title: snapshot.data!.totalNilaiAngka
+                                      title: double.parse(
+                                              snapshot.data!.totalNilaiAngka)
                                           .ceil()
                                           .toString()),
                                   SizedBox(height: 10.h),
@@ -922,11 +921,12 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                                           .toString()),
                                   SizedBox(height: 10.h),
                                   NilaiTextBA(
-                                      title:
-                                          (snapshot.data!.totalNilaiAngka / 6)
-                                                  .ceil()
-                                                  .toString() ??
-                                              "-"),
+                                      title: (double.parse(snapshot
+                                                      .data!.totalNilaiAngka) /
+                                                  6)
+                                              .ceil()
+                                              .toString() ??
+                                          "-"),
                                 ],
                               );
                             },
@@ -1032,6 +1032,76 @@ class CardBASkripsiKaprodi extends StatelessWidget {
               //   ],
               // ),
             ],
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 24.w),
+          width: double.infinity,
+          height: 44.h,
+          child: ElevatedButton(
+            onPressed: () {
+              Get.dialog(
+                AlertDialog(
+                  title: Text(
+                    "Tolak Seminar",
+                    style: poppins.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  content: Text(
+                    "Apakah anda yakin ingin menolak seminar ini?",
+                    style: poppins.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        "Batal",
+                        style: poppins.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        penilaianPengController.tolakKaprodi(
+                            penilaianPengController.jadwalSkripsi.id);
+                        Get.offAllNamed(Routes.HOME);
+                      },
+                      child: Text(
+                        "Tolak",
+                        style: poppins.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: redColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+            ),
+            child: Text(
+              "Tolak Seminar",
+              style: poppins.copyWith(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
         ),
         Container(
