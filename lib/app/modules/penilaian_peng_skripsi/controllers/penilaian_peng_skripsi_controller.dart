@@ -412,6 +412,25 @@ class PenilaianPengSkripsiController extends GetxController {
     Get.snackbar("Berhasil Selesaikan Seminar", "${data['status']}");
   }
 
+  Future<void> tolakKoor(id) async {
+    isLoading.value = true;
+
+    var response = await dio.put(
+      "$baseUrlAPI/penjadwalan-skripsi/$id",
+      data: {
+        "status_seminar": 0,
+      },
+      options: Options(
+        receiveDataWhenStatusError: true,
+        sendTimeout: const Duration(seconds: 5), // 60 seconds
+        receiveTimeout: const Duration(seconds: 2),
+      ),
+    );
+
+    var data = response.data;
+    Get.snackbar("Berhasil Tolak Seminar", "${data['status']}");
+  }
+
   Future<void> setujuiKaprodi(id) async {
     isLoading.value = true;
 

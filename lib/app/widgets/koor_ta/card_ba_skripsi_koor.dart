@@ -1035,6 +1035,76 @@ class CardBASkripsiKoor extends StatelessWidget {
           ),
         ),
         Container(
+          margin: EdgeInsets.symmetric(horizontal: 24.w),
+          width: double.infinity,
+          height: 44.h,
+          child: ElevatedButton(
+            onPressed: () {
+              Get.dialog(
+                AlertDialog(
+                  title: Text(
+                    "Tolak Seminar",
+                    style: poppins.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  content: Text(
+                    "Apakah anda yakin ingin menolak seminar ini?",
+                    style: poppins.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        "Batal",
+                        style: poppins.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        penilaianPengController.tolakKoor(
+                            penilaianPengController.jadwalSkripsi.id);
+                        Get.offAllNamed(Routes.HOME);
+                      },
+                      child: Text(
+                        "Tolak",
+                        style: poppins.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: redColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+            ),
+            child: Text(
+              "Tolak Seminar",
+              style: poppins.copyWith(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        Container(
           margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
           width: double.infinity,
           height: 44.h,
