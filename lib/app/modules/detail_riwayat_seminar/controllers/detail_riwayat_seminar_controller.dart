@@ -25,6 +25,14 @@ class DetailRiwayatSeminarController extends GetxController {
   RxString judul = ''.obs;
   RxString status = ''.obs;
 
+  late Future<void> detailPenjadwalan;
+
+  @override
+  void onInit() {
+    detailPenjadwalan = getDetailPenjadwalan();
+    super.onInit();
+  }
+
   //get mahasiswa nama with nim
   Future<String> getMahasiswaWithNim(String nim) async {
     var response =

@@ -69,7 +69,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: FutureBuilder(
-                    future: controller.getDetailPenjadwalan(),
+                    future: controller.detailPenjadwalan,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
