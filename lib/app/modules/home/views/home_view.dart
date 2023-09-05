@@ -16,7 +16,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: controller.scaffoldKey,
+      // key: controller.scaffoldKey,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(56.h),
         child: const AppbarWidget(),
@@ -160,7 +160,7 @@ class HomeView extends GetView<HomeController> {
               ),
 
               FutureBuilder<Object>(
-                future: controller.getUser(),
+                future: controller.getuser,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return const SizedBox();
@@ -200,7 +200,7 @@ class HomeView extends GetView<HomeController> {
                 },
               ),
               FutureBuilder<Object>(
-                future: controller.getUser(),
+                future: controller.getuser,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return const SizedBox();
@@ -286,7 +286,7 @@ class HomeView extends GetView<HomeController> {
             },
           ),
           FutureBuilder<Object>(
-            future: controller.getUser(),
+            future: controller.getuser,
             builder: (context, snapshot) {
               return controller.mapUser['role'] == "web"
                   ? Container(

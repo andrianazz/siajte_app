@@ -91,8 +91,7 @@ class CardBAKP extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                    future: pengujiC.getPenilaianKPPengReturn(
-                        pembimbingC.penjadwalanKp.pengujiNip.toString()),
+                    future: pembimbingC.penguji,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
@@ -234,7 +233,7 @@ class CardBAKP extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                    future: pembimbingC.getPenilaianKPReturn(),
+                    future: pembimbingC.pembimbing,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());

@@ -27,6 +27,8 @@ class JadwalSeminarController extends GetxController {
 
   HomeController homeC = Get.put(HomeController());
 
+  late Future<String?> namaMahasiswa;
+
   @override
   void onInit() async {
     // TODO: implement onInit

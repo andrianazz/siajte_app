@@ -15,7 +15,7 @@ import 'package:siajte_app/app/theme/variable.dart';
 import 'package:siajte_app/app/widgets/card_jadwal_widget.dart';
 
 class HomeController extends GetxController {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  // GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   late SharedPreferences prefs;
   Map<String, dynamic> mapUser = {};
 
@@ -23,10 +23,12 @@ class HomeController extends GetxController {
 
   PageController pageC = PageController(initialPage: 0);
 
+  late Future<Map<String, dynamic>> getuser;
+
   @override
   void onInit() async {
     super.onInit();
-
+    getuser = getUser();
     mapUser = await getUser();
 
     if (await checkSharedPreference() == "") {
@@ -51,9 +53,9 @@ class HomeController extends GetxController {
     }
   }
 
-  void openDrawer() {
-    scaffoldKey.currentState?.openDrawer();
-  }
+  // void openDrawer() {
+  //   scaffoldKey.currentState?.openDrawer();
+  // }
 
   handleClick(int item) async {
     switch (item) {
