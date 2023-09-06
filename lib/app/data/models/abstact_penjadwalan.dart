@@ -1,3 +1,5 @@
+import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
+
 abstract class Penjadwalan {
   int? id;
   String? mahasiswaNim;
@@ -10,4 +12,5 @@ abstract class Penjadwalan {
   String? dibuatOleh;
   String? createdAt;
   String? updatedAt;
+  Mahasiswa? mahasiswa;
 }

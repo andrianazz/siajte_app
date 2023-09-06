@@ -1,4 +1,5 @@
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
+import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
 
 class PenjadwalanKp extends Penjadwalan {
   @override
@@ -26,6 +27,8 @@ class PenjadwalanKp extends Penjadwalan {
   String? createdAt;
   @override
   String? updatedAt;
+  @override
+  Mahasiswa? mahasiswa;
 
   // String? pembimbingNip;
   // String? pengujiNip;
@@ -45,7 +48,8 @@ class PenjadwalanKp extends Penjadwalan {
       this.statusSeminar,
       this.dibuatOleh,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.mahasiswa});
 
   PenjadwalanKp.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -62,6 +66,9 @@ class PenjadwalanKp extends Penjadwalan {
     dibuatOleh = json['dibuat_oleh'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    mahasiswa = json['mahasiswa'] != null
+        ? Mahasiswa.fromJson(json['mahasiswa'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -80,6 +87,9 @@ class PenjadwalanKp extends Penjadwalan {
     data['dibuat_oleh'] = dibuatOleh;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
+    if (mahasiswa != null) {
+      data['mahasiswa'] = mahasiswa!.toJson();
+    }
     return data;
   }
 }

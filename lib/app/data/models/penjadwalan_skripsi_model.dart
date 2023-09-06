@@ -1,3 +1,5 @@
+import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
+
 import 'abstact_penjadwalan.dart';
 
 class PenjadwalanSkripsi extends Penjadwalan {
@@ -31,6 +33,8 @@ class PenjadwalanSkripsi extends Penjadwalan {
   String? createdAt;
   @override
   String? updatedAt;
+  @override
+  Mahasiswa? mahasiswa;
 
   // String? pembimbingsatuNip;
   // String? pembimbingduaNip;

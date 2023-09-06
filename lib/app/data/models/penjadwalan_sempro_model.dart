@@ -1,6 +1,7 @@
 // ignore_for_file: overridden_fields
 
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
+import 'package:siajte_app/app/data/models/mahasiswa_model.dart';
 
 class PenjadwalanSempro extends Penjadwalan {
   @override
@@ -35,6 +36,8 @@ class PenjadwalanSempro extends Penjadwalan {
   String? createdAt;
   @override
   String? updatedAt;
+  @override
+  Mahasiswa? mahasiswa;
 
   // String? pembimbingsatuNip;
   // String? pembimbingduaNip;
@@ -47,28 +50,30 @@ class PenjadwalanSempro extends Penjadwalan {
   // dynamic catatan2;
   // dynamic catatan3;
 
-  PenjadwalanSempro(
-      {this.id,
-      this.mahasiswaNim,
-      this.pembimbingsatuNip,
-      this.pembimbingduaNip,
-      this.pengujisatuNip,
-      this.pengujiduaNip,
-      this.pengujitigaNip,
-      this.prodiId,
-      this.jenisSeminar,
-      this.judulProposal,
-      this.revisiProposal,
-      this.catatan1,
-      this.catatan2,
-      this.catatan3,
-      this.tanggal,
-      this.waktu,
-      this.lokasi,
-      this.statusSeminar,
-      this.dibuatOleh,
-      this.createdAt,
-      this.updatedAt});
+  PenjadwalanSempro({
+    this.id,
+    this.mahasiswaNim,
+    this.pembimbingsatuNip,
+    this.pembimbingduaNip,
+    this.pengujisatuNip,
+    this.pengujiduaNip,
+    this.pengujitigaNip,
+    this.prodiId,
+    this.jenisSeminar,
+    this.judulProposal,
+    this.revisiProposal,
+    this.catatan1,
+    this.catatan2,
+    this.catatan3,
+    this.tanggal,
+    this.waktu,
+    this.lokasi,
+    this.statusSeminar,
+    this.dibuatOleh,
+    this.createdAt,
+    this.updatedAt,
+    this.mahasiswa,
+  });
 
   PenjadwalanSempro.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -92,6 +97,9 @@ class PenjadwalanSempro extends Penjadwalan {
     dibuatOleh = json['dibuat_oleh'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    mahasiswa = json['mahasiswa'] != null
+        ? Mahasiswa.fromJson(json['mahasiswa'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -117,6 +125,9 @@ class PenjadwalanSempro extends Penjadwalan {
     data['dibuat_oleh'] = dibuatOleh;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
+    if (mahasiswa != null) {
+      data['mahasiswa'] = mahasiswa!.toJson();
+    }
     return data;
   }
 }
