@@ -624,9 +624,8 @@ class PenilaianPengProposalController extends GetxController {
         "Berita Acara",
       ]);
       // Get.forceAppUpdate();
-    }
-
-    if (jadwalSempro.pengujiduaNip!.contains(homeC.mapUser['data']['nip'])) {
+    } else if (jadwalSempro.pengujiduaNip!
+        .contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 2");
       penguji2 =
           getPenilaianKPPengReturn(penjadwalanSempro.pengujiduaNip.toString());
