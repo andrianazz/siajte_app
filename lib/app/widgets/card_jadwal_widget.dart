@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/abstact_penjadwalan.dart';
 import 'package:siajte_app/app/modules/jadwal_seminar/controllers/jadwal_seminar_controller.dart';
-import 'package:siajte_app/app/routes/app_pages.dart';
 
 import '../theme/colors.dart';
 import '../theme/style.dart';
@@ -70,28 +69,35 @@ class _CardJadwalWidgetState extends State<CardJadwalWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    FutureBuilder<String?>(
-                      future: jadwalSeminarC.getMahasiswaWithNim(
-                          widget.penjadwalan!.mahasiswaNim!),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return Text(
-                            snapshot.data!,
-                            style: poppins.copyWith(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                                color: textJadwalSeminar),
-                          );
-                        } else if (snapshot.hasError) {
-                          return ElevatedButton(
-                            onPressed: () => Get.offAllNamed(Routes.HOME),
-                            child: const Text("refresh"),
-                          );
-                        } else {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        }
-                      },
+                    // FutureBuilder<String?>(
+                    //   future: jadwalSeminarC.getMahasiswaWithNim(
+                    //       widget.penjadwalan!.mahasiswaNim!),
+                    //   builder: (context, snapshot) {
+                    //     if (snapshot.hasData) {
+                    //       return Text(
+                    //         snapshot.data!,
+                    //         style: poppins.copyWith(
+                    //             fontSize: 16.sp,
+                    //             fontWeight: FontWeight.w600,
+                    //             color: textJadwalSeminar),
+                    //       );
+                    //     } else if (snapshot.hasError) {
+                    //       return ElevatedButton(
+                    //         onPressed: () => Get.offAllNamed(Routes.HOME),
+                    //         child: const Text("refresh"),
+                    //       );
+                    //     } else {
+                    //       return const Center(
+                    //           child: CircularProgressIndicator());
+                    //     }
+                    //   },
+                    // ),
+                    Text(
+                      widget.penjadwalan!.mahasiswa!.nama.toString(),
+                      style: poppins.copyWith(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          color: textJadwalSeminar),
                     ),
                     Text(
                       // penjadwalanKp != null
