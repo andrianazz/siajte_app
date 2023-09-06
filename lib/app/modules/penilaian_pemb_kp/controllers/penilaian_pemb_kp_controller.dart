@@ -517,9 +517,6 @@ class PenilaianPembKpController extends GetxController {
         pengujiC.getPenilaianKPPengReturn(penjadwalanKp.pengujiNip.toString());
     pembimbing = getPenilaianKPReturn();
 
-    await getPenilaianKP();
-    await penilaianPengKpC
-        .getPenilaianKPPeng(penjadwalanKp.pengujiNip.toString());
     Get.forceAppUpdate();
   }
 }
