@@ -611,6 +611,10 @@ class PenilaianPengProposalController extends GetxController {
       print("peng sempro 1");
       penguji1 =
           getPenilaianKPPengReturn(penjadwalanSempro.pengujisatuNip.toString());
+      penguji2 =
+          getPenilaianKPPengReturn(penjadwalanSempro.pengujiduaNip.toString());
+      penguji3 =
+          getPenilaianKPPengReturn(penjadwalanSempro.pengujitigaNip.toString());
       listPenilaianPengSempro.addAll([
         "Revisi Judul",
         "Berita Acara",

@@ -346,6 +346,13 @@ class PenilaianPembProposalController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
+    pembimbing1 = getPenilaianSemproReturn(
+        penjadwalanSempro.pembimbingsatuNip.toString());
+    if (penjadwalanSempro.pembimbingduaNip.toString() != "null") {
+      pembimbing2 = getPenilaianSemproReturn(
+          penjadwalanSempro.pembimbingduaNip.toString());
+    }
+
     if (penjadwalanSempro.pembimbingsatuNip.toString() ==
         homeC.mapUser['data']['nip'].toString()) {
       print("pemb sempro 1");
