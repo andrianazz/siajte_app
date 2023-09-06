@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/home/views/home_view.dart';
 import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_skripsi/controllers/penilaian_peng_skripsi_controller.dart';
-import 'package:siajte_app/app/modules/persetujuan_koor_ta/controllers/persetujuan_koor_ta_controller.dart';
 import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
@@ -17,8 +17,8 @@ class CardBASkripsiKoor extends StatelessWidget {
         Get.put(PenialianPembSkipsiController());
     PenilaianPengSkripsiController penilaianPengController =
         Get.put(PenilaianPengSkripsiController());
-    PersetujuanKoorTaController persetujuanKoorTaController =
-        Get.put(PersetujuanKoorTaController());
+    // PersetujuanKoorTaController persetujuanKoorTaController =
+    //     Get.put(PersetujuanKoorTaController());
 
     return Column(
       children: [
@@ -147,7 +147,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: persetujuanKoorTaController.penguji1,
+                      future: penilaianPengController.penguji1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -167,6 +167,58 @@ class CardBASkripsiKoor extends StatelessWidget {
                                     Icon(Icons.refresh),
                                   ],
                                 )),
+                          );
+                        }
+
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                            ],
                           );
                         }
 
@@ -304,7 +356,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                        future: persetujuanKoorTaController.penguji2,
+                        future: penilaianPengController.penguji2,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -324,6 +376,58 @@ class CardBASkripsiKoor extends StatelessWidget {
                                       Icon(Icons.refresh),
                                     ],
                                   )),
+                            );
+                          }
+
+                          if (!snapshot.hasData) {
+                            return Column(
+                              children: [
+                                Text(
+                                  "Nilai",
+                                  style: poppins.copyWith(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                                SizedBox(height: 10.h),
+                                const NilaiTextBA(title: "-"),
+                              ],
                             );
                           }
 
@@ -464,7 +568,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                         }),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: persetujuanKoorTaController.penguji3,
+                      future: penilaianPengController.penguji3,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -484,6 +588,58 @@ class CardBASkripsiKoor extends StatelessWidget {
                                     Icon(Icons.refresh),
                                   ],
                                 )),
+                          );
+                        }
+
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                            ],
                           );
                         }
 
@@ -701,7 +857,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: persetujuanKoorTaController.pembimbing1,
+                      future: penilaianPembController.pembimbing1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -721,6 +877,40 @@ class CardBASkripsiKoor extends StatelessWidget {
                                     Icon(Icons.refresh),
                                   ],
                                 )),
+                          );
+                        }
+
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                            ],
                           );
                         }
 
@@ -817,7 +1007,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                                 .toString() !=
                             "null"
                         ? FutureBuilder(
-                            future: persetujuanKoorTaController.pembimbing2,
+                            future: penilaianPembController.pembimbing2,
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -837,6 +1027,40 @@ class CardBASkripsiKoor extends StatelessWidget {
                                           Icon(Icons.refresh),
                                         ],
                                       )),
+                                );
+                              }
+
+                              if (!snapshot.hasData) {
+                                return Column(
+                                  children: [
+                                    Text(
+                                      "Nilai",
+                                      style: poppins.copyWith(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15.h,
+                                    ),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                  ],
                                 );
                               }
 
@@ -1144,7 +1368,13 @@ class CardBASkripsiKoor extends StatelessWidget {
                       onPressed: () {
                         penilaianPengController.setujuiKoor(
                             penilaianPengController.jadwalSkripsi.id);
-                        Get.offAllNamed(Routes.HOME);
+                        Get.back();
+                        Get.back();
+                        Get.back();
+
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          Get.offAll(() => const HomeView());
+                        });
                       },
                       child: Text(
                         "Setujui",
