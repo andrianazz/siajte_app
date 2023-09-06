@@ -63,8 +63,8 @@ class JadwalSeminarController extends GetxController {
 
     filterJadwal.value.map((element) async {
       listTanggal.add(DateTime.parse("${element.tanggal!} ${element.waktu!}"));
-      listNim.add(element.mahasiswaNim!);
-      listNama.add(await getMahasiswaWithNim(element.mahasiswaNim!));
+      listNim.add(element.mahasiswaNim.toString());
+      listNama.add(element.mahasiswa!.nama.toString());
     }).toList();
 
     // jadikan listTanggal 24 jam sebelumnya, 1 jam sebelumnya, 30 menit sebelumnya, dan jam sekarang
