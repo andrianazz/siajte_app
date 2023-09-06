@@ -45,27 +45,27 @@ class CardMahasiswa extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    FutureBuilder<String>(
-                      future: controller.getMahasiswaWithNim(
-                        mahasiswa.nim!,
-                      ),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return Text(
-                            snapshot.data!,
-                            style: poppins.copyWith(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                                color: textJadwalSeminar),
-                          );
-                        } else if (snapshot.hasError) {
-                          return const Text("error");
-                        } else {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        }
-                      },
-                    ),
+                    // FutureBuilder<String>(
+                    //   future: controller.getMahasiswaWithNim(
+                    //     mahasiswa.nim!,
+                    //   ),
+                    //   builder: (context, snapshot) {
+                    //     if (snapshot.hasData) {
+                    //       return Text(
+                    //         snapshot.data!,
+                    //         style: poppins.copyWith(
+                    //             fontSize: 16.sp,
+                    //             fontWeight: FontWeight.w600,
+                    //             color: textJadwalSeminar),
+                    //       );
+                    //     } else if (snapshot.hasError) {
+                    //       return const Text("error");
+                    //     } else {
+                    //       return const Center(
+                    //           child: CircularProgressIndicator());
+                    //     }
+                    //   },
+                    // ),
                     // Text(
                     //   "edit",
                     //   style: poppins.copyWith(
@@ -73,6 +73,13 @@ class CardMahasiswa extends StatelessWidget {
                     //     fontWeight: FontWeight.w600,
                     //   ),
                     // ),
+                    Text(
+                      mahasiswa.nama!,
+                      style: poppins.copyWith(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          color: textJadwalSeminar),
+                    )
                   ],
                 ),
                 SizedBox(height: 12.h),
