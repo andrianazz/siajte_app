@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/penilaian_kp_pemb_model.dart';
-import 'package:siajte_app/app/data/models/penilaian_kp_peng_model.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_kp_model.dart';
 import 'package:siajte_app/app/modules/home/controllers/home_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_pemb_kp/views/penilaian_pemb_kp_view.dart';
@@ -15,7 +14,7 @@ import 'package:siajte_app/app/widgets/penilaian_kp_pembimbing/form_nilai_kp.dar
 
 class PenilaianPembKpController extends GetxController {
   PenilaianPengKpController pengujiC = Get.put(PenilaianPengKpController());
-  late Future<PenilaianKpPeng?> penguji;
+
   late Future<PenilaianKpPemb?> pembimbing;
 
   Dio dio = Dio();
@@ -516,8 +515,8 @@ class PenilaianPembKpController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    penguji =
-        pengujiC.getPenilaianKPPengReturn(penjadwalanKp.pengujiNip.toString());
+    // penguji =
+    //     pengujiC.getPenilaianKPPengReturn(penjadwalanKp.pengujiNip.toString());
     pembimbing = getPenilaianKPReturn();
   }
 }

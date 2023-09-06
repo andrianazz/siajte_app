@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_use_of_protected_member
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +11,7 @@ import 'package:siajte_app/app/widgets/penilaian_kp_penguji/form_nilai_penguji.d
 class PenilaianPengKpController extends GetxController {
   HomeController homeC = Get.put(HomeController());
   PenjadwalanKp penjadwalanKp = Get.arguments;
+  late Future<PenilaianKpPeng?> penguji;
 
   RxBool isLoading = false.obs;
   PageController pageController = PageController();
@@ -399,7 +398,6 @@ class PenilaianPengKpController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-
-    update();
+    penguji = getPenilaianKPPengReturn(penjadwalanKp.pengujiNip.toString());
   }
 }
