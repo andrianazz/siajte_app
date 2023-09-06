@@ -606,15 +606,19 @@ class PenilaianPengProposalController extends GetxController {
   @override
   void onInit() async {
     // TODO: implement onInit
+    penguji2 =
+        getPenilaianKPPengReturn(penjadwalanSempro.pengujiduaNip.toString());
+    penguji3 =
+        getPenilaianKPPengReturn(penjadwalanSempro.pengujitigaNip.toString());
+
     super.onInit();
     if (jadwalSempro.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 1");
-      penguji1 =
-          getPenilaianKPPengReturn(penjadwalanSempro.pengujisatuNip.toString());
-      penguji2 =
-          getPenilaianKPPengReturn(penjadwalanSempro.pengujiduaNip.toString());
-      penguji3 =
-          getPenilaianKPPengReturn(penjadwalanSempro.pengujitigaNip.toString());
+      Future.delayed(const Duration(milliseconds: 500), () {
+        penguji1 = getPenilaianKPPengReturn(
+            penjadwalanSempro.pengujisatuNip.toString());
+      });
+
       listPenilaianPengSempro.addAll([
         "Revisi Judul",
         "Berita Acara",

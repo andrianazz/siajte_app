@@ -8,6 +8,9 @@ import 'package:siajte_app/app/theme/variable.dart';
 import 'package:siajte_app/app/widgets/penilaian_pemb_skripsi/form_nilai_pemb_skripsi.dart';
 
 class PenialianPembSkipsiController extends GetxController {
+  late Future<PenilaianSkripsiPemb?> pembimbing1;
+  late Future<PenilaianSkripsiPemb?> pembimbing2;
+
   RxBool isLoading = false.obs;
   Dio dio = Dio();
   PageController pageController = PageController();
@@ -187,11 +190,14 @@ class PenialianPembSkipsiController extends GetxController {
                   existPenilaianSkripsiPemb.sikapDanKepribadian.toString());
 
       await getTotalandHuruf();
+
+      Get.forceAppUpdate();
       return existPenilaianSkripsiPemb;
     } else {
       print("Buat Baru pembimbing");
 
       await addPenilaianSkripsiPembAPI(nipPemb);
+      Get.forceAppUpdate();
       return null;
     }
   }
@@ -361,20 +367,25 @@ class PenialianPembSkipsiController extends GetxController {
   @override
   void onInit() async {
     // TODO: implement onInit
+    pembimbing1 = getPenilaianSkripsiReturn(
+        penjadwalanSkripsi.pembimbingsatuNip.toString());
+    if (penjadwalanSkripsi.pembimbingduaNip.toString() != "null") {
+      pembimbing2 = getPenilaianSkripsiReturn(
+          penjadwalanSkripsi.pembimbingduaNip.toString());
+    }
+
     super.onInit();
     if (penjadwalanSkripsi.pembimbingsatuNip.toString() ==
         homeC.mapUser['data']['nip'].toString()) {
       print("pemb sempro 1");
-      await getPenilaianSkripsi(
+      pembimbing1 = getPenilaianSkripsiReturn(
           penjadwalanSkripsi.pembimbingsatuNip.toString());
-      Get.forceAppUpdate();
     } else if (penjadwalanSkripsi.pembimbingduaNip.toString() != "null") {
       if (penjadwalanSkripsi.pembimbingduaNip.toString() ==
           homeC.mapUser['data']['nip'].toString()) {
         print("pemb sempro 2");
-        await getPenilaianSkripsi(
+        pembimbing2 = getPenilaianSkripsiReturn(
             penjadwalanSkripsi.pembimbingduaNip.toString());
-        Get.forceAppUpdate();
       }
     }
   }

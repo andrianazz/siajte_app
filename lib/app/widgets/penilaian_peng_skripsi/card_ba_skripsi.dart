@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/data/models/penjadwalan_skripsi_model.dart';
+import 'package:siajte_app/app/modules/home/views/home_view.dart';
 import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
 import 'package:siajte_app/app/modules/penilaian_peng_skripsi/controllers/penilaian_peng_skripsi_controller.dart';
-import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -170,6 +170,58 @@ class CardBASkripsi extends StatelessWidget {
                           );
                         }
 
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                            ],
+                          );
+                        }
+
                         if (snapshot.data?.totalNilaiAngka.toString() ==
                             "null") {
                           return Column(
@@ -322,6 +374,58 @@ class CardBASkripsi extends StatelessWidget {
                                     Icon(Icons.refresh),
                                   ],
                                 )),
+                          );
+                        }
+
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                            ],
                           );
                         }
 
@@ -479,6 +583,58 @@ class CardBASkripsi extends StatelessWidget {
                                     Icon(Icons.refresh),
                                   ],
                                 )),
+                          );
+                        }
+
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                            ],
                           );
                         }
 
@@ -696,7 +852,7 @@ class CardBASkripsi extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController.pembimbing1,
+                      future: penilaianPembController.pembimbing1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -716,6 +872,40 @@ class CardBASkripsi extends StatelessWidget {
                                     Icon(Icons.refresh),
                                   ],
                                 )),
+                          );
+                        }
+
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: [
+                              Text(
+                                "Nilai",
+                                style: poppins.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                              SizedBox(height: 10.h),
+                              const NilaiTextBA(title: "-"),
+                            ],
                           );
                         }
 
@@ -812,7 +1002,7 @@ class CardBASkripsi extends StatelessWidget {
                                 .toString() !=
                             "null"
                         ? FutureBuilder(
-                            future: penilaianPengController.pembimbing2,
+                            future: penilaianPembController.pembimbing2,
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -832,6 +1022,40 @@ class CardBASkripsi extends StatelessWidget {
                                           Icon(Icons.refresh),
                                         ],
                                       )),
+                                );
+                              }
+
+                              if (!snapshot.hasData) {
+                                return Column(
+                                  children: [
+                                    Text(
+                                      "Nilai",
+                                      style: poppins.copyWith(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15.h,
+                                    ),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                    SizedBox(height: 10.h),
+                                    const NilaiTextBA(title: "-"),
+                                  ],
                                 );
                               }
 
@@ -1074,7 +1298,7 @@ class CardBASkripsi extends StatelessWidget {
                         Get.back();
 
                         Future.delayed(const Duration(milliseconds: 500), () {
-                          Get.offAll(() => Routes.HOME);
+                          Get.offAll(() => const HomeView());
                         });
                       },
                       child: Text(

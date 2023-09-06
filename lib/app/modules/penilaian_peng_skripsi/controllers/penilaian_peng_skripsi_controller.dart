@@ -72,8 +72,6 @@ class PenilaianPengSkripsiController extends GetxController {
   late Future<PenilaianSkripsiPeng?> penguji1;
   late Future<PenilaianSkripsiPeng?> penguji2;
   late Future<PenilaianSkripsiPeng?> penguji3;
-  late Future<PenilaianSkripsiPemb?> pembimbing1;
-  late Future<PenilaianSkripsiPemb?> pembimbing2;
 
   late Future<void> beritaAcara;
 
@@ -366,10 +364,13 @@ class PenilaianPengSkripsiController extends GetxController {
       revisiNaskah3C.text = existPenilaianSkripsiPeng.revisiNaskah3 ?? "";
       revisiNaskah4C.text = existPenilaianSkripsiPeng.revisiNaskah4 ?? "";
       revisiNaskah5C.text = existPenilaianSkripsiPeng.revisiNaskah5 ?? "";
+
+      Get.forceAppUpdate();
       return existPenilaianSkripsiPeng;
     } else {
       print("Buat Baru Penguji");
       await addPenilaianSkripsiPengAPI(nipPeng);
+      Get.forceAppUpdate();
       return null;
     }
   }
@@ -852,25 +853,12 @@ class PenilaianPengSkripsiController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    penguji1 =
-        getPenilaianSkripsiPengReturn(jadwalSkripsi.pengujisatuNip.toString());
+
+    // beritaAcara = getBeritaAcara();
     penguji2 =
         getPenilaianSkripsiPengReturn(jadwalSkripsi.pengujiduaNip.toString());
     penguji3 =
         getPenilaianSkripsiPengReturn(jadwalSkripsi.pengujitigaNip.toString());
-    pembimbing1 = penilaianPembController.getPenilaianSkripsiReturn(
-        penilaianPembController.penjadwalanSkripsi.pembimbingsatuNip
-            .toString());
-
-    if (penilaianPembController.penjadwalanSkripsi.pembimbingduaNip
-            .toString() !=
-        "null") {
-      pembimbing2 = penilaianPembController.getPenilaianSkripsiReturn(
-          penilaianPembController.penjadwalanSkripsi.pembimbingduaNip
-              .toString());
-    }
-
-    beritaAcara = getBeritaAcara();
 
     if (jadwalSkripsi.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 1");
@@ -880,20 +868,22 @@ class PenilaianPengSkripsiController extends GetxController {
         "Berita Acara",
       ]);
 
-      await getPenilaianSkripsiPeng(jadwalSkripsi.pengujisatuNip.toString());
-      Get.forceAppUpdate();
+      Future.delayed(const Duration(milliseconds: 500), () {
+        penguji1 = getPenilaianSkripsiPengReturn(
+            jadwalSkripsi.pengujisatuNip.toString());
+      });
     }
 
     if (jadwalSkripsi.pengujiduaNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 2");
-      await getPenilaianSkripsiPeng(jadwalSkripsi.pengujiduaNip.toString());
-      Get.forceAppUpdate();
+      penguji2 =
+          getPenilaianSkripsiPengReturn(jadwalSkripsi.pengujiduaNip.toString());
     } else if (jadwalSkripsi.pengujitigaNip != null) {
       if (jadwalSkripsi.pengujitigaNip!
           .contains(homeC.mapUser['data']['nip'])) {
         print("peng sempro 3");
-        await getPenilaianSkripsiPeng(jadwalSkripsi.pengujitigaNip.toString());
-        Get.forceAppUpdate();
+        penguji3 = getPenilaianSkripsiPengReturn(
+            jadwalSkripsi.pengujitigaNip.toString());
       }
     }
   }
