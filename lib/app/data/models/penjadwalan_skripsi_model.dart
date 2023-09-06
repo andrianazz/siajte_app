@@ -64,7 +64,8 @@ class PenjadwalanSkripsi extends Penjadwalan {
       this.statusSeminar,
       this.dibuatOleh,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.mahasiswa});
 
   PenjadwalanSkripsi.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -86,6 +87,9 @@ class PenjadwalanSkripsi extends Penjadwalan {
     dibuatOleh = json['dibuat_oleh'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    mahasiswa = json['mahasiswa'] != null
+        ? Mahasiswa.fromJson(json['mahasiswa'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -109,6 +113,9 @@ class PenjadwalanSkripsi extends Penjadwalan {
     data['dibuat_oleh'] = dibuatOleh;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
+    if (mahasiswa != null) {
+      data['mahasiswa'] = mahasiswa!.toJson();
+    }
     return data;
   }
 }
