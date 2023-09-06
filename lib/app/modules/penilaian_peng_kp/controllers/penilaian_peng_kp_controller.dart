@@ -162,10 +162,13 @@ class PenilaianPengKpController extends GetxController {
       revisiNaskah4C.text = existPenilaianKpPeng.revisiNaskah4 ?? "";
       revisiNaskah5C.text = existPenilaianKpPeng.revisiNaskah5 ?? "";
 
+      Get.forceAppUpdate();
       return existPenilaianKpPeng;
     } else {
       print("Buat Baru Penguji");
       await addPenilaianKPPengAPI();
+
+      Get.forceAppUpdate();
       return null;
     }
   }
@@ -396,7 +399,7 @@ class PenilaianPengKpController extends GetxController {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    await getPenilaianKPPeng(penjadwalanKp.pengujiNip.toString());
-    Get.forceAppUpdate();
+
+    update();
   }
 }

@@ -200,10 +200,13 @@ class PenilaianPembKpController extends GetxController {
       catatan1C.text = existPenilaianKpPemb.catatan1 ?? "";
       catatan2C.text = existPenilaianKpPemb.catatan2 ?? "";
       catatan3C.text = existPenilaianKpPemb.catatan3 ?? "";
+
+      Get.forceAppUpdate();
       return existPenilaianKpPemb;
     } else {
       print("Buat Baru pembimbing");
       await addPenilaianKPPembAPI();
+      Get.forceAppUpdate();
       return existPenilaianKpPemb;
     }
   }
@@ -516,7 +519,5 @@ class PenilaianPembKpController extends GetxController {
     penguji =
         pengujiC.getPenilaianKPPengReturn(penjadwalanKp.pengujiNip.toString());
     pembimbing = getPenilaianKPReturn();
-
-    Get.forceAppUpdate();
   }
 }
