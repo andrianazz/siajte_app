@@ -13,6 +13,10 @@ import 'package:siajte_app/app/widgets/penilaian_peng_sempro/card_ba_sempro.dart
 import 'package:siajte_app/app/widgets/penilaian_peng_sempro/form_nilai_peng_sempro.dart';
 
 class PenilaianPengProposalController extends GetxController {
+  late Future<PenilaianSemproPeng?> penguji1;
+  late Future<PenilaianSemproPeng?> penguji2;
+  late Future<PenilaianSemproPeng?> penguji3;
+
   RxBool isLoading = false.obs;
   PageController pageController = PageController();
 
@@ -278,10 +282,14 @@ class PenilaianPengProposalController extends GetxController {
       revisiNaskah3C.text = existPenilaianSemproPeng.revisiNaskah3 ?? "";
       revisiNaskah4C.text = existPenilaianSemproPeng.revisiNaskah4 ?? "";
       revisiNaskah5C.text = existPenilaianSemproPeng.revisiNaskah5 ?? "";
+
+      Get.forceAppUpdate();
       return existPenilaianSemproPeng;
     } else {
       print("Buat Baru Penguji");
       await addPenilaianKPPengAPI(nipPeng);
+
+      Get.forceAppUpdate();
       return null;
     }
   }
@@ -601,23 +609,26 @@ class PenilaianPengProposalController extends GetxController {
     super.onInit();
     if (jadwalSempro.pengujisatuNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 1");
-      await getPenilaianKPPeng(penjadwalanSempro.pengujisatuNip.toString());
+      penguji1 =
+          getPenilaianKPPengReturn(penjadwalanSempro.pengujisatuNip.toString());
       listPenilaianPengSempro.addAll([
         "Revisi Judul",
         "Berita Acara",
       ]);
-      Get.forceAppUpdate();
+      // Get.forceAppUpdate();
     }
 
     if (jadwalSempro.pengujiduaNip!.contains(homeC.mapUser['data']['nip'])) {
       print("peng sempro 2");
-      await getPenilaianKPPeng(penjadwalanSempro.pengujiduaNip.toString());
-      Get.forceAppUpdate();
+      penguji2 =
+          getPenilaianKPPengReturn(penjadwalanSempro.pengujiduaNip.toString());
+      // Get.forceAppUpdate();
     } else if (jadwalSempro.pengujitigaNip != null) {
       if (jadwalSempro.pengujitigaNip!.contains(homeC.mapUser['data']['nip'])) {
         print("peng sempro 3");
-        await getPenilaianKPPeng(penjadwalanSempro.pengujitigaNip.toString());
-        Get.forceAppUpdate();
+        penguji3 = getPenilaianKPPengReturn(
+            penjadwalanSempro.pengujitigaNip.toString());
+        // Get.forceAppUpdate();
       }
     }
   }

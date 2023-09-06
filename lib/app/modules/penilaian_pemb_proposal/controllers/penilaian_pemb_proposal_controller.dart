@@ -10,6 +10,9 @@ import 'package:siajte_app/app/theme/variable.dart';
 import 'package:siajte_app/app/widgets/penilaian_pemb_sempro/form_nilai_pemb_sempro.dart';
 
 class PenilaianPembProposalController extends GetxController {
+  late Future<PenilaianSemproPemb?> pembimbing1;
+  late Future<PenilaianSemproPemb?> pembimbing2;
+
   RxBool isLoading = false.obs;
   PageController pageController = PageController();
   Dio dio = Dio();
@@ -167,11 +170,14 @@ class PenilaianPembProposalController extends GetxController {
                   existPenilaianSemproPemb.sikapDanKepribadian.toString());
 
       await getTotalandHuruf();
+
+      Get.forceAppUpdate();
       return existPenilaianSemproPemb;
     } else {
       print("Buat Baru pembimbing");
 
       await addPenilaianSemproPembAPI(nipPemb);
+      Get.forceAppUpdate();
       return null;
     }
   }
@@ -343,14 +349,16 @@ class PenilaianPembProposalController extends GetxController {
     if (penjadwalanSempro.pembimbingsatuNip.toString() ==
         homeC.mapUser['data']['nip'].toString()) {
       print("pemb sempro 1");
-      await getPenilaianSempro(penjadwalanSempro.pembimbingsatuNip.toString());
-      Get.forceAppUpdate();
+      pembimbing1 = getPenilaianSemproReturn(
+          penjadwalanSempro.pembimbingsatuNip.toString());
+      // Get.forceAppUpdate();
     } else if (penjadwalanSempro.pembimbingduaNip.toString() != "null") {
       if (penjadwalanSempro.pembimbingduaNip.toString() ==
           homeC.mapUser['data']['nip'].toString()) {
         print("pemb sempro 2");
-        await getPenilaianSempro(penjadwalanSempro.pembimbingduaNip.toString());
-        Get.forceAppUpdate();
+        pembimbing2 = getPenilaianSemproReturn(
+            penjadwalanSempro.pembimbingduaNip.toString());
+        // Get.forceAppUpdate();
       }
     }
   }
