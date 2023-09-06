@@ -111,6 +111,32 @@ class CardBAKP extends StatelessWidget {
                         );
                       }
 
+                      if (!snapshot.hasData) {
+                        return Column(
+                          children: [
+                            Text(
+                              "Nilai",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            const NilaiTextBA(title: "-"),
+                            SizedBox(height: 10.h),
+                            const NilaiTextBA(title: "-"),
+                            SizedBox(height: 10.h),
+                            const NilaiTextBA(title: "-"),
+                            SizedBox(height: 10.h),
+                            const NilaiTextBA(title: "-"),
+                            SizedBox(height: 10.h),
+                            const NilaiTextBA(title: "-"),
+                          ],
+                        );
+                      }
+
                       if (snapshot.data?.totalNilaiAngka.toString() == "null") {
                         return Column(
                           children: [
@@ -250,6 +276,32 @@ class CardBAKP extends StatelessWidget {
                                   Icon(Icons.refresh),
                                 ],
                               )),
+                        );
+                      }
+
+                      if (!snapshot.hasData) {
+                        return Column(
+                          children: [
+                            Text(
+                              "Nilai",
+                              style: poppins.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            const NilaiTextBA(title: "-"),
+                            SizedBox(height: 10.h),
+                            const NilaiTextBA(title: "-"),
+                            SizedBox(height: 10.h),
+                            const NilaiTextBA(title: "-"),
+                            SizedBox(height: 10.h),
+                            const NilaiTextBA(title: "-"),
+                            SizedBox(height: 10.h),
+                            const NilaiTextBA(title: "-"),
+                          ],
                         );
                       }
 
