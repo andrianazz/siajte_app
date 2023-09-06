@@ -69,12 +69,28 @@ class JadwalSeminarController extends GetxController {
 
     // jadikan listTanggal 24 jam sebelumnya, 1 jam sebelumnya, 30 menit sebelumnya, dan jam sekarang
     List<DateTime> listTanggal2 = [];
+    List<String> listNama2 = [];
+    List<String> listNim2 = [];
     for (var item in listTanggal) {
       listTanggal2.add(item.subtract(const Duration(hours: 24)));
       listTanggal2.add(item.subtract(const Duration(hours: 1)));
       listTanggal2.add(item.subtract(const Duration(minutes: 30)));
       listTanggal2.add(item);
+
+      listNama2.add(listNama[listTanggal.indexOf(item)]);
+      listNama2.add(listNama[listTanggal.indexOf(item)]);
+      listNama2.add(listNama[listTanggal.indexOf(item)]);
+      listNama2.add(listNama[listTanggal.indexOf(item)]);
+
+      listNim2.add(listNim[listTanggal.indexOf(item)]);
+      listNim2.add(listNim[listTanggal.indexOf(item)]);
+      listNim2.add(listNim[listTanggal.indexOf(item)]);
+      listNim2.add(listNim[listTanggal.indexOf(item)]);
     }
+
+    print(listTanggal2);
+    print(listNama2);
+    print(listNim2);
 
     listTanggal2.map((e) {
       int index = listTanggal2.indexOf(e);
@@ -82,7 +98,7 @@ class JadwalSeminarController extends GetxController {
         // if (listTanggal2.indexOf(e) == 0) {
         //   scheduleNotification(e);
         // }
-        scheduleNotification(e, listNama[index], listNim[index], index);
+        scheduleNotification(e, listNama2[index], listNim2[index], index);
       }
     }).toList();
   }
@@ -120,7 +136,7 @@ class JadwalSeminarController extends GetxController {
       'Seminar atas nama : $nama, nim : $nim, akan dilaksanakan pada  tanggal ${scheduledDateTime.day}  jam ${scheduled.hour}:${scheduled.minute}',
       scheduled,
       platformChannelSpecifics,
-      androidAllowWhileIdle: true,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
     );
