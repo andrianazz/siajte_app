@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:siajte_app/app/modules/home/views/home_view.dart';
-import 'package:siajte_app/app/modules/penialian_pemb_skipsi/controllers/penialian_pemb_skipsi_controller.dart';
-import 'package:siajte_app/app/modules/penilaian_peng_skripsi/controllers/penilaian_peng_skripsi_controller.dart';
-import 'package:siajte_app/app/routes/app_pages.dart';
+import 'package:siajte_app/app/modules/persetujuan_koor_ta/controllers/persetujuan_koor_ta_controller.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -13,12 +11,8 @@ class CardBASkripsiKoor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PenialianPembSkipsiController penilaianPembController =
-        Get.put(PenialianPembSkipsiController());
-    PenilaianPengSkripsiController penilaianPengController =
-        Get.put(PenilaianPengSkripsiController());
-    // PersetujuanKoorTaController persetujuanKoorTaController =
-    //     Get.put(PersetujuanKoorTaController());
+    PersetujuanKoorTaController persetujuanKoorTaController =
+        Get.put(PersetujuanKoorTaController());
 
     return Column(
       children: [
@@ -147,7 +141,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController.penguji1,
+                      future: persetujuanKoorTaController.penguji1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -356,7 +350,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                        future: penilaianPengController.penguji2,
+                        future: persetujuanKoorTaController.penguji2,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -568,7 +562,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                         }),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPengController.penguji3,
+                      future: persetujuanKoorTaController.penguji3,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -857,7 +851,7 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     SizedBox(width: 10.w),
                     FutureBuilder(
-                      future: penilaianPembController.pembimbing1,
+                      future: persetujuanKoorTaController.pembimbing1,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -1003,11 +997,11 @@ class CardBASkripsiKoor extends StatelessWidget {
                       },
                     ),
                     SizedBox(width: 10.w),
-                    penilaianPembController.penjadwalanSkripsi.pembimbingduaNip
+                    persetujuanKoorTaController.jadwalSkripsi.pembimbingduaNip
                                 .toString() !=
                             "null"
                         ? FutureBuilder(
-                            future: penilaianPembController.pembimbing2,
+                            future: persetujuanKoorTaController.pembimbing2,
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -1195,7 +1189,8 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ],
                   ),
                   FutureBuilder(
-                    future: penilaianPengController.getBeritaAcara(),
+                    future: persetujuanKoorTaController.penilaianPengController
+                        .getBeritaAcara(),
                     builder: (context, snapshot) {
                       return Column(
                         children: [
@@ -1210,17 +1205,26 @@ class CardBASkripsiKoor extends StatelessWidget {
                             height: 15.h,
                           ),
                           NilaiTextBA(
-                              title: penilaianPengController.baNilaiAkhir.value
+                              title: persetujuanKoorTaController
+                                      .penilaianPengController
+                                      .baNilaiAkhir
+                                      .value
                                       .toString() ??
                                   "-"),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: penilaianPengController.baNilaiHuruf.value
+                              title: persetujuanKoorTaController
+                                      .penilaianPengController
+                                      .baNilaiHuruf
+                                      .value
                                       .toString() ??
                                   "-"),
                           SizedBox(height: 10.h),
                           NilaiTextBA(
-                              title: penilaianPengController.baKeterangan.value
+                              title: persetujuanKoorTaController
+                                      .penilaianPengController
+                                      .baKeterangan
+                                      .value
                                       .toString() ??
                                   "-"),
                         ],
@@ -1296,9 +1300,16 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        penilaianPengController.tolakKoor(
-                            penilaianPengController.jadwalSkripsi.id);
-                        Get.offAllNamed(Routes.HOME);
+                        persetujuanKoorTaController.penilaianPengController
+                            .tolakKoor(persetujuanKoorTaController
+                                .penilaianPengController.jadwalSkripsi.id);
+                        Get.back();
+                        Get.back();
+                        Get.back();
+
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          Get.offAll(() => const HomeView());
+                        });
                       },
                       child: Text(
                         "Tolak",
@@ -1366,8 +1377,9 @@ class CardBASkripsiKoor extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        penilaianPengController.setujuiKoor(
-                            penilaianPengController.jadwalSkripsi.id);
+                        persetujuanKoorTaController.penilaianPengController
+                            .setujuiKoor(persetujuanKoorTaController
+                                .penilaianPengController.jadwalSkripsi.id);
                         Get.back();
                         Get.back();
                         Get.back();

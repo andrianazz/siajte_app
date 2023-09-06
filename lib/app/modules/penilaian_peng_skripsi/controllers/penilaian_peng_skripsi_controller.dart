@@ -855,6 +855,7 @@ class PenilaianPengSkripsiController extends GetxController {
     super.onInit();
 
     // beritaAcara = getBeritaAcara();
+
     penguji2 =
         getPenilaianSkripsiPengReturn(jadwalSkripsi.pengujiduaNip.toString());
     penguji3 =

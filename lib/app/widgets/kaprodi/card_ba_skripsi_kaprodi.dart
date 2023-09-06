@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:siajte_app/app/modules/home/views/home_view.dart';
 import 'package:siajte_app/app/modules/persetujuan_kaprodi/controllers/persetujuan_kaprodi_controller.dart';
-import 'package:siajte_app/app/routes/app_pages.dart';
 import 'package:siajte_app/app/theme/colors.dart';
 import 'package:siajte_app/app/theme/style.dart';
 
@@ -1075,7 +1075,13 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                         kaprodiController.penilaianPengController.tolakKaprodi(
                             kaprodiController
                                 .penilaianPengController.jadwalSkripsi.id);
-                        Get.offAllNamed(Routes.HOME);
+                        Get.back();
+                        Get.back();
+                        Get.back();
+
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          Get.offAll(() => const HomeView());
+                        });
                       },
                       child: Text(
                         "Tolak",
@@ -1146,7 +1152,13 @@ class CardBASkripsiKaprodi extends StatelessWidget {
                         kaprodiController.penilaianPengController
                             .setujuiKaprodi(kaprodiController
                                 .penilaianPengController.jadwalSkripsi.id);
-                        Get.offAllNamed(Routes.HOME);
+                        Get.back();
+                        Get.back();
+                        Get.back();
+
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          Get.offAll(() => const HomeView());
+                        });
                       },
                       child: Text(
                         "Setujui",
