@@ -91,7 +91,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                           SizedBox(height: 24.h),
                           DetailSeminar(
                             textTitle: "Nama",
-                            textSubtitle: controller.nama.value,
+                            textSubtitle: controller.nama.value ?? '',
                           ),
                           SizedBox(height: 5.h),
                           DetailSeminar(
@@ -194,7 +194,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                             children: [
                               //Untuk Kaprodi
                               controller.seminar.value == "Skripsi" &&
-                                      controller.status.value == "1"
+                                      controller.status.value == 1
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -215,7 +215,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
 
                               //Untuk Kaprodi
                               controller.seminar.value == "Skripsi" &&
-                                      controller.status.value == "2"
+                                      controller.status.value == 2
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
