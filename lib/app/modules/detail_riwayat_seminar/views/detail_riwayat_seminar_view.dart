@@ -470,7 +470,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       controller.pembimbing1.value ==
                                           homeC.mapUser['data']['nama']
                                               .toString() &&
-                                      controller.status == "3"
+                                      controller.status.value == 3
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -515,7 +515,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       controller.pembimbing2.value ==
                                           homeC.mapUser['data']['nama']
                                               .toString() &&
-                                      controller.status == "3"
+                                      controller.status.value == 3
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -560,7 +560,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       controller.penguji1.value ==
                                           homeC.mapUser['data']['nama']
                                               .toString() &&
-                                      controller.status == "3"
+                                      controller.status.value == 3
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -596,7 +596,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       controller.penguji2.value ==
                                           homeC.mapUser['data']['nama']
                                               .toString() &&
-                                      controller.status == "3"
+                                      controller.status.value == 3
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -624,7 +624,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                       controller.penguji3.value ==
                                           homeC.mapUser['data']['nama']
                                               .toString() &&
-                                      controller.status == "3"
+                                      controller.status.value == 3
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
@@ -707,7 +707,7 @@ class DetailRiwayatSeminarView extends GetView<DetailRiwayatSeminarController> {
                                     )
                                   : const SizedBox(),
                               controller.seminar.value == "Skripsi" &&
-                                      controller.status == "3"
+                                      controller.status.value == 3
                                   ? Row(
                                       children: [
                                         CardSubDetailWidget(
